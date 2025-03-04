@@ -25,5 +25,6 @@
 * `git remote add origin url` - Add a remote repository
 
 * `git push origin master` - Push changes to remote repository
+* `git push branch origin FIRST time` - git push --set-upstream origin "branchname"
 
 * `git pull` - Pull latest from remote repository
