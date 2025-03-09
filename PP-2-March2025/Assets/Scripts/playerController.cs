@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class charcterController : MonoBehaviour
+public class playerController : MonoBehaviour
 {
     [SerializeField] CharacterController controller;
     [SerializeField] int speed;
