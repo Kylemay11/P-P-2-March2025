@@ -221,7 +221,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 56566975}
-  speed: 5
+  walkSpeed: 5
+  sprintSpeed: 10
 --- !u!143 &56566975
 CharacterController:
   m_ObjectHideFlags: 0
