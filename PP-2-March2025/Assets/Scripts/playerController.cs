@@ -14,19 +14,30 @@ public class playerController : MonoBehaviour
     [Range(8f, 45f)][SerializeField] private float gravity;
     [Range(1, 3)][SerializeField] private int maxJumps;
 
+    [Header("Crouch Settings")]
+    [SerializeField] private int crouchSpeed;
+    [SerializeField] private Vector3 crouchColliderSize;
+    [SerializeField] private Vector3 normalColliderSize;
+    [SerializeField] private float crouchCameraHeight;
+    [SerializeField] private float normalCameraHeight;
+    [SerializeField] private Transform playerCamera;
+
     private Vector3 moveDir;
     private Vector3 velocity;
     private bool isGrounded;
     private int jumpCount;
-
-
     private int currentSpeed;
+    private bool isCrouching = false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        currentSpeed = walkSpeed;
+        if (playerCamera != null)
+            playerCamera.localPosition = new Vector3(playerCamera.localPosition.x, normalCameraHeight, playerCamera.localPosition.z);
+        controller.center = normalColliderSize / 2;
+        controller.height = normalColliderSize.y;
     }
 
     // Update is called once per frame
