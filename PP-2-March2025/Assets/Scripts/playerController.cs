@@ -34,10 +34,11 @@ public class playerController : MonoBehaviour
     void Start()
     {
         currentSpeed = walkSpeed;
+
         if (playerCamera != null)
             playerCamera.localPosition = new Vector3(playerCamera.localPosition.x, normalCameraHeight, playerCamera.localPosition.z);
-        controller.center = normalColliderSize / 2;
         controller.height = normalColliderSize.y;
+        controller.center = new Vector3(0, normalColliderSize.y / 14f, 0);
     }
 
     // Update is called once per frame
@@ -45,6 +46,32 @@ public class playerController : MonoBehaviour
     {
         HandleMovement();
         sprint();
+        HandleCrouch();
+    }
+
+    private void HandleCrouch()
+    {
+        if (Input.GetButton("Crouch") && currentSpeed == walkSpeed)
+        {
+            if (!isCrouching)
+            {
+                isCrouching = true;
+                currentSpeed = crouchSpeed;
+                controller.height = crouchColliderSize.y;
+                controller.center = new Vector3(0, crouchColliderSize.y / 6f, 0);
+                if (playerCamera != null)
+                    playerCamera.localPosition = new Vector3(playerCamera.localPosition.x, crouchCameraHeight, playerCamera.localPosition.z);
+            }
+        }
+        else if (isCrouching && (!Input.GetButton("Crouch") || currentSpeed != crouchSpeed))
+        {
+            isCrouching = false;
+            currentSpeed = walkSpeed;
+            controller.height = normalColliderSize.y;
+            controller.center = new Vector3(0, normalColliderSize.y / 14f, 0);
+            if (playerCamera != null)
+                playerCamera.localPosition = new Vector3(playerCamera.localPosition.x, normalCameraHeight, playerCamera.localPosition.z);
+        }
     }
 
     void HandleMovement()
@@ -56,7 +83,7 @@ public class playerController : MonoBehaviour
             velocity = Vector3.zero;
         }
         moveDir = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
-        controller.Move(moveDir * walkSpeed * Time.deltaTime);
+        controller.Move(moveDir * currentSpeed * Time.deltaTime);
 
         Jump();
 
@@ -68,11 +95,11 @@ public class playerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Sprint"))
         {
-            walkSpeed *= sprintMult;
+            currentSpeed *= sprintMult;
         }
         else if (Input.GetButtonUp("Sprint"))
         {
-            walkSpeed /= sprintMult;
+            currentSpeed /= sprintMult;
         }
     }
     void Jump()
