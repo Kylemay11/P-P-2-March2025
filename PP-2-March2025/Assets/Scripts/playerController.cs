@@ -9,8 +9,18 @@ public class playerController : MonoBehaviour
     [Range(1, 5)][SerializeField] private int walkSpeed;
     [Range(1, 5)][SerializeField] private int sprintMult;
 
-    private Vector3 moveDir;
+    [Header("Jump Settings")]
+    [Range(1, 25)][SerializeField] private int jumpSpeed;
+    [Range(8f, 45f)][SerializeField] private float gravity;
+    [Range(1, 3)][SerializeField] private int maxJumps;
 
+    private Vector3 moveDir;
+    private Vector3 velocity;
+    private bool isGrounded;
+    private int jumpCount;
+
+
+    private int currentSpeed;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,31 +28,48 @@ public class playerController : MonoBehaviour
     {
 
     }
-    
+
     // Update is called once per frame
     void Update()
     {
         HandleMovement();
-
         sprint();
-
     }
 
     void HandleMovement()
     {
+
+        if (controller.isGrounded)
+        {
+            jumpCount = 0;
+            velocity = Vector3.zero;
+        }
         moveDir = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
         controller.Move(moveDir * walkSpeed * Time.deltaTime);
+
+        Jump();
+
+        controller.Move(velocity * Time.deltaTime);
+        velocity.y -= gravity * Time.deltaTime;
     }
 
     void sprint()
     {
-        if(Input.GetButtonDown("Sprint"))
+        if (Input.GetButtonDown("Sprint"))
         {
             walkSpeed *= sprintMult;
         }
-        else if(Input.GetButtonUp("Sprint"))
+        else if (Input.GetButtonUp("Sprint"))
         {
             walkSpeed /= sprintMult;
+        }
+    }
+    void Jump()
+    {
+        if (Input.GetButtonDown("Jump") && jumpCount < maxJumps)
+        {
+            jumpCount++;
+            velocity.y = jumpSpeed;
         }
     }
 
