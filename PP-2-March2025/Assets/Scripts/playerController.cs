@@ -12,11 +12,14 @@ public enum PlayerState
     Sliding
 }
 
-public class playerController : MonoBehaviour
+public class playerController : MonoBehaviour, IDamage
 {
     [SerializeField] CharacterController controller;
 
     private PlayerState currentState;
+
+    [Header("Player States")]
+    [SerializeField] public int HP;
 
     [Header("Movment Settings")]
     [SerializeField] private TMP_Text speedMeter;
@@ -220,5 +223,11 @@ public class playerController : MonoBehaviour
     {
         yield return new WaitForSeconds(slideDuration);
         ExitSlide();
+    }
+
+    public void takeDamage(int amount)
+    {
+        HP -= amount;
+      
     }
 }
