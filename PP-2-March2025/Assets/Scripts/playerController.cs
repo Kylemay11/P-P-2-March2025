@@ -19,7 +19,7 @@ public class playerController : MonoBehaviour, IDamage
 
     private PlayerState currentState;
 
-    [Header("Player Staits")]
+    [Header("Player Stats")]
     [SerializeField] public int HP;
 
     [Header("Movment Settings")]
@@ -49,11 +49,14 @@ public class playerController : MonoBehaviour, IDamage
     private Vector3 velocity;
     private int jumpCount;
     private float currentSpeed;
+    float HPOrig;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        HPOrig = HP;
+        updatePlayerUI();
         currentState = PlayerState.Idle;
         currentSpeed = walkSpeed;
 
@@ -229,6 +232,7 @@ public class playerController : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
+        updatePlayerUI();
         StartCoroutine(flashDamageScreen());
         if (HP <= 0)
         {
@@ -241,5 +245,10 @@ public class playerController : MonoBehaviour, IDamage
         gameManager.instance.playerDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.playerDamageScreen.SetActive(false);
+    }
+
+    public void updatePlayerUI()
+    {
+        gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
     }
 }
