@@ -218,20 +218,18 @@ MonoBehaviour:
   speedMeter: {fileID: 1493367976}
   walkSpeed: 6
   sprintMult: 1.5
-  isSprinting: 0
-  slideDuration: 20
-  isSliding: 0
+  slideDuration: 0.5
+  slideBoost: 1.5
   jumpSpeed: 10
   gravity: 30
   maxJumps: 1
   isGrounded: 0
-  crouchSpeed: 2
+  crouchSpeed: 4
   crouchColliderSize: {x: 0, y: 1, z: 0}
   normalColliderSize: {x: 0, y: 2, z: 0}
   crouchCameraHeight: 0.75
   normalCameraHeight: 0.75
   playerCamera: {fileID: 578625826}
-  isCrouching: 0
 --- !u!143 &56566975
 CharacterController:
   m_ObjectHideFlags: 0

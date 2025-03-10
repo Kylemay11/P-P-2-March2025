@@ -137,6 +137,17 @@ public class playerController : MonoBehaviour
             jumpCount = 0;
             velocity = Vector3.zero;
 
+            if (IsSprintingHeld() && currentState != PlayerState.Crouching && currentState != PlayerState.Sliding)
+            {
+                currentState = PlayerState.Sprinting;
+                currentSpeed = walkSpeed * sprintMult;
+            }
+            else if (currentState != PlayerState.Crouching && currentState != PlayerState.Sliding)
+            {
+                currentState = PlayerState.Walking;
+                currentSpeed = walkSpeed;
+            }
+
             if (currentState == PlayerState.Crouching)
                 currentSpeed = crouchSpeed;
         }
@@ -166,11 +177,24 @@ public class playerController : MonoBehaviour
     void ExitSlide()
     {
         if (Input.GetButton("Crouch"))
+        {
             EnterCrouch();
+        }
+        else if (IsSprintingHeld())
+        {
+            currentState = PlayerState.Sprinting;
+            currentSpeed = walkSpeed * sprintMult;
+        }
         else
+        {
             currentState = PlayerState.Walking;
+            currentSpeed = walkSpeed;
+        }
 
-        currentSpeed = (currentState == PlayerState.Crouching) ? crouchSpeed : walkSpeed;
+        controller.height = normalColliderSize.y;
+        controller.center = new Vector3(0, normalColliderSize.y / 6f, 0);
+        if (playerCamera != null)
+            playerCamera.localPosition = new Vector3(playerCamera.localPosition.x, normalCameraHeight, playerCamera.localPosition.z);
     }
 
     void Jump()
@@ -182,6 +206,10 @@ public class playerController : MonoBehaviour
             velocity.y = jumpSpeed;
         }
     }
+    bool IsSprintingHeld()
+    {
+        return Input.GetButton("Sprint");
+    }
 
     private void Move(Vector3 vector3)
     {
@@ -191,19 +219,6 @@ public class playerController : MonoBehaviour
     private IEnumerator SlideTimer()
     {
         yield return new WaitForSeconds(slideDuration);
-
-        if (Input.GetButton("Crouch"))
-        {
-            EnterCrouch();
-        }
-        else
-        {
-            currentState = PlayerState.Walking;
-            currentSpeed = walkSpeed;
-            controller.height = normalColliderSize.y;
-            controller.center = new Vector3(0, normalColliderSize.y / 14f, 0);
-            if (playerCamera != null)
-                playerCamera.localPosition = new Vector3(playerCamera.localPosition.x, normalCameraHeight, playerCamera.localPosition.z);
-        }
+        ExitSlide();
     }
 }
