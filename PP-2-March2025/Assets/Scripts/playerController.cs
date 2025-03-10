@@ -13,6 +13,7 @@ public class playerController : MonoBehaviour
     [Range(1, 25)][SerializeField] private int jumpSpeed;
     [Range(8f, 45f)][SerializeField] private float gravity;
     [Range(1, 3)][SerializeField] private int maxJumps;
+    [SerializeField] private bool isGrounded;
 
     [Header("Crouch Settings")]
     [SerializeField] private int crouchSpeed;
@@ -21,13 +22,12 @@ public class playerController : MonoBehaviour
     [SerializeField] private float crouchCameraHeight;
     [SerializeField] private float normalCameraHeight;
     [SerializeField] private Transform playerCamera;
+    [SerializeField] private bool isCrouching;
 
     private Vector3 moveDir;
     private Vector3 velocity;
-    private bool isGrounded;
     private int jumpCount;
     private int currentSpeed;
-    private bool isCrouching = false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -56,7 +56,6 @@ public class playerController : MonoBehaviour
             if (!isCrouching)
             {
                 isCrouching = true;
-                currentSpeed = crouchSpeed;
                 controller.height = crouchColliderSize.y;
                 controller.center = new Vector3(0, crouchColliderSize.y / 6f, 0);
                 if (playerCamera != null)
@@ -76,11 +75,16 @@ public class playerController : MonoBehaviour
 
     void HandleMovement()
     {
-
         if (controller.isGrounded)
         {
+            isGrounded = true;
             jumpCount = 0;
             velocity = Vector3.zero;
+
+            if (isCrouching)
+            {
+                currentSpeed = crouchSpeed;
+            }
         }
         moveDir = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
         controller.Move(moveDir * currentSpeed * Time.deltaTime);
@@ -106,6 +110,7 @@ public class playerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && jumpCount < maxJumps)
         {
+            isGrounded = false;
             jumpCount++;
             velocity.y = jumpSpeed;
         }

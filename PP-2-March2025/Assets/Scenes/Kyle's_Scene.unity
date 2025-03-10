@@ -216,16 +216,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 56566975}
   walkSpeed: 5
-  sprintMult: 4
+  sprintMult: 2
   jumpSpeed: 10
   gravity: 30
   maxJumps: 1
+  isGrounded: 0
   crouchSpeed: 2
   crouchColliderSize: {x: 0, y: 1, z: 0}
   normalColliderSize: {x: 0, y: 2, z: 0}
   crouchCameraHeight: 0.75
   normalCameraHeight: 0.75
   playerCamera: {fileID: 578625826}
+  isCrouching: 0
 --- !u!143 &56566975
 CharacterController:
   m_ObjectHideFlags: 0
