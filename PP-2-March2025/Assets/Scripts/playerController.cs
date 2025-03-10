@@ -14,11 +14,12 @@ public enum PlayerState
 
 public class playerController : MonoBehaviour, IDamage
 {
+    [SerializeField] LayerMask ignoreMask;
     [SerializeField] CharacterController controller;
 
     private PlayerState currentState;
 
-    [Header("Player States")]
+    [Header("Player Staits")]
     [SerializeField] public int HP;
 
     [Header("Movment Settings")]
@@ -228,6 +229,17 @@ public class playerController : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-      
+        StartCoroutine(flashDamageScreen());
+        if (HP <= 0)
+        {
+            gameManager.instance.youLose();
+        }
+    }
+
+    IEnumerator flashDamageScreen()
+    {
+        gameManager.instance.playerDamageScreen.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.instance.playerDamageScreen.SetActive(false);
     }
 }

@@ -1,23 +1,29 @@
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.Profiling;
 
 public class gameManager : MonoBehaviour
 {
+
     public static gameManager instance;
 
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
+    [SerializeField] GameObject menuWin;
+    [SerializeField] GameObject menuLose;
 
+
+    public GameObject playerDamageScreen;
     public GameObject player;
     public playerController playerScript;
 
     public bool isPaused;
 
+    int goalCount;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         instance = this;
-
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
     }
@@ -25,15 +31,15 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel"))
         {
-            if(menuActive == null)
+            if (menuActive == null)
             {
                 statePause();
                 menuActive = menuPause;
                 menuActive.SetActive(true);
             }
-            else if(menuActive == menuPause)
+            else if (menuActive == menuPause)
             {
                 stateUnpaused();
             }
@@ -58,4 +64,22 @@ public class gameManager : MonoBehaviour
         menuActive = null;
     }
 
+    public void updateGameGoal(int amount)
+    {
+        goalCount += amount;
+
+        if (goalCount <= 0)
+        {
+            statePause();
+            menuActive = menuWin;
+            menuActive.SetActive(true);
+        }
+    }
+
+    public void youLose()
+    {
+        statePause();
+        menuActive = menuLose;
+        menuActive.SetActive(true);
+    }
 }
