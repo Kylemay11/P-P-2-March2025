@@ -1,16 +1,31 @@
 using UnityEngine;
 using System;
 using TMPro;
+using System.Collections;
+
+public enum PlayerState
+{
+    Idle,
+    Walking,
+    Sprinting,
+    Crouching,
+    Sliding
+}
 
 public class playerController : MonoBehaviour
 {
     [SerializeField] CharacterController controller;
 
+    private PlayerState currentState;
+
     [Header("Movment Settings")]
     [SerializeField] private TMP_Text speedMeter;
     [Range(1f, 10f)][SerializeField] private float walkSpeed;
     [Range(1f, 5f)][SerializeField] private float sprintMult;
-    [SerializeField] private bool isSprinting;
+
+    [Header("Slide Settings")]
+    [SerializeField] private float slideDuration;
+    [SerializeField] private float slideBoost;
 
     [Header("Jump Settings")]
     [Range(1, 25)][SerializeField] private int jumpSpeed;
@@ -25,18 +40,17 @@ public class playerController : MonoBehaviour
     [SerializeField] private float crouchCameraHeight;
     [SerializeField] private float normalCameraHeight;
     [SerializeField] private Transform playerCamera;
-    [SerializeField] private bool isCrouching;
 
     private Vector3 moveDir;
     private Vector3 velocity;
     private int jumpCount;
     private float currentSpeed;
-    private float sprintSpeed;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        currentState = PlayerState.Idle;
         currentSpeed = walkSpeed;
 
         if (playerCamera != null)
@@ -49,7 +63,7 @@ public class playerController : MonoBehaviour
     void Update()
     {
         HandleMovement();
-        sprint();
+        Sprint();
         HandleCrouch();
         updateSpeed();
     }
@@ -62,29 +76,57 @@ public class playerController : MonoBehaviour
             speedMeter.text = $"Speed: {currentSpeed:F2}";
         }
     }
-
-    private void HandleCrouch()
+    void HandleCrouch()
     {
-        if (Input.GetButton("Crouch") && currentSpeed == walkSpeed)
+        if (Input.GetButtonDown("Crouch"))
         {
-            if (!isCrouching)
+            if (currentState == PlayerState.Sprinting && isGrounded)
             {
-                isCrouching = true;
-                controller.height = crouchColliderSize.y;
-                controller.center = new Vector3(0, crouchColliderSize.y / 6f, 0);
-                if (playerCamera != null)
-                    playerCamera.localPosition = new Vector3(playerCamera.localPosition.x, crouchCameraHeight, playerCamera.localPosition.z);
+                EnterSlide();
+                return;
             }
+            if (currentState != PlayerState.Crouching)
+                EnterCrouch();
         }
-        else if (isCrouching && (!Input.GetButton("Crouch") || currentSpeed != crouchSpeed))
+
+        if (Input.GetButton("Crouch") && currentState != PlayerState.Crouching && currentState != PlayerState.Sliding)
         {
-            isCrouching = false;
-            currentSpeed = walkSpeed;
-            controller.height = normalColliderSize.y;
-            controller.center = new Vector3(0, normalColliderSize.y / 14f, 0);
-            if (playerCamera != null)
-                playerCamera.localPosition = new Vector3(playerCamera.localPosition.x, normalCameraHeight, playerCamera.localPosition.z);
+            EnterCrouch();
         }
+        else if (!Input.GetButton("Crouch") && currentState == PlayerState.Crouching)
+        {
+            ExitCrouch();
+        }
+    }
+    void EnterCrouch()
+    {
+        currentState = PlayerState.Crouching;
+        currentSpeed = crouchSpeed;
+        controller.height = crouchColliderSize.y;
+        controller.center = new Vector3(0, crouchColliderSize.y / 14f, 0);
+        if (playerCamera != null)
+            playerCamera.localPosition = new Vector3(playerCamera.localPosition.x, crouchCameraHeight, playerCamera.localPosition.z);
+    }
+    void EnterSlide()
+    {
+        currentState = PlayerState.Sliding;
+        controller.height = crouchColliderSize.y;
+        controller.center = new Vector3(0, crouchColliderSize.y / 6f, 0);
+        if (playerCamera != null)
+            playerCamera.localPosition = new Vector3(playerCamera.localPosition.x, crouchCameraHeight, playerCamera.localPosition.z);
+
+        currentSpeed = walkSpeed * sprintMult * slideBoost;
+        StartCoroutine(SlideTimer());
+    }
+
+    void ExitCrouch()
+    {
+        currentState = PlayerState.Walking;
+        currentSpeed = walkSpeed;
+        controller.height = normalColliderSize.y;
+        controller.center = new Vector3(0, normalColliderSize.y / 14f, 0);
+        if (playerCamera != null)
+            playerCamera.localPosition = new Vector3(playerCamera.localPosition.x, normalCameraHeight, playerCamera.localPosition.z);
     }
 
     void HandleMovement()
@@ -95,10 +137,8 @@ public class playerController : MonoBehaviour
             jumpCount = 0;
             velocity = Vector3.zero;
 
-            if (isCrouching)
-            {
+            if (currentState == PlayerState.Crouching)
                 currentSpeed = crouchSpeed;
-            }
         }
         moveDir = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
         controller.Move(moveDir * currentSpeed * Time.deltaTime);
@@ -109,19 +149,30 @@ public class playerController : MonoBehaviour
         velocity.y -= gravity * Time.deltaTime;
     }
 
-    void sprint()
+    void Sprint()
     {
         if (Input.GetButtonDown("Sprint") && isGrounded)
         {
-            isSprinting = true;
-            currentSpeed *= sprintMult;
+            currentState = PlayerState.Sprinting;
+            currentSpeed = walkSpeed * sprintMult;
         }
-        else if (Input.GetButtonUp("Sprint") && isSprinting)
+        else if (Input.GetButtonUp("Sprint") && currentState == PlayerState.Sprinting)
         {
-            isSprinting = false;
-            currentSpeed /= sprintMult;
+            currentState = PlayerState.Walking;
+            currentSpeed = walkSpeed;
         }
     }
+
+    void ExitSlide()
+    {
+        if (Input.GetButton("Crouch"))
+            EnterCrouch();
+        else
+            currentState = PlayerState.Walking;
+
+        currentSpeed = (currentState == PlayerState.Crouching) ? crouchSpeed : walkSpeed;
+    }
+
     void Jump()
     {
         if (Input.GetButtonDown("Jump") && jumpCount < maxJumps)
@@ -135,5 +186,24 @@ public class playerController : MonoBehaviour
     private void Move(Vector3 vector3)
     {
         throw new NotImplementedException();
+    }
+
+    private IEnumerator SlideTimer()
+    {
+        yield return new WaitForSeconds(slideDuration);
+
+        if (Input.GetButton("Crouch"))
+        {
+            EnterCrouch();
+        }
+        else
+        {
+            currentState = PlayerState.Walking;
+            currentSpeed = walkSpeed;
+            controller.height = normalColliderSize.y;
+            controller.center = new Vector3(0, normalColliderSize.y / 14f, 0);
+            if (playerCamera != null)
+                playerCamera.localPosition = new Vector3(playerCamera.localPosition.x, normalCameraHeight, playerCamera.localPosition.z);
+        }
     }
 }
