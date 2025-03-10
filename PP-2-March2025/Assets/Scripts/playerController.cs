@@ -1,13 +1,16 @@
 using UnityEngine;
 using System;
+using TMPro;
 
 public class playerController : MonoBehaviour
 {
     [SerializeField] CharacterController controller;
 
     [Header("Movment Settings")]
-    [Range(1, 5)][SerializeField] private int walkSpeed;
-    [Range(1, 5)][SerializeField] private int sprintMult;
+    [SerializeField] private TMP_Text speedMeter;
+    [Range(1f, 10f)][SerializeField] private float walkSpeed;
+    [Range(1f, 5f)][SerializeField] private float sprintMult;
+    [SerializeField] private bool isSprinting;
 
     [Header("Jump Settings")]
     [Range(1, 25)][SerializeField] private int jumpSpeed;
@@ -27,7 +30,8 @@ public class playerController : MonoBehaviour
     private Vector3 moveDir;
     private Vector3 velocity;
     private int jumpCount;
-    private int currentSpeed;
+    private float currentSpeed;
+    private float sprintSpeed;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -47,6 +51,16 @@ public class playerController : MonoBehaviour
         HandleMovement();
         sprint();
         HandleCrouch();
+        updateSpeed();
+    }
+
+    private void updateSpeed()
+    {
+        if (speedMeter != null)
+        {
+            float flatSpeed = new Vector3(controller.velocity.x, 0, controller.velocity.z).magnitude;
+            speedMeter.text = $"Speed: {currentSpeed:F2}";
+        }
     }
 
     private void HandleCrouch()
@@ -97,12 +111,14 @@ public class playerController : MonoBehaviour
 
     void sprint()
     {
-        if (Input.GetButtonDown("Sprint"))
+        if (Input.GetButtonDown("Sprint") && isGrounded)
         {
+            isSprinting = true;
             currentSpeed *= sprintMult;
         }
-        else if (Input.GetButtonUp("Sprint"))
+        else if (Input.GetButtonUp("Sprint") && isSprinting)
         {
+            isSprinting = false;
             currentSpeed /= sprintMult;
         }
     }
