@@ -27,6 +27,16 @@ public class playerController : MonoBehaviour, IDamage
     [Range(1f, 10f)][SerializeField] private float walkSpeed;
     [Range(1f, 5f)][SerializeField] private float sprintMult;
 
+    [Header("Stamina Settings")]
+    [SerializeField] private float maxStamina;
+    [SerializeField] private float currentStamina;
+    [SerializeField] private float staminaDrainRate;
+    [SerializeField] private float staminaRegainRate;
+    [SerializeField] private float staminaRegainDelay;
+    [SerializeField] private float staminaSprintThreshold;
+    private float staminaRegenTimer;
+    private bool canSprint;
+
     [Header("Slide Settings")]
     [SerializeField] private float slideDuration;
     [SerializeField] private float slideBoost;
@@ -72,6 +82,7 @@ public class playerController : MonoBehaviour, IDamage
         HandleMovement();
         Sprint();
         HandleCrouch();
+        HandleStamina();
         updateSpeed();
     }
 
@@ -178,6 +189,27 @@ public class playerController : MonoBehaviour, IDamage
             currentSpeed = walkSpeed;
         }
     }
+    void HandleStamina()
+    {
+        if (currentState == PlayerState.Sprinting)
+        {
+            currentStamina -= staminaDrainRate * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+
+            if(currentStamina <= 0)
+            {
+                currentState = PlayerState.Walking;
+                currentSpeed = walkSpeed;
+            }
+        }
+        else if(currentStamina < maxStamina)
+        {
+            currentStamina += staminaRegainRate + Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+        }
+        updatePlayerUI();
+    }
+
     void ExitSlide()
     {
         if (Input.GetButton("Crouch"))
@@ -247,5 +279,6 @@ public class playerController : MonoBehaviour, IDamage
     public void updatePlayerUI()
     {
         gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+        gameManager.instance.playerStaminaBar.fillAmount = currentStamina / maxStamina;
     }
 }

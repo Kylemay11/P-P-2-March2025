@@ -13,6 +13,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuLose;
 
     public Image playerHPBar;
+    public Image playerStaminaBar;
     public GameObject playerDamageScreen;
     public GameObject player;
     public playerController playerScript;
