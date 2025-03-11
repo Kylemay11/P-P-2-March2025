@@ -24,7 +24,7 @@ public class playerController : MonoBehaviour, IDamage
 
     [Header("Player Stats")]
     [SerializeField] private int maxHP;
-    [SerializeField] private int currentHP;
+    [SerializeField] public int currentHP;
 
     [Header("Movement Settings")]
     [SerializeField] private float walkSpeed;
@@ -306,5 +306,12 @@ public class playerController : MonoBehaviour, IDamage
     public void updatePlayerUI()
     {
         gameManager.instance.playerHPBar.fillAmount = (float)currentHP / maxHP;
+    }
+
+    public void Heal(int amount)
+    {
+        currentHP += amount;
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+        updatePlayerUI();
     }
 }
