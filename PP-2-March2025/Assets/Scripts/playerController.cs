@@ -135,7 +135,6 @@ public class playerController : MonoBehaviour, IDamage
         if (playerCamera != null)
             playerCamera.localPosition = new Vector3(playerCamera.localPosition.x, normalCameraHeight, playerCamera.localPosition.z);
     }
-
     void HandleMovement()
     {
         if (controller.isGrounded)
@@ -166,7 +165,6 @@ public class playerController : MonoBehaviour, IDamage
         controller.Move(velocity * Time.deltaTime);
         velocity.y -= gravity * Time.deltaTime;
     }
-
     void Sprint()
     {
         if (Input.GetButtonDown("Sprint") && isGrounded)
@@ -180,7 +178,6 @@ public class playerController : MonoBehaviour, IDamage
             currentSpeed = walkSpeed;
         }
     }
-
     void ExitSlide()
     {
         if (Input.GetButton("Crouch"))
