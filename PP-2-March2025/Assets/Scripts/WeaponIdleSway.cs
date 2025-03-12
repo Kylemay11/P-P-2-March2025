@@ -11,7 +11,7 @@ public class WeaponIdleSway : MonoBehaviour
     [SerializeField] private float sprintSwayAmount;
     [SerializeField] private float sprintSwaySpeed;
 
-    [SerializeField] private playerController player; // Reference to playerController
+    [SerializeField] private playerController player;
 
     private Vector3 startPosition;
 

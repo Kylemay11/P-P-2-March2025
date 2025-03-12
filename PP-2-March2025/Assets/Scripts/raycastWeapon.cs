@@ -28,7 +28,7 @@ public class raycastWeapon : MonoBehaviour
 
         if (ammoUI == null)
         {
-            ammoUI = FindObjectOfType<AmmoUI>();
+            ammoUI = FindFirstObjectByType<AmmoUI>();
         }
 
         ammoUI.UpdateAmmo(currentAmmo, maxAmmo);
