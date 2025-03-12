@@ -45,7 +45,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 68504643568003531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56154f82591e8ca4ba558638d4500d7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b68844c9baecaf41bc993d6ad3d38ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &249531554628713119
@@ -306,16 +306,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1322987444630769204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c6e913d595a89746b9a79c40ef81a83, type: 3}
+  m_Script: {fileID: 11500000, guid: c8e660ab990dc7a429eddfc4034ae563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   menuActive: {fileID: 0}
   menuPause: {fileID: 249531554628713119}
   menuWin: {fileID: 0}
   menuLose: {fileID: 3113954758118521696}
-  playerHPBar: {fileID: 6120214177223321951}
-  playerStaminaBar: {fileID: 3838639311859961710}
-  playerDamageScreen: {fileID: 8033194154631128897}
+  playerHPBar: {fileID: 697616336443824742}
+  playerStaminaBar: {fileID: 3526713664193738264}
+  playerDamageScreen: {fileID: 0}
   player: {fileID: 0}
   playerScript: {fileID: 0}
   isPaused: 0
@@ -1802,9 +1802,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2284145362468291478}
+      - m_Target: {fileID: 68504643568003531}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: resume
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2903,9 +2903,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2284145362468291478}
+      - m_Target: {fileID: 68504643568003531}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: resume
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
