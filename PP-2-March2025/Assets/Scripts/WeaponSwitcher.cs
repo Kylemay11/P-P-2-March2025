@@ -30,7 +30,14 @@ public class WeaponSwitcher : MonoBehaviour
         {
             weapons[i].SetActive(i == index);
         }
+
         currentWeaponIndex = index;
+
+        WeaponNotificationUI weaponUI = gameManager.instance.weaponNotification;
+        if (weaponUI != null)
+        {
+            weaponUI.ShowWeaponName(weapons[index].name);
+        }
     }
 
     public GameObject GetCurrentWeapon()

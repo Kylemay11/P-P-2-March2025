@@ -17,6 +17,7 @@ public class gameManager : MonoBehaviour
     public GameObject playerDamageScreen;
     public GameObject player;
     public playerController playerScript;
+    public WeaponNotificationUI weaponNotification;
 
     public bool isPaused;
 
@@ -28,6 +29,7 @@ public class gameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
+        weaponNotification = FindAnyObjectByType<WeaponNotificationUI>();
     }
 
     // Update is called once per frame
