@@ -5,32 +5,31 @@ public class raycastWeapon : MonoBehaviour
     [SerializeField] private float range;
     [SerializeField] private float damage;
     [SerializeField] private LayerMask hitMask;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-     
-    }
+    [SerializeField] private float shootRate;
 
-    // Update is called once per frame
-    void Update()
+    private float nextShootTime;
+    public void TryShoot()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Time.time >= nextShootTime)
         {
             Shoot();
+            nextShootTime = Time.time + shootRate;
         }
     }
 
-    public void Shoot()
+    private void Shoot()
     {
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        Debug.DrawRay(ray.origin, ray.direction * range, Color.red, 2f);
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Debug.DrawRay(ray.origin, ray.direction * range, Color.red, 1.5f);
 
         if (Physics.Raycast(ray, out RaycastHit hit, range, hitMask))
         {
             Debug.Log("Hit: " + hit.collider.name);
             IDamage target = hit.collider.GetComponent<IDamage>();
             if (target != null)
+            {
                 target.takeDamage((int)damage);
+            }
         }
         else
         {
@@ -38,3 +37,4 @@ public class raycastWeapon : MonoBehaviour
         }
     }
 }
+
