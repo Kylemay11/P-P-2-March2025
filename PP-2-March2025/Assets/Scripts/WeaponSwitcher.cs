@@ -49,7 +49,7 @@ public class WeaponSwitcher : MonoBehaviour
         }
         else
         {
-            AmmoUI ui = FindObjectOfType<AmmoUI>();
+            AmmoUI ui = FindFirstObjectByType<AmmoUI>();
             if (ui != null)
             {
                 ui.gameObject.SetActive(false);

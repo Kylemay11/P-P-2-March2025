@@ -1,3 +1,4 @@
+using TMPro.Examples;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +7,7 @@ public class gameManager : MonoBehaviour
 {
 
     public static gameManager instance;
+    [SerializeField] int frameRate;
 
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
@@ -26,6 +28,8 @@ public class gameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        if (frameRate <= 0) frameRate = 60;
+        Application.targetFrameRate = frameRate;
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
