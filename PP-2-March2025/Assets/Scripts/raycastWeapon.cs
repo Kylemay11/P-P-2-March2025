@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class raycastWeapon : MonoBehaviour
@@ -6,6 +7,7 @@ public class raycastWeapon : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private LayerMask hitMask;
     [SerializeField] private float shootRate;
+    [SerializeField] private GameObject muzzleFlash;
 
     private float nextShootTime;
     public void TryShoot()
@@ -19,6 +21,10 @@ public class raycastWeapon : MonoBehaviour
 
     private void Shoot()
     {
+        if (muzzleFlash != null)
+        {
+            StartCoroutine(FlashMuzzle());
+        }
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         Debug.DrawRay(ray.origin, ray.direction * range, Color.red, 1.5f);
 
@@ -36,5 +42,13 @@ public class raycastWeapon : MonoBehaviour
             Debug.Log("No Hit");
         }
     }
+
+        private IEnumerator FlashMuzzle()
+    {
+        muzzleFlash.SetActive(true);
+        yield return new WaitForSeconds(0.05f);
+        muzzleFlash.SetActive(false);
+    }
 }
+
 
