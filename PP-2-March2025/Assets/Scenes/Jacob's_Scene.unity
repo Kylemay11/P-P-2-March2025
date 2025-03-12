@@ -564,6 +564,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 31074842efca0b544b0ba35c543f3864, type: 3}
+    - target: {fileID: 907486046058981699, guid: e288914ce9001ea4a92bb91ef889ddb3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 907486046058981699, guid: e288914ce9001ea4a92bb91ef889ddb3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3395526379521227085, guid: e288914ce9001ea4a92bb91ef889ddb3, type: 3}
       propertyPath: m_Name
       value: UI
@@ -656,6 +664,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5054151194317256717, guid: e288914ce9001ea4a92bb91ef889ddb3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b1ec94caf6a09344f8816ee19e3169c0, type: 3}
     - target: {fileID: 6120214177223321951, guid: e288914ce9001ea4a92bb91ef889ddb3, type: 3}
       propertyPath: m_Sprite
       value: 
