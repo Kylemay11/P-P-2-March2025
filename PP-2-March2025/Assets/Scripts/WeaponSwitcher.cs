@@ -3,6 +3,8 @@ using UnityEngine;
 public class WeaponSwitcher : MonoBehaviour
 {
     [SerializeField] private GameObject[] weapons;
+    [SerializeField] private AmmoUI ammoUI;
+
     private int currentWeaponIndex;
 
     void Start()
@@ -33,15 +35,26 @@ public class WeaponSwitcher : MonoBehaviour
 
         currentWeaponIndex = index;
 
-        WeaponNotificationUI weaponUI = gameManager.instance.weaponNotification;
-        if (weaponUI != null)
+        GameObject currentWeaponObj = weapons[index];
+        raycastWeapon weapon = currentWeaponObj.GetComponent<raycastWeapon>();
+
+        if (weapon != null)
         {
-            weaponUI.ShowWeaponName(weapons[index].name);
+            weapon.ForceAmmoUIUpdate();
+
+            if (weapon.ammoUI != null)
+            {
+                weapon.ammoUI.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            AmmoUI ui = FindObjectOfType<AmmoUI>();
+            if (ui != null)
+            {
+                ui.gameObject.SetActive(false);
+            }
         }
     }
-
-    public GameObject GetCurrentWeapon()
-    {
-        return weapons[currentWeaponIndex];
-    }
 }
+
