@@ -1092,6 +1092,10 @@ PrefabInstance:
       propertyPath: reloadTime
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 652798149706064939, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
+      propertyPath: reloadIndicator
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 969632676699494310, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -7146,7 +7150,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2196716462375143164, guid: 228e2e9e1956a954ebf53b59a84c7079, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -61.83
+      value: -65.7
       objectReference: {fileID: 0}
     - target: {fileID: 2196716462375143164, guid: 228e2e9e1956a954ebf53b59a84c7079, type: 3}
       propertyPath: m_LocalPosition.y
