@@ -54,6 +54,7 @@ public class BossAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
@@ -93,7 +94,7 @@ public class BossAI : MonoBehaviour
         model.material.color = Color.white;
     }
 
-    Vector3 getDownwardDir()
+    Vector3 getDownwardPlayerDir()
     {
         Vector3 directionToPlayer = gameManager.instance.player.transform.position 
             - transform.position;
@@ -102,10 +103,26 @@ public class BossAI : MonoBehaviour
         directionToPlayer.y = -Mathf.Abs(directionToPlayer.y);
 
         return directionToPlayer.normalized;
-
     }
 
-    void shoot()
+    Vector3 getDownwardDir()
+    {
+        return Vector3.down;
+    }
+
+    void Phase1()
+    {
+        shootTimer = 0;
+
+        Vector3 shootDirection = getDownwardPlayerDir();
+        Quaternion shootRotation = Quaternion.LookRotation(shootDirection);
+
+        Instantiate(bullet, shootPos1.position, shootRotation);
+        Instantiate(bullet, shootPos2.position, shootRotation);
+        Instantiate(bullet, shootPos3.position, shootRotation);
+    }
+
+    void Phase2()
     {
         shootTimer = 0;
 
@@ -115,6 +132,19 @@ public class BossAI : MonoBehaviour
         Instantiate(bullet, shootPos1.position, shootRotation);
         Instantiate(bullet, shootPos2.position, shootRotation);
         Instantiate(bullet, shootPos3.position, shootRotation);
+    }
+
+    void shoot()
+    {
+       if(HP >= HP % 2)
+        {
+            Phase1();
+        }
+        else
+        {
+            Phase2();
+        }
+        
 
     }
 }
