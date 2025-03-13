@@ -21,6 +21,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] private Transform playerCamera;
 
     private PlayerState currentState;
+    public PlayerState CurrentState => currentState;
 
     [Header("Player Stats")]
     [SerializeField] private int maxHP;
@@ -61,7 +62,7 @@ public class playerController : MonoBehaviour, IDamage
     private float staminaRegenTimer;
     private bool staminaFullyDrained;
     private bool canSprint;
-    private bool isGrounded;
+   [SerializeField] private bool isGrounded;
 
     void Start()
     {
@@ -212,6 +213,7 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (Input.GetButtonDown("Jump") && jumpCount < maxJumps)
         {
+            isGrounded = false;
             velocity.y = jumpForce;
             jumpCount++;
         }
