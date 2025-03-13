@@ -12,7 +12,10 @@ public class BossAI : MonoBehaviour
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int animTranSpeed;
 
-    [SerializeField] Transform shootPos;
+    [SerializeField] Transform shootPos1;
+    [SerializeField] Transform shootPos2;
+    [SerializeField] Transform shootPos3;
+
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
 
@@ -90,9 +93,28 @@ public class BossAI : MonoBehaviour
         model.material.color = Color.white;
     }
 
+    Vector3 getDownwardDir()
+    {
+        Vector3 directionToPlayer = gameManager.instance.player.transform.position 
+            - transform.position;
+
+        //force the y component to be negative
+        directionToPlayer.y = -Mathf.Abs(directionToPlayer.y);
+
+        return directionToPlayer.normalized;
+
+    }
+
     void shoot()
     {
         shootTimer = 0;
-        Instantiate(bullet, shootPos.position, transform.rotation);
+
+        Vector3 shootDirection = getDownwardDir();
+        Quaternion shootRotation = Quaternion.LookRotation(shootDirection);
+
+        Instantiate(bullet, shootPos1.position, shootRotation);
+        Instantiate(bullet, shootPos2.position, shootRotation);
+        Instantiate(bullet, shootPos3.position, shootRotation);
+
     }
 }
