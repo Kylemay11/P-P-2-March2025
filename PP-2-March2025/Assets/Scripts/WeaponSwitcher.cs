@@ -24,7 +24,7 @@ public class WeaponSwitcher : MonoBehaviour
                 currentWeaponScript.TryShoot();
         }
     }
-
+    
     void SwitchWeapon(int index)
     {
         for (int i = 0; i < weapons.Length; i++)
@@ -36,8 +36,10 @@ public class WeaponSwitcher : MonoBehaviour
 
         raycastWeapon weapon = weapons[index].GetComponent<raycastWeapon>();
 
+
         if (weapon != null)
         {
+            AmmoUI.instance?.UpdateAmmo(weapon.CurrentAmmo, weapon.MaxAmmo);
             AmmoUI.instance?.Show(true);
         }
         else

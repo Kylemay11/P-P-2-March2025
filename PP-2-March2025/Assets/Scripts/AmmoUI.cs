@@ -22,7 +22,7 @@ public class AmmoUI : MonoBehaviour
     public void UpdateAmmo(int current, int max)
     {
         if (ammoText != null)
-            ammoText.text = $"Ammo: {current} / {max}";
+            ammoText.text = $"{current} / {max}";
     }
 
     public void UpdateReloadProgress(float percent)

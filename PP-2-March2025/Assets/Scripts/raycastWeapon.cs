@@ -7,8 +7,8 @@ public class raycastWeapon : MonoBehaviour
 {
     [SerializeField] private float range;
     [SerializeField] private float damage;
-    [SerializeField] private int MaxAmmo;
-    [SerializeField] private int CurrentAmmo;
+    [SerializeField] public int MaxAmmo;
+    [SerializeField] public int CurrentAmmo;
     [SerializeField] private float reloadTime;
     [SerializeField] private LayerMask hitMask;
     [SerializeField] private float shootRate;
