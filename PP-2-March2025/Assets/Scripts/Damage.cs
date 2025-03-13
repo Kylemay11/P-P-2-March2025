@@ -29,9 +29,10 @@ public class Damage : MonoBehaviour
 
         if (other.isTrigger)
             return;
+
         IDamage damage = other.GetComponent<IDamage>();
 
-        if (damage != null && type == damageType.stationary || type == damageType.moving)
+        if (damage != null && (type == damageType.stationary || type == damageType.moving))
         {
             damage.takeDamage(damageAmount);
         }
@@ -46,6 +47,7 @@ public class Damage : MonoBehaviour
     {
         if (other.isTrigger)
             return;
+
         IDamage damage = other.GetComponent<IDamage>();
 
         if (damage != null && type == damageType.overTime)
