@@ -1,3 +1,4 @@
+using TMPro.Examples;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject menuShop;
+    [SerializeField] GameObject menuInventory;
 
     public Image playerHPBar;
     public Image playerStaminaBar;
@@ -82,6 +85,13 @@ public class gameManager : MonoBehaviour
     {
         statePause();
         menuActive = menuLose;
+        menuActive.SetActive(true);
+    }
+
+    public void OpenShop()
+    {
+        statePause();
+        menuActive = menuShop;
         menuActive.SetActive(true);
     }
 }
