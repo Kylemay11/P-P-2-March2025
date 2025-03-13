@@ -3,10 +3,11 @@ using UnityEngine.AI;
 
 public class ZombieController : MonoBehaviour, IDamage
 {
-    [SerializeField] private int maxHealth = 50;
-    [SerializeField] private int damageToPlayer = 10;
-    [SerializeField] private float attackCooldown = 2f;
-    [SerializeField] private float moveSpeed = 2f;
+    public event System.Action OnZombieDeath;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private int damageToPlayer;
+    [SerializeField] private float attackCooldown;
+    [SerializeField] private float moveSpeed;
     private Transform player;
     private NavMeshAgent agent;
 
@@ -46,6 +47,7 @@ public class ZombieController : MonoBehaviour, IDamage
     private void Die()
     {
         // Placeholder death behavior
+        OnZombieDeath?.Invoke();
         Destroy(gameObject);
     }
 

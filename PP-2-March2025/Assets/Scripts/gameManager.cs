@@ -14,6 +14,14 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
 
+    [Header("Wave Settings")]
+    [SerializeField] public float waveDuration;
+    [SerializeField] private float waveTimer;
+    [SerializeField] private bool waveActive;
+    [SerializeField] private int currentWave;
+
+    [SerializeField] public ZombieSpawner zombieSpawner;
+
     public Image playerHPBar;
     public Image playerStaminaBar;
     public GameObject playerDamageScreen;
@@ -50,6 +58,31 @@ public class gameManager : MonoBehaviour
             else if (menuActive == menuPause)
             {
                 stateUnpaused();
+            }
+        }
+
+        if (waveActive)
+        {
+            waveTimer -= Time.deltaTime;
+
+            if (waveTimer <= 0)
+            {
+                waveTimer = 0;
+                waveActive = false;
+                Debug.Log("Wave timer ended! Waiting for all zombies to be cleared...");
+            }
+
+            // Spawn zombies while timer is active
+            zombieSpawner.SpawnOverTime();
+        }
+        else
+        {
+            // Wait for wave cleanup: no zombies left alive
+            if (zombieSpawner.currentZombiesAlive <= 0)
+            {
+                Debug.Log("Wave Complete!");
+                currentWave++;
+                StartWave(); // Start next wave
             }
         }
     }
@@ -89,5 +122,18 @@ public class gameManager : MonoBehaviour
         statePause();
         menuActive = menuLose;
         menuActive.SetActive(true);
+    }
+
+    public void StartWave()
+    {
+        waveTimer = waveDuration;
+        waveActive = true;
+
+        Debug.Log("Wave " + (currentWave + 1) + " started!");
+
+        zombieSpawner.maxZombies = 10 + currentWave * 5;
+        zombieSpawner.spawnRate = 2f;
+
+        zombieSpawner.currentZombiesAlive = 0;
     }
 }
