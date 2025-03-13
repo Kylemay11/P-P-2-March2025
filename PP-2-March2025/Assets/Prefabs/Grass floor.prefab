@@ -64,8 +64,7 @@ MeshRenderer:
   m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: f2794b697407e264d88e0e47f22e302c, type: 2}
+m_Materials: {fileID: 2100000, guid: 26aa55d3771bd4d49bfc9c7a916c3ee4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

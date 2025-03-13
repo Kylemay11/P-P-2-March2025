@@ -100,7 +100,7 @@ public class BossAI : MonoBehaviour
             - transform.position;
 
         //force the y component to be negative
-        directionToPlayer.y = -Mathf.Abs(directionToPlayer.y);
+        directionToPlayer.y = -Mathf.Abs(directionToPlayer.y) - 2; // The -2 brings it down enough to hit player
 
         return directionToPlayer.normalized;
     }
@@ -144,7 +144,5 @@ public class BossAI : MonoBehaviour
         {
             Phase2();
         }
-        
-
     }
 }

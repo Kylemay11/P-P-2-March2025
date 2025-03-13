@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +7,7 @@ public class gameManager : MonoBehaviour
 {
 
     public static gameManager instance;
+    [SerializeField] int frameRate;
 
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
@@ -17,6 +19,7 @@ public class gameManager : MonoBehaviour
     public GameObject playerDamageScreen;
     public GameObject player;
     public playerController playerScript;
+    public WeaponNotificationUI weaponNotification;
 
     public bool isPaused;
 
@@ -25,9 +28,12 @@ public class gameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        if (frameRate <= 0) frameRate = 60;
+        Application.targetFrameRate = frameRate;
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
+        weaponNotification = FindAnyObjectByType<WeaponNotificationUI>();
     }
 
     // Update is called once per frame

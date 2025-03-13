@@ -21,6 +21,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] private Transform playerCamera;
 
     private PlayerState currentState;
+    public PlayerState CurrentState => currentState;
 
     [Header("Player Stats")]
     [SerializeField] private int maxHP;
