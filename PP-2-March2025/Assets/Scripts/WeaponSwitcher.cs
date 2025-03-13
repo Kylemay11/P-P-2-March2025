@@ -3,7 +3,6 @@ using UnityEngine;
 public class WeaponSwitcher : MonoBehaviour
 {
     [SerializeField] private GameObject[] weapons;
-    [SerializeField] private AmmoUI ammoUI;
 
     private int currentWeaponIndex;
 
@@ -25,7 +24,7 @@ public class WeaponSwitcher : MonoBehaviour
                 currentWeaponScript.TryShoot();
         }
     }
-
+    
     void SwitchWeapon(int index)
     {
         for (int i = 0; i < weapons.Length; i++)
@@ -35,25 +34,17 @@ public class WeaponSwitcher : MonoBehaviour
 
         currentWeaponIndex = index;
 
-        GameObject currentWeaponObj = weapons[index];
-        raycastWeapon weapon = currentWeaponObj.GetComponent<raycastWeapon>();
+        raycastWeapon weapon = weapons[index].GetComponent<raycastWeapon>();
+
 
         if (weapon != null)
         {
-            weapon.ForceAmmoUIUpdate();
-
-            if (weapon.ammoUI != null)
-            {
-                weapon.ammoUI.gameObject.SetActive(true);
-            }
+            AmmoUI.instance?.UpdateAmmo(weapon.CurrentAmmo, weapon.MaxAmmo);
+            AmmoUI.instance?.Show(true);
         }
         else
         {
-            AmmoUI ui = FindFirstObjectByType<AmmoUI>();
-            if (ui != null)
-            {
-                ui.gameObject.SetActive(false);
-            }
+            AmmoUI.instance?.Show(false);
         }
     }
 }

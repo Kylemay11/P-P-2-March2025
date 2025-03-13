@@ -47,7 +47,8 @@ public class WeaponIdleSway : MonoBehaviour
                 break;
 
             case PlayerState.Sliding:
-                swayAmount = 0f;
+                swayAmount = sprintSwayAmount;
+                swaySpeed = sprintSwaySpeed;
                 break;
         }
 

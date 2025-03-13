@@ -7,13 +7,12 @@ public class raycastWeapon : MonoBehaviour
 {
     [SerializeField] private float range;
     [SerializeField] private float damage;
-    [SerializeField] private int maxAmmo;
-    [SerializeField] private int currentAmmo;
+    [SerializeField] public int MaxAmmo;
+    [SerializeField] public int CurrentAmmo;
     [SerializeField] private float reloadTime;
     [SerializeField] private LayerMask hitMask;
     [SerializeField] private float shootRate;
     [SerializeField] private GameObject muzzleFlash;
-    [SerializeField] public AmmoUI ammoUI;
     [SerializeField] private Image reloadIndicator;
 
     private bool isReloading = false;
@@ -24,14 +23,14 @@ public class raycastWeapon : MonoBehaviour
 
      void Start()
     {
-        currentAmmo = maxAmmo;
+        CurrentAmmo = MaxAmmo;
 
-        if (ammoUI == null)
-        {
-            ammoUI = FindFirstObjectByType<AmmoUI>();
+        if (AmmoUI.instance == null)
+        {   
+            AmmoUI.instance = FindFirstObjectByType<AmmoUI>();
         }
 
-        ammoUI.UpdateAmmo(currentAmmo, maxAmmo);
+        AmmoUI.instance.UpdateAmmo(CurrentAmmo, MaxAmmo);
     }
 
     private T FindObjectsByType<T>()
@@ -41,7 +40,7 @@ public class raycastWeapon : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && !isReloading && currentAmmo < maxAmmo)
+        if (Input.GetKeyDown(KeyCode.R) && !isReloading && CurrentAmmo < MaxAmmo)
         {
             StartCoroutine(Reload());
         }
@@ -50,7 +49,7 @@ public class raycastWeapon : MonoBehaviour
     {
         if (isReloading) return;
 
-        if (currentAmmo <= 0)
+        if (CurrentAmmo <= 0)
         {
             StartCoroutine(Reload());
             return;
@@ -59,9 +58,9 @@ public class raycastWeapon : MonoBehaviour
         if (Time.time >= nextShootTime)
         {
             Shoot();
-            currentAmmo--;
+            CurrentAmmo--;
             nextShootTime = Time.time + shootRate;
-            ammoUI.UpdateAmmo(currentAmmo, maxAmmo);
+            AmmoUI.instance.UpdateAmmo(CurrentAmmo, MaxAmmo);
         }
     }
 
@@ -116,24 +115,24 @@ public class raycastWeapon : MonoBehaviour
             yield return null;
         }
 
-        currentAmmo = maxAmmo;
+        CurrentAmmo = MaxAmmo;
         isReloading = false;
 
         if (reloadIndicator != null)
             reloadIndicator.fillAmount = 0f;
 
-        if (ammoUI != null)
-            ammoUI.UpdateAmmo(currentAmmo, maxAmmo);
+        if (AmmoUI.instance != null)
+            AmmoUI.instance.UpdateAmmo(CurrentAmmo, MaxAmmo);
     }
     public void ForceAmmoUIUpdate()
     {
-        if (ammoUI != null)
+        if (AmmoUI.instance != null)
         {
-            ammoUI.UpdateAmmo(currentAmmo, maxAmmo);
+            AmmoUI.instance.UpdateAmmo(CurrentAmmo, MaxAmmo);
         }
     }
     public void SetAmmoUI(AmmoUI ui)
     {
-        ammoUI = ui;
+        AmmoUI.instance = ui;
     }
 }
