@@ -131,9 +131,6 @@ public class gameManager : MonoBehaviour
 
         Debug.Log("Wave " + (currentWave + 1) + " started!");
 
-        zombieSpawner.maxZombies = 10 + currentWave * 5;
-        zombieSpawner.spawnRate = 2f;
-
         zombieSpawner.currentZombiesAlive = 0;
     }
 }

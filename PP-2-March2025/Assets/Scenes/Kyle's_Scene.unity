@@ -1077,12 +1077,16 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 652798149706064939, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
+      propertyPath: damage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 652798149706064939, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
       propertyPath: MaxAmmo
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 652798149706064939, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
       propertyPath: shootRate
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 652798149706064939, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
       propertyPath: reloadTime
@@ -1104,6 +1108,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 73504746}
+    - target: {fileID: 6333236191580786733, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
+      propertyPath: range
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6333236191580786733, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
+      propertyPath: shootRate
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 6466856677149125966, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2702,7 +2714,7 @@ GameObject:
   - component: {fileID: 937018437}
   - component: {fileID: 937018436}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2790,8 +2802,8 @@ MonoBehaviour:
   - {fileID: 5401634921627880974, guid: 781750f154dd6924ebc240fb268f7168, type: 3}
   spawnPoints:
   - {fileID: 937018440}
-  spawnRate: 2
-  maxZombies: 5
+  spawnRate: 1
+  maxZombies: 10
   spawnCooldown: 0
   currentZombiesAlive: 0
 --- !u!33 &937018439
@@ -7211,7 +7223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: waveDuration
-      value: 20
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: zombieSpawner
@@ -7239,6 +7251,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 697616336443824742, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1353723719222950996, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1776159923398309653, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
@@ -7504,6 +7520,14 @@ PrefabInstance:
     - target: {fileID: 7411244665426546432, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503994151631368842, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: m_Color.a
+      value: 0.83137256
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503994151631368842, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
