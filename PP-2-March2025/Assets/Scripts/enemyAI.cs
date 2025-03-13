@@ -12,7 +12,7 @@ public class enemyAI : MonoBehaviour
     // [SerializeField] int animTranSpeed;
 
     [SerializeField] Transform attackPOS;
-    //[SerializeField] GameObject rangeAttack;
+    [SerializeField] GameObject zombieBile;
     [SerializeField] float attackRate;
     [SerializeField] float sightRange, attackRange;
 
@@ -37,6 +37,15 @@ public class enemyAI : MonoBehaviour
         playerDir = gameManager.instance.player.transform.position - transform.position; // always know
         agent.SetDestination(gameManager.instance.player.transform.position);
 
-
+        if (attackTimer >= attackRate)
+            enemyAttack();
     }
+
+    private void enemyAttack()
+    {
+        attackTimer = 0;
+        // do animation for melee attack
+        Instantiate(zombieBile, attackPOS.position, transform.rotation);
+    }
+
 }
