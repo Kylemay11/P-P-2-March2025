@@ -15,6 +15,10 @@ public class BossAI : MonoBehaviour
     [SerializeField] Transform shootPos1;
     [SerializeField] Transform shootPos2;
     [SerializeField] Transform shootPos3;
+    [SerializeField] Transform shootPos4;
+    [SerializeField] Transform shootPos5;
+    [SerializeField] Transform shootPos6;
+
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
@@ -131,7 +135,11 @@ public class BossAI : MonoBehaviour
 
         Instantiate(bullet, shootPos1.position, shootRotation);
         Instantiate(bullet, shootPos2.position, shootRotation);
-        Instantiate(bullet, shootPos3.position, shootRotation);
+        Instantiate(bullet, shootPos3.position, shootRotation); 
+        Instantiate(bullet, shootPos4.position, shootRotation);
+        Instantiate(bullet, shootPos5.position, shootRotation);
+        Instantiate(bullet, shootPos6.position, shootRotation);
+
     }
 
     void shoot()
@@ -144,5 +152,6 @@ public class BossAI : MonoBehaviour
         {
             Phase2();
         }
+        
     }
 }
