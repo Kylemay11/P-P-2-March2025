@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class raycastWeapon : MonoBehaviour
 {
     public static raycastWeapon instance;
@@ -15,15 +16,11 @@ public class raycastWeapon : MonoBehaviour
     [SerializeField] private LayerMask hitMask;
     [SerializeField] private float shootRate;
     [SerializeField] private GameObject muzzleFlash;
-    [SerializeField] private Image reloadIndicator;
 
     private bool isReloading = false;
-  
-
-
     private float nextShootTime;
 
-     void Start()
+    void Start()
     {
         CurrentAmmo = MaxAmmo;
 
@@ -34,11 +31,6 @@ public class raycastWeapon : MonoBehaviour
         AmmoUI.instance.UpdateAmmo(CurrentAmmo, MaxAmmo);
     }
 
-    private T FindObjectsByType<T>()
-    {
-        throw new NotImplementedException();
-    }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && CurrentAmmo < MaxAmmo)
@@ -46,6 +38,7 @@ public class raycastWeapon : MonoBehaviour
             StartCoroutine(Reload());
         }
     }
+
     public void TryShoot()
     {
         if (isReloading) return;
@@ -67,7 +60,6 @@ public class raycastWeapon : MonoBehaviour
 
     private void Shoot()
     {
-
         if (muzzleFlash != null)
         {
             StartCoroutine(FlashMuzzle());
@@ -103,37 +95,26 @@ public class raycastWeapon : MonoBehaviour
         isReloading = true;
         Debug.Log("Reloading...");
 
-        if (reloadIndicator != null)
-            reloadIndicator.fillAmount = 0f;
+        AmmoUI.instance?.StartReload(reloadTime);
 
         float timer = 0f;
-
         while (timer < reloadTime)
         {
             timer += Time.deltaTime;
-            if (reloadIndicator != null)
-                reloadIndicator.fillAmount = timer / reloadTime;
             yield return null;
         }
 
         CurrentAmmo = MaxAmmo;
         isReloading = false;
 
-        if (reloadIndicator != null)
-            reloadIndicator.fillAmount = 0f;
-
-        if (AmmoUI.instance != null)
-            AmmoUI.instance.UpdateAmmo(CurrentAmmo, MaxAmmo);
+        AmmoUI.instance?.UpdateAmmo(CurrentAmmo, MaxAmmo);
     }
+
     public void ForceAmmoUIUpdate()
     {
         if (AmmoUI.instance != null)
         {
             AmmoUI.instance.UpdateAmmo(CurrentAmmo, MaxAmmo);
         }
-    }
-    public void SetAmmoUI(AmmoUI ui)
-    {
-        AmmoUI.instance = ui;
     }
 }

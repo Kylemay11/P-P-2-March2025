@@ -287,7 +287,7 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (speedMeter != null)
             speedMeter.text = $"Speed: {currentSpeed:F2}";
-        GameManager.instance.playerStaminaBar.fillAmount = currentStamina / maxStamina;
+        gameManager.instance.playerStaminaBar.fillAmount = currentStamina / maxStamina;
     }
 
     public void takeDamage(int amount)
@@ -297,19 +297,19 @@ public class playerController : MonoBehaviour, IDamage
         StartCoroutine(DamageFlash());
 
         if (currentHP <= 0)
-            GameManager.instance.youLose();
+            gameManager.instance.youLose();
     }
 
     private IEnumerator DamageFlash()
     {
-        GameManager.instance.playerDamageScreen.SetActive(true);
+        gameManager.instance.playerDamageScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
-        GameManager.instance.playerDamageScreen.SetActive(false);
+        gameManager.instance.playerDamageScreen.SetActive(false);
     }
 
     public void updatePlayerUI()
     {
-       GameManager.instance.playerHPBar.fillAmount = (float)currentHP / maxHP;
+      gameManager.instance.playerHPBar.fillAmount = (float)currentHP / maxHP;
     }
 
     public void Heal(int amount)

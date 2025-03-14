@@ -6,9 +6,9 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameManager : MonoBehaviour
+public class gameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static gameManager instance;
 
     [SerializeField] int frameRate;
 
@@ -86,13 +86,13 @@ public class GameManager : MonoBehaviour
         if (waveActive)
         {
             waveTimer -= Time.deltaTime;
-            waveInfoText.text = $"Wave {currentWave + 1} | Time: {Mathf.CeilToInt(waveTimer)}s";
+            UpdateWaveInfoText($"Wave {currentWave + 1} | Time: {Mathf.CeilToInt(waveTimer)}s");
 
             if (waveTimer <= 0)
             {
                 waveTimer = 0;
                 waveActive = false;
-                waveInfoText.text = $"Wave {currentWave + 1} | Cleanup Phase | Alive: {GetTotalZombiesAlive()}";
+                UpdateAliveCounterUI();
             }
 
             foreach (var spawner in zombieSpawners)
@@ -103,8 +103,13 @@ public class GameManager : MonoBehaviour
         else if (!waitingToStartWave && GetTotalZombiesAlive() <= 0)
         {
             currentWave++;
-            waveInfoText.text = $"Wave {currentWave} Complete!";
+            UpdateWaveInfoText($"Wave {currentWave} Complete!");
             ShowPreWavePrompt();
+        }
+
+        else if (!waveActive && !waitingToStartWave)
+        {
+            UpdateAliveCounterUI();
         }
 
         if (waitingToStartWave && Input.GetKeyDown(KeyCode.F))
@@ -197,5 +202,16 @@ public class GameManager : MonoBehaviour
             total += spawner.currentZombiesAlive;
         }
         return total;
+    }
+
+    private void UpdateWaveInfoText(string text)
+    {
+        if (waveInfoText != null)
+            waveInfoText.text = text;
+    }
+
+    private void UpdateAliveCounterUI()
+    {
+        UpdateWaveInfoText($"Wave {currentWave + 1} | Cleanup Phase | Alive: {GetTotalZombiesAlive()}");
     }
 }

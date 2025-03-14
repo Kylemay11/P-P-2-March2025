@@ -17,7 +17,7 @@ public class WeaponSwitcher : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchWeapon(1);
         if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchWeapon(2);
 
-        if (!GameManager.instance.isPaused && Input.GetButton("Fire1"))
+        if (!gameManager.instance.isPaused && Input.GetButton("Fire1"))
         {
             raycastWeapon currentWeaponScript = weapons[currentWeaponIndex].GetComponent<raycastWeapon>();
             if (currentWeaponScript != null)
@@ -41,6 +41,7 @@ public class WeaponSwitcher : MonoBehaviour
         {
             AmmoUI.instance?.UpdateAmmo(weapon.CurrentAmmo, weapon.MaxAmmo);
             AmmoUI.instance?.Show(true);
+            gameManager.instance.weaponNotification?.ShowWeaponName(weapon.name);
         }
         else
         {
