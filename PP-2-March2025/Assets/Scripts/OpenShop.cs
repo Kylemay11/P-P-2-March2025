@@ -2,15 +2,26 @@ using UnityEngine;
 
 public class OpenShop : MonoBehaviour
 {
+    private GameObject shop;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        shop = GameObject.Find("shopPanel");
+        shop.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.tag == "Player")
+        {
+            shop.SetActive(true);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            shop.SetActive(false);
+        }
     }
 }

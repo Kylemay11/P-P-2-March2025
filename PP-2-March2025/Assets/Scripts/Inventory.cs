@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public bool[] isFull;
-    public GameObject[] availableSlots;
-
-
+    public bool isFull;
+    private Inventory Bag;
+    
+    public static
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
