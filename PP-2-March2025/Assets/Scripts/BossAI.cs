@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BossAI : MonoBehaviour
+public class BossAI : MonoBehaviour, IDamage
 {
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
@@ -139,7 +139,7 @@ public class BossAI : MonoBehaviour
         Instantiate(bullet, shootPos4.position, shootRotation);
         Instantiate(bullet, shootPos5.position, shootRotation);
         Instantiate(bullet, shootPos6.position, shootRotation);
-
+        
     }
 
     void shoot()
@@ -152,6 +152,7 @@ public class BossAI : MonoBehaviour
         {
             Phase2();
         }
+        
         
     }
 }
