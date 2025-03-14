@@ -295,7 +295,7 @@ public class playerController : MonoBehaviour, IDamage
         StartCoroutine(DamageFlash());
 
         if (currentHP <= 0)
-            gameManager.instance.youLose();
+            gameManager.instance.YouLose();
     }
 
     private IEnumerator DamageFlash()

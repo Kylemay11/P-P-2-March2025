@@ -6478,10 +6478,16 @@ MonoBehaviour:
   zombiePrefabs:
   - {fileID: 5401634921627880974, guid: 781750f154dd6924ebc240fb268f7168, type: 3}
   spawnPoints:
-  - {fileID: 805917579}
+  - {fileID: 937018440}
   spawnRate: 2
-  maxZombies: 50
+  maxZombies: 10
   spawnCooldown: 0
+  baseHealth: 2
+  baseDamage: 2
+  baseSpeed: 2
+  healthGrowthRate: 4
+  damageGrowthRate: 4
+  speedGrowthRate: 4
   currentZombiesAlive: 0
 --- !u!33 &805917578
 MeshFilter:
@@ -7610,8 +7616,14 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 937018440}
   spawnRate: 2
-  maxZombies: 50
+  maxZombies: 10
   spawnCooldown: 0
+  baseHealth: 2
+  baseDamage: 2
+  baseSpeed: 2
+  healthGrowthRate: 4
+  damageGrowthRate: 4
+  speedGrowthRate: 4
   currentZombiesAlive: 0
 --- !u!33 &937018439
 MeshFilter:
@@ -9222,10 +9234,16 @@ MonoBehaviour:
   zombiePrefabs:
   - {fileID: 5401634921627880974, guid: 781750f154dd6924ebc240fb268f7168, type: 3}
   spawnPoints:
-  - {fileID: 1034279731}
+  - {fileID: 937018440}
   spawnRate: 2
-  maxZombies: 50
+  maxZombies: 10
   spawnCooldown: 0
+  baseHealth: 2
+  baseDamage: 2
+  baseSpeed: 2
+  healthGrowthRate: 4
+  damageGrowthRate: 4
+  speedGrowthRate: 4
   currentZombiesAlive: 0
 --- !u!33 &1034279730
 MeshFilter:
@@ -10506,10 +10524,16 @@ MonoBehaviour:
   zombiePrefabs:
   - {fileID: 5401634921627880974, guid: 781750f154dd6924ebc240fb268f7168, type: 3}
   spawnPoints:
-  - {fileID: 1194847972}
+  - {fileID: 937018440}
   spawnRate: 2
-  maxZombies: 50
+  maxZombies: 10
   spawnCooldown: 0
+  baseHealth: 2
+  baseDamage: 2
+  baseSpeed: 2
+  healthGrowthRate: 4
+  damageGrowthRate: 4
+  speedGrowthRate: 4
   currentZombiesAlive: 0
 --- !u!33 &1194847971
 MeshFilter:
@@ -17968,6 +17992,10 @@ PrefabInstance:
       value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: spawnerPhases.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: zombieSpawners.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -17985,6 +18013,38 @@ PrefabInstance:
       objectReference: {fileID: 805917577}
     - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: 'zombieSpawners.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1034279729}
+    - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: spawnerPhases.Array.data[0].duration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: spawnerPhases.Array.data[1].duration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: spawnerPhases.Array.data[0].spawners.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: spawnerPhases.Array.data[1].spawners.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: 'spawnerPhases.Array.data[0].spawners.Array.data[0]'
+      value: 
+      objectReference: {fileID: 937018438}
+    - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: 'spawnerPhases.Array.data[0].spawners.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1194847970}
+    - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: 'spawnerPhases.Array.data[1].spawners.Array.data[0]'
+      value: 
+      objectReference: {fileID: 805917577}
+    - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: 'spawnerPhases.Array.data[1].spawners.Array.data[1]'
       value: 
       objectReference: {fileID: 1034279729}
     - target: {fileID: 184281962346724976, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}

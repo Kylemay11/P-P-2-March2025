@@ -36,22 +36,33 @@ public class gameManager : MonoBehaviour
     public TMP_Text waveInfoText;
     public GameObject breakPanel;
     public TMP_Text startPromptText;
+    
+    [Header("Spawner Phase Settings")]
+    [SerializeField] private List<SpawnerPhase> spawnerPhases;
+    private int currentPhaseIndex;
+    private float phaseTimer ;
+
+    [System.Serializable]
+    public struct SpawnerPhase
+    {
+        public List<ZombieSpawner> spawners;
+        public float duration;
+    }
 
     public bool isPaused;
     private int goalCount;
 
-    void Awake()
+    private void Awake()
     {
         Application.targetFrameRate = frameRate;
         instance = this;
 
-        player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<playerController>();
-        weaponNotification = FindAnyObjectByType<WeaponNotificationUI>();
+        if (player == null) player = GameObject.FindWithTag("Player");
+        if (player != null) playerScript = player.GetComponent<playerController>();
+        if (weaponNotification == null) weaponNotification = FindAnyObjectByType<WeaponNotificationUI>();
 
         waveInfoText.text = "";
         breakPanel.SetActive(false);
-
         ShowPreWavePrompt();
     }
 
@@ -59,6 +70,7 @@ public class gameManager : MonoBehaviour
     {
         HandlePauseInput();
         HandleWaveLogic();
+        HandleSpawnerPhases();
     }
 
     private void HandlePauseInput()
@@ -90,12 +102,16 @@ public class gameManager : MonoBehaviour
             {
                 waveTimer = 0;
                 waveActive = false;
+                StopAllSpawners();
                 UpdateAliveCounterUI();
             }
 
-            foreach (var spawner in zombieSpawners)
+            if (currentPhaseIndex >= 0 && currentPhaseIndex < spawnerPhases.Count)
             {
-                spawner.SpawnOverTime();
+                foreach (var spawner in spawnerPhases[currentPhaseIndex].spawners)
+                {
+                    spawner.SpawnOverTime();
+                }
             }
         }
         else if (!waitingToStartWave && GetTotalZombiesAlive() <= 0)
@@ -104,7 +120,6 @@ public class gameManager : MonoBehaviour
             UpdateWaveInfoText($"Wave {currentWave} Complete!");
             ShowPreWavePrompt();
         }
-
         else if (!waveActive && !waitingToStartWave)
         {
             UpdateAliveCounterUI();
@@ -115,6 +130,7 @@ public class gameManager : MonoBehaviour
             StartWave();
         }
     }
+
 
     public void PauseGame()
     {
@@ -151,6 +167,8 @@ public class gameManager : MonoBehaviour
 
     public void StartWave()
     {
+        currentPhaseIndex = -1;
+        AdvanceSpawnerPhase();
         waveTimer = waveDuration;
         waveActive = true;
         waitingToStartWave = false;
@@ -174,7 +192,7 @@ public class gameManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(menuPause.transform.GetChild(0).gameObject);
     }
 
-    public void updateGameGoal(int amount)
+    public void UpdateGameGoal(int amount)
     {
         goalCount += amount;
         if (goalCount <= 0)
@@ -185,7 +203,7 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    public void youLose()
+    public void YouLose()
     {
         PauseGame();
         menuActive = menuLose;
@@ -212,4 +230,47 @@ public class gameManager : MonoBehaviour
     {
         UpdateWaveInfoText($"Wave {currentWave + 1} | Cleanup Phase | Alive: {GetTotalZombiesAlive()}");
     }
+
+    private void HandleSpawnerPhases()
+    {
+        if (!waveActive) return;
+        if (spawnerPhases.Count == 0) return;
+
+        phaseTimer -= Time.deltaTime;
+
+        if (phaseTimer <= 0f)
+        {
+            AdvanceSpawnerPhase();
+        }
+    }
+
+    private void AdvanceSpawnerPhase()
+    {
+        StopAllSpawners();
+
+        currentPhaseIndex = (currentPhaseIndex + 1) % spawnerPhases.Count;
+        SpawnerPhase currentPhase = spawnerPhases[currentPhaseIndex];
+
+        if (currentPhase.spawners == null || currentPhase.spawners.Count == 0)
+        {
+            Debug.LogWarning($"SpawnerPhase {currentPhaseIndex} has no spawners assigned!");
+            return;
+        }
+
+        foreach (var spawner in currentPhase.spawners)
+        {
+            spawner.StartSpawning();
+        }
+
+        phaseTimer = currentPhase.duration;
+    }
+
+    private void StopAllSpawners()
+    {
+        foreach (var spawner in zombieSpawners)
+        {
+            spawner.StopSpawning();
+        }
+    }
+
 }
