@@ -28,6 +28,8 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
     public WeaponNotificationUI weaponNotification;
+    public TMP_Text waveInfoText;
+    public GameObject breakPanel;
 
     public bool isPaused;
 
@@ -42,6 +44,8 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         weaponNotification = FindAnyObjectByType<WeaponNotificationUI>();
+        waveInfoText.text = "";
+        breakPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -64,25 +68,25 @@ public class gameManager : MonoBehaviour
         if (waveActive)
         {
             waveTimer -= Time.deltaTime;
+            waveInfoText.text = $"Wave {currentWave + 1} | Time: {Mathf.CeilToInt(waveTimer)}s";
 
             if (waveTimer <= 0)
             {
                 waveTimer = 0;
                 waveActive = false;
+                waveInfoText.text = $"Wave {currentWave + 1} | Cleanup Phase | Alive: {zombieSpawner.currentZombiesAlive}";
                 Debug.Log("Wave timer ended! Waiting for all zombies to be cleared...");
             }
 
-            // Spawn zombies while timer is active
             zombieSpawner.SpawnOverTime();
         }
         else
         {
-            // Wait for wave cleanup: no zombies left alive
             if (zombieSpawner.currentZombiesAlive <= 0)
             {
                 Debug.Log("Wave Complete!");
-                currentWave++;
-                StartWave(); // Start next wave
+                waveInfoText.text = $"Wave {currentWave + 1} Complete!";
+                breakPanel.SetActive(true);
             }
         }
     }
@@ -132,5 +136,12 @@ public class gameManager : MonoBehaviour
         Debug.Log("Wave " + (currentWave + 1) + " started!");
 
         zombieSpawner.currentZombiesAlive = 0;
+    }
+
+    public void StartNextWaveFromUI()
+    {
+        breakPanel.SetActive(false);
+        currentWave++;
+        StartWave();
     }
 }

@@ -15,6 +15,7 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.stateUnpaused();
     }
 
+
     public void quit()
     {
 #if UNITY_EDITOR

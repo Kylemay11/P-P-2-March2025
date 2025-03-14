@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
 {
-    public event System.Action OnZombieDeath;
 
     [Header("Spawn Settings")]
     [SerializeField] private List<GameObject> zombiePrefabs;
