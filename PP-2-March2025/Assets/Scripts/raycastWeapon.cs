@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class raycastWeapon : MonoBehaviour
 {
+    public static raycastWeapon instance;
+
     [SerializeField] private float range;
-    [SerializeField] private int damage;
+    [SerializeField] public int damage;
     [SerializeField] public int MaxAmmo;
     [SerializeField] public int CurrentAmmo;
     [SerializeField] private float reloadTime;

@@ -25,6 +25,8 @@ public class buttonFunctions : MonoBehaviour
 #endif
     }
 
+
+
     public void smallhealth()
     {
         Shop.instance.makeshpPurchase();
@@ -79,4 +81,16 @@ public class buttonFunctions : MonoBehaviour
 
 
 
+    public void BonusHealth()
+    {
+        perkShop.instance.makeBonushealthPurchase();
+    }
+    public void Speed()
+    {
+        perkShop.instance.makeSpeedPurchase();
+    }
+    public void Damage()
+    {
+        perkShop.instance.makeHDamagePurchase();
+    }
 }
