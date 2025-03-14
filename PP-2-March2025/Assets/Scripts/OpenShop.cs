@@ -1,11 +1,7 @@
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class OpenShop : MonoBehaviour
 {
-    public bool[] isFull;
-    public GameObject[] availableSlots;
-
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
