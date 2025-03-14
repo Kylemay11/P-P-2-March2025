@@ -41,6 +41,7 @@ public class WeaponSwitcher : MonoBehaviour
         {
             AmmoUI.instance?.UpdateAmmo(weapon.CurrentAmmo, weapon.MaxAmmo);
             AmmoUI.instance?.Show(true);
+            GameManager.instance.weaponNotification?.ShowWeaponName(weapon.name);
         }
         else
         {
