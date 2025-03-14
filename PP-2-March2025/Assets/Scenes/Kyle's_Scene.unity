@@ -1008,6 +1008,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 73504746}
+    - target: {fileID: 6233125747362112470, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
+      propertyPath: speedMeter
+      value: 
+      objectReference: {fileID: 827936284}
     - target: {fileID: 6466856677149125966, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1733,6 +1737,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &827936284 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2311124457149035875, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+  m_PrefabInstance: {fileID: 1195042600733590012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &908183059
 Mesh:
   m_ObjectHideFlags: 0
