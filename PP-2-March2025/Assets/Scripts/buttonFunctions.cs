@@ -6,13 +6,13 @@ public class buttonFunctions : MonoBehaviour
 
     public void resume()
     {
-        GameManager.instance.ResumeGame();
+        gameManager.instance.ResumeGame();
     }
 
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        GameManager.instance.PauseGame();
+        gameManager.instance.PauseGame();
     }
 
 

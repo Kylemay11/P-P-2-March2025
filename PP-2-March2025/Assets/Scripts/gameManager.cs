@@ -6,9 +6,9 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameManager : MonoBehaviour
+public class gameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static gameManager instance;
 
     [SerializeField] int frameRate;
 
