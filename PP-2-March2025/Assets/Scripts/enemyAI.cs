@@ -11,6 +11,7 @@ public class enemyAI : MonoBehaviour
     [SerializeField] Rigidbody projectileRB;
     // [SerializeField] Animator anim;
 
+    [Range(0.5f, 50)] [SerializeField] float projectileSpeed;
     [Range(1, 10)] [SerializeField] int HP;
     [Range(1, 30)] [SerializeField] float faceTargetSpeed;
     [Range(1, 20)] [SerializeField] float enemySpeed;
@@ -28,7 +29,6 @@ public class enemyAI : MonoBehaviour
     float attackTimer;
     Vector3 playerDir;
     bool playerInSightRange, playerInAttackRange;
-    public float projectileSpeed;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -67,29 +67,11 @@ public class enemyAI : MonoBehaviour
     {
         attackTimer = 0;
         // do animation for melee attack
-
+        
         if(type == enemyType.spitter)
         {
             // temp variable
-            GameObject projectile = Instantiate(zombieBile, attackPOS.position, Quaternion.identity);
-            projectileRB = projectile.GetComponent<Rigidbody>();
-            Vector3 toTarget = spitterTarget.position - attackPOS.position;
-            Vector3 toTargetXZ = new Vector3(toTarget.x, 0, toTarget.z);
-            float x = toTargetXZ.magnitude;
-            float y = toTarget.y - attackPOS.position.y;
-
-            // calculate
-            float angleRadians = CalculateLaunchAngle(projectileSpeed, x, y, Physics.gravity.magnitude);
-
-            if(float.IsNaN(angleRadians))
-            {
-                Destroy(projectile);
-                return;
-            }
-
-            Vector3 launchDirection = toTargetXZ.normalized * Mathf.Cos(angleRadians) + Vector3.up * Mathf.Sin(angleRadians);
-            projectileRB.linearVelocity = (launchDirection * projectileSpeed);
-            projectile.transform.rotation = Quaternion.LookRotation(projectileRB.linearVelocity);
+            GameObject projectile = Instantiate(zombieBile, attackPOS.position, transform.rotation);
         }
 
     }
@@ -97,16 +79,15 @@ public class enemyAI : MonoBehaviour
     private float CalculateLaunchAngle(float initialVel, float x, float y, float gravity)
     {
         float iVelSquared = (initialVel * initialVel);
-        float underSqrRoot = (iVelSquared * iVelSquared) - gravity * (gravity * x * x + 2 * y * iVelSquared);
+        float underSqrRoot = (iVelSquared * iVelSquared) - (gravity * (gravity * x * x + 2 * y * iVelSquared));
 
-        if(underSqrRoot >= 0f)
+        if (underSqrRoot >= 0f)
         {
             float root = Mathf.Sqrt(underSqrRoot);
             float aimAngle = Mathf.Atan((iVelSquared + root) / (gravity * x));
             return aimAngle;
         }
-
-        return float.NaN;
+        return initialVel;
     }
 
     void faceTarget()
