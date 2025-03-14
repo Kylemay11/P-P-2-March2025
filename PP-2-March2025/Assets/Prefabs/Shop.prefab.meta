@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: d977acf2494a9af46b98d3227ad0510c
+<<<<<<<< HEAD:PP-2-March2025/Assets/Prefabs/Level.prefab.meta
+guid: 2befb812743b2b2478adf2c0f37a332d
+========
+guid: 35648f72c8e850c4abd6649529b32faf
+>>>>>>>> Derick-Hayes-Dev-Branch:PP-2-March2025/Assets/Prefabs/Shop.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

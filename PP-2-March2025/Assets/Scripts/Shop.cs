@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
+    public static Shop instance;
+
     [Range(1, 50)][SerializeField] int smallhealthpackPrice;
     [Range(1, 100)][SerializeField] int healthpackPrice;
     [Range(1, 500)][SerializeField] int largehealthpackPrice;
@@ -28,6 +30,7 @@ public class Shop : MonoBehaviour
     private int SmgAmmo;
     private int ShotgunShells;
     private int SpecialAmmo;
+    private int PistolAmmo;
 
     private int SMG;
     private int Shotgun;
@@ -35,25 +38,34 @@ public class Shop : MonoBehaviour
     private int RYNO;
     private int WOODBAT;
 
+    private enum Itemtypes
+    {
+        Health,
+        Ammo,
+        Weapons,
+    }
+
     void Start()
     {
      
     }
 
-    void makePurchase()
+   public void makeshpPurchase()
     {
-       if(CurrencySystem.instance.currentMoney >= smallhealthpackPrice)
+        if (CurrencySystem.instance.currentMoney >= smallhealthpackPrice)
         {
             Smallhealthpack++;
             CurrencySystem.instance.currentMoney -= smallhealthpackPrice;
             print("Hurry take your small health potion, guess you now got " + Smallhealthpack.ToString());
         }
-       else
+        else
         {
             print("Come back when ya got the money to spend");
         }
-
-       if (CurrencySystem.instance.currentMoney >= healthpackPrice)
+    }
+    public void makehpPurchase()
+    {
+        if (CurrencySystem.instance.currentMoney >= healthpackPrice)
         {
             Healthpack++;
             CurrencySystem.instance.currentMoney -= healthpackPrice;
@@ -63,7 +75,9 @@ public class Shop : MonoBehaviour
         {
             print("Come back when ya got the money to spend");
         }
-
+    }
+    public void makelhpPurchase()
+    {
         if (CurrencySystem.instance.currentMoney >= largehealthpackPrice)
         {
             Largehealthpack++;
@@ -74,7 +88,9 @@ public class Shop : MonoBehaviour
         {
             print("Come back when ya got the money to spend");
         }
-
+    }
+    public void makesmgAmmoPurchase()
+    {
 
         if (CurrencySystem.instance.currentMoney >= smgAmmoPrice)
         {
@@ -86,6 +102,9 @@ public class Shop : MonoBehaviour
         {
             print("Come back when ya got the money to spend");
         }
+    }
+   public void makeSSPurchase()
+    {
         if (CurrencySystem.instance.currentMoney >= ShotgunShellPrice)
         {
             ShotgunShells++;
@@ -96,9 +115,12 @@ public class Shop : MonoBehaviour
         {
             print("Come back when ya got the money to spend");
         }
+    }
+    public void makeSAmmoPurchase()
+    {
         if (CurrencySystem.instance.currentMoney >= SpecialAmmoPrice)
         {
-           SpecialAmmo++;
+            SpecialAmmo++;
             CurrencySystem.instance.currentMoney -= SpecialAmmoPrice;
             print("Hurry take your special ammo, guess you now got " + SpecialAmmo.ToString());
         }
@@ -106,7 +128,22 @@ public class Shop : MonoBehaviour
         {
             print("Come back when ya got the money to spend");
         }
-
+    }
+    public void makePAmmoPurchase()
+    {
+        if (CurrencySystem.instance.currentMoney >= PistolAmmoPrice)
+        {
+            PistolAmmo++;
+            CurrencySystem.instance.currentMoney -= PistolAmmoPrice;
+            print("Hurry take your Pistol ammo, guess you now got " + PistolAmmo.ToString());
+        }
+        else
+        {
+            print("Come back when ya got the money to spend");
+        }
+    }
+    public void makesmgPurchase()
+    {
 
         if (CurrencySystem.instance.currentMoney >= SMGPrice)
         {
@@ -118,6 +155,9 @@ public class Shop : MonoBehaviour
         {
             print("Come back when ya got the money to spend");
         }
+    }
+    public void makeShotgunPurchase()
+    {
         if (CurrencySystem.instance.currentMoney >= ShotgunPrice)
         {
             Shotgun++;
@@ -128,6 +168,9 @@ public class Shop : MonoBehaviour
         {
             print("Come back when ya got the money to spend");
         }
+    }
+    public void makeBFGPurchase()
+    {
         if (CurrencySystem.instance.currentMoney >= BFGPrice)
         {
             BFG++;
@@ -138,17 +181,22 @@ public class Shop : MonoBehaviour
         {
             print("Come back when ya got the money to spend");
         }
+    }
+    public void makeRYNOPurchase()
+    {
         if (CurrencySystem.instance.currentMoney >= RYNOPrice)
         {
             RYNO++;
             CurrencySystem.instance.currentMoney -= RYNOPrice;
-            print("Wow now you got a " +    RYNO.ToString());
+            print("Wow now you got a " + RYNO.ToString());
         }
         else
         {
             print("Come back when ya got the money to spend");
         }
-
+    }
+    public void makeWBPurchase()
+    {
         if (CurrencySystem.instance.currentMoney >= WoodBatPrice)
         {
             WOODBAT++;
@@ -159,7 +207,7 @@ public class Shop : MonoBehaviour
         {
             print("Come back when ya got the money to spend");
         }
-
+    
     }
 
 }

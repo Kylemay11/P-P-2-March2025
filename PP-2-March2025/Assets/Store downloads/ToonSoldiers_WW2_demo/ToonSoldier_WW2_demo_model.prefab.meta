@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: d8deb583920a09940be4830160ab13cb
+<<<<<<<< HEAD:PP-2-March2025/Assets/Prefabs/Shop.prefab.meta
+guid: d977acf2494a9af46b98d3227ad0510c
+========
+guid: 2599104a4a2a5214f8407d03827b5eff
+>>>>>>>> Derick-Hayes-Dev-Branch:PP-2-March2025/Assets/Store downloads/ToonSoldiers_WW2_demo/ToonSoldier_WW2_demo_model.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
