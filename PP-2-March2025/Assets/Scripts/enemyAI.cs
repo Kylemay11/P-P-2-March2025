@@ -8,6 +8,7 @@ public class enemyAI : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     [SerializeField] enemyType type;
     [SerializeField] SphereCollider sphereCollider;
+    [SerializeField] Rigidbody projectileRB;
     // [SerializeField] Animator anim;
 
     [Range(1, 10)] [SerializeField] int HP;
@@ -18,6 +19,7 @@ public class enemyAI : MonoBehaviour
     // [SerializeField] int animTranSpeed;
 
     [SerializeField] Transform player;
+    [SerializeField] Transform spitterTarget;
     [SerializeField] Transform attackPOS;
     [SerializeField] GameObject zombieBile;
     [Range(0.5f, 5)] [SerializeField] float attackRate;
@@ -69,16 +71,25 @@ public class enemyAI : MonoBehaviour
         if(type == enemyType.spitter)
         {
             // temp variable
-            GameObject projectile = Instantiate(zombieBile, attackPOS.position, transform.rotation);
-            Rigidbody rb = projectile.GetComponent<Rigidbody>();
-            Vector3 toPlayer = player.position - transform.position;
-            Vector3 toPlayerXZ = new Vector3(toPlayer.x, 0, toPlayer.z);
-            float x = toPlayerXZ.magnitude;
-            float y = toPlayer.y - transform.position.y;
+            GameObject projectile = Instantiate(zombieBile, attackPOS.position, Quaternion.identity);
+            projectileRB = projectile.GetComponent<Rigidbody>();
+            Vector3 toTarget = spitterTarget.position - attackPOS.position;
+            Vector3 toTargetXZ = new Vector3(toTarget.x, 0, toTarget.z);
+            float x = toTargetXZ.magnitude;
+            float y = toTarget.y - attackPOS.position.y;
 
             // calculate
+            float angleRadians = CalculateLaunchAngle(projectileSpeed, x, y, Physics.gravity.magnitude);
 
+            if(float.IsNaN(angleRadians))
+            {
+                Destroy(projectile);
+                return;
+            }
 
+            Vector3 launchDirection = toTargetXZ.normalized * Mathf.Cos(angleRadians) + Vector3.up * Mathf.Sin(angleRadians);
+            projectileRB.linearVelocity = (launchDirection * projectileSpeed);
+            projectile.transform.rotation = Quaternion.LookRotation(projectileRB.linearVelocity);
         }
 
     }
@@ -94,11 +105,8 @@ public class enemyAI : MonoBehaviour
             float aimAngle = Mathf.Atan((iVelSquared + root) / (gravity * x));
             return aimAngle;
         }
-        else
-        {
-            float aimAngle = Mathf.Atan((iVelSquared) / (gravity * x));
-            return aimAngle;
-        }
+
+        return float.NaN;
     }
 
     void faceTarget()
