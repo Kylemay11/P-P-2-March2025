@@ -30,8 +30,10 @@ public class gameManager : MonoBehaviour
     public WeaponNotificationUI weaponNotification;
     public TMP_Text waveInfoText;
     public GameObject breakPanel;
+    public TMP_Text startPromptText;
 
     public bool isPaused;
+    private bool waitingToStartWave;
 
     int goalCount;
 
@@ -46,6 +48,9 @@ public class gameManager : MonoBehaviour
         weaponNotification = FindAnyObjectByType<WeaponNotificationUI>();
         waveInfoText.text = "";
         breakPanel.SetActive(false);
+        waitingToStartWave = true;
+        startPromptText.text = $"Press F to start Wave {currentWave + 1}";
+        breakPanel.SetActive(true);
     }
 
     // Update is called once per frame
@@ -80,14 +85,24 @@ public class gameManager : MonoBehaviour
 
             zombieSpawner.SpawnOverTime();
         }
-        else
+        else if(!waitingToStartWave)
         {
             if (zombieSpawner.currentZombiesAlive <= 0)
             {
                 Debug.Log("Wave Complete!");
+                currentWave++;
                 waveInfoText.text = $"Wave {currentWave + 1} Complete!";
                 breakPanel.SetActive(true);
+                waitingToStartWave = true;
+
+                startPromptText.text = $"Press F to start Wave {currentWave + 1}";
             }
+        }
+        if (waitingToStartWave && Input.GetKeyDown(KeyCode.F))
+        {
+            breakPanel.SetActive(false);
+            startPromptText.text = "";
+            StartWave();
         }
     }
 
@@ -132,6 +147,7 @@ public class gameManager : MonoBehaviour
     {
         waveTimer = waveDuration;
         waveActive = true;
+        waitingToStartWave = false;
 
         Debug.Log("Wave " + (currentWave + 1) + " started!");
 
