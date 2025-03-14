@@ -17,7 +17,7 @@ public class WeaponSwitcher : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchWeapon(1);
         if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchWeapon(2);
 
-        if (Input.GetButton("Fire1"))
+        if (!gameManager.instance.isPaused && Input.GetButton("Fire1"))
         {
             raycastWeapon currentWeaponScript = weapons[currentWeaponIndex].GetComponent<raycastWeapon>();
             if (currentWeaponScript != null)
