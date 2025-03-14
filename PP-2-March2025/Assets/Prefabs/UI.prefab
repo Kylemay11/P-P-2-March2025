@@ -65,7 +65,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5754034078259557879
 RectTransform:
   m_ObjectHideFlags: 0
@@ -318,7 +318,9 @@ MonoBehaviour:
   waveTimer: 0
   waveActive: 0
   currentWave: 0
-  zombieSpawner: {fileID: 0}
+  zombieSpawners:
+  - {fileID: 0}
+  - {fileID: 0}
   playerHPBar: {fileID: 6120214177223321951}
   playerStaminaBar: {fileID: 3838639311859961710}
   playerDamageScreen: {fileID: 8033194154631128897}
@@ -2149,7 +2151,7 @@ GameObject:
   - component: {fileID: 1900685062253504534}
   - component: {fileID: 184281962346724976}
   m_Layer: 5
-  m_Name: restTime
+  m_Name: restPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

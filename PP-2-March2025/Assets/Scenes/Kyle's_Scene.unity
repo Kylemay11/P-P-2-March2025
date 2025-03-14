@@ -6400,14 +6400,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
-      propertyPath: zombieSpawner
-      value: 
-      objectReference: {fileID: 937018438}
-    - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
-      propertyPath: zombieSpawners.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: 'zombieSpawners.Array.data[0]'
       value: 
       objectReference: {fileID: 937018438}
@@ -6415,17 +6407,21 @@ PrefabInstance:
       propertyPath: 'zombieSpawners.Array.data[1]'
       value: 
       objectReference: {fileID: 1111663817}
-    - target: {fileID: 249531554628713119, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 184281962346724976, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 595163249752575389, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -953
+      objectReference: {fileID: 0}
+    - target: {fileID: 595163249752575389, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 556
       objectReference: {fileID: 0}
     - target: {fileID: 3395526379521227085, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4329427733296154700, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
-      propertyPath: m_Name
-      value: restPanel
       objectReference: {fileID: 0}
     - target: {fileID: 4709613827609420196, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: m_Pivot.x
@@ -6506,6 +6502,10 @@ PrefabInstance:
     - target: {fileID: 4709613827609420196, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580568544119134660, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: resume
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
