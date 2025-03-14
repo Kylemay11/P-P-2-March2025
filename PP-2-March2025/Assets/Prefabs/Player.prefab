@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f9816bf150f6cb43bed122ed0297242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 15
+  range: 25
   damage: 5
   MaxAmmo: 15
   CurrentAmmo: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   hitMask:
     serializedVersion: 2
     m_Bits: 503
-  shootRate: 0.5
+  shootRate: 0.05
   muzzleFlash: {fileID: 2306917114678388232}
   reloadIndicator: {fileID: 0}
 --- !u!1 &196915710635701597
@@ -2511,9 +2511,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 849daf6a8d928954491993fe4601a59c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleSwayAmount: 0.02
+  idleSwayAmount: 0.8
   idleSwaySpeed: 1.5
-  walkSwayAmount: 0.05
+  walkSwayAmount: 0.1
   walkSwaySpeed: 2.5
   sprintSwayAmount: 0.25
   sprintSwaySpeed: 6
@@ -2530,15 +2530,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f9816bf150f6cb43bed122ed0297242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 15
-  damage: 2
-  MaxAmmo: 30
+  range: 30
+  damage: 30
+  MaxAmmo: 100
   CurrentAmmo: 0
-  reloadTime: 3
+  reloadTime: 1
   hitMask:
     serializedVersion: 2
     m_Bits: 503
-  shootRate: 0.5
+  shootRate: 0.1
   muzzleFlash: {fileID: 4629717391476776330}
   reloadIndicator: {fileID: 0}
 --- !u!1 &4403184609998668433
