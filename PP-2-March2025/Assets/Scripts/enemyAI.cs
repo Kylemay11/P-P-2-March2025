@@ -83,6 +83,24 @@ public class enemyAI : MonoBehaviour
 
     }
 
+    private float CalculateLaunchAngle(float initialVel, float x, float y, float gravity)
+    {
+        float iVelSquared = (initialVel * initialVel);
+        float underSqrRoot = (iVelSquared * iVelSquared) - gravity * (gravity * x * x + 2 * y * iVelSquared);
+
+        if(underSqrRoot >= 0f)
+        {
+            float root = Mathf.Sqrt(underSqrRoot);
+            float aimAngle = Mathf.Atan((iVelSquared + root) / (gravity * x));
+            return aimAngle;
+        }
+        else
+        {
+            float aimAngle = Mathf.Atan((iVelSquared) / (gravity * x));
+            return aimAngle;
+        }
+    }
+
     void faceTarget()
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
