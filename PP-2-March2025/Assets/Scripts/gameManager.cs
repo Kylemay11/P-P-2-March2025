@@ -49,14 +49,13 @@ public class gameManager : MonoBehaviour
         waveInfoText.text = "";
         breakPanel.SetActive(false);
         waitingToStartWave = true;
-        startPromptText.text = $"Press F to start Wave {currentWave + 1}";
-        breakPanel.SetActive(true);
+        EnterPreWaveState();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel") && !waitingToStartWave)
         {
             if (menuActive == null)
             {
@@ -68,6 +67,11 @@ public class gameManager : MonoBehaviour
             {
                 stateUnpaused();
             }
+        }
+        if (waitingToStartWave && playerScript != null && !playerScript.enabled)
+        {
+            playerHPBar.fillAmount = (float)playerScript.currentHP / playerScript.maxHP;
+            playerStaminaBar.fillAmount = 1f;
         }
 
         if (waveActive)
@@ -85,32 +89,26 @@ public class gameManager : MonoBehaviour
 
             zombieSpawner.SpawnOverTime();
         }
-        else if(!waitingToStartWave)
+        else if (!waitingToStartWave)
         {
             if (zombieSpawner.currentZombiesAlive <= 0)
             {
                 Debug.Log("Wave Complete!");
                 currentWave++;
-                waveInfoText.text = $"Wave {currentWave + 1} Complete!";
-                breakPanel.SetActive(true);
-                waitingToStartWave = true;
-
-                startPromptText.text = $"Press F to start Wave {currentWave + 1}";
+                waveInfoText.text = $"Wave {currentWave} Complete!";
+                EnterPreWaveState();
             }
         }
         if (waitingToStartWave && Input.GetKeyDown(KeyCode.F))
         {
-            breakPanel.SetActive(false);
-            startPromptText.text = "";
             StartWave();
         }
     }
-
     public void statePause()
     {
         isPaused = !isPaused;
-        playerScript.enabled = false;
         Time.timeScale = 0;
+        playerScript.enabled = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -147,19 +145,32 @@ public class gameManager : MonoBehaviour
 
     public void StartWave()
     {
+        Time.timeScale = 1f;
         waveTimer = waveDuration;
         waveActive = true;
         waitingToStartWave = false;
 
         Debug.Log("Wave " + (currentWave + 1) + " started!");
 
+        breakPanel.SetActive(false);
+        startPromptText.text = "";
         zombieSpawner.currentZombiesAlive = 0;
     }
 
     public void StartNextWaveFromUI()
     {
-        breakPanel.SetActive(false);
-        currentWave++;
+        waitingToStartWave = false;
         StartWave();
+    }
+
+    public void EnterPreWaveState()
+    {
+        isPaused = false;
+        Time.timeScale = 0f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        breakPanel.SetActive(true);
+        startPromptText.text = $"Press F to start Wave {currentWave + 1}";
+        waitingToStartWave = true;
     }
 }

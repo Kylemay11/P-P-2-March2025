@@ -24,7 +24,7 @@ public class playerController : MonoBehaviour, IDamage
     public PlayerState CurrentState => currentState;
 
     [Header("Player Stats")]
-    [SerializeField] private int maxHP;
+    [SerializeField] public int maxHP;
     [SerializeField] public int currentHP;
 
     [Header("Movement Settings")]
