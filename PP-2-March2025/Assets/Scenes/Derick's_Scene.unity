@@ -13270,10 +13270,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop
       objectReference: {fileID: 0}
-    - target: {fileID: 3275996977524681707, guid: 601f377f371ba6441ae72dcd7cf860ab, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6479323023054061342, guid: 601f377f371ba6441ae72dcd7cf860ab, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.02
@@ -13318,10 +13314,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 906356812}
-    - target: {fileID: 9127036538933378034, guid: 601f377f371ba6441ae72dcd7cf860ab, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: resume
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16157,81 +16149,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1157399253130645959, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: Speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: -1157399253130645959, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: HitDamage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -1157399253130645959, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: SpeedPrice
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -1157399253130645959, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: Bonushealth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 924210473277114397, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_fontSize
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 924210473277114397, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 70
-      objectReference: {fileID: 0}
     - target: {fileID: 1115048469806512506, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 906356812}
-    - target: {fileID: 1115048469806512506, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Damage
-      objectReference: {fileID: 0}
     - target: {fileID: 2671204663188388284, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 906356812}
-    - target: {fileID: 2671204663188388284, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BonusHealth
-      objectReference: {fileID: 0}
-    - target: {fileID: 3070131512571090692, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_Color.a
-      value: 0.90588236
-      objectReference: {fileID: 0}
-    - target: {fileID: 3138894184999623911, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 398
-      objectReference: {fileID: 0}
-    - target: {fileID: 3138894184999623911, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -49
-      objectReference: {fileID: 0}
     - target: {fileID: 3275996977524681707, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
       propertyPath: m_Name
       value: PerkShop
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553441880150551595, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -52
-      objectReference: {fileID: 0}
-    - target: {fileID: 4870870324867339878, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_text
-      value: 'SPEED
-
-        BOOST'
-      objectReference: {fileID: 0}
-    - target: {fileID: 5481150180193767156, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_Name
-      value: SPEED BOOST
-      objectReference: {fileID: 0}
-    - target: {fileID: 5714318205871905205, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_text
-      value: 'DAMAGE
-
-        BOOST'
       objectReference: {fileID: 0}
     - target: {fileID: 6479323023054061342, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16273,63 +16201,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6522052202303633359, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6522052202303633359, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -268
-      objectReference: {fileID: 0}
-    - target: {fileID: 7292368392759682977, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_text
-      value: 'BONUS
-
-        HEALTH'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7703948374175076775, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 7703948374175076775, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -49
-      objectReference: {fileID: 0}
-    - target: {fileID: 7978419230513645878, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_Name
-      value: DAMAGE BOOST
-      objectReference: {fileID: 0}
     - target: {fileID: 8458369173657060017, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 536609407}
-    - target: {fileID: 8458369173657060017, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8707966632380781012, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_Name
-      value: BONUS HEALTH
-      objectReference: {fileID: 0}
     - target: {fileID: 9127036538933378034, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 906356812}
-    - target: {fileID: 9127036538933378034, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: resume
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 3674979010554589899, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-    - {fileID: 5756293453261729992, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-    - {fileID: 604595145572744260, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-    - {fileID: 3429591407407586512, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-    - {fileID: 5145223349066983086, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-    - {fileID: 6422330556020389832, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-    - {fileID: 8308626104122717598, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-    - {fileID: 7419951687136274061, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
-    - {fileID: 2995116179171778082, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bc6033e4b7b10e40bba9ce27f2d6b1e, type: 3}
