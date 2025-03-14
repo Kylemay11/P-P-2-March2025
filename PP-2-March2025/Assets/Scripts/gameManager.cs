@@ -92,7 +92,7 @@ public class gameManager : MonoBehaviour
             {
                 waveTimer = 0;
                 waveActive = false;
-                UpdateAliveCounterUI();
+                WaitBeforeCleanupUI();
             }
 
             foreach (var spawner in zombieSpawners)
@@ -209,9 +209,13 @@ public class gameManager : MonoBehaviour
         if (waveInfoText != null)
             waveInfoText.text = text;
     }
-
     private void UpdateAliveCounterUI()
     {
         UpdateWaveInfoText($"Wave {currentWave + 1} | Cleanup Phase | Alive: {GetTotalZombiesAlive()}");
+    }
+    private IEnumerator WaitBeforeCleanupUI()
+    {
+        yield return new WaitForSeconds(0.1f);
+        UpdateAliveCounterUI();
     }
 }
