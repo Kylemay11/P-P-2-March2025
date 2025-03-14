@@ -118,7 +118,7 @@ public class raycastWeapon : MonoBehaviour
         isReloading = false;
 
         if (reloadIndicator != null)
-            reloadIndicator.fillAmount = 0f;
+            reloadIndicator.fillAmount = 100;
 
         if (AmmoUI.instance != null)
             AmmoUI.instance.UpdateAmmo(CurrentAmmo, MaxAmmo);
