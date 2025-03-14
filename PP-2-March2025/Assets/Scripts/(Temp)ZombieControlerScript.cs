@@ -7,7 +7,6 @@ public class ZombieController : MonoBehaviour, IDamage
     [SerializeField] private int maxHealth;
     [SerializeField] private int damageToPlayer;
     [SerializeField] private float attackCooldown;
-    [SerializeField] private float moveSpeed;
     private Transform player;
     private NavMeshAgent agent;
 

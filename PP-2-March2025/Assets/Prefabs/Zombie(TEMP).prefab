@@ -1099,7 +1099,6 @@ MonoBehaviour:
   maxHealth: 25
   damageToPlayer: 10
   attackCooldown: 2
-  moveSpeed: 2
   currentHealth: 0
 --- !u!136 &8919679746701218919
 CapsuleCollider:
@@ -1134,8 +1133,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 8
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
