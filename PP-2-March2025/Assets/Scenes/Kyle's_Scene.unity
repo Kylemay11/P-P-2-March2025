@@ -17965,7 +17965,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: waveDuration
-      value: 60
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: zombieSpawners.Array.size
