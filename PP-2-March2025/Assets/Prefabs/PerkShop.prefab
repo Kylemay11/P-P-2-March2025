@@ -1912,6 +1912,9 @@ MonoBehaviour:
   SpeedPrice: 1
   BonushealthPrice: 1
   HitDamagePrice: 1
+  Speed: 1
+  Bonushealth: 1
+  HitDamage: 1
 --- !u!1 &3336750941296410655
 GameObject:
   m_ObjectHideFlags: 0
