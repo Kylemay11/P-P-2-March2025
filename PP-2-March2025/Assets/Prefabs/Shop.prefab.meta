@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-=======
 <<<<<<<< HEAD:PP-2-March2025/Assets/Prefabs/Level.prefab.meta
-guid: 601f377f371ba6441ae72dcd7cf860ab
+guid: 2befb812743b2b2478adf2c0f37a332d
 ========
->>>>>>> Stashed changes
 guid: 35648f72c8e850c4abd6649529b32faf
+>>>>>>>> Derick-Hayes-Dev-Branch:PP-2-March2025/Assets/Prefabs/Shop.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

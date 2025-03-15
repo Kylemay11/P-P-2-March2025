@@ -618,18 +618,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 2512715781657314897}
   type: 2
-  sphereCollider: {fileID: 0}
-  projectileRB: {fileID: 4793690980075208904, guid: ffe71cdd5f9db584dbaf2c85c988fec6, type: 3}
+  sphereCollider: {fileID: 1289240542026452634}
   projectileSpeed: 0.5
   HP: 1
+  enemyDamage: 1
   faceTargetSpeed: 1
   enemySpeed: 1
   runMultiplyer: 1.1
-  enemyRunSpeed: 5
-  player: {fileID: 0}
-  spitterTarget: {fileID: 0}
-  attackPOS: {fileID: 7056443337958636971}
-  zombieBile: {fileID: 4702741866044853077, guid: ffe71cdd5f9db584dbaf2c85c988fec6, type: 3}
   attackRate: 1.05
   sightRange: 30
   attackRange: 30
