@@ -13,7 +13,6 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     [SerializeField] SphereCollider sphereCollider;
     // [SerializeField] Rigidbody projectileRB;
     // [SerializeField] Animator anim;
-
     [Range(0.5f, 50)][SerializeField] float projectileSpeed;
     int HP;
     float enemyDamage;
@@ -187,5 +186,6 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
 
         agent.isStopped = false; // Resume movement
     }
+
 
 }

@@ -72,12 +72,12 @@ public class ZombieSpawner : MonoBehaviour
             deathHooked = true;
         }
 
-        BossAI boss = zombie.GetComponent<BossAI>();
-        if (boss != null)
-        {
-            boss.OnZombieDeath += HandleZombieDeath;
-            deathHooked = true;
-        }
+        //BossAI boss = zombie.GetComponent<BossAI>();
+        //if (boss != null)
+        //{
+        //    boss.OnZombieDeath += HandleZombieDeath;
+        //    deathHooked = true;
+        //}
 
         if (!deathHooked)
         {

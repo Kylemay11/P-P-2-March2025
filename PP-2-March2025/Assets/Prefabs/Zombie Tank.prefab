@@ -1734,7 +1734,7 @@ MonoBehaviour:
   projectileSpeed: 0.5
   faceTargetSpeed: 3.5
   runMultiplyer: 1.37
-  baseHealth: 120
+  baseHealth: 100
   baseSpeed: 1.8
   baseDamage: 20
   attackRate: 1.45

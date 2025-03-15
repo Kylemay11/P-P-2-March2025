@@ -562,6 +562,7 @@ MonoBehaviour:
   agent: {fileID: 4001584741932316161}
   type: 0
   sphereCollider: {fileID: 2021220938430808305}
+  model: {fileID: 1325479285899949337}
   projectileSpeed: 0.5
   faceTargetSpeed: 3.5
   runMultiplyer: 1.37
