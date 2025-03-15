@@ -563,10 +563,7 @@ MonoBehaviour:
   type: 0
   sphereCollider: {fileID: 2021220938430808305}
   projectileSpeed: 0.5
-  HP: 30
-  enemyDamage: 1
   faceTargetSpeed: 3.5
-  enemySpeed: 2.1
   runMultiplyer: 1.37
   baseHealth: 30
   baseSpeed: 2.1
@@ -584,7 +581,7 @@ Animator:
   m_GameObject: {fileID: 1580404872814831951}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0112b3ddf6b69f148b600356eb9c21a3, type: 3}
-  m_Controller: {fileID: 9100000, guid: f03a05fbd64202e44821a0031ef897d2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 837f79bcbf98ea946b3c32443e6b3c48, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -654,14 +651,14 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 5.08
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1746489530090988182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,7 +1919,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2776482330903493703}
   - component: {fileID: 1325479285899949337}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ZombieMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

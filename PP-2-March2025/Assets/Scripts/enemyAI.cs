@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -37,10 +38,13 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     Vector3 playerDir;
     bool playerInSightRange, playerInAttackRange;
 
+    Animator animator;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        animator = GetComponent<Animator>();
         agent.speed = enemySpeed;
         sphereCollider.radius = sightRange;
         if (type == enemyType.spitter)
@@ -60,6 +64,10 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         playerDir = gameManager.instance.player.transform.position - transform.position; // always know
         agent.SetDestination(gameManager.instance.player.transform.position);
 
+        //Kyle added for demo
+        float distanceToPlayer = Vector3.Distance(gameManager.instance.player.transform.position, transform.position);
+        playerInAttackRange = distanceToPlayer <= attackRange;
+
         // 
         if (playerInSightRange && type == enemyType.runner)
         {
@@ -78,6 +86,8 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     public void takeDamage(int amount)
     {
         HP -= amount;
+        animator.SetTrigger("TakeDamage");
+        StartCoroutine(DamageAnimationCooldown());
         if (HP <= 0)
         {
             OnZombieDeath?.Invoke();
@@ -88,18 +98,31 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     private void enemyAttack()
     {
         attackTimer = 0;
-        // do animation for melee attack
+        //Kyle added for demo
+        if (playerInAttackRange) // Only attack if player is in range
+        {
+            Debug.Log($"[Zombie Attack] {gameObject.name} attacked player for {enemyDamage} damage!");
 
-        //if(type == enemyType.spitter)
-        //{
-        //    // temp variable
-        //    GameObject projectile = Instantiate(zombieBile, attackPOS.position, transform.rotation);
-        //}//if(type == enemyType.spitter)
-        //{
-        //    // temp variable
-        //    GameObject projectile = Instantiate(zombieBile, attackPOS.position, transform.rotation);
-        //}
+            // Get the PlayerHealth script and apply damage
+            playerController player = gameManager.instance.player.GetComponent<playerController>();
+            if (player != null)
+            {
+                player.takeDamage((int)enemyDamage);
+            }
 
+            // do animation for melee attack
+
+            //if(type == enemyType.spitter)
+            //{
+            //    // temp variable
+            //    GameObject projectile = Instantiate(zombieBile, attackPOS.position, transform.rotation);
+            //}//if(type == enemyType.spitter)
+            //{
+            //    // temp variable
+            //    GameObject projectile = Instantiate(zombieBile, attackPOS.position, transform.rotation);
+            //}
+
+        }
     }
 
     private float CalculateLaunchAngle(float initialVel, float x, float y, float gravity)
@@ -122,6 +145,16 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
+    //Kyle added for demo
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            float distance = Vector3.Distance(other.transform.position, transform.position);
+            playerInAttackRange = distance <= attackRange;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -142,6 +175,17 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         agent.speed = enemySpeed;
 
         Debug.Log($"[InitZombie] Final HP: {HP}, Speed: {enemySpeed}, Damage: {enemyDamage}");
+    }
+
+    //kyle added fopr demo
+    private IEnumerator DamageAnimationCooldown()
+    {
+        agent.isStopped = true; // Stop movement while playing animation
+
+        // Get the length of the animation
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        agent.isStopped = false; // Resume movement
     }
 
 }

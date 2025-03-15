@@ -319,7 +319,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.92, y: 0, z: -1.28}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7802336127751028318}
@@ -342,10 +342,7 @@ MonoBehaviour:
   type: 1
   sphereCollider: {fileID: 1380881660195825380}
   projectileSpeed: 0.5
-  HP: 40
-  enemyDamage: 10
   faceTargetSpeed: 3.5
-  enemySpeed: 3
   runMultiplyer: 5
   baseHealth: 40
   baseSpeed: 3
@@ -363,7 +360,7 @@ Animator:
   m_GameObject: {fileID: 1331572698522616251}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0112b3ddf6b69f148b600356eb9c21a3, type: 3}
-  m_Controller: {fileID: 9100000, guid: f03a05fbd64202e44821a0031ef897d2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 837f79bcbf98ea946b3c32443e6b3c48, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -438,9 +435,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 5.08
+  m_Height: 3
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1759673701576060038
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,7 +2076,7 @@ GameObject:
   m_Component:
   - component: {fileID: 401589007075778637}
   - component: {fileID: 798725619143263562}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ZombieMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
