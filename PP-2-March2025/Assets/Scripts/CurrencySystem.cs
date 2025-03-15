@@ -6,7 +6,7 @@ public class CurrencySystem : MonoBehaviour
     public static CurrencySystem instance;
 
     public UnityEvent<int> OnMoneyChanged;
-    [SerializeField] private int currentMoney;
+    [SerializeField] public int currentMoney;
     public int CurrentMoney => currentMoney;
 
     void Awake()
