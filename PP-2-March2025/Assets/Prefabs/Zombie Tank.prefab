@@ -1692,9 +1692,9 @@ GameObject:
   - component: {fileID: 7831858503064710459}
   - component: {fileID: 2836430857927104943}
   - component: {fileID: 4189249461951444218}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Zombie Tank
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1737,7 +1737,9 @@ MonoBehaviour:
   faceTargetSpeed: 3.5
   enemySpeed: 1.8
   runMultiplyer: 1.37
-  enemyRunSpeed: 5
+  baseHealth: 120
+  baseSpeed: 1.8
+  baseDamage: 20
   attackRate: 1.45
   sightRange: 12.8
   attackRange: 3.9

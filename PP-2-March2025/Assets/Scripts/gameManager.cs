@@ -28,6 +28,11 @@ public class gameManager : MonoBehaviour
     private bool waitingToStartWave = true;
     private int currentWave = 0;
 
+    [Header("Wave Scaling Multipliers (Per Wave)")]
+    [SerializeField] private float healthMultiplier;
+    [SerializeField] private float damageMultiplier;
+    [SerializeField] private float speedMultiplier;
+
     [Header("Player and UI")]
     public Image playerHPBar;
     public Image playerStaminaBar;
@@ -38,11 +43,11 @@ public class gameManager : MonoBehaviour
     public TMP_Text waveInfoText;
     public GameObject breakPanel;
     public TMP_Text startPromptText;
-    
+
     [Header("Spawner Phase Settings")]
     [SerializeField] private List<SpawnerPhase> spawnerPhases;
     private int currentPhaseIndex;
-    private float phaseTimer ;
+    private float phaseTimer;
 
     [System.Serializable]
     public struct SpawnerPhase
@@ -98,18 +103,15 @@ public class gameManager : MonoBehaviour
         if (waveActive)
         {
             waveTimer -= Time.deltaTime;
-            UpdateWaveInfoText($"Wave {currentWave + 1} | Time: {Mathf.CeilToInt(waveTimer)}s");
+            UpdateWaveInfoText($"Wave {currentWave} | Time: {Mathf.CeilToInt(waveTimer)}s");
 
             if (waveTimer <= 0)
             {
                 waveTimer = 0;
                 waveActive = false;
-<<<<<<< HEAD
                 StopAllSpawners();
                 UpdateAliveCounterUI();
-=======
                 WaitBeforeCleanupUI();
->>>>>>> 9535e353152a3006f99c04ba0e8d1fcb0645fee4
             }
 
             if (currentPhaseIndex >= 0 && currentPhaseIndex < spawnerPhases.Count)
@@ -122,7 +124,6 @@ public class gameManager : MonoBehaviour
         }
         else if (!waitingToStartWave && GetTotalZombiesAlive() <= 0)
         {
-            currentWave++;
             UpdateWaveInfoText($"Wave {currentWave} Complete!");
             ShowPreWavePrompt();
         }
@@ -173,7 +174,23 @@ public class gameManager : MonoBehaviour
 
     public void StartWave()
     {
+        currentWave++; // Increment wave
+
         currentPhaseIndex = -1;
+
+        float healthMult = Mathf.Pow(healthMultiplier, currentWave);
+        float dmgMult = Mathf.Pow(damageMultiplier, currentWave);
+        float speedMult = Mathf.Pow(speedMultiplier, currentWave);
+
+        foreach (var spawner in zombieSpawners)
+        {
+            if (spawner != null)
+            {
+                spawner.SetCurrentWave(currentWave, healthMult, dmgMult, speedMult);
+                spawner.currentZombiesAlive = 0;
+            }
+        }
+
         AdvanceSpawnerPhase();
         waveTimer = waveDuration;
         waveActive = true;
@@ -181,11 +198,6 @@ public class gameManager : MonoBehaviour
 
         breakPanel.SetActive(false);
         startPromptText.text = "";
-
-        foreach (var spawner in zombieSpawners)
-        {
-            spawner.currentZombiesAlive = 0;
-        }
 
         ResumeGame();
     }
@@ -233,10 +245,8 @@ public class gameManager : MonoBehaviour
     }
     private void UpdateAliveCounterUI()
     {
-        UpdateWaveInfoText($"Wave {currentWave + 1} | Cleanup Phase | Alive: {GetTotalZombiesAlive()}");
+        UpdateWaveInfoText($"Wave {currentWave} | Cleanup Phase | Alive: {GetTotalZombiesAlive()}");
     }
-<<<<<<< HEAD
-
     private void HandleSpawnerPhases()
     {
         if (!waveActive) return;
@@ -278,12 +288,9 @@ public class gameManager : MonoBehaviour
             spawner.StopSpawning();
         }
     }
-
-=======
     private IEnumerator WaitBeforeCleanupUI()
     {
         yield return new WaitForSeconds(0.1f);
         UpdateAliveCounterUI();
     }
->>>>>>> 9535e353152a3006f99c04ba0e8d1fcb0645fee4
 }

@@ -11,21 +11,20 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] private int maxZombies;
     [SerializeField] private float spawnCooldown;
 
-    [Header("Scaling Settings (per wave)")]
-    [SerializeField] private float baseHealth;
-    [SerializeField] private float baseDamage;
-    [SerializeField] private float baseSpeed;
-    [SerializeField] private float healthGrowthRate;
-    [SerializeField] private float damageGrowthRate;
-    [SerializeField] private float speedGrowthRate;
-
     public int currentZombiesAlive;
     private bool canSpawn = false;
     private int currentWave = 1;
 
-    public void SetCurrentWave(int waveNumber)
+    private float healthMultiplier;
+    private float damageMultiplier;
+    private float speedMultiplier;
+
+    public void SetCurrentWave(int wave, float healthMult, float dmgMult, float speedMult)
     {
-        currentWave = waveNumber;
+        currentWave = wave;
+        this.healthMultiplier = healthMult;
+        this.damageMultiplier = dmgMult;
+        this.speedMultiplier = speedMult;
     }
 
     public void StartSpawning()
@@ -43,12 +42,12 @@ public class ZombieSpawner : MonoBehaviour
     {
         while (canSpawn && currentZombiesAlive < maxZombies)
         {
-            SpawnZombie(currentWave);
+            SpawnZombie();
             yield return new WaitForSeconds(spawnRate);
         }
     }
 
-    public void SpawnZombie(int waveNumber)
+    public void SpawnZombie()
     {
         if (currentZombiesAlive >= maxZombies || zombiePrefabs.Count == 0 || spawnPoints.Count == 0) return;
 
@@ -58,20 +57,31 @@ public class ZombieSpawner : MonoBehaviour
         GameObject zombie = Instantiate(zombiePrefab, spawnPoint.position, spawnPoint.rotation);
         currentZombiesAlive++;
 
-        float scaledHealth = baseHealth * Mathf.Pow(healthGrowthRate, waveNumber);
-        float scaledDamage = baseDamage * Mathf.Pow(damageGrowthRate, waveNumber);
-        float scaledSpeed = baseSpeed * Mathf.Pow(speedGrowthRate, waveNumber);
-
         IZombie zombieStats = zombie.GetComponent<IZombie>();
         if (zombieStats != null)
         {
-            zombieStats.InitializeZombie(scaledHealth, scaledSpeed, scaledDamage);
+            zombieStats.InitializeZombie(healthMultiplier, speedMultiplier, damageMultiplier);
         }
 
-        ZombieController controller = zombie.GetComponent<ZombieController>();
-        if (controller != null)
+        bool deathHooked = false;
+
+        enemyAI enemy = zombie.GetComponent<enemyAI>();
+        if (enemy != null)
         {
-            controller.OnZombieDeath += HandleZombieDeath;
+            enemy.OnZombieDeath += HandleZombieDeath;
+            deathHooked = true;
+        }
+
+        BossAI boss = zombie.GetComponent<BossAI>();
+        if (boss != null)
+        {
+            boss.OnZombieDeath += HandleZombieDeath;
+            deathHooked = true;
+        }
+
+        if (!deathHooked)
+        {
+            Debug.LogWarning($"{zombie.name} was spawned but has no valid death event!");
         }
     }
 
@@ -86,7 +96,7 @@ public class ZombieSpawner : MonoBehaviour
 
         if (spawnCooldown <= 0f)
         {
-            SpawnZombie(currentWave);
+            SpawnZombie();
             spawnCooldown = spawnRate;
         }
         else
@@ -94,5 +104,4 @@ public class ZombieSpawner : MonoBehaviour
             spawnCooldown -= Time.deltaTime;
         }
     }
-
 }

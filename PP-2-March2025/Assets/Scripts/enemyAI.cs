@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour, IDamage
+public class enemyAI : MonoBehaviour, IDamage, IZombie
 {
     public event System.Action OnZombieDeath;
 
@@ -13,20 +13,25 @@ public class enemyAI : MonoBehaviour, IDamage
     // [SerializeField] Rigidbody projectileRB;
     // [SerializeField] Animator anim;
 
-    [Range(0.5f, 50)] [SerializeField] float projectileSpeed;
-    [Range(1, 500)] [SerializeField] int HP;
-    [Range(1, 500)] [SerializeField] float enemyDamage;
-    [Range(1, 30)] [SerializeField] float faceTargetSpeed;
-    [Range(1, 20)] [SerializeField] float enemySpeed;
-    [Range(1.1f, 5)] [SerializeField] float runMultiplyer;
+    [Range(0.5f, 50)][SerializeField] float projectileSpeed;
+    int HP;
+    float enemyDamage;
+    float enemySpeed;
+    [Range(1, 30)][SerializeField] float faceTargetSpeed;
+    [Range(1.1f, 5)][SerializeField] float runMultiplyer;
+
+    //KyleAdded for wave scalling
+    [Range(1, 500)][SerializeField] private float baseHealth;
+    [Range(1, 20)][SerializeField] private float baseSpeed;
+    [Range(1, 500)][SerializeField] private float baseDamage;
     // [SerializeField] int animTranSpeed;
 
     // [SerializeField] Transform player;
     // [SerializeField] Transform spitterTarget;
     // [SerializeField] Transform attackPOS;
     // [SerializeField] GameObject zombieBile;
-    [Range(0.5f, 5)] [SerializeField] float attackRate;
-    [Range(1, 30)] [SerializeField] float sightRange, attackRange;
+    [Range(0.5f, 5)][SerializeField] float attackRate;
+    [Range(1, 30)][SerializeField] float sightRange, attackRange;
 
     float attackTimer;
     Vector3 playerDir;
@@ -41,9 +46,9 @@ public class enemyAI : MonoBehaviour, IDamage
         if (type == enemyType.spitter)
             agent.stoppingDistance = attackRange;
 
-        if(type == enemyType.tank)
+        if (type == enemyType.tank)
         {
-           transform.localScale = new Vector3(2.5f,2.5f,2.5f);
+            transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
         }
     }
 
@@ -56,12 +61,12 @@ public class enemyAI : MonoBehaviour, IDamage
         agent.SetDestination(gameManager.instance.player.transform.position);
 
         // 
-        if(playerInSightRange && type == enemyType.runner)
+        if (playerInSightRange && type == enemyType.runner)
         {
             agent.speed = enemySpeed * runMultiplyer;
             faceTargetSpeed = (enemySpeed * runMultiplyer);
         }
-        
+
 
         if (attackTimer >= attackRate)
             enemyAttack();
@@ -84,7 +89,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         attackTimer = 0;
         // do animation for melee attack
-        
+
         //if(type == enemyType.spitter)
         //{
         //    // temp variable
@@ -126,6 +131,17 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
             playerInSightRange = false;
+    }
+
+    //Kyle added for build
+    public void InitializeZombie(float waveHealthMult, float waveSpeedMult, float waveDamageMult)
+    {
+        HP = Mathf.RoundToInt(baseHealth * waveHealthMult);
+        enemySpeed = baseSpeed * waveSpeedMult;
+        enemyDamage = baseDamage * waveDamageMult;
+        agent.speed = enemySpeed;
+
+        Debug.Log($"[InitZombie] Final HP: {HP}, Speed: {enemySpeed}, Damage: {enemyDamage}");
     }
 
 }

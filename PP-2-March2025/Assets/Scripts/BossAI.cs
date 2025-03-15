@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BossAI : MonoBehaviour, IDamage
+public class BossAI : MonoBehaviour, IDamage, IZombie
 {
+    public event System.Action OnZombieDeath;
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
@@ -24,15 +26,16 @@ public class BossAI : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
 
     float shootTimer;
+    bool playerInRange;
 
     Vector3 playerDir;
 
-    bool playerInRange;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameManager.instance.updateGameGoal(1);
+
     }
 
     // Update is called once per frame
@@ -87,7 +90,6 @@ public class BossAI : MonoBehaviour, IDamage
         
         if (HP <= 0)
         {
-            gameManager.instance.updateGameGoal(-1);
             Destroy(gameObject);
         }
     }
@@ -154,5 +156,12 @@ public class BossAI : MonoBehaviour, IDamage
         }
         
         
+    }
+
+    public void InitializeZombie(float health, float speed, float damage)
+    {
+        HP = Mathf.RoundToInt(health);
+        agent.speed = speed;
+        Debug.Log($"[InitBoss] Health: {health}, Speed: {speed}, Damage: {damage}");
     }
 }

@@ -523,9 +523,9 @@ GameObject:
   - component: {fileID: 2021220938430808305}
   - component: {fileID: 4001584741932316161}
   - component: {fileID: 7134833911272330938}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Zombie Walker
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -568,7 +568,9 @@ MonoBehaviour:
   faceTargetSpeed: 3.5
   enemySpeed: 2.1
   runMultiplyer: 1.37
-  enemyRunSpeed: 5
+  baseHealth: 30
+  baseSpeed: 2.1
+  baseDamage: 10
   attackRate: 1.45
   sightRange: 10
   attackRange: 3.9

@@ -558,9 +558,9 @@ GameObject:
   - component: {fileID: 7941981740539849102}
   - component: {fileID: 2512715781657314897}
   - component: {fileID: 1289240542026452634}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Zombie Spitter
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -625,6 +625,9 @@ MonoBehaviour:
   faceTargetSpeed: 1
   enemySpeed: 1
   runMultiplyer: 1.1
+  baseHealth: 1
+  baseSpeed: 1
+  baseDamage: 1
   attackRate: 1.05
   sightRange: 30
   attackRange: 30
