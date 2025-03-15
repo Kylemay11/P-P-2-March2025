@@ -6476,7 +6476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombiePrefabs:
-  - {fileID: 5401634921627880974, guid: 781750f154dd6924ebc240fb268f7168, type: 3}
+  - {fileID: 3233372494499642421, guid: 6bfa58d6ee03e2a4a831ccde5941d17c, type: 3}
   spawnPoints:
   - {fileID: 805917579}
   spawnRate: 2
@@ -9220,7 +9220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombiePrefabs:
-  - {fileID: 5401634921627880974, guid: 781750f154dd6924ebc240fb268f7168, type: 3}
+  - {fileID: 1331572698522616251, guid: 84df07eb36dfa3242811945e7c1fc51a, type: 3}
   spawnPoints:
   - {fileID: 1034279731}
   spawnRate: 2
@@ -10504,7 +10504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombiePrefabs:
-  - {fileID: 5401634921627880974, guid: 781750f154dd6924ebc240fb268f7168, type: 3}
+  - {fileID: 7406443776305728358, guid: 0ac297701b8dfed48a04a48a06df125e, type: 3}
   spawnPoints:
   - {fileID: 1194847972}
   spawnRate: 2
