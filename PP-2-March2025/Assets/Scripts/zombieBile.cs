@@ -49,7 +49,7 @@ public class zombieBile : MonoBehaviour
         if (damageScript != null)
         {
             // Set the speed in the Damage script
-            damageScript.GetComponent<Rigidbody>().linearVelocity = transform.forward * speed;
+            damageScript.GetComponent<Rigidbody>().linearVelocity = (transform.forward + new Vector3(0,5,0)) * speed;
         }
     }
 }
