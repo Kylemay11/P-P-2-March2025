@@ -1,28 +1,30 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour
+public class enemyAI : MonoBehaviour, IDamage
 {
+    public event System.Action OnZombieDeath;
+
     enum enemyType { walker, runner, spitter, tank };
     // [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] enemyType type;
     [SerializeField] SphereCollider sphereCollider;
-    [SerializeField] Rigidbody projectileRB;
+    // [SerializeField] Rigidbody projectileRB;
     // [SerializeField] Animator anim;
 
     [Range(0.5f, 50)] [SerializeField] float projectileSpeed;
-    [Range(1, 10)] [SerializeField] int HP;
+    [Range(1, 500)] [SerializeField] int HP;
+    [Range(1, 500)] [SerializeField] float enemyDamage;
     [Range(1, 30)] [SerializeField] float faceTargetSpeed;
     [Range(1, 20)] [SerializeField] float enemySpeed;
     [Range(1.1f, 5)] [SerializeField] float runMultiplyer;
-    [Range(5, 30)] [SerializeField] float enemyRunSpeed;
     // [SerializeField] int animTranSpeed;
 
-    [SerializeField] Transform player;
-    [SerializeField] Transform spitterTarget;
-    [SerializeField] Transform attackPOS;
-    [SerializeField] GameObject zombieBile;
+    // [SerializeField] Transform player;
+    // [SerializeField] Transform spitterTarget;
+    // [SerializeField] Transform attackPOS;
+    // [SerializeField] GameObject zombieBile;
     [Range(0.5f, 5)] [SerializeField] float attackRate;
     [Range(1, 30)] [SerializeField] float sightRange, attackRange;
 
@@ -38,6 +40,11 @@ public class enemyAI : MonoBehaviour
         sphereCollider.radius = sightRange;
         if (type == enemyType.spitter)
             agent.stoppingDistance = attackRange;
+
+        if(type == enemyType.tank)
+        {
+           transform.localScale = new Vector3(2.5f,2.5f,2.5f);
+        }
     }
 
     // Update is called once per frame
@@ -51,8 +58,8 @@ public class enemyAI : MonoBehaviour
         // 
         if(playerInSightRange && type == enemyType.runner)
         {
-            agent.speed = enemyRunSpeed;
-            faceTargetSpeed = (enemyRunSpeed * 1.5f);
+            agent.speed = enemySpeed * runMultiplyer;
+            faceTargetSpeed = (enemySpeed * runMultiplyer);
         }
         
 
@@ -63,16 +70,30 @@ public class enemyAI : MonoBehaviour
             faceTarget();
     }
 
+    public void takeDamage(int amount)
+    {
+        HP -= amount;
+        if (HP <= 0)
+        {
+            OnZombieDeath?.Invoke();
+            Destroy(gameObject);
+        }
+    }
+
     private void enemyAttack()
     {
         attackTimer = 0;
         // do animation for melee attack
         
-        if(type == enemyType.spitter)
-        {
-            // temp variable
-            GameObject projectile = Instantiate(zombieBile, attackPOS.position, transform.rotation);
-        }
+        //if(type == enemyType.spitter)
+        //{
+        //    // temp variable
+        //    GameObject projectile = Instantiate(zombieBile, attackPOS.position, transform.rotation);
+        //}//if(type == enemyType.spitter)
+        //{
+        //    // temp variable
+        //    GameObject projectile = Instantiate(zombieBile, attackPOS.position, transform.rotation);
+        //}
 
     }
 
@@ -106,4 +127,5 @@ public class enemyAI : MonoBehaviour
         if (other.CompareTag("Player"))
             playerInSightRange = false;
     }
+
 }
