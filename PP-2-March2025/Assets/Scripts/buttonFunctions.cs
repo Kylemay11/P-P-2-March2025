@@ -6,14 +6,15 @@ public class buttonFunctions : MonoBehaviour
 
     public void resume()
     {
-        gameManager.instance.stateUnpaused();
+        gameManager.instance.ResumeGame();
     }
 
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gameManager.instance.stateUnpaused();
+        gameManager.instance.PauseGame();
     }
+
 
     public void quit()
     {
@@ -23,4 +24,59 @@ public class buttonFunctions : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+    public void smallhealth()
+    {
+        Shop.instance.makeshpPurchase();
+    }
+
+    public void Health()
+    {
+        Shop.instance.makehpPurchase();
+    }
+
+    public void largeHealth()
+    {
+        Shop.instance.makelhpPurchase();
+    }
+
+    public void smgammo()
+    {
+        Shop.instance.makesmgAmmoPurchase();
+    }
+    public void Pgammo()
+    {
+        Shop.instance.makePAmmoPurchase();
+    }
+    public void SShells()
+    {
+        Shop.instance.makeSSPurchase();
+    }
+    public void SPammo()
+    {
+        Shop.instance.makeSAmmoPurchase();
+    }
+    public void SMG()
+    {
+        Shop.instance.makesmgPurchase();
+    }
+    public void Shotgun()
+    {
+        Shop.instance.makeShotgunPurchase();
+    }
+    public void bfg()
+    {
+        Shop.instance.makeBFGPurchase();
+    }
+    public void RYNO()
+    {
+        Shop.instance.makeRYNOPurchase();
+    }
+    public void WB()
+    {
+        Shop.instance.makeWBPurchase();
+    }
+
+
+
 }
