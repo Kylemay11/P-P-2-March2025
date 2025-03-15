@@ -6951,7 +6951,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 937018440}
   spawnRate: 2
-  maxZombies: 50
+  maxZombies: 20
   spawnCooldown: 0
   currentZombiesAlive: 0
 --- !u!33 &937018439
@@ -8399,8 +8399,8 @@ MonoBehaviour:
   - {fileID: 5401634921627880974, guid: 781750f154dd6924ebc240fb268f7168, type: 3}
   spawnPoints:
   - {fileID: 1034279731}
-  spawnRate: 2
-  maxZombies: 50
+  spawnRate: 0.5
+  maxZombies: 10
   spawnCooldown: 0
   currentZombiesAlive: 0
 --- !u!33 &1034279730
@@ -9824,7 +9824,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 1194847972}
   spawnRate: 2
-  maxZombies: 50
+  maxZombies: 10
   spawnCooldown: 0
   currentZombiesAlive: 0
 --- !u!33 &1194847971
@@ -17173,7 +17173,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: waveDuration
-      value: 10
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: zombieSpawners.Array.size
