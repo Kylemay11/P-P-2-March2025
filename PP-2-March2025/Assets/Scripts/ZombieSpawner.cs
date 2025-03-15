@@ -4,16 +4,28 @@ using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
 {
-
     [Header("Spawn Settings")]
     [SerializeField] private List<GameObject> zombiePrefabs;
     [SerializeField] private List<Transform> spawnPoints;
-    [SerializeField] public float spawnRate;
-    [SerializeField] public int maxZombies;
+    [SerializeField] private float spawnRate;
+    [SerializeField] private int maxZombies;
     [SerializeField] private float spawnCooldown;
 
     public int currentZombiesAlive;
-    private bool canSpawn ;
+    private bool canSpawn = false;
+    private int currentWave = 1;
+
+    private float healthMultiplier;
+    private float damageMultiplier;
+    private float speedMultiplier;
+
+    public void SetCurrentWave(int wave, float healthMult, float dmgMult, float speedMult)
+    {
+        currentWave = wave;
+        this.healthMultiplier = healthMult;
+        this.damageMultiplier = dmgMult;
+        this.speedMultiplier = speedMult;
+    }
 
     public void StartSpawning()
     {
@@ -26,7 +38,7 @@ public class ZombieSpawner : MonoBehaviour
         canSpawn = false;
     }
 
-    IEnumerator SpawnLoop()
+    private IEnumerator SpawnLoop()
     {
         while (canSpawn && currentZombiesAlive < maxZombies)
         {
@@ -35,32 +47,53 @@ public class ZombieSpawner : MonoBehaviour
         }
     }
 
-    void SpawnZombie()
+    public void SpawnZombie()
     {
-        if (currentZombiesAlive >= maxZombies) return;
+        if (currentZombiesAlive >= maxZombies || zombiePrefabs.Count == 0 || spawnPoints.Count == 0) return;
 
-        // Choose random zombie and spawn point
         GameObject zombiePrefab = zombiePrefabs[Random.Range(0, zombiePrefabs.Count)];
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
 
         GameObject zombie = Instantiate(zombiePrefab, spawnPoint.position, spawnPoint.rotation);
-
         currentZombiesAlive++;
 
-        ZombieController controller = zombie.GetComponent<ZombieController>();
-        if (controller != null)
+        IZombie zombieStats = zombie.GetComponent<IZombie>();
+        if (zombieStats != null)
         {
-            controller.OnZombieDeath += HandleZombieDeath;
+            zombieStats.InitializeZombie(healthMultiplier, speedMultiplier, damageMultiplier);
+        }
+
+        bool deathHooked = false;
+
+        enemyAI enemy = zombie.GetComponent<enemyAI>();
+        if (enemy != null)
+        {
+            enemy.OnZombieDeath += HandleZombieDeath;
+            deathHooked = true;
+        }
+
+        BossAI boss = zombie.GetComponent<BossAI>();
+        if (boss != null)
+        {
+            boss.OnZombieDeath += HandleZombieDeath;
+            deathHooked = true;
+        }
+
+        if (!deathHooked)
+        {
+            Debug.LogWarning($"{zombie.name} was spawned but has no valid death event!");
         }
     }
 
-    void HandleZombieDeath()
+    private void HandleZombieDeath()
     {
         currentZombiesAlive--;
     }
 
     public void SpawnOverTime()
     {
+        if (!canSpawn) return;
+
         if (spawnCooldown <= 0f)
         {
             SpawnZombie();
