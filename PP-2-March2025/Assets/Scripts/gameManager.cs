@@ -104,8 +104,12 @@ public class gameManager : MonoBehaviour
             {
                 waveTimer = 0;
                 waveActive = false;
+<<<<<<< HEAD
                 StopAllSpawners();
                 UpdateAliveCounterUI();
+=======
+                WaitBeforeCleanupUI();
+>>>>>>> 9535e353152a3006f99c04ba0e8d1fcb0645fee4
             }
 
             if (currentPhaseIndex >= 0 && currentPhaseIndex < spawnerPhases.Count)
@@ -227,11 +231,11 @@ public class gameManager : MonoBehaviour
         if (waveInfoText != null)
             waveInfoText.text = text;
     }
-
     private void UpdateAliveCounterUI()
     {
         UpdateWaveInfoText($"Wave {currentWave + 1} | Cleanup Phase | Alive: {GetTotalZombiesAlive()}");
     }
+<<<<<<< HEAD
 
     private void HandleSpawnerPhases()
     {
@@ -275,4 +279,11 @@ public class gameManager : MonoBehaviour
         }
     }
 
+=======
+    private IEnumerator WaitBeforeCleanupUI()
+    {
+        yield return new WaitForSeconds(0.1f);
+        UpdateAliveCounterUI();
+    }
+>>>>>>> 9535e353152a3006f99c04ba0e8d1fcb0645fee4
 }

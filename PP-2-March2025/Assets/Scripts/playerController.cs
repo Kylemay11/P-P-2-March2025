@@ -14,6 +14,8 @@ public enum PlayerState
 
 public class playerController : MonoBehaviour, IDamage
 {
+    public static playerController instance;
+
     [Header("References")]
     [SerializeField] private CharacterController controller;
     [SerializeField] private LayerMask ignoreMask;
@@ -28,7 +30,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] public int currentHP;
 
     [Header("Movement Settings")]
-    [SerializeField] private float walkSpeed;
+    [SerializeField] public float walkSpeed;
     [SerializeField] private float sprintMultiplier;
 
     [Header("Stamina Settings")]
