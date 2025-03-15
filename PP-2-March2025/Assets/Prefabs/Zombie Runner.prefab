@@ -302,9 +302,9 @@ GameObject:
   - component: {fileID: 1380881660195825380}
   - component: {fileID: 331015650416077157}
   - component: {fileID: 3374482706160596188}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Zombie Runner
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
