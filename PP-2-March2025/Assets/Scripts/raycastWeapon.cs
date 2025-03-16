@@ -71,7 +71,7 @@ public class raycastWeapon : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, range, hitMask))
         {
             Debug.Log("Hit: " + hit.collider.name);
-            IDamage target = hit.collider.GetComponent<IDamage>();
+            IDamage target = hit.collider.GetComponentInParent<IDamage>();
             if (target != null)
             {
                 target.takeDamage((int)damage);
