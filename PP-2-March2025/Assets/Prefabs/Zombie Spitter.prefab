@@ -619,11 +619,10 @@ MonoBehaviour:
   agent: {fileID: 2512715781657314897}
   type: 2
   sphereCollider: {fileID: 1289240542026452634}
+  zombieRenderer: {fileID: 0}
+  damageColor: {r: 1, g: 0, b: 0.016824722, a: 1}
   projectileSpeed: 0.5
-  HP: 1
-  enemyDamage: 1
   faceTargetSpeed: 1
-  enemySpeed: 1
   runMultiplyer: 1.1
   baseHealth: 1
   baseSpeed: 1

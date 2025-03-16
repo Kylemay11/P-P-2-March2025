@@ -11,6 +11,9 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     [SerializeField] NavMeshAgent agent;
     [SerializeField] enemyType type;
     [SerializeField] SphereCollider sphereCollider;
+    [SerializeField] private Renderer zombieRenderer;
+    [SerializeField] private Color damageColor = Color.red;
+    private Color originalColor;
     // [SerializeField] Rigidbody projectileRB;
     // [SerializeField] Animator anim;
     [Range(0.5f, 50)][SerializeField] float projectileSpeed;
@@ -45,7 +48,8 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     {
         animator = GetComponent<Animator>();
         agent.speed = enemySpeed;
-        sphereCollider.radius = sightRange;
+        //sphereCollider.radius = sightRange;
+        originalColor = zombieRenderer.material.color;
         if (type == enemyType.spitter)
             agent.stoppingDistance = attackRange;
 
@@ -87,6 +91,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         HP -= amount;
         animator.SetTrigger("TakeDamage");
         StartCoroutine(DamageAnimationCooldown());
+        StartCoroutine(FlashRed());
         if (HP <= 0)
         {
             OnZombieDeath?.Invoke();
@@ -187,5 +192,10 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         agent.isStopped = false; // Resume movement
     }
 
-
+    private IEnumerator FlashRed()
+    {
+        zombieRenderer.material.color = damageColor;
+        yield return new WaitForSeconds(0.2f); 
+        zombieRenderer.material.color = originalColor;
+    }
 }
