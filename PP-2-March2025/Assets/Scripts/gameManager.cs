@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class gameManager : MonoBehaviour
 {
@@ -46,6 +47,9 @@ public class gameManager : MonoBehaviour
 
     [Header("Spawner Phase Settings")]
     [SerializeField] private List<SpawnerPhase> spawnerPhases;
+    [SerializeField] private int spawnersPerPhase; // How many spawners per phase
+    [SerializeField] private float PhaseDuration; // Duration per phase if not using waveDuration
+    [SerializeField] private bool useWaveDurationSplit = true; // If true, divide waveDuration across phases
     private int currentPhaseIndex;
     private float phaseTimer;
 
@@ -67,6 +71,8 @@ public class gameManager : MonoBehaviour
         if (player == null) player = GameObject.FindWithTag("Player");
         if (player != null) playerScript = player.GetComponent<playerController>();
         if (weaponNotification == null) weaponNotification = FindAnyObjectByType<WeaponNotificationUI>();
+
+        zombieSpawners = new List<ZombieSpawner>(FindObjectsByType<ZombieSpawner>(FindObjectsSortMode.None));
 
         waveInfoText.text = "";
         breakPanel.SetActive(false);
@@ -190,6 +196,7 @@ public class gameManager : MonoBehaviour
                 spawner.currentZombiesAlive = 0;
             }
         }
+        AutoBuildSpawnerPhases();
 
         AdvanceSpawnerPhase();
         waveTimer = waveDuration;
@@ -292,5 +299,37 @@ public class gameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         UpdateAliveCounterUI();
+    }
+
+    private void AutoBuildSpawnerPhases()
+    {
+        spawnerPhases.Clear();
+
+        int totalSpawners = zombieSpawners.Count;
+        if (totalSpawners == 0)
+        {
+            Debug.LogWarning("No zombie spawners found. Cannot build phases.");
+            return;
+        }
+
+        int numPhases = Mathf.CeilToInt((float)totalSpawners / spawnersPerPhase);
+
+        for (int i = 0; i < totalSpawners; i += spawnersPerPhase)
+        {
+            SpawnerPhase phase = new SpawnerPhase
+            {
+                spawners = new List<ZombieSpawner>(),
+                duration = useWaveDurationSplit ? (waveDuration / numPhases) : PhaseDuration
+            };
+
+            for (int j = 0; j < spawnersPerPhase && (i + j) < totalSpawners; j++)
+            {
+                phase.spawners.Add(zombieSpawners[i + j]);
+            }
+
+            spawnerPhases.Add(phase);
+        }
+
+        Debug.Log($"[GameManager] Auto-built {spawnerPhases.Count} phases using {spawnersPerPhase} spawners per phase.");
     }
 }
