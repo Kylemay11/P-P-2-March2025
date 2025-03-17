@@ -1,11 +1,12 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.AI;
 
 public class DoorInteract : MonoBehaviour
 {
-    [SerializeField]public int doorCost;
-   [SerializeField] public GameObject doorVisual; // The door model (optional if you just disable it)
-   [SerializeField] public GameObject roomToActivate; // Room or spawners to enable
+    [SerializeField] public int doorCost;
+    [SerializeField] public GameObject doorVisual; // The door model (optional if you just disable it)
+    [SerializeField] public GameObject roomToActivate; // Room or spawners to enable
 
     public GameObject interactionUI;
 
@@ -74,13 +75,27 @@ public class DoorInteract : MonoBehaviour
         isUnlocked = true;
 
         if (doorVisual != null)
-            Destroy(doorVisual); // Or play animation
+            doorVisual.SetActive(false); // Or play animation
+
+        NavMeshObstacle obstacle = GetComponent<NavMeshObstacle>();
+        if (obstacle != null)
+        {
+            obstacle.carving = false;
+            obstacle.enabled = false;
+        }
 
         if (roomToActivate != null)
-            roomToActivate.SetActive(true);
+            roomToActivate.SetActive(true);// nothing here yet
 
         if (interactionUI != null)
             interactionUI.SetActive(false);
+
+        enemyAI[] zombies = FindObjectsByType<enemyAI>(FindObjectsSortMode.None);
+        foreach (enemyAI zombie in zombies)
+        {
+            zombie.ForcePathUpdate();
+        }
+
 
         Debug.Log("Door Unlocked!");
     }
@@ -93,4 +108,5 @@ public class DoorInteract : MonoBehaviour
             txt.text = $"Press E to open (${doorCost})";
         }
     }
+
 }

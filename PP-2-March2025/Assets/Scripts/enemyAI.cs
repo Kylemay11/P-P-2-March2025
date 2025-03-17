@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class enemyAI : MonoBehaviour, IDamage, IZombie
 {
@@ -9,6 +10,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     enum enemyType { walker, runner, spitter, tank };
     // [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    //Kyle added so you can gain money
     [SerializeField] int moneyOnDeath;
     [SerializeField] enemyType type;
     [SerializeField] SphereCollider sphereCollider;
@@ -63,6 +65,12 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     // Update is called once per frame
     void Update()
     {
+        //Kyle added to force the zombies pathing to update when you Purchas a door and unlock a room
+        if (agent != null && agent.isActiveAndEnabled)
+        {
+            agent.SetDestination(gameManager.instance.player.transform.position);
+        }
+
         attackTimer += Time.deltaTime;
 
         playerDir = gameManager.instance.player.transform.position - transform.position; // always know
@@ -78,7 +86,6 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
             agent.speed = enemySpeed * runMultiplyer;
             faceTargetSpeed = (enemySpeed * runMultiplyer);
         }
-
 
         if (attackTimer >= attackRate)
             enemyAttack();
@@ -199,5 +206,14 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         zombieRenderer.material.color = damageColor;
         yield return new WaitForSeconds(0.2f); 
         zombieRenderer.material.color = originalColor;
+    }
+
+    //Kyle added to force navmesh path to update
+    public void ForcePathUpdate()
+    {
+        if (agent != null && agent.isActiveAndEnabled && gameManager.instance != null)
+        {
+            agent.SetDestination(gameManager.instance.player.transform.position);
+        }
     }
 }
