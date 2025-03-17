@@ -105,7 +105,7 @@ public class DoorInteract : MonoBehaviour
         TextMeshProUGUI txt = interactionUI.GetComponentInChildren<TextMeshProUGUI>();
         if (txt != null)
         {
-            txt.text = $"Press E to open (${doorCost})";
+            txt.text = $"Press [E] to open (${doorCost})";
         }
     }
 

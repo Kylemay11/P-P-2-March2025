@@ -14,6 +14,7 @@ public class BarricadeDoor : MonoBehaviour
     [SerializeField] private float totalDoorHealth;
     [SerializeField] private float repairDuration;
     [SerializeField] private int repairCostPerPlank;
+    [SerializeField] private int maxAttackers;
 
     [Header("References")]
     [SerializeField] private List<GameObject> planks; // Assign plank objects in order from top to bottom
@@ -27,6 +28,7 @@ public class BarricadeDoor : MonoBehaviour
     private bool isPlayerNear;
     private bool isRepairing;
     private float heldDeration;
+   [SerializeField] private List<enemyAI> activeAttackers = new List<enemyAI>();
 
     public enum DoorState { Intact, Damaged, Destroyed }
     public DoorState CurrentState { get; private set; } = DoorState.Intact;
@@ -215,5 +217,21 @@ public class BarricadeDoor : MonoBehaviour
     public Vector3 GetAttackPoint()
     {
         return doorAttackPoint != null ? doorAttackPoint.position : transform.position;
+    }
+
+    public bool CanZombieAttack(enemyAI zombie)
+    {
+        if (!activeAttackers.Contains(zombie) && activeAttackers.Count >= maxAttackers)
+            return false;
+
+        if (!activeAttackers.Contains(zombie))
+            activeAttackers.Add(zombie);
+        return true;
+    }
+
+    public void RemoveAttacker(enemyAI zombie)
+    {
+        if (activeAttackers.Contains(zombie))
+            activeAttackers.Remove(zombie);
     }
 }

@@ -13814,37 +13814,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4219771658523946905, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
   m_PrefabInstance: {fileID: 1333242257}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1296594663
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1296594664}
-  m_Layer: 13
-  m_Name: Door attack Point
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1296594664
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1296594663}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0, y: 0.798, z: 0.945}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1366245834}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &1333242257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13946,8 +13915,24 @@ PrefabInstance:
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6233125747362112470, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
+      propertyPath: maxJumps
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233125747362112470, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
       propertyPath: crouchSpeed
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233125747362112470, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
+      propertyPath: slideDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233125747362112470, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
+      propertyPath: slideSpeedBoost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233125747362112470, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
+      propertyPath: staminaDrainRate
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6233125747362112470, guid: 8432bec193d3d2d4badf3a8fa2212eda, type: 3}
       propertyPath: ignoreMask.m_Bits
@@ -14221,11 +14206,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!4 &1366245834 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2451214226737617501, guid: a8e690feac09fe7428300ea17db90c7d, type: 3}
-  m_PrefabInstance: {fileID: 1633795318864286973}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1422734184
 Mesh:
   m_ObjectHideFlags: 0
@@ -22388,13 +22368,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2284910739943150009, guid: a8e690feac09fe7428300ea17db90c7d, type: 3}
-      propertyPath: spawnRate
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2284910739943150009, guid: a8e690feac09fe7428300ea17db90c7d, type: 3}
-      propertyPath: maxZombies
-      value: 20
+    - target: {fileID: 2451214226737617501, guid: a8e690feac09fe7428300ea17db90c7d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.64
       objectReference: {fileID: 0}
     - target: {fileID: 2814322399729921711, guid: a8e690feac09fe7428300ea17db90c7d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22402,7 +22378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2814322399729921711, guid: a8e690feac09fe7428300ea17db90c7d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8
+      value: 4.42
       objectReference: {fileID: 0}
     - target: {fileID: 2814322399729921711, guid: a8e690feac09fe7428300ea17db90c7d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22436,20 +22412,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3311714486565415369, guid: a8e690feac09fe7428300ea17db90c7d, type: 3}
-      propertyPath: doorAttackPoint
-      value: 
-      objectReference: {fileID: 1296594664}
+    - target: {fileID: 7986326532525498913, guid: a8e690feac09fe7428300ea17db90c7d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7986326532525498913, guid: a8e690feac09fe7428300ea17db90c7d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.53
+      objectReference: {fileID: 0}
     - target: {fileID: 8742183944861424674, guid: a8e690feac09fe7428300ea17db90c7d, type: 3}
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2451214226737617501, guid: a8e690feac09fe7428300ea17db90c7d, type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 1296594664}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8e690feac09fe7428300ea17db90c7d, type: 3}
 --- !u!1001 &2581101862496238081
