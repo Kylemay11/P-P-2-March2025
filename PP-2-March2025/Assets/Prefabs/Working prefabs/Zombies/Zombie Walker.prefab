@@ -559,6 +559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 4001584741932316161}
+  moneyOnDeath: 5
   type: 0
   sphereCollider: {fileID: 0}
   zombieRenderer: {fileID: 1325479285899949337}

@@ -9,6 +9,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     enum enemyType { walker, runner, spitter, tank };
     // [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] int moneyOnDeath;
     [SerializeField] enemyType type;
     [SerializeField] SphereCollider sphereCollider;
     [SerializeField] private Renderer zombieRenderer;
@@ -94,6 +95,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         StartCoroutine(FlashRed());
         if (HP <= 0)
         {
+            CurrencySystem.instance.AddMoney(moneyOnDeath);
             OnZombieDeath?.Invoke();
             Destroy(gameObject);
         }
