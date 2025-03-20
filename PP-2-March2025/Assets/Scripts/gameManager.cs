@@ -25,7 +25,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] public float waveDuration;
     [SerializeField] private List<ZombieSpawner> zombieSpawners;
     private float waveTimer;
-    private bool waveActive;
+    public bool waveActive;
     private bool waitingToStartWave = true;
     private int currentWave = 0;
 

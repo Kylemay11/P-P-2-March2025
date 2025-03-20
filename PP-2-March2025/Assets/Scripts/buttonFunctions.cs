@@ -83,14 +83,14 @@ public class buttonFunctions : MonoBehaviour
 
     public void BonusHealth()
     {
-        perkShop.instance.makeBonushealthPurchase();
+        //perkShop.instance.makeBonushealthPurchase();
     }
     public void Speed()
     {
-        perkShop.instance.makeSpeedPurchase();
+        //perkShop.instance.makeIncresSpeedPurchase();
     }
     public void Damage()
     {
-        perkShop.instance.makeHDamagePurchase();
+        //perkShop.instance.makeIncresDamagePurchase();
     }
 }
