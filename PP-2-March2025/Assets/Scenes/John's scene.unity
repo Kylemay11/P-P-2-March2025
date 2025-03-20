@@ -6667,9 +6667,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 472315981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d1d0ee25d77c9745a4472796deec3c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 6db0e0e7ccabc69429e5a985e177ac81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 0
+  speedMeter: {fileID: 0}
+  playerCamera: {fileID: 0}
+  maxHP: 0
+  currentHP: 0
+  walkSpeed: 0
+  sprintMultiplier: 0
+  maxStamina: 0
+  currentStamina: 0
+  staminaDrainRate: 0
+  staminaRegainRate: 0
+  staminaRegainDelay: 0
+  slideStaminaDrainMultiplier: 0
+  slideDuration: 0
+  slideSpeedBoost: 0
+  jumpForce: 0
+  gravity: 0
+  maxJumps: 0
+  crouchSpeed: 0
+  crouchColliderSize: {x: 0, y: 0, z: 0}
+  normalColliderSize: {x: 0, y: 0, z: 0}
+  crouchCameraHeight: 0
+  normalCameraHeight: 0
+  isGrounded: 0
 --- !u!143 &472315987
 CharacterController:
   m_ObjectHideFlags: 0
