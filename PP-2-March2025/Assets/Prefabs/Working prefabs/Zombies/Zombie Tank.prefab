@@ -1728,6 +1728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2836430857927104943}
+  moneyOnDeath: 10
   type: 3
   sphereCollider: {fileID: 0}
   zombieRenderer: {fileID: 2715270178455750761}
@@ -1738,6 +1739,7 @@ MonoBehaviour:
   baseHealth: 50
   baseSpeed: 5
   baseDamage: 20
+  barrierDoor: {fileID: 0}
   attackRate: 2.16
   sightRange: 2.7
   attackRange: 4.8
@@ -1800,7 +1802,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2

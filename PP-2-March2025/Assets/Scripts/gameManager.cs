@@ -49,7 +49,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] private List<SpawnerPhase> spawnerPhases;
     [SerializeField] private int spawnersPerPhase; // How many spawners per phase
     [SerializeField] private float PhaseDuration; // Duration per phase if not using waveDuration
-    [SerializeField] private bool useWaveDurationSplit = true; // If true, divide waveDuration across phases
+    [SerializeField] private bool useWaveDurationSplit = false; // If true, divide waveDuration across phases
     private int currentPhaseIndex;
     private float phaseTimer;
 
@@ -181,6 +181,7 @@ public class gameManager : MonoBehaviour
     public void StartWave()
     {
         currentWave++; // Increment wave
+        
 
         currentPhaseIndex = -1;
 

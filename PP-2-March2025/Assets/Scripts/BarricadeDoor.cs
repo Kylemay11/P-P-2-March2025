@@ -2,27 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
+using static enemyAI;
 
 public class BarricadeDoor : MonoBehaviour
 {
+
     [Header("Door Settings")]
     [SerializeField] private int maxPlanks = 6;
     [SerializeField] private float totalDoorHealth;
     [SerializeField] private float repairDuration;
     [SerializeField] private int repairCostPerPlank;
+    [SerializeField] private int maxAttackers;
 
     [Header("References")]
     [SerializeField] private List<GameObject> planks; // Assign plank objects in order from top to bottom
     [SerializeField] private GameObject repairPromptUI;
     [SerializeField] private TMPro.TextMeshProUGUI repairPromptText;
     [SerializeField] private TextMeshProUGUI repairCostText;
+    [SerializeField] private Transform doorAttackPoint;
 
     private float currentHealth;
     private int planksRemaining;
     private bool isPlayerNear;
     private bool isRepairing;
     private float heldDeration;
+   [SerializeField] private List<enemyAI> activeAttackers = new List<enemyAI>();
 
     public enum DoorState { Intact, Damaged, Destroyed }
     public DoorState CurrentState { get; private set; } = DoorState.Intact;
@@ -33,7 +39,7 @@ public class BarricadeDoor : MonoBehaviour
         planksRemaining = maxPlanks;
         UpdatePlankVisuals();
 
-        ApplyDamage(50);
+       // ApplyDamage(50);
     }
 
     private void Update()
@@ -113,6 +119,9 @@ public class BarricadeDoor : MonoBehaviour
             planksRemaining = Mathf.Min(planksRemaining, maxPlanks);
             UpdatePlankVisuals();
             CurrentState = (planksRemaining == maxPlanks) ? DoorState.Intact : DoorState.Damaged;
+
+            if (CurrentState != DoorState.Destroyed)
+                NotifyZombiesDoorRepaired();
         }
 
         // Reset UI
@@ -147,11 +156,40 @@ public class BarricadeDoor : MonoBehaviour
             repairCostText.text = $"(${cost})";
         }
     }
-
     private void NotifyZombiesDoorBroken()
     {
-        // TODO: Implement zombie AI to check if the door is broken and retarget to the player.
-        // You could trigger a door event or change aggro state.
+        foreach (var col in GetComponents<Collider>())
+        {
+            if (!col.isTrigger)
+                col.enabled = true;
+        }
+
+        enemyAI[] Zombie = FindObjectsByType<enemyAI>(FindObjectsSortMode.None);
+        foreach (var enemy in Zombie)
+        {
+            if (enemy != null && enemy.barrierDoor == this)
+            {
+                enemy.SetTargetState(ZombieTargetState.AttackingPlayer);
+            }
+        }
+    }
+
+    private void NotifyZombiesDoorRepaired()
+    {
+        foreach (var col in GetComponents<Collider>())
+        {
+            if (!col.isTrigger)
+                col.enabled = false;
+        }
+
+        enemyAI[] Zombie = FindObjectsByType<enemyAI>(FindObjectsSortMode.None);
+        foreach (var enemy in Zombie)
+        {
+            if (enemy != null && enemy.barrierDoor == this)
+            {
+                enemy.SetTargetState(ZombieTargetState.AttackingDoor);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -175,5 +213,25 @@ public class BarricadeDoor : MonoBehaviour
             if (repairPromptUI != null)
                 repairPromptUI.SetActive(false);
         }
+    }
+    public Vector3 GetAttackPoint()
+    {
+        return doorAttackPoint != null ? doorAttackPoint.position : transform.position;
+    }
+
+    public bool CanZombieAttack(enemyAI Zombie)
+    {
+        if (!activeAttackers.Contains(Zombie) && activeAttackers.Count >= maxAttackers)
+            return false;
+
+        if (!activeAttackers.Contains(Zombie))
+            activeAttackers.Add(Zombie);
+        return true;
+    }
+
+    public void RemoveAttacker(enemyAI Zombie)
+    {
+        if (activeAttackers.Contains(Zombie))
+            activeAttackers.Remove(Zombie);
     }
 }

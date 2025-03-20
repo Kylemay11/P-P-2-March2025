@@ -1,14 +1,20 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using static BarricadeDoor;
+using static UnityEngine.GraphicsBuffer;
 
 public class enemyAI : MonoBehaviour, IDamage, IZombie
 {
     public event System.Action OnZombieDeath;
+    //Kyle added for barricade
+    public enum ZombieTargetState { AttackingDoor, AttackingPlayer };
 
     enum enemyType { walker, runner, spitter, tank };
     // [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    //Kyle added so you can gain money
+    [SerializeField] int moneyOnDeath;
     [SerializeField] enemyType type;
     [SerializeField] SphereCollider sphereCollider;
     [SerializeField] private Renderer zombieRenderer;
@@ -27,6 +33,10 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     [Range(1, 500)][SerializeField] private float baseHealth;
     [Range(1, 20)][SerializeField] private float baseSpeed;
     [Range(1, 500)][SerializeField] private float baseDamage;
+
+    //Kyle added for breaking the barrier door
+    [SerializeField] public BarricadeDoor barrierDoor;
+    private bool hasEnteredRoom = false;
     // [SerializeField] int animTranSpeed;
 
     // [SerializeField] Transform player;
@@ -39,6 +49,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     float attackTimer;
     Vector3 playerDir;
     bool playerInSightRange, playerInAttackRange;
+    private ZombieTargetState currentTargetState = ZombieTargetState.AttackingDoor;
 
     Animator animator;
 
@@ -47,54 +58,78 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     void Start()
     {
         animator = GetComponent<Animator>();
-        agent.speed = enemySpeed;
-        //sphereCollider.radius = sightRange;
         originalColor = zombieRenderer.material.color;
+        agent.speed = enemySpeed;
+        //Kyle added Helps the zombies avoid eachother whn they spawn
+        agent.avoidancePriority = Random.Range(60, 70);
+
         if (type == enemyType.spitter)
             agent.stoppingDistance = attackRange;
 
         if (type == enemyType.tank)
-        {
             transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+
+        if (barrierDoor == null)
+        {
+            barrierDoor = GetComponentInParent<BarricadeDoor>();
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Kyle Added for barricade door
+        if (agent == null || !agent.isActiveAndEnabled) return;
+
         attackTimer += Time.deltaTime;
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            playerDir = barrierDoor.GetAttackPoint() - transform.position;
+          
+        }
 
-        playerDir = gameManager.instance.player.transform.position - transform.position; // always know
-        agent.SetDestination(gameManager.instance.player.transform.position);
+        switch (currentTargetState)
+        {
+            case ZombieTargetState.AttackingDoor:
+                if (barrierDoor != null && barrierDoor.CurrentState != BarricadeDoor.DoorState.Destroyed)
+                {
+                   agent.SetDestination(barrierDoor.GetAttackPoint());
+                }
+                else
+                {
+                    currentTargetState = ZombieTargetState.AttackingPlayer;
+                    agent.SetDestination(gameManager.instance.player.transform.position);
+                }
+                break;
 
-        //Kyle added for demo
+            case ZombieTargetState.AttackingPlayer:
+                agent.SetDestination(gameManager.instance.player.transform.position);
+                break;
+        }
+
         float distanceToPlayer = Vector3.Distance(gameManager.instance.player.transform.position, transform.position);
         playerInAttackRange = distanceToPlayer <= attackRange;
 
-        // 
         if (playerInSightRange && type == enemyType.runner)
-        {
             agent.speed = enemySpeed * runMultiplyer;
-            faceTargetSpeed = (enemySpeed * runMultiplyer);
-        }
-
 
         if (attackTimer >= attackRate)
             enemyAttack();
-
-        if (agent.remainingDistance <= agent.stoppingDistance)
-            faceTarget();
     }
 
     public void takeDamage(int amount)
     {
         HP -= amount;
+        //Kyle added
         animator.SetTrigger("TakeDamage");
         StartCoroutine(DamageAnimationCooldown());
         StartCoroutine(FlashRed());
         if (HP <= 0)
         {
+            CurrencySystem.instance.AddMoney(moneyOnDeath);
             OnZombieDeath?.Invoke();
+            if (barrierDoor != null)
+                barrierDoor.RemoveAttacker(this);
             Destroy(gameObject);
         }
     }
@@ -103,17 +138,36 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     {
         attackTimer = 0;
         //Kyle added for demo
-        if (playerInAttackRange) // Only attack if player is in range
+
+        float distanceToDoor = Vector3.Distance(transform.position, barrierDoor.GetAttackPoint());
+        bool doorInAttackRange = distanceToDoor <= attackRange;
+        if (barrierDoor != null && barrierDoor.CurrentState != BarricadeDoor.DoorState.Destroyed)
         {
-            Debug.Log($"[Zombie Attack] {gameObject.name} attacked player for {enemyDamage} damage!");
-
-            // Get the PlayerHealth script and apply damage
-            playerController player = gameManager.instance.player.GetComponent<playerController>();
-            if (player != null)
+            if (barrierDoor.CanZombieAttack(this))
             {
-                player.takeDamage((int)enemyDamage);
+                barrierDoor.ApplyDamage(enemyDamage);
+                Debug.Log($"{gameObject.name} attacked the barricade door for {enemyDamage} damage.");
             }
+            else
+            {
+                // Optional: idle or wander near door if not allowed to attack
+                agent.SetDestination(barrierDoor.GetAttackPoint()); // just hang out
+            }
+            return;
+        }
+        if (playerInAttackRange)
+        {
 
+     
+            {
+                //Kyle added for only damage the player when the door is gone
+                Debug.Log($"[Zombie Attack] {gameObject.name} attacked player for {enemyDamage} damage!");
+                playerController player = gameManager.instance.player.GetComponent<playerController>();
+                if (player != null)
+                {
+                    player.takeDamage((int)enemyDamage);
+                }
+            }
             // do animation for melee attack
 
             //if(type == enemyType.spitter)
@@ -195,7 +249,50 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     private IEnumerator FlashRed()
     {
         zombieRenderer.material.color = damageColor;
-        yield return new WaitForSeconds(0.2f); 
+        yield return new WaitForSeconds(0.2f);
         zombieRenderer.material.color = originalColor;
+    }
+
+    //Kyle added to force navmesh path to update
+    //public void ForcePathUpdate()
+    //{
+    //    if (agent != null && agent.isActiveAndEnabled)
+    //    {
+    //        switch (currentTargetState)
+    //        {
+    //            case ZombieTargetState.AttackingDoor:
+    //                if (barrierDoor != null && barrierDoor.CurrentState != BarricadeDoor.DoorState.Destroyed)
+    //                {
+    //                    agent.SetDestination(barrierDoor.transform.position);
+    //                }
+    //                break;
+    //            case ZombieTargetState.AttackingPlayer:
+    //                agent.SetDestination(gameManager.instance.player.transform.position);
+    //                break;
+    //        }
+    //    }
+    //}
+
+    // Kyle added for barricadeDoor
+    public void SetBarricadeDoor(BarricadeDoor door)
+    {
+        this.barrierDoor = door;
+    }
+    // Kyle added for barricadeDoor
+    public void SetTargetState(ZombieTargetState newState)
+    {
+        if (hasEnteredRoom && newState == ZombieTargetState.AttackingDoor)
+            return;
+
+        if (currentTargetState == ZombieTargetState.AttackingDoor && newState == ZombieTargetState.AttackingPlayer && barrierDoor != null)
+        {
+            barrierDoor.RemoveAttacker(this);
+        }
+
+        currentTargetState = newState;
+        if (newState == ZombieTargetState.AttackingPlayer)
+            hasEnteredRoom = true;
+
+        //ForcePathUpdate();
     }
 }
