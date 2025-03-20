@@ -26,7 +26,7 @@ public class BossAI : MonoBehaviour, IDamage, IZombie
     [SerializeField] float shootRate;
 
     float shootTimer;
-  //  bool playerInRange;
+    bool playerInRange;
 
     Vector3 playerDir;
 
@@ -59,21 +59,21 @@ public class BossAI : MonoBehaviour, IDamage, IZombie
         
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
+    private void OnTriggerEnter(Collider other)
+    {
 
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        playerInRange = true;
-    //    }
-    //}
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        playerInRange = false;
-    //    }
-    //}
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
+    }
 
     void faceTarget()
     {
