@@ -568,11 +568,12 @@ MonoBehaviour:
   faceTargetSpeed: 17.6
   runMultiplyer: 1.37
   baseHealth: 30
-  baseSpeed: 8
+  baseSpeed: 2.1
   baseDamage: 5
-  attackRate: 1.89
-  sightRange: 2.4
-  attackRange: 2.7
+  barrierDoor: {fileID: 0}
+  attackRate: 2
+  sightRange: 30
+  attackRange: 3
 --- !u!95 &9140289758255564282
 Animator:
   serializedVersion: 7
@@ -632,7 +633,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2

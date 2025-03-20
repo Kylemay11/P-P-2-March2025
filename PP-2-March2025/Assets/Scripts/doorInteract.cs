@@ -93,7 +93,7 @@ public class DoorInteract : MonoBehaviour
         enemyAI[] zombies = FindObjectsByType<enemyAI>(FindObjectsSortMode.None);
         foreach (enemyAI zombie in zombies)
         {
-            zombie.ForcePathUpdate();
+           // zombie.ForcePathUpdate();
         }
 
 

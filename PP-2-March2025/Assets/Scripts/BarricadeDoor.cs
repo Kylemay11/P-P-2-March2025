@@ -39,7 +39,7 @@ public class BarricadeDoor : MonoBehaviour
         planksRemaining = maxPlanks;
         UpdatePlankVisuals();
 
-        ApplyDamage(50);
+       // ApplyDamage(50);
     }
 
     private void Update()
@@ -164,8 +164,8 @@ public class BarricadeDoor : MonoBehaviour
                 col.enabled = true;
         }
 
-        enemyAI[] enemies = FindObjectsByType<enemyAI>(FindObjectsSortMode.None);
-        foreach (var enemy in enemies)
+        enemyAI[] Zombie = FindObjectsByType<enemyAI>(FindObjectsSortMode.None);
+        foreach (var enemy in Zombie)
         {
             if (enemy != null && enemy.barrierDoor == this)
             {
@@ -182,8 +182,8 @@ public class BarricadeDoor : MonoBehaviour
                 col.enabled = false;
         }
 
-        enemyAI[] enemies = FindObjectsByType<enemyAI>(FindObjectsSortMode.None);
-        foreach (var enemy in enemies)
+        enemyAI[] Zombie = FindObjectsByType<enemyAI>(FindObjectsSortMode.None);
+        foreach (var enemy in Zombie)
         {
             if (enemy != null && enemy.barrierDoor == this)
             {
@@ -219,19 +219,19 @@ public class BarricadeDoor : MonoBehaviour
         return doorAttackPoint != null ? doorAttackPoint.position : transform.position;
     }
 
-    public bool CanZombieAttack(enemyAI zombie)
+    public bool CanZombieAttack(enemyAI Zombie)
     {
-        if (!activeAttackers.Contains(zombie) && activeAttackers.Count >= maxAttackers)
+        if (!activeAttackers.Contains(Zombie) && activeAttackers.Count >= maxAttackers)
             return false;
 
-        if (!activeAttackers.Contains(zombie))
-            activeAttackers.Add(zombie);
+        if (!activeAttackers.Contains(Zombie))
+            activeAttackers.Add(Zombie);
         return true;
     }
 
-    public void RemoveAttacker(enemyAI zombie)
+    public void RemoveAttacker(enemyAI Zombie)
     {
-        if (activeAttackers.Contains(zombie))
-            activeAttackers.Remove(zombie);
+        if (activeAttackers.Contains(Zombie))
+            activeAttackers.Remove(Zombie);
     }
 }
