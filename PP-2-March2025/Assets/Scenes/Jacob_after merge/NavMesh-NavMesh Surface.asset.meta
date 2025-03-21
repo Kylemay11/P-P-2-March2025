@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: bac41a48133cb7847b282ae327d46647
+=======
+<<<<<<<< HEAD:PP-2-March2025/Assets/Scenes/Jacob_after merge/NavMesh-NavMesh Surface 1.asset.meta
+guid: 426ae1ab002157d43b4960df3241fb40
+========
+guid: dc8e0a2cc0088484fafe3fb83992d0ea
+>>>>>>>> dev:PP-2-March2025/Assets/Scenes/Jacob_after merge/NavMesh-NavMesh Surface.asset.meta
+>>>>>>> dev
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 23800000

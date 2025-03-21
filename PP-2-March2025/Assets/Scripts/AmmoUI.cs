@@ -10,8 +10,8 @@ public class AmmoUI : MonoBehaviour
     [SerializeField] private Image reloadCircle;
 
     private bool isReloading = false;
-    private float reloadTime = 0f;
-    private float reloadTimer = 0f;
+    private float reloadTime;
+    private float reloadTimer;
 
     void Awake()
     {

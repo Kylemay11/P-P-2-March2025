@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class BossAI : MonoBehaviour, IDamage, IZombie
 {
-    public event System.Action OnZombieDeath;
+    //public event System.Action OnZombieDeath;
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
@@ -77,7 +77,7 @@ public class BossAI : MonoBehaviour, IDamage, IZombie
 
     void faceTarget()
     {
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, playerDir.y, playerDir.z));
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x,playerDir.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 

@@ -76,6 +76,9 @@ public class playerController : MonoBehaviour, IDamage
         if (playerCamera != null)
             UpdateCameraHeight(normalCameraHeight);
 
+        if (speedMeter == null)
+            speedMeter = GameObject.Find("SpeedMeter").GetComponent<TMP_Text>();
+
         controller.height = normalColliderSize.y;
         controller.center = new Vector3(0, normalColliderSize.y / 16f, 0);
         updatePlayerUI();
