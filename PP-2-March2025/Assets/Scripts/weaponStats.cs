@@ -9,7 +9,7 @@ public class weaponStats : ScriptableObject
     [Range(5, 1000)] public int wepDist;
     [Range(0.1f, 2)] public float wepRate;
     public int ammoCur;
-    [Range(1, 10)] public int ammoMax;
+    [Range(1, 100)] public int ammoMax;
 
     public ParticleSystem hitEffect;
     public AudioClip[] wepSound;

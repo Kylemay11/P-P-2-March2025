@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee16151457e341a459e9ae327b76958e, type: 3}
-  m_Name: Weapon - Pistol
+  m_Name: Weapon - AK
   m_EditorClassIdentifier: 
-  model: {fileID: 3302871575578980227, guid: 9637d41b93f085f4aaef2a7f873a4ada, type: 3}
+  model: {fileID: 1487774384131766, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
   wepDamage: 1
-  wepDist: 100
-  wepRate: 0.1
-  ammoCur: 9
-  ammoMax: 9
+  wepDist: 200
+  wepRate: 0.2
+  ammoCur: 30
+  ammoMax: 30
   hitEffect: {fileID: 0}
   wepSound: []
   wepVolume: 0.5
