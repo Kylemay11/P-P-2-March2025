@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee16151457e341a459e9ae327b76958e, type: 3}
   m_Name: Weapon - Pistol
   m_EditorClassIdentifier: 
-  model: {fileID: 1694449805434718, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+  model: {fileID: 1487774384131766, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
   wepDamage: 1
   wepDist: 100
   wepRate: 0.1
