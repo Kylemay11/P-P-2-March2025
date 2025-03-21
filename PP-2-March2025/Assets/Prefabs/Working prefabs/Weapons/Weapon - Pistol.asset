@@ -15,7 +15,7 @@ MonoBehaviour:
   model: {fileID: 3302871575578980227, guid: 9637d41b93f085f4aaef2a7f873a4ada, type: 3}
   wepDamage: 1
   wepDist: 100
-  wepRate: 0.1
+  wepRate: 0.26
   ammoCur: 9
   ammoMax: 9
   hitEffect: {fileID: 0}
