@@ -12,7 +12,7 @@ public enum PlayerState
     Sliding
 }
 
-public class playerController : MonoBehaviour, IDamage
+public class playerController : MonoBehaviour, IDamage, IPickupable
 {
     public static playerController instance;
 
@@ -56,6 +56,12 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] private Vector3 normalColliderSize;
     [SerializeField] private float crouchCameraHeight;
     [SerializeField] private float normalCameraHeight;
+
+    [Header("Weapon Settings")]
+    [SerializeField] GameObject wepModel;
+    [SerializeField] private int wepDamage;
+    [SerializeField] private int wepDist;
+    [SerializeField] private float wepRate;
 
     private Vector3 moveDir;
     private Vector3 velocity;
@@ -320,5 +326,19 @@ public class playerController : MonoBehaviour, IDamage
         currentHP += amount;
         currentHP = Mathf.Clamp(currentHP, 0, maxHP);
         updatePlayerUI();
+    }
+
+    // Jacob Added
+    public void getWeaponStats(weaponStats wep)
+    {
+        // implement interaction with shop logic
+
+        wepDamage = wep.wepDamage;
+        wepDist = wep.wepDist;
+        wepRate = wep.wepRate;
+
+        wepModel.GetComponent<MeshFilter>().sharedMesh = wep.model.GetComponent<MeshFilter>().sharedMesh;
+        wepModel.GetComponent<MeshRenderer>().sharedMaterial = wep.model.GetComponent<MeshRenderer>().sharedMaterial;
+
     }
 }
