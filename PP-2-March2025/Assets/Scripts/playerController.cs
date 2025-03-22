@@ -28,12 +28,10 @@ public class playerController : MonoBehaviour, IDamage
     [Header("Player Stats")]
     [SerializeField] public int maxHP;
     [SerializeField] public int currentHP;
-    [Range(50, 1000)][SerializeField] public int BonusHP;
 
     [Header("Movement Settings")]
     [SerializeField] public float walkSpeed;
     [SerializeField] private float sprintMultiplier;
-    [Range(1, 50)][SerializeField] public int bonusSpeed;
 
     [Header("Stamina Settings")]
     [SerializeField] private float maxStamina;
@@ -323,23 +321,19 @@ public class playerController : MonoBehaviour, IDamage
         currentHP = Mathf.Clamp(currentHP, 0, maxHP);
         updatePlayerUI();
     }
-<<<<<<< Updated upstream
-}
-=======
+
 
     public void BonusHealth()
     {
-        maxHP += BonusHP;
+        maxHP += perkShop.instance.BonusHP;
     }
 
     public void SpeedIncrease()
     {
-        walkSpeed += bonusSpeed;
+        walkSpeed += perkShop.instance.bonusSpeed;
+        UpdateSpeedUI();
     }
 
-    public void DamageIncrease()
-    {
-
-    }
+ 
 }
->>>>>>> Stashed changes
+

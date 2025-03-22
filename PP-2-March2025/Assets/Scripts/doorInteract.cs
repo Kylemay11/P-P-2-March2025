@@ -4,6 +4,8 @@ using UnityEngine.AI;
 
 public class DoorInteract : MonoBehaviour
 {
+    public static DoorInteract instance;
+
     [SerializeField] public int doorCost;
     [SerializeField] public GameObject doorVisual; // The door model (optional if you just disable it)
     [SerializeField] public GameObject roomToActivate; // Room or spawners to enable
@@ -11,7 +13,7 @@ public class DoorInteract : MonoBehaviour
     public GameObject interactionUI;
 
     private bool isUnlocked = false;
-    private bool isPlayerNear = false;
+    public bool isPlayerNear = false;
 
     void Start()
     {

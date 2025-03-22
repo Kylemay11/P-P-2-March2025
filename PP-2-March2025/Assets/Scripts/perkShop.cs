@@ -4,9 +4,12 @@ public class perkShop : MonoBehaviour
 {
     public static perkShop instance;
 
-    [Range(1, 50)][SerializeField] int SpeedPrice;
+    [Range(1, 100)][SerializeField] int SpeedPrice;
     [Range(1, 100)][SerializeField] int BonushealthPrice;
     [Range(1, 500)][SerializeField] int HitDamagePrice;
+    [Range(50, 1000)][SerializeField] public int BonusHP;
+    [Range(1, 50)][SerializeField] public int bonusSpeed;
+    [Range(1, 100)][SerializeField] public int bonusDamage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,7 +25,8 @@ public class perkShop : MonoBehaviour
 
         public void makeIncresDamagePurchase()
         {
-
+        if (CurrencySystem.instance != null && raycastWeapon.instance != null)
+        {
             if (CurrencySystem.instance.currentMoney >= HitDamagePrice)
             {
                 raycastWeapon.instance.DamageIncrease();
@@ -35,7 +39,10 @@ public class perkShop : MonoBehaviour
                 print("Come back when ya got the money to spend");
             }
         }
+        }
         public void makeIncresSpeedPurchase()
+        {
+        if (CurrencySystem.instance != null && playerController.instance != null)
         {
             if (CurrencySystem.instance.currentMoney >= SpeedPrice)
             {
@@ -49,7 +56,10 @@ public class perkShop : MonoBehaviour
                 print("Come back when ya got the money to spend");
             }
         }
+        }
         public void makeBonushealthPurchase()
+        {
+        if (CurrencySystem.instance != null && playerController.instance != null)
         {
             if (CurrencySystem.instance.currentMoney >= BonushealthPrice)
             {
@@ -62,5 +72,6 @@ public class perkShop : MonoBehaviour
             {
                 print("Come back when ya got the money to spend");
             }
+        }
         }
 }

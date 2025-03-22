@@ -10,7 +10,6 @@ public class raycastWeapon : MonoBehaviour
 
     [SerializeField] private float range;
     [SerializeField] public int damage;
-    [Range(1, 100)][SerializeField] public int bonusDamage;
     [SerializeField] public int MaxAmmo;
     [SerializeField] public int CurrentAmmo;
     [SerializeField] private float reloadTime;
@@ -121,6 +120,6 @@ public class raycastWeapon : MonoBehaviour
 
     public void DamageIncrease()
     {
-        damage += bonusDamage;
+        damage += perkShop.instance.bonusDamage;
     }
 }
