@@ -10,6 +10,7 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] private float spawnRate;
     [SerializeField] private int maxZombies;
     [SerializeField] private float spawnCooldown;
+    [SerializeField] public bool isSpawnerActiveInternal;
     [SerializeField] public BarricadeDoor barricadeDoor;
 
     public int currentZombiesAlive;
@@ -105,5 +106,15 @@ public class ZombieSpawner : MonoBehaviour
         {
             spawnCooldown -= Time.deltaTime;
         }
+    }
+
+    public bool IsSpawnerActive()
+    {
+        return isSpawnerActiveInternal;
+    }
+
+    public void SetSpawnerActive(bool active)
+    {
+        isSpawnerActiveInternal = active;
     }
 }
