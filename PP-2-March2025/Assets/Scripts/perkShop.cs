@@ -1,12 +1,15 @@
 using UnityEngine;
+using TMPro;
+using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class perkShop : MonoBehaviour
 {
     public static perkShop instance;
 
-    [Range(1, 100)][SerializeField] int SpeedPrice;
-    [Range(1, 100)][SerializeField] int BonushealthPrice;
-    [Range(1, 500)][SerializeField] int HitDamagePrice;
+    [Range(1, 100)][SerializeField] public int SpeedPrice;
+    [Range(1, 100)][SerializeField] public int BonushealthPrice;
+    [Range(1, 500)][SerializeField] public int HitDamagePrice;
     [Range(50, 1000)][SerializeField] public int BonusHP;
     [Range(1, 50)][SerializeField] public int bonusSpeed;
     [Range(1, 100)][SerializeField] public int bonusDamage;
@@ -42,20 +45,17 @@ public class perkShop : MonoBehaviour
         }
         public void makeIncresSpeedPurchase()
         {
-        if (CurrencySystem.instance != null && playerController.instance != null)
-        {
-            if (CurrencySystem.instance.currentMoney >= SpeedPrice)
+        
+            if (CurrencySystem.instance.SpendMoney(SpeedPrice))
             {
                 playerController.instance.SpeedIncrease();
-                CurrencySystem.instance.currentMoney -= SpeedPrice;
-                print("Now your Walk should be faster");
-                CurrencySystem.instance.currentMoney--;
+                
+                Debug.Log("Now your Walk should be faster");
             }
             else
             {
-                print("Come back when ya got the money to spend");
+                Debug.Log("Come back when ya got the money to spend");
             }
-        }
         }
         public void makeBonushealthPurchase()
         {
