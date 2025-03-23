@@ -27,6 +27,7 @@ public class buttonFunctions : MonoBehaviour
 
 
 
+
     public void smallhealth()
     {
         Shop.instance.makeshpPurchase();
