@@ -1,20 +1,21 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.AI;
-using NUnit.Framework;
-using System.Collections.Generic;
 
 public class DoorInteract : MonoBehaviour
 {
-    [SerializeField] public int doorCost;
-    [SerializeField] public GameObject doorVisual; // The door model (optional if you just disable it)
-    [SerializeField] public GameObject roomToActivate; // Room or spawners to enable
-    [SerializeField] private List<ZombieSpawner> spawnersToActivate;
+    [Header("Door Setup")]
+    [SerializeField] private int doorCost;
+    [SerializeField] private GameObject doorVisual; // Optional door model to hide
+    [SerializeField] private GameObject roomToActivate; // Room prefab that holds RoomSpawnerManager
 
-    public GameObject interactionUI;
+    [Header("UI")]
+    [SerializeField] private GameObject interactionUI;
 
     private bool isUnlocked = false;
     private bool isPlayerNear = false;
+
+    private RoomSpawnerManager roomSpawnerManager;
 
     void Start()
     {
@@ -22,6 +23,13 @@ public class DoorInteract : MonoBehaviour
         {
             interactionUI.SetActive(false);
             UpdateUIText();
+        }
+
+        if (roomToActivate != null)
+        {
+            roomSpawnerManager = roomToActivate.GetComponent<RoomSpawnerManager>();
+            if (roomSpawnerManager == null)
+                Debug.LogWarning($"{gameObject.name} door assigned a room without RoomSpawnerManager.");
         }
     }
 
@@ -41,7 +49,6 @@ public class DoorInteract : MonoBehaviour
         if (other.CompareTag("Player") && !isUnlocked)
         {
             isPlayerNear = true;
-
             if (interactionUI != null)
             {
                 interactionUI.SetActive(true);
@@ -55,7 +62,6 @@ public class DoorInteract : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerNear = false;
-
             if (interactionUI != null)
                 interactionUI.SetActive(false);
         }
@@ -73,13 +79,16 @@ public class DoorInteract : MonoBehaviour
         }
     }
 
-    void UnlockDoor()
+
+    private void UnlockDoor()
     {
         isUnlocked = true;
 
+        // Hide door model
         if (doorVisual != null)
-            doorVisual.SetActive(false); // Or play animation
+            doorVisual.SetActive(false);
 
+        // Disable NavMeshObstacle
         NavMeshObstacle obstacle = GetComponent<NavMeshObstacle>();
         if (obstacle != null)
         {
@@ -87,34 +96,27 @@ public class DoorInteract : MonoBehaviour
             obstacle.enabled = false;
         }
 
-        // Optional auto-room activation
+        // Activate the room GameObject
         if (roomToActivate != null)
-        {
             roomToActivate.SetActive(true);
 
-            ZombieSpawner[] roomSpawners = roomToActivate.GetComponentsInChildren<ZombieSpawner>();
-            foreach (var spawner in roomSpawners)
+        // Tell room spawner manager that this room is now active
+        if (roomSpawnerManager != null)
+        {
+            foreach (var spawner in roomToActivate.GetComponentsInChildren<ZombieSpawner>())
             {
                 spawner.SetSpawnerActive(true);
             }
+
+            roomSpawnerManager.BuildRoomPhases();
         }
 
-        // Manual spawner assignment (optional override or extra)
-        if (spawnersToActivate != null && spawnersToActivate.Count > 0)
-        {
-            foreach (var spawner in spawnersToActivate)
-            {
-                if (spawner != null)
-                {
-                    spawner.SetSpawnerActive(true);
-                }
-            }
-        }
 
+        // Hide interaction UI
         if (interactionUI != null)
             interactionUI.SetActive(false);
 
-        Debug.Log("Door Unlocked!");
+        Debug.Log($"{gameObject.name} Door Unlocked!");
     }
 
     void UpdateUIText()

@@ -117,4 +117,9 @@ public class raycastWeapon : MonoBehaviour
             AmmoUI.instance.UpdateAmmo(CurrentAmmo, MaxAmmo);
         }
     }
+
+    public void ammoUP(int amount)
+    {
+        MaxAmmo += amount;
+    }
 }

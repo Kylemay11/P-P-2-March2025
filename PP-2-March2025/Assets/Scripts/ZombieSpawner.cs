@@ -21,6 +21,8 @@ public class ZombieSpawner : MonoBehaviour
     private float damageMultiplier;
     private float speedMultiplier;
 
+    private Coroutine spawnCoroutine;
+
     public void SetCurrentWave(int wave, float healthMult, float dmgMult, float speedMult)
     {
         currentWave = wave;
@@ -32,12 +34,22 @@ public class ZombieSpawner : MonoBehaviour
     public void StartSpawning()
     {
         canSpawn = true;
-        StartCoroutine(SpawnLoop());
+        // Just in case it’s lingering
+        if (spawnCoroutine != null)
+            StopCoroutine(spawnCoroutine);
+
+        spawnCoroutine = StartCoroutine(SpawnLoop());
     }
 
     public void StopSpawning()
     {
         canSpawn = false;
+
+        if (spawnCoroutine != null)
+        {
+            StopCoroutine(spawnCoroutine);
+            spawnCoroutine = null;
+        }
     }
 
     private IEnumerator SpawnLoop()

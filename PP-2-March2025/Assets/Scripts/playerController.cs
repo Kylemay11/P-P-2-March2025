@@ -321,4 +321,10 @@ public class playerController : MonoBehaviour, IDamage
         currentHP = Mathf.Clamp(currentHP, 0, maxHP);
         updatePlayerUI();
     }
+
+    public void speedBoost(int amount)
+    {
+        walkSpeed += amount;
+    }
+
 }
