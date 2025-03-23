@@ -115,7 +115,7 @@ public class playerController : MonoBehaviour, IDamage
         controller.Move(moveDir * currentSpeed * Time.deltaTime);
 
         HandleJump();
-        // Will you remember to delete this
+       
         velocity.y -= gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
