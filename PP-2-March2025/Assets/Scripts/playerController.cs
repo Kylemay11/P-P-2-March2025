@@ -66,6 +66,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [SerializeField] private int wepDamage;
     [SerializeField] private int wepDist;
     [SerializeField] private float wepRate;
+    [SerializeField] private float reloadTime;
     [SerializeField] private GameObject muzzleFlash;
 
 
@@ -376,6 +377,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         wepDamage = wepList[wepListPos].wepDamage;
         wepDist = wepList[wepListPos].wepDist;
         wepRate = wepList[wepListPos].wepRate;
+        reloadTime = wepList[wepListPos].reloadTime;
+
 
         wepModel.GetComponent<MeshFilter>().sharedMesh = wepList[wepListPos].model.GetComponent<MeshFilter>().sharedMesh;
         wepModel.GetComponent<MeshRenderer>().sharedMaterial = wepList[wepListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
@@ -396,7 +399,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     {
         if (Input.GetButtonDown("Reload")) // add Timer for reload animation
         {
-            wepList[wepListPos].ammoCur = wepList[wepListPos].ammoMax;
+            StartCoroutine(Reload());
         }
     }
 
@@ -436,5 +439,26 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         muzzleFlash.SetActive(true);
         yield return new WaitForSeconds(0.05f);
         muzzleFlash.SetActive(false);
+    }
+
+    private IEnumerator Reload()
+    {
+        //isReloading = true;
+        Debug.Log("Reloading...");
+
+        AmmoUI.instance?.StartReload(reloadTime);
+
+        yield return new WaitForSeconds(reloadTime - 0.2f);
+        //float timer = 0f;
+        //while (timer < reloadTime)
+        //{
+        //    timer += Time.deltaTime;
+        //    yield return null; 
+        //}
+
+        wepList[wepListPos].ammoCur = wepList[wepListPos].ammoMax;
+        //isReloading = false;
+
+        AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
     }
 }
