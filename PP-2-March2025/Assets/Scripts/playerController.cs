@@ -68,12 +68,14 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [SerializeField] private float wepRate;
     [SerializeField] private float reloadTime;
     [SerializeField] private GameObject muzzleFlash;
+    [SerializeField] private Coroutine reloadTest;
 
 
     private Vector3 moveDir;
     private Vector3 velocity;
     private int wepListPos;
     private float attackTimer;
+    private bool isReloading;
     private int jumpCount;
     private float currentSpeed;
     private float staminaRegenTimer;
@@ -368,12 +370,19 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         {
             wepListPos--;
             changeWeapon();
+
         }
 
     }
 
     void changeWeapon()
     {
+        if(isReloading) // true
+        {
+            //StopCoroutine(Reload());
+            
+            isReloading = false;
+        }
         wepDamage = wepList[wepListPos].wepDamage;
         wepDist = wepList[wepListPos].wepDist;
         wepRate = wepList[wepListPos].wepRate;
@@ -399,7 +408,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     {
         if (Input.GetButtonDown("Reload")) // add Timer for reload animation
         {
-            StartCoroutine(Reload());
+            reloadTest = StartCoroutine(Reload());
         }
     }
 
@@ -443,22 +452,42 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     private IEnumerator Reload()
     {
-        //isReloading = true;
+        // temp current wep
+        int currentWepIndex = wepListPos;
+
+        isReloading = true;
+
+        if (wepList[wepListPos].ammoCur > 1)
+        {
+            wepList[wepListPos].ammoCur = 1; // 1 in chamber
+            AmmoUI.instance.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+        }
         Debug.Log("Reloading...");
 
         AmmoUI.instance?.StartReload(reloadTime);
 
-        yield return new WaitForSeconds(reloadTime - 0.2f);
-        //float timer = 0f;
-        //while (timer < reloadTime)
-        //{
-        //    timer += Time.deltaTime;
-        //    yield return null; 
-        //}
+        //yield return new WaitForSeconds(reloadTime - 0.1f);
+        float timer = 0f;
+        while (timer < reloadTime)
+        {
+            if (wepList[wepListPos] != wepList[currentWepIndex])
+            {
+                reloadTest = null;
+                AmmoUI.instance.StopReload();
+                isReloading = false;
 
-        wepList[wepListPos].ammoCur = wepList[wepListPos].ammoMax;
-        //isReloading = false;
+            }
+            timer += Time.deltaTime;
+            yield return null; 
+        }
+        // current wep
+        if (isReloading == true)
+        {
+            wepList[wepListPos].ammoCur = wepList[wepListPos].ammoMax;
 
-        AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+            AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+        }
+        else
+            isReloading = false;
     }
 }
