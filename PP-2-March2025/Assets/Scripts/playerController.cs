@@ -323,15 +323,15 @@ public class playerController : MonoBehaviour, IDamage
     }
 
 
-    public void BonusHealth()
+    public void BonusHealth(int amount)
     {
-        maxHP += perkShop.instance.BonusHP;
+        maxHP += amount;
     }
 
-    public void SpeedIncrease()
+    public void SpeedIncrease(float amount)
     {
-        walkSpeed += perkShop.instance.bonusSpeed;
-        UpdateSpeedUI();
+        
+        walkSpeed += amount;
     }
 
  

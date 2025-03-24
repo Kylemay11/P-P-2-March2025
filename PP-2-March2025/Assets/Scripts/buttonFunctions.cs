@@ -84,16 +84,24 @@ public class buttonFunctions : MonoBehaviour
     public void BonusHealth()
     {
         if (CurrencySystem.instance != null && playerController.instance != null)
+        {
             perkShop.instance.makeBonushealthPurchase();
+        }
     }
     public void Speed()
     {
+
         if (CurrencySystem.instance != null && playerController.instance != null)
+        {
             perkShop.instance.makeIncresSpeedPurchase();
+        }
+        
     }
     public void Damage()
     {
         if (CurrencySystem.instance != null && playerController.instance != null)
+        {
             perkShop.instance.makeIncresDamagePurchase();
+        }
     }
 }

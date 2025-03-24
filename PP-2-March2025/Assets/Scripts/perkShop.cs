@@ -1,7 +1,5 @@
 using UnityEngine;
-using TMPro;
-using UnityEngine.AI;
-using UnityEngine.Events;
+
 
 public class perkShop : MonoBehaviour
 {
@@ -10,8 +8,8 @@ public class perkShop : MonoBehaviour
     [Range(1, 100)][SerializeField] public int SpeedPrice;
     [Range(1, 100)][SerializeField] public int BonushealthPrice;
     [Range(1, 500)][SerializeField] public int HitDamagePrice;
-    [Range(50, 1000)][SerializeField] public int BonusHP;
-    [Range(1, 50)][SerializeField] public int bonusSpeed;
+    [Range(50, 1000)][SerializeField] public int bonusHP;
+    [Range(1, 50)][SerializeField] public int  bonusSpeed;
     [Range(1, 100)][SerializeField] public int bonusDamage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,52 +24,38 @@ public class perkShop : MonoBehaviour
         
     }
 
-        public void makeIncresDamagePurchase()
+    public void makeIncresDamagePurchase()
+    {
+
+        if (CurrencySystem.instance.SpendMoney(HitDamagePrice))
         {
-        if (CurrencySystem.instance != null && raycastWeapon.instance != null)
-        {
-            if (CurrencySystem.instance.currentMoney >= HitDamagePrice)
-            {
-                raycastWeapon.instance.DamageIncrease();
-                CurrencySystem.instance.currentMoney -= HitDamagePrice;
-                print("Now your Damage should be stronger");
-                CurrencySystem.instance.currentMoney--;
-            }
-            else
-            {
-                print("Come back when ya got the money to spend");
-            }
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<raycastWeapon>()?.DamageIncrease(bonusDamage);
+
+            Debug.Log("Now your Walk should be faster");
         }
-        }
+    }
         public void makeIncresSpeedPurchase()
         {
-        
-            if (CurrencySystem.instance.SpendMoney(SpeedPrice))
-            {
-                playerController.instance.SpeedIncrease();
-                
-                Debug.Log("Now your Walk should be faster");
-            }
-            else
-            {
-                Debug.Log("Come back when ya got the money to spend");
-            }
+
+        if (CurrencySystem.instance.SpendMoney(SpeedPrice))
+           {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<playerController>()?.SpeedIncrease(bonusSpeed);
+
+            Debug.Log("Now your Walk should be faster");
+           }
+     
         }
         public void makeBonushealthPurchase()
         {
-        if (CurrencySystem.instance != null && playerController.instance != null)
-        {
-            if (CurrencySystem.instance.currentMoney >= BonushealthPrice)
+       
+            if (CurrencySystem.instance.SpendMoney(SpeedPrice))
             {
-                playerController.instance.BonusHealth();
-                CurrencySystem.instance.currentMoney -= BonushealthPrice;
-                print("Now your Health should be bigger");
-                CurrencySystem.instance.currentMoney--;
-            }
-            else
-            {
-                print("Come back when ya got the money to spend");
-            }
-        }
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<playerController>()?.BonusHealth(bonusHP);
+
+            Debug.Log("Now your Walk should be faster");
+        }        
         }
 }

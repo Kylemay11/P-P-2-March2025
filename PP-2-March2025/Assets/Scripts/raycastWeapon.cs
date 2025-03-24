@@ -118,8 +118,8 @@ public class raycastWeapon : MonoBehaviour
         }
     }
 
-    public void DamageIncrease()
+    public void DamageIncrease(int amount)
     {
-        damage += perkShop.instance.bonusDamage;
+        damage += amount;
     }
 }

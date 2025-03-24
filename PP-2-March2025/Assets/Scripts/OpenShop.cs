@@ -8,11 +8,12 @@ public class OpenShop : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        shop = GameObject.Find("ShopUI");
         if (shop != null)
         {
             shop.SetActive(false);
         }
-        shop = GameObject.Find("ShopUI");
+        
         
     }
 
