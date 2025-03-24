@@ -22,13 +22,14 @@ public class BarricadeDoor : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI repairPromptText;
     [SerializeField] private TextMeshProUGUI repairCostText;
     [SerializeField] private Transform doorAttackPoint;
+    [SerializeField] private bool isTrainingDoor = false;
 
     private float currentHealth;
     private int planksRemaining;
     private bool isPlayerNear;
     private bool isRepairing;
     private float heldDeration;
-   [SerializeField] private List<enemyAI> activeAttackers = new List<enemyAI>();
+    [SerializeField] private List<enemyAI> activeAttackers = new List<enemyAI>();
 
     public enum DoorState { Intact, Damaged, Destroyed }
     public DoorState CurrentState { get; private set; } = DoorState.Intact;
@@ -39,7 +40,10 @@ public class BarricadeDoor : MonoBehaviour
         planksRemaining = maxPlanks;
         UpdatePlankVisuals();
 
-       // ApplyDamage(50);
+        if (isTrainingDoor)
+        {
+            ApplyDamage(50); // Reduce health and planks at game start
+        }
     }
 
     private void Update()
@@ -87,17 +91,32 @@ public class BarricadeDoor : MonoBehaviour
         if (repairPromptText != null)
             repairPromptText.text = "Repairing...";
 
+        int originalPlanks = planksRemaining;
+
         while (heldDeration < repairDuration && Input.GetButton("Interact"))
         {
             if (planksRemaining == maxPlanks)
                 break;
+
             heldDeration += Time.deltaTime;
 
-            // Live repair progress
+            // Live repair progress as percentage
             float repairProgress = Mathf.Clamp01(heldDeration / repairDuration);
             int estimatedPlanks = Mathf.FloorToInt(repairProgress * maxPlanks);
-            int planksToRestore = Mathf.Min(maxPlanks - planksRemaining, estimatedPlanks);
-            int dynamicCost = planksToRestore * repairCostPerPlank;
+            int desiredPlanks = Mathf.Min(maxPlanks, originalPlanks + estimatedPlanks);
+
+            if (desiredPlanks > planksRemaining)
+            {
+                int planksAdded = desiredPlanks - planksRemaining;
+                planksRemaining = desiredPlanks;
+
+                // Sync health with visual planks
+                currentHealth = (planksRemaining / (float)maxPlanks) * totalDoorHealth;
+
+                UpdatePlankVisuals();
+            }
+
+            int dynamicCost = (maxPlanks - planksRemaining) * repairCostPerPlank;
 
             if (repairCostText != null)
                 repairCostText.text = $"Repair Cost: ${dynamicCost}";
@@ -105,19 +124,13 @@ public class BarricadeDoor : MonoBehaviour
             yield return null;
         }
 
-        float finalRepairProgress = Mathf.Clamp01(heldDeration / repairDuration);
-        float restoredHealth = finalRepairProgress * totalDoorHealth;
-        int restoredPlanks = Mathf.FloorToInt(finalRepairProgress * maxPlanks);
-        int finalPlanksToRestore = Mathf.Min(maxPlanks - planksRemaining, restoredPlanks);
+        // Finalize repair cost and confirm payment
+        int finalPlanksToRestore = planksRemaining - originalPlanks;
         int finalCost = finalPlanksToRestore * repairCostPerPlank;
 
         if (CurrencySystem.instance.SpendMoney(finalCost))
         {
-            currentHealth += restoredHealth;
             currentHealth = Mathf.Min(currentHealth, totalDoorHealth);
-            planksRemaining += finalPlanksToRestore;
-            planksRemaining = Mathf.Min(planksRemaining, maxPlanks);
-            UpdatePlankVisuals();
             CurrentState = (planksRemaining == maxPlanks) ? DoorState.Intact : DoorState.Damaged;
 
             if (CurrentState != DoorState.Destroyed)
@@ -212,6 +225,11 @@ public class BarricadeDoor : MonoBehaviour
             isPlayerNear = false;
             if (repairPromptUI != null)
                 repairPromptUI.SetActive(false);
+
+            if (isTrainingDoor)
+            {
+                ApplyDamage(50);
+            }
         }
     }
     public Vector3 GetAttackPoint()
