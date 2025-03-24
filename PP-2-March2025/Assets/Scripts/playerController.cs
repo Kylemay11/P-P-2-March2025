@@ -2,6 +2,8 @@ using UnityEngine;
 using System;
 using TMPro;
 using System.Collections;
+using NUnit.Framework.Interfaces;
+using System.Collections.Generic;
 
 public enum PlayerState
 {
@@ -58,6 +60,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [SerializeField] private float normalCameraHeight;
 
     [Header("Weapon Settings")]
+    [SerializeField] List<weaponStats> wepList = new List<weaponStats>();
     [SerializeField] GameObject wepModel;
     [SerializeField] private int wepDamage;
     [SerializeField] private int wepDist;
@@ -65,6 +68,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     private Vector3 moveDir;
     private Vector3 velocity;
+    private int wepListPos;
     private int jumpCount;
     private float currentSpeed;
     private float staminaRegenTimer;
@@ -124,6 +128,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         velocity.y -= gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        selectWeapon();
+        reloadWeapon();
     }
 
     private void HandleSprint()
@@ -333,12 +340,45 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     {
         // implement interaction with shop logic
 
-        wepDamage = wep.wepDamage;
-        wepDist = wep.wepDist;
-        wepRate = wep.wepRate;
+        wepList.Add(wep);
+        wepListPos = wepList.Count -1;
+        changeWeapon();        
+        
 
-        wepModel.GetComponent<MeshFilter>().sharedMesh = wep.model.GetComponent<MeshFilter>().sharedMesh;
-        wepModel.GetComponent<MeshRenderer>().sharedMaterial = wep.model.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+
+    void selectWeapon()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && wepListPos < wepList.Count - 1)
+        {
+            wepListPos++;
+            changeWeapon();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && wepListPos > 0)
+        {
+            wepListPos--;
+            changeWeapon();
+        }
+
+    }
+
+    void changeWeapon()
+    {
+        wepDamage = wepList[wepListPos].wepDamage;
+        wepDist = wepList[wepListPos].wepDist;
+        wepRate = wepList[wepListPos].wepRate;
+
+        wepModel.GetComponent<MeshFilter>().sharedMesh = wepList[wepListPos].model.GetComponent<MeshFilter>().sharedMesh;
+        wepModel.GetComponent<MeshRenderer>().sharedMaterial = wepList[wepListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+
+    void reloadWeapon()
+    {
+        if (Input.GetButtonDown("Reload")) // add Timer for reload animation
+        {
+            wepList[wepListPos].ammoCur = wepList[wepListPos].ammoMax;
+        }
+
 
     }
 }

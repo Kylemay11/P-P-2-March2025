@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee16151457e341a459e9ae327b76958e, type: 3}
   m_Name: Weapon - Rifle
   m_EditorClassIdentifier: 
-  model: {fileID: 0}
-  wepDamage: 1
-  wepDist: 5
-  wepRate: 0.1
-  ammoCur: 0
-  ammoMax: 1
+  model: {fileID: 1829597508155286, guid: 7359baf27e84aa44cafac3788c8be0f1, type: 3}
+  wepDamage: 8
+  wepDist: 333
+  wepRate: 1.8
+  ammoCur: 12
+  ammoMax: 12
   hitEffect: {fileID: 0}
   wepSound: []
-  wepVolume: 0
+  wepVolume: 0.5

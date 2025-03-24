@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee16151457e341a459e9ae327b76958e, type: 3}
   m_Name: Weapon - Shotgun
   m_EditorClassIdentifier: 
-  model: {fileID: 0}
-  wepDamage: 1
-  wepDist: 5
-  wepRate: 0.1
-  ammoCur: 0
-  ammoMax: 1
+  model: {fileID: 1236257789494122, guid: 8b0b86b42def11849a8eba21f4a6a684, type: 3}
+  wepDamage: 7
+  wepDist: 30
+  wepRate: 0.8
+  ammoCur: 6
+  ammoMax: 6
   hitEffect: {fileID: 0}
   wepSound: []
-  wepVolume: 0
+  wepVolume: 0.5
