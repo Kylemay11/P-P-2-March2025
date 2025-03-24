@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Weapon - Rifle
   m_EditorClassIdentifier: 
   model: {fileID: 1829597508155286, guid: 7359baf27e84aa44cafac3788c8be0f1, type: 3}
-  wepDamage: 8
+  wepDamage: 100
   wepDist: 333
   wepRate: 1.8
   ammoCur: 12

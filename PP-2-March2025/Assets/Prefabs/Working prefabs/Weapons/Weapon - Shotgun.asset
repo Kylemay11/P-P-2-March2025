@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Weapon - Shotgun
   m_EditorClassIdentifier: 
   model: {fileID: 1236257789494122, guid: 8b0b86b42def11849a8eba21f4a6a684, type: 3}
-  wepDamage: 7
+  wepDamage: 50
   wepDist: 30
   wepRate: 0.8
-  ammoCur: 3
+  ammoCur: 5
   ammoMax: 6
   reloadTime: 1.6
   hitEffect: {fileID: 0}

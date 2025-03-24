@@ -5,7 +5,7 @@ using UnityEngine;
 public class weaponStats : ScriptableObject
 {
     public GameObject model;
-    [Range(1, 10)] public int wepDamage;
+    [Range(1, 2000)] public int wepDamage;
     [Range(5, 1000)] public int wepDist;
     [Range(0.1f, 2)] public float wepRate;
     public int ammoCur;

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Weapon - Pistol
   m_EditorClassIdentifier: 
   model: {fileID: 3302871575578980227, guid: 9637d41b93f085f4aaef2a7f873a4ada, type: 3}
-  wepDamage: 1
+  wepDamage: 12
   wepDist: 100
   wepRate: 0.26
-  ammoCur: 9
+  ammoCur: 0
   ammoMax: 9
   reloadTime: 1.1
   hitEffect: {fileID: 0}
