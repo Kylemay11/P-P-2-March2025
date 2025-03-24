@@ -59,16 +59,20 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [SerializeField] private float crouchCameraHeight;
     [SerializeField] private float normalCameraHeight;
 
+    // Jacob added
     [Header("Weapon Settings")]
     [SerializeField] List<weaponStats> wepList = new List<weaponStats>();
     [SerializeField] GameObject wepModel;
     [SerializeField] private int wepDamage;
     [SerializeField] private int wepDist;
     [SerializeField] private float wepRate;
+    [SerializeField] private GameObject muzzleFlash;
+
 
     private Vector3 moveDir;
     private Vector3 velocity;
     private int wepListPos;
+    private float attackTimer;
     private int jumpCount;
     private float currentSpeed;
     private float staminaRegenTimer;
@@ -105,6 +109,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     private void HandleMovement()
     {
+        attackTimer += Time.deltaTime;
+
         if (controller.isGrounded)
         {
             isGrounded = true;
@@ -128,6 +134,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         velocity.y -= gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        if (Input.GetButton("Fire1") && wepList.Count > 0 && wepList[wepListPos].ammoCur > 0 && attackTimer >= wepRate)
+            Shoot();
 
         selectWeapon();
         reloadWeapon();
@@ -389,7 +398,43 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         {
             wepList[wepListPos].ammoCur = wepList[wepListPos].ammoMax;
         }
+    }
 
+    private void Shoot()
+    {
+        attackTimer = 0;
 
+        if (muzzleFlash != null)
+        {
+            StartCoroutine(FlashMuzzle());
+        }
+
+        wepList[wepListPos].ammoCur--;
+        //attackTimer = Time.deltaTime + wepRate;
+        AmmoUI.instance.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Debug.DrawRay(ray.origin, ray.direction * wepDist, Color.red, 1.5f);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, wepDist))
+        {
+            Debug.Log("Hit: " + hit.collider.name);
+            IDamage target = hit.collider.GetComponentInParent<IDamage>();
+            if (target != null)
+            {
+                target.takeDamage((int)wepDamage);
+            }
+        }
+        else
+        {
+            Debug.Log("No Hit");
+        }
+    }
+
+    private IEnumerator FlashMuzzle()
+    {
+        muzzleFlash.SetActive(true);
+        yield return new WaitForSeconds(0.05f);
+        muzzleFlash.SetActive(false);
     }
 }
