@@ -370,6 +370,17 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         wepModel.GetComponent<MeshFilter>().sharedMesh = wepList[wepListPos].model.GetComponent<MeshFilter>().sharedMesh;
         wepModel.GetComponent<MeshRenderer>().sharedMaterial = wepList[wepListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
+
+        if (wepList[wepListPos] != null)
+        {
+            AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+            AmmoUI.instance?.Show(true);
+            gameManager.instance.weaponNotification?.ShowWeaponName(wepList[wepListPos].name);
+        }
+        else
+        {
+            AmmoUI.instance?.Show(false);
+        }
     }
 
     void reloadWeapon()
