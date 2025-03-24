@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.AI;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 public class DoorInteract : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class DoorInteract : MonoBehaviour
     [SerializeField] public int doorCost;
     [SerializeField] public GameObject doorVisual; // The door model (optional if you just disable it)
     [SerializeField] public GameObject roomToActivate; // Room or spawners to enable
+    [SerializeField] private List<ZombieSpawner> spawnersToActivate;
 
     public GameObject interactionUI;
 
@@ -86,18 +89,32 @@ public class DoorInteract : MonoBehaviour
             obstacle.enabled = false;
         }
 
+        // Optional auto-room activation
         if (roomToActivate != null)
-            roomToActivate.SetActive(true);// nothing here yet
+        {
+            roomToActivate.SetActive(true);
+
+            ZombieSpawner[] roomSpawners = roomToActivate.GetComponentsInChildren<ZombieSpawner>();
+            foreach (var spawner in roomSpawners)
+            {
+                spawner.SetSpawnerActive(true);
+            }
+        }
+
+        // Manual spawner assignment (optional override or extra)
+        if (spawnersToActivate != null && spawnersToActivate.Count > 0)
+        {
+            foreach (var spawner in spawnersToActivate)
+            {
+                if (spawner != null)
+                {
+                    spawner.SetSpawnerActive(true);
+                }
+            }
+        }
 
         if (interactionUI != null)
             interactionUI.SetActive(false);
-
-        enemyAI[] zombies = FindObjectsByType<enemyAI>(FindObjectsSortMode.None);
-        foreach (enemyAI zombie in zombies)
-        {
-           // zombie.ForcePathUpdate();
-        }
-
 
         Debug.Log("Door Unlocked!");
     }

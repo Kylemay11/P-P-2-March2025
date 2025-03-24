@@ -154,8 +154,6 @@ public class BossAI : MonoBehaviour, IDamage, IZombie
         {
             Phase2();
         }
-        
-        
     }
 
     public void InitializeZombie(float health, float speed, float damage)

@@ -1,4 +1,4 @@
-
+﻿
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -50,6 +50,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] private int spawnersPerPhase; // How many spawners per phase
     [SerializeField] private float PhaseDuration; // Duration per phase if not using waveDuration
     [SerializeField] private bool useWaveDurationSplit = false; // If true, divide waveDuration across phases
+    [SerializeField] private bool isSpawnerActive = false; // If true, divide waveDuration across phases
     private int currentPhaseIndex;
     private float phaseTimer;
 
@@ -306,10 +307,17 @@ public class gameManager : MonoBehaviour
     {
         spawnerPhases.Clear();
 
-        int totalSpawners = zombieSpawners.Count;
+        List<ZombieSpawner> activeSpawners = new List<ZombieSpawner>();
+        foreach (var spawner in zombieSpawners)
+        {
+            if (spawner != null && spawner.IsSpawnerActive())
+                activeSpawners.Add(spawner);
+        }
+
+        int totalSpawners = activeSpawners.Count;
         if (totalSpawners == 0)
         {
-            Debug.LogWarning("No zombie spawners found. Cannot build phases.");
+            Debug.LogWarning("No ACTIVE zombie spawners found. Cannot build phases.");
             return;
         }
 
@@ -325,12 +333,26 @@ public class gameManager : MonoBehaviour
 
             for (int j = 0; j < spawnersPerPhase && (i + j) < totalSpawners; j++)
             {
-                phase.spawners.Add(zombieSpawners[i + j]);
+                phase.spawners.Add(activeSpawners[i + j]);
             }
 
             spawnerPhases.Add(phase);
         }
 
         Debug.Log($"[GameManager] Auto-built {spawnerPhases.Count} phases using {spawnersPerPhase} spawners per phase.");
+    }
+
+    public bool IsSpawnerActive()
+    {
+        return isSpawnerActive;
+    }
+
+    public void RegisterSpawner(ZombieSpawner spawner)
+    {
+        if (!zombieSpawners.Contains(spawner))
+        {
+            zombieSpawners.Add(spawner);
+            Debug.Log($"Spawner registered: {spawner.name}");
+        }
     }
 }

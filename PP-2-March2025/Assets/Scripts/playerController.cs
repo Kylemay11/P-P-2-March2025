@@ -323,6 +323,7 @@ public class playerController : MonoBehaviour, IDamage
     }
 
 
+
     public void BonusHealth(int amount)
     {
         maxHP += amount;
@@ -333,7 +334,4 @@ public class playerController : MonoBehaviour, IDamage
         
         walkSpeed += amount;
     }
-
- 
 }
-
