@@ -5,33 +5,27 @@ using System.Collections;
 
 public class homingBullet : MonoBehaviour
 {
-    [SerializeField] float homingSpeed;
-    [SerializeField] float velocity;
-    public float angleBetween;
+
+    [Range(1,1000)][SerializeField] float rotSpeed;
+    [Range(1, 5)][SerializeField] float speed;
+    
     public Transform target;
     // Update is called once per frame
     void Update()
-    {
-        // StartCoroutine(bullet());
-        // velocity = transform.forward.z;
-        target = gameManager.instance.player.transform;
-        float step = velocity * Time.deltaTime;
+    { 
+        if (target == null)
+        {
+            Debug.Log("No target found");
+            return;
+        }
 
-        // Vector3 playDir = gameManager.instance.player.transform.position;
-        //Quaternion rot = Quaternion.LookRotation(new Vector3(playDir.x, transform.position.y,playDir.z));
+        Vector3 dir = (target.position - transform.position).normalized;
 
-        // transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * homingSpeed);
+        Quaternion lookRot = Quaternion.LookRotation(dir);
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation,target.rotation , step);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime);
 
-        // transform.position += transform.forward * velocity * Time.deltaTime;
-        
-    }
-
-    IEnumerator bullet()
-    {
-        
-        
-        yield return new WaitForSeconds(0.1f);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 }
+
