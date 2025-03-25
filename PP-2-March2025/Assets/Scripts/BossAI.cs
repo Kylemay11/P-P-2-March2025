@@ -123,18 +123,9 @@ public class BossAI : MonoBehaviour, IDamage, IZombie
         Vector3 shootDirection = getDownwardPlayerDir();
         Quaternion shootRotation = Quaternion.LookRotation(shootDirection);
 
-        GameObject newBullet = Instantiate(bullet, shootPos1.position, shootRotation);
-        GameObject newBullet2 = Instantiate(bullet, shootPos2.position, shootRotation);
-        GameObject newBullet3 = Instantiate(bullet, shootPos3.position, shootRotation);
-
-        homingBullet homing1 = newBullet.GetComponent<homingBullet>();
-        homingBullet homing2 = newBullet.GetComponent<homingBullet>();
-        homingBullet homing3 = newBullet.GetComponent<homingBullet>();
-
-        if(newBullet!= null)
-        {
-            homing1.target = gameManager.instance.player.transform;
-        }
+        Instantiate(bullet, shootPos1.position, shootRotation);
+        Instantiate(bullet, shootPos2.position, shootRotation);
+        Instantiate(bullet, shootPos3.position, shootRotation);
     }
 
     void Phase2()
