@@ -2436,6 +2436,56 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1808596274866552159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1548379349989427629}
+  - component: {fileID: 9188851899329818548}
+  m_Layer: 0
+  m_Name: PerkButtons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1548379349989427629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808596274866552159}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9210063131211368368}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9188851899329818548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808596274866552159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be2a205df7a6eda48951f08723b3d9de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpeedPrice: 20
+  BonushealthPrice: 20
+  HitDamagePrice: 20
+  bonusHP: 50
+  bonusSpeed: 8
+  bonusDamage: 1
 --- !u!1 &1897684605960526135
 GameObject:
   m_ObjectHideFlags: 0
@@ -5443,9 +5493,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: BonusHealth
+      - m_Target: {fileID: 9188851899329818548}
+        m_TargetAssemblyTypeName: perkShop, Assembly-CSharp
+        m_MethodName: makeBonushealthPurchase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7009,9 +7059,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: Speed
+      - m_Target: {fileID: 9188851899329818548}
+        m_TargetAssemblyTypeName: perkShop, Assembly-CSharp
+        m_MethodName: makeIncresSpeedPurchase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12192,8 +12242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9210063131211368368}
-  - component: {fileID: 2162250975235003130}
-  - component: {fileID: 3785821808501463750}
+  - component: {fileID: 255549638509930068}
   - component: {fileID: 9144386928179672658}
   m_Layer: 0
   m_Name: PerkShop
@@ -12218,9 +12267,10 @@ Transform:
   - {fileID: 6792412416670924774}
   - {fileID: 8829885722389400526}
   - {fileID: 2230388652977727324}
+  - {fileID: 1548379349989427629}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2162250975235003130
+--- !u!114 &255549638509930068
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12229,27 +12279,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6558778521231021088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9115de6c82b3ef349a76dfb8f9582541, type: 3}
+  m_Script: {fileID: 11500000, guid: da81557142bd296439f6041887e3fc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3785821808501463750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6558778521231021088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be2a205df7a6eda48951f08723b3d9de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpeedPrice: 14
-  BonushealthPrice: 17
-  HitDamagePrice: 87
-  bonusHP: 258
-  bonusSpeed: 1
-  bonusDamage: 24
 --- !u!65 &9144386928179672658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12269,8 +12301,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 2, z: 3}
-  m_Center: {x: 0, y: 0, z: 0.5}
+  m_Size: {x: 4, y: 2, z: 1.4}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6560908298910001116
 GameObject:
   m_ObjectHideFlags: 0
@@ -16660,7 +16692,7 @@ GameObject:
   - component: {fileID: 1244183833331211895}
   - component: {fileID: 7329234757651610058}
   m_Layer: 5
-  m_Name: purchase WoodBat
+  m_Name: purchase Damage Boost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16769,9 +16801,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: Damage
+      - m_Target: {fileID: 9188851899329818548}
+        m_TargetAssemblyTypeName: perkShop, Assembly-CSharp
+        m_MethodName: makeIncresDamagePurchase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
