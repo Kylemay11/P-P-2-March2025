@@ -292,9 +292,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3830876192282133456, guid: 746e5a29996ea7447b8372503489108b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 678085942636877616, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1846563335}
+    - target: {fileID: 678085942636877616, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: makeBonushealthPurchase
+      objectReference: {fileID: 0}
+    - target: {fileID: 678085942636877616, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: perkShop, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785821808501463750, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: bonusSpeed
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5300257660019053349, guid: 746e5a29996ea7447b8372503489108b, type: 3}
       propertyPath: m_IsActive
@@ -303,6 +315,42 @@ PrefabInstance:
     - target: {fileID: 6558778521231021088, guid: 746e5a29996ea7447b8372503489108b, type: 3}
       propertyPath: m_Name
       value: PerkShop
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329234757651610058, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1846563335}
+    - target: {fileID: 7329234757651610058, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: makeIncresDamagePurchase
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329234757651610058, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: perkShop, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8486864540869971675, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1846563335}
+    - target: {fileID: 8486864540869971675, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: makeIncresSpeedPurchase
+      objectReference: {fileID: 0}
+    - target: {fileID: 8486864540869971675, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: perkShop, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8965326082985883475, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: m_Name
+      value: purchase Damage Boost
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144386928179672658, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: m_Size.z
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144386928179672658, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: m_Center.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9210063131211368368, guid: 746e5a29996ea7447b8372503489108b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -344,13 +392,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2162250975235003130, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+    - {fileID: 3785821808501463750, guid: 746e5a29996ea7447b8372503489108b, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4787534358250905797, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 9210063131211368368, guid: 746e5a29996ea7447b8372503489108b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 160853968}
+      addedObject: {fileID: 1846563334}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6558778521231021088, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 962304097}
   m_SourcePrefab: {fileID: 100100000, guid: 746e5a29996ea7447b8372503489108b, type: 3}
 --- !u!43 &27493595
 Mesh:
@@ -3340,32 +3393,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &160853964 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4787534358250905797, guid: 746e5a29996ea7447b8372503489108b, type: 3}
-  m_PrefabInstance: {fileID: 26183301}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &160853968
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 160853964}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.83675396, y: 1.34697, z: 0.68910414}
-  m_Center: {x: 0, y: 0.673485, z: 0.02045834}
 --- !u!43 &164848636
 Mesh:
   m_ObjectHideFlags: 0
@@ -5522,7 +5549,11 @@ PrefabInstance:
     - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: menuShop
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1570772401}
+    - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: menuPerkShop
+      value: 
+      objectReference: {fileID: 1471130720}
     - target: {fileID: 3395526379521227085, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: m_Name
       value: UI
@@ -8747,32 +8778,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &861626556 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7703971602544556318, guid: 2befb812743b2b2478adf2c0f37a332d, type: 3}
-  m_PrefabInstance: {fileID: 1570772400}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &861626560
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861626556}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.83675396, y: 1.34697, z: 0.68910414}
-  m_Center: {x: -0.00000023841858, y: 0.673485, z: 0.02045834}
 --- !u!43 &862844001
 Mesh:
   m_ObjectHideFlags: 0
@@ -9268,6 +9273,28 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &962304092 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6558778521231021088, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+  m_PrefabInstance: {fileID: 26183301}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &962304097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962304092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da81557142bd296439f6041887e3fc32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &962304100 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9210063131211368368, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+  m_PrefabInstance: {fileID: 26183301}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &964971713
 Mesh:
   m_ObjectHideFlags: 0
@@ -13655,6 +13682,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1471130720 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3830876192282133456, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+  m_PrefabInstance: {fileID: 26183301}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1484039669
 Mesh:
   m_ObjectHideFlags: 0
@@ -14492,19 +14524,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2184380516304725863, guid: 2befb812743b2b2478adf2c0f37a332d, type: 3}
-      propertyPath: m_text
-      value: ' SHOP
-
-        OPEN WITH "E"'
-      objectReference: {fileID: 0}
     - target: {fileID: 3275996977524681707, guid: 2befb812743b2b2478adf2c0f37a332d, type: 3}
       propertyPath: m_Name
       value: Shop
-      objectReference: {fileID: 0}
-    - target: {fileID: 6341084397651904902, guid: 2befb812743b2b2478adf2c0f37a332d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6479323023054061342, guid: 2befb812743b2b2478adf2c0f37a332d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14546,14 +14568,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7905008171166397749, guid: 2befb812743b2b2478adf2c0f37a332d, type: 3}
+      propertyPath: m_Size.z
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7905008171166397749, guid: 2befb812743b2b2478adf2c0f37a332d, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7703971602544556318, guid: 2befb812743b2b2478adf2c0f37a332d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 861626560}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2befb812743b2b2478adf2c0f37a332d, type: 3}
+--- !u!1 &1570772401 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6341084397651904902, guid: 2befb812743b2b2478adf2c0f37a332d, type: 3}
+  m_PrefabInstance: {fileID: 1570772400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1572652366
 Mesh:
   m_ObjectHideFlags: 0
@@ -16369,6 +16401,56 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1846563333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1846563334}
+  - component: {fileID: 1846563335}
+  m_Layer: 0
+  m_Name: PerkButtons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1846563334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846563333}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 962304100}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1846563335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846563333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be2a205df7a6eda48951f08723b3d9de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpeedPrice: 20
+  BonushealthPrice: 20
+  HitDamagePrice: 20
+  bonusHP: 50
+  bonusSpeed: 8
+  bonusDamage: 1
 --- !u!43 &1855507941
 Mesh:
   m_ObjectHideFlags: 0

@@ -1,28 +1,28 @@
 using UnityEngine;
 
-public class OpenShop : MonoBehaviour
+public class OpenPerkShop : MonoBehaviour
 {
-    private GameObject shop;
-  
+   
+    private GameObject Perkshop;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        shop = GameObject.Find("ShopUI");
-        if (shop != null)
+        Perkshop = GameObject.Find("PerkShopUI");
+        if (Perkshop != null)
         {
-            shop.SetActive(false);
+            Perkshop.SetActive(false);
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (shop != null)
+        if (Perkshop != null)
         {
             if (other.CompareTag("Player"))
             {
-                shop.SetActive(true);
+                Perkshop.SetActive(true);
             }
         }
         Cursor.visible = true;
@@ -30,11 +30,11 @@ public class OpenShop : MonoBehaviour
     }
     void OnTriggerExit(Collider other)
     {
-        if (shop != null)
+        if (Perkshop != null)
         {
             if (other.CompareTag("Player"))
             {
-                shop.SetActive(false);
+                Perkshop.SetActive(false);
             }
         }
         Cursor.visible = false;
