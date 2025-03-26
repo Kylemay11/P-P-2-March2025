@@ -505,7 +505,7 @@ GameObject:
   - component: {fileID: 8697134708101572028}
   - component: {fileID: 1215653888450670853}
   m_Layer: 3
-  m_Name: Player
+  m_Name: Player  - new weapons
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -69,6 +69,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [SerializeField] private float reloadTime;
     [SerializeField] private GameObject muzzleFlash;
     [SerializeField] private Coroutine reloadTest;
+    [SerializeField] private ParticleSystem mFlash;
 
 
     private Vector3 moveDir;
@@ -469,6 +470,10 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     private IEnumerator FlashMuzzle()
     {
         muzzleFlash.SetActive(true);
+        ParticleSystem psMFlash = Instantiate(mFlash, transform.position, Quaternion.identity);
+
+        if(mFlash != null)
+            psMFlash.Play();
         yield return new WaitForSeconds(0.05f);
         muzzleFlash.SetActive(false);
     }
