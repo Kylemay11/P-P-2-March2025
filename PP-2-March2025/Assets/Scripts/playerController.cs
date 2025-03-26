@@ -361,17 +361,38 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     void selectWeapon()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && wepListPos < wepList.Count - 1)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && wepList.Count >= 1)
         {
-            wepListPos++;
+            wepListPos = 0;
             changeWeapon();
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && wepListPos > 0)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && wepList.Count >= 2)
         {
-            wepListPos--;
+            wepListPos = 1;
             changeWeapon();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3) && wepList.Count >= 3)
+        {
+            wepListPos = 2;
+            changeWeapon();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4) && wepList.Count >= 4)
+        {
+            wepListPos = 3;
+            changeWeapon();
+        }
 
-        }
+        //if (Input.GetAxis("Mouse ScrollWheel") > 0 && wepListPos < wepList.Count - 1)
+        //{
+        //    wepListPos++;
+        //    changeWeapon();
+        //}
+        //else if (Input.GetAxis("Mouse ScrollWheel") < 0 && wepListPos > 0)
+        //{
+        //    wepListPos--;
+        //    changeWeapon();
+
+        //}
 
     }
 
