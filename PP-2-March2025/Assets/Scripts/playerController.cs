@@ -67,7 +67,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [SerializeField] private int wepDist;
     [SerializeField] private float wepRate;
     [SerializeField] private float reloadTime;
-    [SerializeField] private GameObject muzzleFlash;
+    [SerializeField] private GameObject mFlashPos;
     [SerializeField] private Coroutine reloadTest;
     [SerializeField] private ParticleSystem mFlash;
 
@@ -438,7 +438,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     {
         attackTimer = 0;
 
-        if (muzzleFlash != null)
+        if (mFlashPos != null)
         {
             StartCoroutine(FlashMuzzle());
         }
@@ -469,18 +469,16 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     private IEnumerator FlashMuzzle()
     {
-        muzzleFlash.SetActive(true);
-        ParticleSystem psMFlash = Instantiate(mFlash, muzzleFlash.transform.position, Quaternion.identity);
+        ParticleSystem psMFlash = Instantiate(mFlash, mFlashPos.transform.position, Quaternion.identity);
 
         if (mFlash != null)
             psMFlash.Play();
-        yield return new WaitForSeconds(0.5f);
-        if (mFlash != null)
-        {
+
+        yield return new WaitForSeconds(0.12f);
+
+        if (mFlash != null)        
             psMFlash.Stop();
-            Destroy(psMFlash);
-        }    
-        muzzleFlash.SetActive(false);
+        
     }
 
     private IEnumerator Reload()
