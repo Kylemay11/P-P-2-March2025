@@ -121,9 +121,8 @@ public class raycastWeapon : MonoBehaviour
         }
     }
 
-    public void ammoUP(int amount)
+    public void DamageIncrease(int amount)
     {
-        MaxAmmo += amount;
+        damage += amount;
     }
-
 }

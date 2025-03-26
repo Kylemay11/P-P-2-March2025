@@ -18,6 +18,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] private GameObject menuLose;
     [SerializeField] private GameObject menuShop;
     [SerializeField] private GameObject menuInventory;
+    [SerializeField] GameObject menuPerkShop;
     private GameObject menuActive;
 
     [Header("Wave Settings")]

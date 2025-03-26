@@ -52,7 +52,7 @@ public class Shop : MonoBehaviour
 
    public void makeshpPurchase()
     {
-        if (CurrencySystem.instance.currentMoney >= smallhealthpackPrice)
+        if (CurrencySystem.instance.SpendMoney(smallhealthpackPrice))
         {
             Smallhealthpack++;
             CurrencySystem.instance.currentMoney -= smallhealthpackPrice;
@@ -65,7 +65,7 @@ public class Shop : MonoBehaviour
     }
     public void makehpPurchase()
     {
-        if (CurrencySystem.instance.currentMoney >= healthpackPrice)
+        if (CurrencySystem.instance.SpendMoney(healthpackPrice))
         {
             Healthpack++;
             CurrencySystem.instance.currentMoney -= healthpackPrice;
@@ -78,7 +78,7 @@ public class Shop : MonoBehaviour
     }
     public void makelhpPurchase()
     {
-        if (CurrencySystem.instance.currentMoney >= largehealthpackPrice)
+        if (CurrencySystem.instance.SpendMoney(largehealthpackPrice))
         {
             Largehealthpack++;
             CurrencySystem.instance.currentMoney -= largehealthpackPrice;
@@ -92,7 +92,7 @@ public class Shop : MonoBehaviour
     public void makesmgAmmoPurchase()
     {
 
-        if (CurrencySystem.instance.currentMoney >= smgAmmoPrice)
+        if (CurrencySystem.instance.SpendMoney(smgAmmoPrice))
         {
             SmgAmmo++;
             CurrencySystem.instance.currentMoney -= smgAmmoPrice;
@@ -105,7 +105,7 @@ public class Shop : MonoBehaviour
     }
    public void makeSSPurchase()
     {
-        if (CurrencySystem.instance.currentMoney >= ShotgunShellPrice)
+        if (CurrencySystem.instance.SpendMoney(ShotgunShellPrice))
         {
             ShotgunShells++;
             CurrencySystem.instance.currentMoney -= ShotgunShellPrice;
@@ -118,7 +118,7 @@ public class Shop : MonoBehaviour
     }
     public void makeSAmmoPurchase()
     {
-        if (CurrencySystem.instance.currentMoney >= SpecialAmmoPrice)
+        if (CurrencySystem.instance.SpendMoney(SpecialAmmoPrice))
         {
             SpecialAmmo++;
             CurrencySystem.instance.currentMoney -= SpecialAmmoPrice;
@@ -131,7 +131,7 @@ public class Shop : MonoBehaviour
     }
     public void makePAmmoPurchase()
     {
-        if (CurrencySystem.instance.currentMoney >= PistolAmmoPrice)
+        if (CurrencySystem.instance.SpendMoney(PistolAmmoPrice))
         {
             PistolAmmo++;
             CurrencySystem.instance.currentMoney -= PistolAmmoPrice;
@@ -145,7 +145,7 @@ public class Shop : MonoBehaviour
     public void makesmgPurchase()
     {
 
-        if (CurrencySystem.instance.currentMoney >= SMGPrice)
+        if (CurrencySystem.instance.SpendMoney(SMGPrice))
         {
             SMG++;
             CurrencySystem.instance.currentMoney -= SMGPrice;
@@ -158,7 +158,7 @@ public class Shop : MonoBehaviour
     }
     public void makeShotgunPurchase()
     {
-        if (CurrencySystem.instance.currentMoney >= ShotgunPrice)
+        if (CurrencySystem.instance.SpendMoney(ShotgunPrice))
         {
             Shotgun++;
             CurrencySystem.instance.currentMoney -= ShotgunPrice;
@@ -171,7 +171,7 @@ public class Shop : MonoBehaviour
     }
     public void makeBFGPurchase()
     {
-        if (CurrencySystem.instance.currentMoney >= BFGPrice)
+        if (CurrencySystem.instance.SpendMoney(BFGPrice))
         {
             BFG++;
             CurrencySystem.instance.currentMoney -= BFGPrice;
@@ -184,7 +184,7 @@ public class Shop : MonoBehaviour
     }
     public void makeRYNOPurchase()
     {
-        if (CurrencySystem.instance.currentMoney >= RYNOPrice)
+        if (CurrencySystem.instance.SpendMoney(RYNOPrice))
         {
             RYNO++;
             CurrencySystem.instance.currentMoney -= RYNOPrice;
@@ -197,7 +197,7 @@ public class Shop : MonoBehaviour
     }
     public void makeWBPurchase()
     {
-        if (CurrencySystem.instance.currentMoney >= WoodBatPrice)
+        if (CurrencySystem.instance.SpendMoney(WoodBatPrice))
         {
             WOODBAT++;
             CurrencySystem.instance.currentMoney -= WoodBatPrice;

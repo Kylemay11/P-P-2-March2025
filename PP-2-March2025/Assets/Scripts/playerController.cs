@@ -2,6 +2,8 @@ using UnityEngine;
 using System;
 using TMPro;
 using System.Collections;
+using NUnit.Framework.Interfaces;
+using System.Collections.Generic;
 
 public enum PlayerState
 {
@@ -12,7 +14,7 @@ public enum PlayerState
     Sliding
 }
 
-public class playerController : MonoBehaviour, IDamage
+public class playerController : MonoBehaviour, IDamage, IPickupable
 {
     public static playerController instance;
 
@@ -57,8 +59,24 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] private float crouchCameraHeight;
     [SerializeField] private float normalCameraHeight;
 
+    // Jacob added
+    [Header("Weapon Settings")]
+    [SerializeField] List<weaponStats> wepList = new List<weaponStats>();
+    [SerializeField] GameObject wepModel;
+    [SerializeField] private int wepDamage;
+    [SerializeField] private int wepDist;
+    [SerializeField] private float wepRate;
+    [SerializeField] private float reloadTime;
+    [SerializeField] private GameObject mFlashPos;
+    [SerializeField] private Coroutine reloadTest;
+    [SerializeField] private ParticleSystem mFlash;
+
+
     private Vector3 moveDir;
     private Vector3 velocity;
+    private int wepListPos;
+    private float attackTimer;
+    private bool isReloading;
     private int jumpCount;
     private float currentSpeed;
     private float staminaRegenTimer;
@@ -95,6 +113,8 @@ public class playerController : MonoBehaviour, IDamage
 
     private void HandleMovement()
     {
+        attackTimer += Time.deltaTime;
+
         if (controller.isGrounded)
         {
             isGrounded = true;
@@ -118,6 +138,12 @@ public class playerController : MonoBehaviour, IDamage
 
         velocity.y -= gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        if (Input.GetButton("Fire1") && wepList.Count > 0 && wepList[wepListPos].ammoCur > 0 && attackTimer >= wepRate)
+            Shoot();
+
+        selectWeapon();
+        reloadWeapon();
     }
 
     private void HandleSprint()
@@ -322,9 +348,179 @@ public class playerController : MonoBehaviour, IDamage
         updatePlayerUI();
     }
 
-    public void speedBoost(int amount)
+    // Jacob Added
+    public void getWeaponStats(weaponStats wep)
     {
-        walkSpeed += amount;
+        // implement interaction with shop logic
+
+        wepList.Add(wep);
+        wepListPos = wepList.Count -1;
+        changeWeapon();        
+        
+
     }
 
+    void selectWeapon()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && wepList.Count >= 1)
+        {
+            wepListPos = 0;
+            changeWeapon();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) && wepList.Count >= 2)
+        {
+            wepListPos = 1;
+            changeWeapon();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3) && wepList.Count >= 3)
+        {
+            wepListPos = 2;
+            changeWeapon();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4) && wepList.Count >= 4)
+        {
+            wepListPos = 3;
+            changeWeapon();
+        }
+
+        //if (Input.GetAxis("Mouse ScrollWheel") > 0 && wepListPos < wepList.Count - 1)
+        //{
+        //    wepListPos++;
+        //    changeWeapon();
+        //}
+        //else if (Input.GetAxis("Mouse ScrollWheel") < 0 && wepListPos > 0)
+        //{
+        //    wepListPos--;
+        //    changeWeapon();
+
+        //}
+
+    }
+
+    void changeWeapon()
+    {
+        if(isReloading) // true
+        {
+            //StopCoroutine(Reload());
+            
+            isReloading = false;
+        }
+        wepDamage = wepList[wepListPos].wepDamage;
+        wepDist = wepList[wepListPos].wepDist;
+        wepRate = wepList[wepListPos].wepRate;
+        reloadTime = wepList[wepListPos].reloadTime;
+
+
+        wepModel.GetComponent<MeshFilter>().sharedMesh = wepList[wepListPos].model.GetComponent<MeshFilter>().sharedMesh;
+        wepModel.GetComponent<MeshRenderer>().sharedMaterial = wepList[wepListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
+
+        if (wepList[wepListPos] != null)
+        {
+            AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+            AmmoUI.instance?.Show(true);
+            gameManager.instance.weaponNotification?.ShowWeaponName(wepList[wepListPos].name);
+        }
+        else
+        {
+            AmmoUI.instance?.Show(false);
+        }
+    }
+
+    void reloadWeapon()
+    {
+        if (Input.GetButtonDown("Reload")) // add Timer for reload animation
+        {
+            reloadTest = StartCoroutine(Reload());
+        }
+    }
+
+    private void Shoot()
+    {
+        attackTimer = 0;
+
+        if (mFlashPos != null)
+        {
+            StartCoroutine(FlashMuzzle());
+        }
+
+        wepList[wepListPos].ammoCur--;
+        //attackTimer = Time.deltaTime + wepRate;
+        AmmoUI.instance.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Debug.DrawRay(ray.origin, ray.direction * wepDist, Color.red, 1.5f);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, wepDist))
+        {
+            Debug.Log("Hit: " + hit.collider.name);
+            Instantiate(wepList[wepListPos].hitEffect, hit.point, Quaternion.identity);
+
+            IDamage target = hit.collider.GetComponentInParent<IDamage>();
+            if (target != null)
+            {
+                target.takeDamage((int)wepDamage);
+            }
+        }
+        else
+        {
+            Debug.Log("No Hit");
+        }
+    }
+
+    private IEnumerator FlashMuzzle()
+    {
+        ParticleSystem psMFlash = Instantiate(mFlash, mFlashPos.transform.position, Quaternion.identity);
+
+        psMFlash.transform.SetParent(mFlashPos.transform); // keeps particles inplace while moving
+
+        if (mFlash != null)
+            psMFlash.Play();
+
+        yield return new WaitForSeconds(0.12f);
+
+        if (mFlash != null)        
+            psMFlash.Stop();
+        
+    }
+
+    private IEnumerator Reload()
+    {
+        // temp current wep
+        int currentWepIndex = wepListPos;
+
+        isReloading = true;
+
+        if (wepList[wepListPos].ammoCur > 1)
+        {
+            wepList[wepListPos].ammoCur = 1; // 1 in chamber
+            AmmoUI.instance.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+        }
+        Debug.Log("Reloading...");
+
+        AmmoUI.instance?.StartReload(reloadTime);
+
+        //yield return new WaitForSeconds(reloadTime - 0.1f);
+        float timer = 0f;
+        while (timer < reloadTime)
+        {
+            if (wepList[wepListPos] != wepList[currentWepIndex])
+            {
+                reloadTest = null;
+                AmmoUI.instance.StopReload();
+                isReloading = false;
+
+            }
+            timer += Time.deltaTime;
+            yield return null; 
+        }
+        // current wep
+        if (isReloading == true)
+        {
+            wepList[wepListPos].ammoCur = wepList[wepListPos].ammoMax;
+
+            AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+        }
+        else
+            isReloading = false;
+    }
 }

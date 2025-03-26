@@ -15,7 +15,7 @@ public class DoorInteract : MonoBehaviour
     [SerializeField] private TextMeshProUGUI doorLockedText;
 
     private bool isUnlocked = false;
-    private bool isPlayerNear = false;
+    public bool isPlayerNear = false;
 
     private RoomSpawnerManager roomSpawnerManager;
 
