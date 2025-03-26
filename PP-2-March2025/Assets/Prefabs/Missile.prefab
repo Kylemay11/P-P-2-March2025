@@ -111,8 +111,8 @@ MonoBehaviour:
   type: 3
   rb: {fileID: 2762387526397548063}
   damageAmount: 1
-  speed: 17
-  destroyTime: 10
+  speed: 20
+  destroyTime: 25
   damageTime: 1
 --- !u!114 &-2753563455533640622
 MonoBehaviour:
