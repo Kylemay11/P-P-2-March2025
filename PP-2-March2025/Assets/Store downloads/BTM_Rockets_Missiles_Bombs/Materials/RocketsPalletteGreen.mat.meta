@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 7cf87c33ee3bc1741a5e5f7798045842
 NativeFormatImporter:
   externalObjects: {}
@@ -6,3 +7,19 @@ NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+=======
+guid: effb278466e36474989bd577f63840b1
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73141
+  packageName: Rockets, Missiles & Bombs - Cartoon Low Poly Pack
+  packageVersion: 1.2
+  assetPath: Assets/BTM_Assets/BTM_Rockets_Missiles_Bombs/Materials/RocketsPalletteGreen.mat
+  uploadId: 737420
+>>>>>>> a465517e781b1dc16f6ea103fa97c687f6831161
