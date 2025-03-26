@@ -513,4 +513,14 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         else
             isReloading = false;
     }
+
+    public void SpeedIncrease(float amount)
+    {
+        walkSpeed += amount;
+    }
+
+    public void BonusHealth(int amount)
+    {
+        maxHP += amount;
+    }
 }

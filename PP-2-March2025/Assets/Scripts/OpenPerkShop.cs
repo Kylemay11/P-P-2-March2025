@@ -1,12 +1,12 @@
 using UnityEngine;
 
+
 public class OpenPerkShop : MonoBehaviour
 {
-   
     private GameObject Perkshop;
+    private bool isActive = false;
+    public bool isPlayerNear = false;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Perkshop = GameObject.Find("PerkShopUI");
@@ -16,28 +16,46 @@ public class OpenPerkShop : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (isPlayerNear && Input.GetButtonDown("Interact"))
+        {
+            TogglePerkShop();
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
-        if (Perkshop != null)
+        if (other.CompareTag("Player"))
         {
-            if (other.CompareTag("Player"))
-            {
-                Perkshop.SetActive(true);
-            }
+            isPlayerNear = true;
         }
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
+
     void OnTriggerExit(Collider other)
     {
-        if (Perkshop != null)
+        if (other.CompareTag("Player"))
         {
-            if (other.CompareTag("Player"))
-            {
-                Perkshop.SetActive(false);
-            }
+            isPlayerNear = false;
+            untogglePerkShop();
         }
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void TogglePerkShop()
+    {
+        isActive = !isActive;
+        if (Perkshop != null)
+            Perkshop.SetActive(isActive);
+    }
+
+    void untogglePerkShop()
+    {
+        
+        if (Perkshop != null)
+            Perkshop.SetActive(false);
     }
 }

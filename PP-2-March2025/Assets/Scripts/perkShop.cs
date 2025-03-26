@@ -9,24 +9,16 @@ public class perkShop : MonoBehaviour
     [Range(1, 100)][SerializeField] public int SpeedPrice;
     [Range(1, 100)][SerializeField] public int BonushealthPrice;
     [Range(1, 500)][SerializeField] public int HitDamagePrice;
+    [Range(1, 500)][SerializeField] public int IAmmoPrice;
+    [Range(1, 500)][SerializeField] public int RandPerkPrice;
+
     [Range(50, 1000)][SerializeField] public int bonusHP;
     [Range(1, 50)][SerializeField] float bonusSpeed;
     [Range(1, 100)][SerializeField] public int bonusDamage;
 
     //make switch statement for the perks
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+  
     public void makeIncresDamagePurchase()
     {
 
@@ -45,7 +37,7 @@ public class perkShop : MonoBehaviour
         if (CurrencySystem.instance.SpendMoney(SpeedPrice))
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-           // player.GetComponent<playerController>()?.SpeedIncrease(bonusSpeed);
+            player.GetComponent<playerController>()?.SpeedIncrease(bonusSpeed);
         }
 
 
@@ -56,13 +48,25 @@ public class perkShop : MonoBehaviour
         if (CurrencySystem.instance.SpendMoney(SpeedPrice))
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-           // player.GetComponent<playerController>()?.BonusHealth(bonusHP);
+            player.GetComponent<playerController>()?.BonusHealth(bonusHP);
+            playerController.instance.updatePlayerUI();
         }
     }
+    //public void makeInfiniteAmmoPurchase()
+    //{
+    //    if (CurrencySystem.instance.SpendMoney(IAmmoPrice))
+    //    {
+    //        GameObject player = GameObject.FindGameObjectWithTag("Player");
+    //        player.GetComponent<raycastWeapon>()?.InfiniteAmmoPerk();
+    //    }
+    //}
 
     public void randomPerk()
     {
-
+        if (CurrencySystem.instance.SpendMoney(RandPerkPrice))
+        {
+          
+        }
     }
 
 }

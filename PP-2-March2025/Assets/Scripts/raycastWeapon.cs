@@ -122,4 +122,15 @@ public class raycastWeapon : MonoBehaviour
     {
         damage += amount;
     }
+
+    //public void InfiniteAmmoPerk()
+    //{
+    //    MaxAmmo = int.MaxValue;
+    //}
+
+    public void AmmoIncrease(int amount)
+    {
+        CurrentAmmo += amount;
+        AmmoUI.instance.UpdateAmmo(CurrentAmmo, MaxAmmo);
+    }
 }

@@ -1,12 +1,12 @@
 using UnityEngine;
 
+
 public class OpenShop : MonoBehaviour
 {
     private GameObject shop;
-  
+    private bool isActive = false;
+    public bool isPlayerNear = false;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         shop = GameObject.Find("ShopUI");
@@ -16,28 +16,38 @@ public class OpenShop : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (isPlayerNear && Input.GetButtonDown("Interact"))
+        {
+            ToggleShop();
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
-        if (shop != null)
+        if (other.CompareTag("Player"))
         {
-            if (other.CompareTag("Player"))
-            {
-                shop.SetActive(true);
-            }
+            isPlayerNear = true;
         }
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
+
     void OnTriggerExit(Collider other)
     {
-        if (shop != null)
+        if (other.CompareTag("Player"))
         {
-            if (other.CompareTag("Player"))
-            {
-                shop.SetActive(false);
-            }
+            isPlayerNear = false;
         }
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void ToggleShop()
+    {
+        isActive = !isActive;
+        if (shop != null)
+            shop.SetActive(isActive);
     }
 }
