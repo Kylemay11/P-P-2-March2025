@@ -21,7 +21,7 @@ public class BarricadeDoor : MonoBehaviour
     [SerializeField] private GameObject repairPromptUI;
     [SerializeField] private TMPro.TextMeshProUGUI repairPromptText;
     [SerializeField] private TextMeshProUGUI repairCostText;
-    [SerializeField] private Transform doorAttackPoint;
+    [SerializeField] private List<Transform> doorAttackPoints;
     [SerializeField] private bool isTrainingDoor = false;
 
     private float currentHealth;
@@ -232,9 +232,12 @@ public class BarricadeDoor : MonoBehaviour
             }
         }
     }
-    public Vector3 GetAttackPoint()
+    public Transform GetRandomAttackPoint()
     {
-        return doorAttackPoint != null ? doorAttackPoint.position : transform.position;
+        if (doorAttackPoints == null || doorAttackPoints.Count == 0)
+            return transform; 
+
+        return doorAttackPoints[Random.Range(0, doorAttackPoints.Count)];
     }
 
     public bool CanZombieAttack(enemyAI Zombie)

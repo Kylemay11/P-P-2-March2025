@@ -13,6 +13,7 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] public bool isSpawnerActiveInternal;
     [SerializeField] public BarricadeDoor barricadeDoor;
 
+
     public int currentZombiesAlive;
     private bool canSpawn = false;
     private int currentWave = 1;
@@ -82,7 +83,7 @@ public class ZombieSpawner : MonoBehaviour
         enemyAI enemy = zombie.GetComponent<enemyAI>();
         if (enemy != null)
         {
-            enemy.barrierDoor = spawnPoint.GetComponentInChildren<BarricadeDoor>(); // assign door directly
+            enemy.barrierDoor = spawnPoint.GetComponentInChildren<BarricadeDoor>();
             enemy.OnZombieDeath += HandleZombieDeath;
             deathHooked = true;
         }
