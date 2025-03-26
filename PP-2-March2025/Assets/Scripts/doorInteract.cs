@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.AI;
+using System.Collections;
 
 public class DoorInteract : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class DoorInteract : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private GameObject interactionUI;
+    [SerializeField] private TextMeshProUGUI doorLockedText;
 
     private bool isUnlocked = false;
     private bool isPlayerNear = false;
@@ -25,6 +27,9 @@ public class DoorInteract : MonoBehaviour
             UpdateUIText();
         }
 
+        if (doorLockedText != null)
+            doorLockedText.gameObject.SetActive(false);
+
         if (roomToActivate != null)
         {
             roomSpawnerManager = roomToActivate.GetComponent<RoomSpawnerManager>();
@@ -35,12 +40,17 @@ public class DoorInteract : MonoBehaviour
 
     void Update()
     {
-        if (isPlayerNear && !isUnlocked)
+        if (!isPlayerNear || isUnlocked) return;
+
+        if (!Input.GetButtonDown("Interact")) return;
+
+        if (!gameManager.instance.waveActive)
         {
-            if (Input.GetButtonDown("Interact"))
-            {
-                TryUnlock();
-            }
+            TryUnlock();
+        }
+        else if (doorLockedText != null)
+        {
+            StartCoroutine(ShowDoorLockedMessage());
         }
     }
 
@@ -126,6 +136,12 @@ public class DoorInteract : MonoBehaviour
         {
             txt.text = $"Press [E] to open (${doorCost})";
         }
+    }
+    private IEnumerator ShowDoorLockedMessage()
+    {
+        doorLockedText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        doorLockedText.gameObject.SetActive(false);
     }
 
 }

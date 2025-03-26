@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
 {
+    public enum SpawnerDifficulty { Easy, Medium, Hard}
+
     [Header("Spawn Settings")]
+    [SerializeField] private SpawnerDifficulty difficulty;
     [SerializeField] private List<GameObject> zombiePrefabs;
     [SerializeField] private List<Transform> spawnPoints;
     [SerializeField] private float spawnRate;
@@ -17,6 +20,8 @@ public class ZombieSpawner : MonoBehaviour
     public int currentZombiesAlive;
     private bool canSpawn = false;
     private int currentWave = 1;
+    private Color SpawnerdiffColor = Color.white;
+    public SpawnerDifficulty Difficulty => difficulty;
 
     private float healthMultiplier;
     private float damageMultiplier;
@@ -129,5 +134,50 @@ public class ZombieSpawner : MonoBehaviour
     public void SetSpawnerActive(bool active)
     {
         isSpawnerActiveInternal = active;
+
+        if (active && difficulty == default) // assign if not already assigned
+            AssignRandomDifficulty();
+    }
+
+    public void AssignRandomDifficulty()
+    {
+        difficulty = (SpawnerDifficulty)Random.Range(0, System.Enum.GetValues(typeof(SpawnerDifficulty)).Length);
+        Debug.Log($"[Spawner] {gameObject.name} assigned difficulty: {difficulty}");
+        ApplyDifficultySettings();
+    }
+
+    private void ApplyDifficultySettings()
+    {
+        switch (difficulty)
+        {
+            case SpawnerDifficulty.Easy:
+                spawnRate = 5f;
+                maxZombies = 3;
+                spawnCooldown = 2f;
+                SpawnerdiffColor = Color.green;
+                break;
+
+            case SpawnerDifficulty.Medium:
+                spawnRate = 3f;
+                maxZombies = 5;
+                spawnCooldown = 1.5f;
+                SpawnerdiffColor = Color.yellow;
+                break;
+
+            case SpawnerDifficulty.Hard:
+                spawnRate = 1.5f;
+                maxZombies = 7;
+                spawnCooldown = 1f;
+                SpawnerdiffColor = Color.red;
+                break;
+        }
+
+        Debug.Log($"[Spawner] {gameObject.name} settings applied for {difficulty}: Rate={spawnRate}, Max={maxZombies}, Cooldown={spawnCooldown}");
+    }
+
+    private void OnDrawGizmos() // for changing the color in the scene veiw only
+    {
+        Gizmos.color = SpawnerdiffColor;
+        Gizmos.DrawWireSphere(transform.position + Vector3.up * 1.5f, 0.75f);
     }
 }

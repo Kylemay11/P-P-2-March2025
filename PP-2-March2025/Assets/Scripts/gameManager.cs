@@ -27,7 +27,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] private float speedMultiplier;
 
     private float waveTimer;
-    private bool waveActive = false;
+    public bool waveActive = false;
     private bool waitingToStartWave = true;
     private int currentWave;
 
