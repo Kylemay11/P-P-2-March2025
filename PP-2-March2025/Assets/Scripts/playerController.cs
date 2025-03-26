@@ -470,7 +470,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     private IEnumerator FlashMuzzle()
     {
         muzzleFlash.SetActive(true);
-        ParticleSystem psMFlash = Instantiate(mFlash, transform.position, Quaternion.identity);
+        ParticleSystem psMFlash = Instantiate(mFlash, muzzleFlash.transform.position, Quaternion.identity);
 
         if (mFlash != null)
             psMFlash.Play();
