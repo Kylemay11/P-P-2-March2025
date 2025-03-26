@@ -45,7 +45,7 @@ public class perkShop : MonoBehaviour
         if (CurrencySystem.instance.SpendMoney(SpeedPrice))
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<playerController>()?.SpeedIncrease(bonusSpeed);
+            // player.GetComponent<playerController>()?.SpeedIncrease(bonusSpeed);
         }
 
 
@@ -56,7 +56,7 @@ public class perkShop : MonoBehaviour
         if (CurrencySystem.instance.SpendMoney(SpeedPrice))
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<playerController>()?.BonusHealth(bonusHP);
+            // player.GetComponent<playerController>()?.BonusHealth(bonusHP);
         }
     }
 
