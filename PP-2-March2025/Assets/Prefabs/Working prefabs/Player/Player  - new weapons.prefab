@@ -378,7 +378,7 @@ MonoBehaviour:
   wepDist: 0
   wepRate: 0
   reloadTime: 0
-  muzzleFlash: {fileID: 3055572700376633791}
+  mFlashPos: {fileID: 3055572700376633791}
   mFlash: {fileID: 6943685617558384535, guid: 44ec949d6d1686d478b43d3208a7c197, type: 3}
   isGrounded: 0
 --- !u!23 &2727642905191196999

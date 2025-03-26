@@ -24478,15 +24478,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2420466666525081930, guid: a5c9cdafbb847974dbaf3200ca150aa9, type: 3}
-      propertyPath: mFlash
-      value: 
-      objectReference: {fileID: 6943685617558384535, guid: 44ec949d6d1686d478b43d3208a7c197, type: 3}
-    - target: {fileID: 2420466666525081930, guid: a5c9cdafbb847974dbaf3200ca150aa9, type: 3}
       propertyPath: mFlashPos
-      value: 
-      objectReference: {fileID: 1005214652}
-    - target: {fileID: 2420466666525081930, guid: a5c9cdafbb847974dbaf3200ca150aa9, type: 3}
-      propertyPath: muzzleFlash
       value: 
       objectReference: {fileID: 1005214652}
     - target: {fileID: 5164201416157022338, guid: a5c9cdafbb847974dbaf3200ca150aa9, type: 3}
