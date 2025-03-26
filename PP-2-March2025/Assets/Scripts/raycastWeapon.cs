@@ -118,6 +118,8 @@ public class raycastWeapon : MonoBehaviour
         }
     }
 
+
+    // logic for shops
     public void DamageIncrease(int amount)
     {
         damage += amount;

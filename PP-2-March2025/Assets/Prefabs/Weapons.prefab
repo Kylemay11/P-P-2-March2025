@@ -174,9 +174,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 15
   damage: 20
+  MaxAmmo: 0
+  CurrentAmmo: 0
+  reloadTime: 0
   hitMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  shootRate: 0
+  muzzleFlash: {fileID: 0}
 --- !u!1 &7325802860553007405
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,9 +305,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 15
   damage: 5
+  MaxAmmo: 0
+  CurrentAmmo: 0
+  reloadTime: 0
   hitMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  shootRate: 0
+  muzzleFlash: {fileID: 0}
 --- !u!1 &8990513201906654820
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,6 +436,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 2
   damage: 5
+  MaxAmmo: 0
+  CurrentAmmo: 0
+  reloadTime: 0
   hitMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  shootRate: 0
+  muzzleFlash: {fileID: 0}

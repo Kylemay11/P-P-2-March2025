@@ -17091,8 +17091,18 @@ MonoBehaviour:
   smallhealthpackPrice: 1
   healthpackPrice: 1
   largehealthpackPrice: 1
+  weapon1Price: 0
+  weapon2Price: 0
+  weapon3Price: 0
+  weapon4Price: 0
   AmmoPrice: 19
   AmmoAmount: 19
+  availableWeapons:
+  - {fileID: 11400000, guid: db92f0ee81b9fa74db3ff84e7bae73a2, type: 2}
+  - {fileID: 11400000, guid: f5a3cd39860eccc4f88dfd04c42a56cc, type: 2}
+  - {fileID: 11400000, guid: 4af03f8c8c01fb248b2809972d734a64, type: 2}
+  - {fileID: 11400000, guid: 097874adcb2f0a544805a97756bd796a, type: 2}
+  weaponReplaceIndex: 0
 --- !u!1 &8695483624730863766
 GameObject:
   m_ObjectHideFlags: 0

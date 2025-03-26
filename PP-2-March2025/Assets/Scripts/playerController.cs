@@ -70,7 +70,6 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [SerializeField] private GameObject muzzleFlash;
     [SerializeField] private Coroutine reloadTest;
 
-
     private Vector3 moveDir;
     private Vector3 velocity;
     private int wepListPos;
@@ -514,6 +513,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             isReloading = false;
     }
 
+
+    // logic for shops
     public void SpeedIncrease(float amount)
     {
         walkSpeed += amount;
@@ -522,5 +523,16 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     public void BonusHealth(int amount)
     {
         maxHP += amount;
+    }
+
+    // replace the weapon the player has with their purchased weapon
+    public void ReplaceWeapon(weaponStats newWeapon, int index)
+    {
+        if (index < 0 || index >= wepList.Count)
+        {
+            return;
+        }
+
+        wepList[index] = newWeapon;
     }
 }
