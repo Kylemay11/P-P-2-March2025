@@ -63,12 +63,14 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [Header("Weapon Settings")]
     [SerializeField] List<weaponStats> wepList = new List<weaponStats>();
     [SerializeField] GameObject wepModel;
+    [SerializeField] private LayerMask hitMask;
     [SerializeField] private int wepDamage;
     [SerializeField] private int wepDist;
     [SerializeField] private float wepRate;
     [SerializeField] private float reloadTime;
-    [SerializeField] private GameObject muzzleFlash;
+    [SerializeField] private GameObject mFlashPos;
     [SerializeField] private Coroutine reloadTest;
+    [SerializeField] private ParticleSystem mFlash;
 
     private Vector3 moveDir;
     private Vector3 velocity;
@@ -436,7 +438,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     {
         attackTimer = 0;
 
-        if (muzzleFlash != null)
+        if (mFlashPos != null)
         {
             StartCoroutine(FlashMuzzle());
         }
@@ -448,7 +450,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         Debug.DrawRay(ray.origin, ray.direction * wepDist, Color.red, 1.5f);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, wepDist))
+        if (Physics.Raycast(ray, out RaycastHit hit, wepDist, hitMask))
         {
             Debug.Log("Hit: " + hit.collider.name);
             Instantiate(wepList[wepListPos].hitEffect, hit.point, Quaternion.identity);
@@ -467,9 +469,18 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     private IEnumerator FlashMuzzle()
     {
-        muzzleFlash.SetActive(true);
-        yield return new WaitForSeconds(0.05f);
-        muzzleFlash.SetActive(false);
+        ParticleSystem psMFlash = Instantiate(mFlash, mFlashPos.transform.position, Quaternion.identity);
+
+        psMFlash.transform.SetParent(mFlashPos.transform); // keeps particles inplace while moving
+
+        if (mFlash != null)
+            psMFlash.Play();
+
+        yield return new WaitForSeconds(0.12f);
+
+        if (mFlash != null)        
+            psMFlash.Stop();
+        
     }
 
     private IEnumerator Reload()

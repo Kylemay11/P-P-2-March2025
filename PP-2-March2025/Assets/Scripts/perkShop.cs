@@ -18,6 +18,7 @@ public class perkShop : MonoBehaviour
     [Range(1, 100)][SerializeField] public int bonusDamage;
 
 
+
     //Purchases
     public void makeIncresDamagePurchase()
     {
@@ -36,6 +37,7 @@ public class perkShop : MonoBehaviour
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<playerController>()?.SpeedIncrease(bonusSpeed);
             Debug.Log("You have increased speed");
+
         }
     }
 
