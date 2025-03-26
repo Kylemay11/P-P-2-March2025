@@ -472,9 +472,14 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         muzzleFlash.SetActive(true);
         ParticleSystem psMFlash = Instantiate(mFlash, transform.position, Quaternion.identity);
 
-        if(mFlash != null)
+        if (mFlash != null)
             psMFlash.Play();
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.5f);
+        if (mFlash != null)
+        {
+            psMFlash.Stop();
+            Destroy(psMFlash);
+        }    
         muzzleFlash.SetActive(false);
     }
 
