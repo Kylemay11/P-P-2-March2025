@@ -56,6 +56,21 @@ public class AmmoUI : MonoBehaviour
         UpdateReloadProgress(0f);
     }
 
+    // Jacob added
+    public void StopReload()
+    {
+        isReloading = false;
+        if (reloadCircle != null)
+        {
+            reloadCircle.fillAmount = 0f;
+        }
+        UpdateReloadProgress(0f);
+        ShowReloadIndicator(false);
+
+        gameObject.SetActive(false);
+
+    }
+
     public void UpdateReloadProgress(float percent)
     {
         if (reloadCircle != null)
