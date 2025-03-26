@@ -17032,6 +17032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 0
+  allZombieTypes: []
   zombiePrefabs:
   - {fileID: 1580404872814831951, guid: 735395926e702fa459fc9bf3777eb36d, type: 3}
   spawnPoints:
@@ -17722,6 +17723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 0
+  allZombieTypes: []
   zombiePrefabs:
   - {fileID: 1580404872814831951, guid: 735395926e702fa459fc9bf3777eb36d, type: 3}
   spawnPoints:
@@ -37536,6 +37538,70 @@ PrefabInstance:
       propertyPath: m_Name
       value: room 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2023572544366011085, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
+      propertyPath: zombiePrefabs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2023572544366011085, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
+      propertyPath: allZombieTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2023572544366011085, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
+      propertyPath: 'zombiePrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1580404872814831951, guid: 735395926e702fa459fc9bf3777eb36d, type: 3}
+    - target: {fileID: 2023572544366011085, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
+      propertyPath: 'zombiePrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1331572698522616251, guid: 84df07eb36dfa3242811945e7c1fc51a, type: 3}
+    - target: {fileID: 2023572544366011085, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
+      propertyPath: 'zombiePrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 7406443776305728358, guid: 0ac297701b8dfed48a04a48a06df125e, type: 3}
+    - target: {fileID: 2023572544366011085, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
+      propertyPath: 'allZombieTypes.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1580404872814831951, guid: 735395926e702fa459fc9bf3777eb36d, type: 3}
+    - target: {fileID: 2023572544366011085, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
+      propertyPath: 'allZombieTypes.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1331572698522616251, guid: 84df07eb36dfa3242811945e7c1fc51a, type: 3}
+    - target: {fileID: 2023572544366011085, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
+      propertyPath: 'allZombieTypes.Array.data[2]'
+      value: 
+      objectReference: {fileID: 7406443776305728358, guid: 0ac297701b8dfed48a04a48a06df125e, type: 3}
+    - target: {fileID: 4763367733201230710, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
+      propertyPath: zombiePrefabs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763367733201230710, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
+      propertyPath: allZombieTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763367733201230710, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
+      propertyPath: 'zombiePrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1580404872814831951, guid: 735395926e702fa459fc9bf3777eb36d, type: 3}
+    - target: {fileID: 4763367733201230710, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
+      propertyPath: 'zombiePrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1331572698522616251, guid: 84df07eb36dfa3242811945e7c1fc51a, type: 3}
+    - target: {fileID: 4763367733201230710, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
+      propertyPath: 'zombiePrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 7406443776305728358, guid: 0ac297701b8dfed48a04a48a06df125e, type: 3}
+    - target: {fileID: 4763367733201230710, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
+      propertyPath: 'allZombieTypes.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1580404872814831951, guid: 735395926e702fa459fc9bf3777eb36d, type: 3}
+    - target: {fileID: 4763367733201230710, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
+      propertyPath: 'allZombieTypes.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1331572698522616251, guid: 84df07eb36dfa3242811945e7c1fc51a, type: 3}
+    - target: {fileID: 4763367733201230710, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
+      propertyPath: 'allZombieTypes.Array.data[2]'
+      value: 
+      objectReference: {fileID: 7406443776305728358, guid: 0ac297701b8dfed48a04a48a06df125e, type: 3}
     - target: {fileID: 8096662398026520304, guid: 04e973c885c9a444eaef27179346d70b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29.041502
@@ -39165,6 +39231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 0
+  allZombieTypes: []
   zombiePrefabs:
   - {fileID: 1580404872814831951, guid: 735395926e702fa459fc9bf3777eb36d, type: 3}
   spawnPoints:

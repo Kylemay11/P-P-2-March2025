@@ -8,6 +8,7 @@ public class ZombieSpawner : MonoBehaviour
 
     [Header("Spawn Settings")]
     [SerializeField] private SpawnerDifficulty difficulty;
+    [SerializeField] private List<GameObject> allZombieTypes;
     [SerializeField] private List<GameObject> zombiePrefabs;
     [SerializeField] private List<Transform> spawnPoints;
     [SerializeField] private float spawnRate;
@@ -35,6 +36,16 @@ public class ZombieSpawner : MonoBehaviour
         this.healthMultiplier = healthMult;
         this.damageMultiplier = dmgMult;
         this.speedMultiplier = speedMult;
+
+        zombiePrefabs.Clear();
+
+        for (int i = 0; i < allZombieTypes.Count; i++)
+        {
+            if (wave >= (i + 1))
+            {
+                zombiePrefabs.Add(allZombieTypes[i]);
+            }
+        }
     }
 
     public void StartSpawning()
