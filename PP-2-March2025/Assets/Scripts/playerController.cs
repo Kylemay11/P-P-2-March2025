@@ -469,6 +469,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     private IEnumerator FlashMuzzle()
     {
+        // Get flassh to stay on mFlashPOS while player/camera moving
+
         ParticleSystem psMFlash = Instantiate(mFlash, mFlashPos.transform.position, Quaternion.identity);
 
         if (mFlash != null)
