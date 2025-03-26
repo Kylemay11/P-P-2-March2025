@@ -30876,7 +30876,7 @@ PrefabInstance:
     - target: {fileID: 8126096193993895226, guid: fafdfb487faa9174e99564b8adedeaa2, type: 3}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 5363912506889888168, guid: 7107fbfb9467f044dbccf0037606b266, type: 3}
+      objectReference: {fileID: 2164367382620820148, guid: 63aea15766c2d3744928c9b54e2c9966, type: 3}
     - target: {fileID: 8126096193993895226, guid: fafdfb487faa9174e99564b8adedeaa2, type: 3}
       propertyPath: shootPos1
       value: 
