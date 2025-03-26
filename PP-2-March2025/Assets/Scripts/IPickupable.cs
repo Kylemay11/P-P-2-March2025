@@ -2,5 +2,7 @@ using UnityEngine;
 
 public interface IPickupable
 {
-    void OnPickup(playerController player);
+    public void getWeaponStats(weaponStats wep);
+
+    // public void OnHealthPickup(playerController player);
 }

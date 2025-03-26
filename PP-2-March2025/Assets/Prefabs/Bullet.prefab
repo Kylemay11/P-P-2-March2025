@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1678486102424184883}
-  - component: {fileID: 3831732665505966270}
   - component: {fileID: 4359040572141358345}
   - component: {fileID: 7995267748645905845}
   - component: {fileID: 6196432618690728209}
   - component: {fileID: 4477761013073553686}
   - component: {fileID: 7617923607059084759}
   - component: {fileID: 2591112144256399541}
+  - component: {fileID: -590749684000619173}
   m_Layer: 10
   m_Name: Bullet
   m_TagString: Untagged
@@ -38,22 +38,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3831732665505966270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2954457284409173132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3dedb2673ab8274daad1be58da571ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  homingSpeed: 800
-  velocity: 1000
-  angleBetween: 0
-  target: {fileID: 0}
 --- !u!114 &4359040572141358345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,3 +267,18 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &-590749684000619173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2954457284409173132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3dedb2673ab8274daad1be58da571ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotSpeed: 1
+  speed: 1
+  target: {fileID: 0}
