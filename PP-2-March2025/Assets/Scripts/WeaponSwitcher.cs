@@ -25,7 +25,7 @@ public class WeaponSwitcher : MonoBehaviour
         }
     }
     
-    void SwitchWeapon(int index)
+    public void SwitchWeapon(int index)
     {
         for (int i = 0; i < weapons.Length; i++)
         {

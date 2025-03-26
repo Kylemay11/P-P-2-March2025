@@ -1,39 +1,36 @@
-﻿
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
-    [SerializeField] int frameRate;
+    [Header("Performance")]
+    [SerializeField] private int frameRate;
 
     [Header("Menus")]
-    [SerializeField] GameObject menuPause;
-    [SerializeField] GameObject menuWin;
-    [SerializeField] GameObject menuLose;
-    [SerializeField] GameObject menuShop;
-    [SerializeField] GameObject menuInventory;
+    [SerializeField] private GameObject menuPause;
+    [SerializeField] private GameObject menuWin;
+    [SerializeField] private GameObject menuLose;
+    [SerializeField] private GameObject menuShop;
+    [SerializeField] private GameObject menuInventory;
     [SerializeField] GameObject menuPerkShop;
     private GameObject menuActive;
 
     [Header("Wave Settings")]
-    [SerializeField] public float waveDuration;
-    [SerializeField] private List<ZombieSpawner> zombieSpawners;
-    private float waveTimer;
-    public bool waveActive;
-    private bool waitingToStartWave = true;
-    private int currentWave = 0;
-
-    [Header("Wave Scaling Multipliers (Per Wave)")]
+    [SerializeField] private float waveDuration;
     [SerializeField] private float healthMultiplier;
     [SerializeField] private float damageMultiplier;
     [SerializeField] private float speedMultiplier;
+
+    private float waveTimer;
+    public bool waveActive = false;
+    private bool waitingToStartWave = true;
+    private int currentWave;
 
     [Header("Player and UI")]
     public Image playerHPBar;
@@ -46,24 +43,9 @@ public class gameManager : MonoBehaviour
     public GameObject breakPanel;
     public TMP_Text startPromptText;
 
-    [Header("Spawner Phase Settings")]
-    [SerializeField] private List<SpawnerPhase> spawnerPhases;
-    [SerializeField] private int spawnersPerPhase; // How many spawners per phase
-    [SerializeField] private float PhaseDuration; // Duration per phase if not using waveDuration
-    [SerializeField] private bool useWaveDurationSplit = false; // If true, divide waveDuration across phases
-    [SerializeField] private bool isSpawnerActive = false; // If true, divide waveDuration across phases
-    private int currentPhaseIndex;
-    private float phaseTimer;
+    public bool isPaused = false;
 
-    [System.Serializable]
-    public struct SpawnerPhase
-    {
-        public List<ZombieSpawner> spawners;
-        public float duration;
-    }
-
-    public bool isPaused;
-    private int goalCount;
+    private int goalCount = 0;
 
     private void Awake()
     {
@@ -74,18 +56,15 @@ public class gameManager : MonoBehaviour
         if (player != null) playerScript = player.GetComponent<playerController>();
         if (weaponNotification == null) weaponNotification = FindAnyObjectByType<WeaponNotificationUI>();
 
-        zombieSpawners = new List<ZombieSpawner>(FindObjectsByType<ZombieSpawner>(FindObjectsSortMode.None));
-
-        waveInfoText.text = "";
+        waveInfoText.text = string.Empty;
         breakPanel.SetActive(false);
         ShowPreWavePrompt();
     }
 
-    void Update()
+    private void Update()
     {
         HandlePauseInput();
         HandleWaveLogic();
-        HandleSpawnerPhases();
     }
 
     private void HandlePauseInput()
@@ -95,8 +74,8 @@ public class gameManager : MonoBehaviour
             if (menuActive == null)
             {
                 PauseGame();
+                menuPause.SetActive(true);
                 menuActive = menuPause;
-                menuActive.SetActive(true);
                 EventSystem.current.SetSelectedGameObject(menuPause.transform.GetChild(0).gameObject);
             }
             else if (menuActive == menuPause)
@@ -115,29 +94,13 @@ public class gameManager : MonoBehaviour
 
             if (waveTimer <= 0)
             {
-                waveTimer = 0;
-                waveActive = false;
-                StopAllSpawners();
-                UpdateAliveCounterUI();
-                WaitBeforeCleanupUI();
-            }
-
-            if (currentPhaseIndex >= 0 && currentPhaseIndex < spawnerPhases.Count)
-            {
-                foreach (var spawner in spawnerPhases[currentPhaseIndex].spawners)
-                {
-                    spawner.SpawnOverTime();
-                }
+                EndWave();
             }
         }
         else if (!waitingToStartWave && GetTotalZombiesAlive() <= 0)
         {
             UpdateWaveInfoText($"Wave {currentWave} Complete!");
             ShowPreWavePrompt();
-        }
-        else if (!waveActive && !waitingToStartWave)
-        {
-            UpdateAliveCounterUI();
         }
 
         if (waitingToStartWave && Input.GetKeyDown(KeyCode.F))
@@ -146,68 +109,42 @@ public class gameManager : MonoBehaviour
         }
     }
 
-
-    public void PauseGame()
+    private void EndWave()
     {
-        isPaused = true;
-        Time.timeScale = 0;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        if (menuPause != null)
+        waveTimer = 0;
+        waveActive = false;
+
+        // Stop all room waves
+        RoomSpawnerManager[] roomManagers = FindObjectsByType<RoomSpawnerManager>(FindObjectsSortMode.None);
+        foreach (var room in roomManagers)
         {
-            menuPause.SetActive(true);
-            menuActive = menuPause;
-
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(menuPause.transform.GetChild(0).gameObject);
-        }
-    }
-
-    public void ResumeGame()
-    {
-        isPaused = false;
-        Time.timeScale = 1;
-
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
-        if (menuActive != null)
-        {
-            menuActive.SetActive(false);
-            menuActive = null;
+            room.EndRoomWave();
         }
 
-        EventSystem.current.SetSelectedGameObject(null);
+        UpdateAliveCounterUI();
+        StartCoroutine(WaitBeforeCleanupUI());
     }
 
     public void StartWave()
     {
-        currentWave++; // Increment wave
-        
-
-        currentPhaseIndex = -1;
+        currentWave++;
 
         float healthMult = Mathf.Pow(healthMultiplier, currentWave);
         float dmgMult = Mathf.Pow(damageMultiplier, currentWave);
         float speedMult = Mathf.Pow(speedMultiplier, currentWave);
 
-        foreach (var spawner in zombieSpawners)
+        RoomSpawnerManager[] roomManagers = FindObjectsByType<RoomSpawnerManager>(FindObjectsSortMode.None);
+        foreach (var room in roomManagers)
         {
-            if (spawner != null)
-            {
-                spawner.SetCurrentWave(currentWave, healthMult, dmgMult, speedMult);
-                spawner.currentZombiesAlive = 0;
-            }
+            room.InitializeRoomWave(currentWave, healthMult, dmgMult, speedMult);
         }
-        AutoBuildSpawnerPhases();
 
-        AdvanceSpawnerPhase();
         waveTimer = waveDuration;
         waveActive = true;
         waitingToStartWave = false;
 
         breakPanel.SetActive(false);
-        startPromptText.text = "";
+        startPromptText.text = string.Empty;
 
         ResumeGame();
     }
@@ -220,30 +157,54 @@ public class gameManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(menuPause.transform.GetChild(0).gameObject);
     }
 
+    public void PauseGame()
+    {
+        isPaused = true;
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void ResumeGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        if (menuActive != null)
+        {
+            menuActive.SetActive(false);
+            menuActive = null;
+        }
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
     public void UpdateGameGoal(int amount)
     {
         goalCount += amount;
         if (goalCount <= 0)
         {
             PauseGame();
+            menuWin.SetActive(true);
             menuActive = menuWin;
-            menuActive.SetActive(true);
         }
     }
 
     public void YouLose()
     {
         PauseGame();
+        menuLose.SetActive(true);
         menuActive = menuLose;
-        menuActive.SetActive(true);
     }
 
     private int GetTotalZombiesAlive()
     {
         int total = 0;
-        foreach (var spawner in zombieSpawners)
+        RoomSpawnerManager[] roomManagers = FindObjectsByType<RoomSpawnerManager>(FindObjectsSortMode.None);
+        foreach (var room in roomManagers)
         {
-            total += spawner.currentZombiesAlive;
+            total += room.GetZombiesAlive();
         }
         return total;
     }
@@ -253,107 +214,15 @@ public class gameManager : MonoBehaviour
         if (waveInfoText != null)
             waveInfoText.text = text;
     }
+
     private void UpdateAliveCounterUI()
     {
         UpdateWaveInfoText($"Wave {currentWave} | Cleanup Phase | Alive: {GetTotalZombiesAlive()}");
     }
-    private void HandleSpawnerPhases()
-    {
-        if (!waveActive) return;
-        if (spawnerPhases.Count == 0) return;
 
-        phaseTimer -= Time.deltaTime;
-
-        if (phaseTimer <= 0f)
-        {
-            AdvanceSpawnerPhase();
-        }
-    }
-
-    private void AdvanceSpawnerPhase()
-    {
-        StopAllSpawners();
-
-        currentPhaseIndex = (currentPhaseIndex + 1) % spawnerPhases.Count;
-        SpawnerPhase currentPhase = spawnerPhases[currentPhaseIndex];
-
-        if (currentPhase.spawners == null || currentPhase.spawners.Count == 0)
-        {
-            Debug.LogWarning($"SpawnerPhase {currentPhaseIndex} has no spawners assigned!");
-            return;
-        }
-
-        foreach (var spawner in currentPhase.spawners)
-        {
-            spawner.StartSpawning();
-        }
-
-        phaseTimer = currentPhase.duration;
-    }
-
-    private void StopAllSpawners()
-    {
-        foreach (var spawner in zombieSpawners)
-        {
-            spawner.StopSpawning();
-        }
-    }
     private IEnumerator WaitBeforeCleanupUI()
     {
         yield return new WaitForSeconds(0.1f);
         UpdateAliveCounterUI();
-    }
-
-    private void AutoBuildSpawnerPhases()
-    {
-        spawnerPhases.Clear();
-
-        List<ZombieSpawner> activeSpawners = new List<ZombieSpawner>();
-        foreach (var spawner in zombieSpawners)
-        {
-            if (spawner != null && spawner.IsSpawnerActive())
-                activeSpawners.Add(spawner);
-        }
-
-        int totalSpawners = activeSpawners.Count;
-        if (totalSpawners == 0)
-        {
-            Debug.LogWarning("No ACTIVE zombie spawners found. Cannot build phases.");
-            return;
-        }
-
-        int numPhases = Mathf.CeilToInt((float)totalSpawners / spawnersPerPhase);
-
-        for (int i = 0; i < totalSpawners; i += spawnersPerPhase)
-        {
-            SpawnerPhase phase = new SpawnerPhase
-            {
-                spawners = new List<ZombieSpawner>(),
-                duration = useWaveDurationSplit ? (waveDuration / numPhases) : PhaseDuration
-            };
-
-            for (int j = 0; j < spawnersPerPhase && (i + j) < totalSpawners; j++)
-            {
-                phase.spawners.Add(activeSpawners[i + j]);
-            }
-
-            spawnerPhases.Add(phase);
-        }
-
-        Debug.Log($"[GameManager] Auto-built {spawnerPhases.Count} phases using {spawnersPerPhase} spawners per phase.");
-    }
-
-    public bool IsSpawnerActive()
-    {
-        return isSpawnerActive;
-    }
-
-    public void RegisterSpawner(ZombieSpawner spawner)
-    {
-        if (!zombieSpawners.Contains(spawner))
-        {
-            zombieSpawners.Add(spawner);
-            Debug.Log($"Spawner registered: {spawner.name}");
-        }
     }
 }

@@ -4,16 +4,12 @@ using UnityEngine;
 public class perkShop : MonoBehaviour
 {
     public static perkShop instance;
-
-
     [Range(1, 100)][SerializeField] public int SpeedPrice;
     [Range(1, 100)][SerializeField] public int BonushealthPrice;
     [Range(1, 500)][SerializeField] public int HitDamagePrice;
     [Range(50, 1000)][SerializeField] public int bonusHP;
     [Range(1, 50)][SerializeField] float bonusSpeed;
     [Range(1, 100)][SerializeField] public int bonusDamage;
-
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,7 +25,6 @@ public class perkShop : MonoBehaviour
 
     public void makeIncresDamagePurchase()
     {
-
 
         if (CurrencySystem.instance.SpendMoney(HitDamagePrice))
         {
