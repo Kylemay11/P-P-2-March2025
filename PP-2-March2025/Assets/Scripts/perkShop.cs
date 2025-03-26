@@ -13,7 +13,7 @@ public class perkShop : MonoBehaviour
     [Range(1, 50)][SerializeField] float bonusSpeed;
     [Range(1, 100)][SerializeField] public int bonusDamage;
 
-
+    //make switch statement for the perks
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -58,6 +58,11 @@ public class perkShop : MonoBehaviour
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<playerController>()?.BonusHealth(bonusHP);
         }
+    }
+
+    public void randomPerk()
+    {
+
     }
 
 }
