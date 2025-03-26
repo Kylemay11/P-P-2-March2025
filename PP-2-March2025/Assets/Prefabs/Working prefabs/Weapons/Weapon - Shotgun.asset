@@ -16,9 +16,9 @@ MonoBehaviour:
   wepDamage: 50
   wepDist: 30
   wepRate: 0.8
-  ammoCur: 5
+  ammoCur: 0
   ammoMax: 6
   reloadTime: 1.6
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 19800002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}
   wepSound: []
   wepVolume: 0.5

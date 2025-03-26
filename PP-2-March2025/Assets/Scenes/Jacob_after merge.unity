@@ -21710,6 +21710,18 @@ PrefabInstance:
       propertyPath: maxZombies
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 3286981192730274840, guid: 406345db6e3a703409f2581301895e26, type: 3}
+      propertyPath: zombiePrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3286981192730274840, guid: 406345db6e3a703409f2581301895e26, type: 3}
+      propertyPath: 'zombiePrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1331572698522616251, guid: 84df07eb36dfa3242811945e7c1fc51a, type: 3}
+    - target: {fileID: 3286981192730274840, guid: 406345db6e3a703409f2581301895e26, type: 3}
+      propertyPath: 'zombiePrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 7406443776305728358, guid: 0ac297701b8dfed48a04a48a06df125e, type: 3}
     - target: {fileID: 4860588701444485472, guid: 406345db6e3a703409f2581301895e26, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.32
@@ -22909,7 +22921,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: waveDuration
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 29597742267219370, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: PhaseDuration
@@ -25499,6 +25511,22 @@ PrefabInstance:
       propertyPath: spawnRate
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3286981192730274840, guid: 406345db6e3a703409f2581301895e26, type: 3}
+      propertyPath: zombiePrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3286981192730274840, guid: 406345db6e3a703409f2581301895e26, type: 3}
+      propertyPath: 'zombiePrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1331572698522616251, guid: 84df07eb36dfa3242811945e7c1fc51a, type: 3}
+    - target: {fileID: 3286981192730274840, guid: 406345db6e3a703409f2581301895e26, type: 3}
+      propertyPath: 'zombiePrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 7406443776305728358, guid: 0ac297701b8dfed48a04a48a06df125e, type: 3}
+    - target: {fileID: 3286981192730274840, guid: 406345db6e3a703409f2581301895e26, type: 3}
+      propertyPath: 'zombiePrefabs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1580404872814831951, guid: 735395926e702fa459fc9bf3777eb36d, type: 3}
     - target: {fileID: 4860588701444485472, guid: 406345db6e3a703409f2581301895e26, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15

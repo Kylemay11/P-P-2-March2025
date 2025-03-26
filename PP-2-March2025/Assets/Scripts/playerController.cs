@@ -452,6 +452,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         if (Physics.Raycast(ray, out RaycastHit hit, wepDist))
         {
             Debug.Log("Hit: " + hit.collider.name);
+            Instantiate(wepList[wepListPos].hitEffect, hit.point, Quaternion.identity);
+
             IDamage target = hit.collider.GetComponentInParent<IDamage>();
             if (target != null)
             {
