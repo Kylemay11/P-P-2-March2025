@@ -536,7 +536,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         maxHP += amount;
     }
 
-    // replace the weapon the player has with their purchased weapon
+    // replace the weapon the player has with their purchased weapon????
     public void ReplaceWeapon(weaponStats newWeapon, int index)
     {
         if (index < 0 || index >= wepList.Count)
