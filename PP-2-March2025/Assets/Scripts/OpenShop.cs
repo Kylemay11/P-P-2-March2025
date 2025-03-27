@@ -40,9 +40,14 @@ public class OpenShop : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerNear = false;
+
+            // Only lock cursor and hide shop if shop is NOT open
+            if (!isActive)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void ToggleShop()

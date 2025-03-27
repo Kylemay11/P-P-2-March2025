@@ -92,7 +92,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     private float staminaRegenTimer;
     private bool staminaFullyDrained;
     private bool canSprint;
-   [SerializeField] private bool isGrounded;
+    [SerializeField] private bool isGrounded;
     bool isplayingSteps;
 
     void Start()
@@ -349,7 +349,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     public void updatePlayerUI()
     {
-      gameManager.instance.playerHPBar.fillAmount = (float)currentHP / maxHP;
+        gameManager.instance.playerHPBar.fillAmount = (float)currentHP / maxHP;
     }
 
     public void Heal(int amount)
@@ -365,9 +365,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         // implement interaction with shop logic
 
         wepList.Add(wep);
-        wepListPos = wepList.Count -1;
-        changeWeapon();        
-        
+        wepListPos = wepList.Count - 1;
+        changeWeapon();
+
 
     }
 
@@ -410,10 +410,10 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     void changeWeapon()
     {
-        if(isReloading) // true
+        if (isReloading) // true
         {
             //StopCoroutine(Reload());
-            
+
             isReloading = false;
         }
         wepDamage = wepList[wepListPos].wepDamage;
@@ -441,6 +441,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     {
         if (Input.GetButtonDown("Reload")) // add Timer for reload animation
         {
+
             reloadTest = StartCoroutine(Reload());
         }
     }
@@ -489,9 +490,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         yield return new WaitForSeconds(0.12f);
 
-        if (mFlash != null)        
+        if (mFlash != null)
             psMFlash.Stop();
-        
+
     }
 
     private IEnumerator Reload()
@@ -522,7 +523,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
             }
             timer += Time.deltaTime;
-            yield return null; 
+            yield return null;
         }
         // current wep
         if (isReloading == true)
@@ -548,14 +549,12 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     }
 
     // replace the weapon the player has with their purchased weapon????
-    public void ReplaceWeapon(weaponStats newWeapon, int index)
+    public void ReplaceWeapon(weaponStats stats, GameObject weaponPrefab, int slot)
     {
-        if (index < 0 || index >= wepList.Count)
-        {
-            return;
-        }
-
-        wepList[index] = newWeapon;
+        // Replace logic here, e.g., add stats to list, instantiate weapon model
+        wepList[slot] = stats;
+      //  EquipGunModel(Instantiate(weaponPrefab)); // Mount prefab properly
+        changeWeapon();
     }
 
     //audio
