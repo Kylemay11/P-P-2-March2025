@@ -3877,7 +3877,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.020000009, y: 0.06, z: 0.0030000086}
+  m_Size: {x: 0.04, y: 0.06, z: 0.0030000086}
   m_Center: {x: -0.0000000013969842, y: -0.0000000018626451, z: 0.00026649435}
 --- !u!1 &218722568
 GameObject:
@@ -6915,7 +6915,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.020000003, y: 0.06, z: 0.003000008}
+  m_Size: {x: 0.04, y: 0.06, z: 0.003000008}
   m_Center: {x: -0.0000000013969839, y: -0.0000000018626451, z: 0.00026655762}
 --- !u!23 &434807821
 MeshRenderer:
@@ -13250,8 +13250,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.020000003, y: 0.06, z: 0.003000008}
-  m_Center: {x: -0.0000000013969839, y: -0.0000000018626451, z: 0.000266498}
+  m_Size: {x: 0.04, y: 0.06, z: 0.003000008}
+  m_Center: {x: -0.004, y: -0.0000000018626451, z: 0.000266498}
 --- !u!23 &805112273
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15783,7 +15783,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.020000003, y: 0.06, z: 0.003000008}
+  m_Size: {x: 0.04, y: 0.06, z: 0.003000008}
   m_Center: {x: 0.0000000023283064, y: -0.0000000018626451, z: 0.000266498}
 --- !u!1 &895066411
 GameObject:
@@ -22874,8 +22874,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.020000003, y: 0.06, z: 0.003000008}
-  m_Center: {x: -0.0000000013969839, y: -0.0000000018626451, z: 0.00026655762}
+  m_Size: {x: 0.03, y: 0.06, z: 0.003000008}
+  m_Center: {x: 0.004, y: -0.0000000018626451, z: 0.00026655762}
 --- !u!23 &1324274760
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27671,7 +27671,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.020000003, y: 0.06, z: 0.003000008}
+  m_Size: {x: 0.04, y: 0.06, z: 0.003000008}
   m_Center: {x: -0.0000000013969839, y: -0.0000000018626451, z: 0.000266498}
 --- !u!43 &1619783394
 Mesh:
@@ -29267,7 +29267,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 945166895936516314, guid: 017032997bba995459247e4b709654c4, type: 3}
       propertyPath: currentMoney
-      value: 50
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 2420466666525081930, guid: 017032997bba995459247e4b709654c4, type: 3}
       propertyPath: maxHP
@@ -31517,8 +31517,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.020000003, y: 0.06, z: 0.003000008}
-  m_Center: {x: -0.0000000013969839, y: -0.0000000018626451, z: 0.00026655762}
+  m_Size: {x: 0.03, y: 0.06, z: 0.003000008}
+  m_Center: {x: -0.003, y: -0.0000000018626451, z: 0.00026655762}
 --- !u!23 &1902022373
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -46005,8 +46005,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.020000009, y: 0.06, z: 0.0030000086}
-  m_Center: {x: -0.0000000013969842, y: -0.0000000018626451, z: 0.00026649807}
+  m_Size: {x: 0.04, y: 0.06, z: 0.0030000086}
+  m_Center: {x: 0.005, y: -0.0000000018626451, z: 0.00026649807}
 --- !u!33 &3469287837782000077
 MeshFilter:
   m_ObjectHideFlags: 0
