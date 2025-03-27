@@ -573,7 +573,7 @@ MonoBehaviour:
   barrierDoor: {fileID: 0}
   attackRate: 2
   sightRange: 30
-  attackRange: 3
+  attackRange: 5
 --- !u!95 &9140289758255564282
 Animator:
   serializedVersion: 7

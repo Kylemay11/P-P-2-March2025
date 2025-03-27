@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SpawnerDifficulty { Easy, Medium, Hard }
+
 public class ZombieSpawner : MonoBehaviour
 {
-    public enum SpawnerDifficulty { Easy, Medium, Hard}
 
     [Header("Spawn Settings")]
     [SerializeField] private SpawnerDifficulty difficulty;
