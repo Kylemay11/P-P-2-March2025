@@ -35025,10 +35025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4709613827609420196, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1919957594}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
 --- !u!1 &1205268217571682888
@@ -37184,6 +37181,7 @@ MonoBehaviour:
   roomToActivate: {fileID: 281963844}
   interactionUI: {fileID: 1882259561}
   doorLockedText: {fileID: 0}
+  isPlayerNear: 0
 --- !u!65 &3469287836658407148
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42441,4 +42439,3 @@ SceneRoots:
   - {fileID: 1580995723567079617}
   - {fileID: 3772400511231741034}
   - {fileID: 7439995796725998559}
-

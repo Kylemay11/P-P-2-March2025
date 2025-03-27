@@ -23,10 +23,9 @@ public class Shop : MonoBehaviour
 
     [Header("Amounts")]
     [Range(1, 100)][SerializeField] int AmmoAmount;
-
-    private int Smallhealthpack;
-    private int Healthpack;
-    private int Largehealthpack;
+    [Range(1, 100)][SerializeField] int Smallhealthpack;
+    [Range(1, 100)][SerializeField] int Healthpack;
+    [Range(1, 100)][SerializeField] int Largehealthpack;
 
 
     [SerializeField] private List<weaponStats> availableWeapons = new List<weaponStats>(); // Weapons available in the shop
@@ -39,7 +38,7 @@ public class Shop : MonoBehaviour
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<playerController>()?.Heal(Smallhealthpack);
-           
+           player.GetComponent<playerController>()?.updatePlayerUI();
         }
     }
     public void makehpPurchase()
@@ -48,6 +47,7 @@ public class Shop : MonoBehaviour
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<playerController>()?.Heal(Healthpack);
+            player.GetComponent<playerController>()?.updatePlayerUI();
         }
     }
     public void makelhpPurchase()
@@ -56,6 +56,7 @@ public class Shop : MonoBehaviour
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<playerController>()?.Heal(Largehealthpack);
+            player.GetComponent<playerController>()?.updatePlayerUI();
         }
     }
 
@@ -65,6 +66,7 @@ public void makeAmmoPurchase()
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<raycastWeapon>()?.AmmoIncrease(AmmoAmount);
+            
         }
     }
 

@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class OpenShop : MonoBehaviour
 {
+    public static OpenShop instance;
     private GameObject shop;
-    private bool isActive = false;
+    public bool isActive = false;
     public bool isPlayerNear = false;
 
     void Start()
