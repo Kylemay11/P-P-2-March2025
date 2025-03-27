@@ -50,7 +50,7 @@ public class BarricadeDoor : MonoBehaviour
     {
         if (isPlayerNear && CurrentState != DoorState.Intact && !isRepairing)
         {
-            if (Input.GetButton("Interact") && !isRepairing)
+            if (Input.GetButton("Interact") && !isRepairing && CurrencySystem.instance.SpendMoney(repairCostPerPlank))
             {
                 StartCoroutine(RepairDoor());
             }

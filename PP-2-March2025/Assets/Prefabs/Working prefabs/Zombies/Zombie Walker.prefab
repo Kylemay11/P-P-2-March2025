@@ -565,10 +565,10 @@ MonoBehaviour:
   zombieRenderer: {fileID: 1325479285899949337}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   projectileSpeed: 0.5
-  faceTargetSpeed: 17.6
+  faceTargetSpeed: 20
   runMultiplyer: 1.37
   baseHealth: 30
-  baseSpeed: 2.1
+  baseSpeed: 4
   baseDamage: 5
   barrierDoor: {fileID: 0}
   attackRate: 2

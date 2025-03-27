@@ -1728,15 +1728,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2836430857927104943}
-  moneyOnDeath: 10
+  moneyOnDeath: 15
   type: 3
   sphereCollider: {fileID: 0}
   zombieRenderer: {fileID: 2715270178455750761}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   projectileSpeed: 0.5
-  faceTargetSpeed: 8.6
+  faceTargetSpeed: 10
   runMultiplyer: 1.37
-  baseHealth: 50
+  baseHealth: 45
   baseSpeed: 5
   baseDamage: 20
   barrierDoor: {fileID: 0}

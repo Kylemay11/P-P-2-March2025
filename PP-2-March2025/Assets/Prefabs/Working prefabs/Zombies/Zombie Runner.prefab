@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 331015650416077157}
-  moneyOnDeath: 5
+  moneyOnDeath: 10
   type: 1
   sphereCollider: {fileID: 0}
   zombieRenderer: {fileID: 798725619143263562}
@@ -349,10 +349,10 @@ MonoBehaviour:
   runMultiplyer: 5
   baseHealth: 20
   baseSpeed: 10
-  baseDamage: 5
+  baseDamage: 10
   barrierDoor: {fileID: 0}
-  attackRate: 0.88
-  sightRange: 4.1
+  attackRate: 1
+  sightRange: 10
   attackRange: 6
 --- !u!95 &3030307321845125742
 Animator:

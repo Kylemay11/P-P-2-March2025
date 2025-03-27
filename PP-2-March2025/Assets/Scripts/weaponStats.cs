@@ -16,4 +16,9 @@ public class weaponStats : ScriptableObject
     public ParticleSystem hitEffect;
     public AudioClip[] wepSound;
     [Range(0, 1)] public float wepVolume;
+
+    public void DamageIncrease(int amount)
+    {
+        wepDamage += amount;
+    }
 }

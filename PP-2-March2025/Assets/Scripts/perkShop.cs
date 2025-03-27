@@ -11,11 +11,15 @@ public class perkShop : MonoBehaviour
     [Range(1, 500)][SerializeField] public int HitDamagePrice;
     [Range(1, 500)][SerializeField] public int IAmmoPrice;
     [Range(1, 500)][SerializeField] public int RandPerkPrice;
+    [Range(1, 500)][SerializeField] public int Smallhealthpack;
+    [Range(1, 500)][SerializeField] public int Healthpack;
 
     [Header("Variables")]
     [Range(50, 1000)][SerializeField] public int bonusHP;
     [Range(1, 50)][SerializeField] float bonusSpeed;
     [Range(1, 100)][SerializeField] public int bonusDamage;
+    [Range(1, 100)][SerializeField] public int smallhealthpackPrice;
+    [Range(1, 100)][SerializeField] public int healthpackPrice;
 
 
 
@@ -25,7 +29,7 @@ public class perkShop : MonoBehaviour
         if (CurrencySystem.instance.SpendMoney(HitDamagePrice))
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<raycastWeapon>()?.DamageIncrease(bonusDamage);
+            player.GetComponent<weaponStats>()?.DamageIncrease(bonusDamage);
             Debug.Log("You have increased damage");
         }
     }
@@ -50,6 +54,26 @@ public class perkShop : MonoBehaviour
             Debug.Log("You have increased max HP");
         }
     }
+
+    public void makesmallhpPurchase()
+    {
+        if (CurrencySystem.instance.SpendMoney(smallhealthpackPrice))
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<playerController>()?.Heal(Smallhealthpack);
+            player.GetComponent<playerController>()?.updatePlayerUI();
+        }
+    }
+
+    public void makehpPurchase()
+    {
+        if (CurrencySystem.instance.SpendMoney(healthpackPrice))
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<playerController>()?.Heal(Healthpack);
+            player.GetComponent<playerController>()?.updatePlayerUI();
+        }
+    }
     //public void makeInfiniteAmmoPurchase()
     //{
     //    if (CurrencySystem.instance.SpendMoney(IAmmoPrice))
@@ -64,7 +88,7 @@ public class perkShop : MonoBehaviour
     public void IncresDamagePerk()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.GetComponent<raycastWeapon>()?.DamageIncrease(bonusDamage);
+        player.GetComponent<weaponStats>()?.DamageIncrease(bonusDamage);
     }
     public void IncresSpeedPerk()
     {
