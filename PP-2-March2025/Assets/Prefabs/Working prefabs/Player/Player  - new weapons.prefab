@@ -374,6 +374,9 @@ MonoBehaviour:
   normalCameraHeight: 1
   wepList: []
   wepModel: {fileID: 6548054474478578598}
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 24567
   wepDamage: 0
   wepDist: 0
   wepRate: 0

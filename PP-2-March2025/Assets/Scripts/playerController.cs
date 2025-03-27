@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections;
 using NUnit.Framework.Interfaces;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 public enum PlayerState
 {
@@ -63,6 +64,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [Header("Weapon Settings")]
     [SerializeField] List<weaponStats> wepList = new List<weaponStats>();
     [SerializeField] GameObject wepModel;
+    [SerializeField] private LayerMask hitMask;
     [SerializeField] private int wepDamage;
     [SerializeField] private int wepDist;
     [SerializeField] private float wepRate;
@@ -71,6 +73,14 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [SerializeField] private Coroutine reloadTest;
     [SerializeField] private ParticleSystem mFlash;
 
+    [Header("--- Audio ---")]
+    [SerializeField] AudioClip[] audSteps;
+    [Range(0, 1)][SerializeField] float audStepsVol;
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audJump;
+    [Range(0, 1)][SerializeField] float audJumpVol;
+    [SerializeField] AudioClip[] audHurt;
+    [Range(0, 1)][SerializeField] float audHurtVol;
 
     private Vector3 moveDir;
     private Vector3 velocity;
@@ -83,6 +93,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     private bool staminaFullyDrained;
     private bool canSprint;
    [SerializeField] private bool isGrounded;
+    bool isplayingSteps;
 
     void Start()
     {
@@ -450,7 +461,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         Debug.DrawRay(ray.origin, ray.direction * wepDist, Color.red, 1.5f);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, wepDist))
+        if (Physics.Raycast(ray, out RaycastHit hit, wepDist, hitMask))
         {
             Debug.Log("Hit: " + hit.collider.name);
             Instantiate(wepList[wepListPos].hitEffect, hit.point, Quaternion.identity);
@@ -522,5 +533,43 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         }
         else
             isReloading = false;
+    }
+
+
+    // logic for shops
+    public void SpeedIncrease(float amount)
+    {
+        walkSpeed += amount;
+    }
+
+    public void BonusHealth(int amount)
+    {
+        maxHP += amount;
+    }
+
+    // replace the weapon the player has with their purchased weapon????
+    public void ReplaceWeapon(weaponStats newWeapon, int index)
+    {
+        if (index < 0 || index >= wepList.Count)
+        {
+            return;
+        }
+
+        wepList[index] = newWeapon;
+    }
+
+    //audio
+
+    IEnumerator playSteps()
+    {
+        isplayingSteps = true;
+        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+
+        if (!canSprint)
+            yield return new WaitForSeconds(0.05f);
+        else
+            yield return new WaitForSeconds(0.03f);
+
+        isplayingSteps = false;
     }
 }

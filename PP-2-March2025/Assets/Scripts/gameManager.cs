@@ -13,11 +13,12 @@ public class gameManager : MonoBehaviour
     [SerializeField] private int frameRate;
 
     [Header("Menus")]
-    [SerializeField] private GameObject menuPause;
-    [SerializeField] private GameObject menuWin;
-    [SerializeField] private GameObject menuLose;
-    [SerializeField] private GameObject menuShop;
-    [SerializeField] private GameObject menuInventory;
+
+    [SerializeField] GameObject menuPause;
+    [SerializeField] GameObject menuWin;
+    [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject menuShop;
+
     [SerializeField] GameObject menuPerkShop;
     private GameObject menuActive;
 

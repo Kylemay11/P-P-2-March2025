@@ -121,8 +121,21 @@ public class raycastWeapon : MonoBehaviour
         }
     }
 
+
+    // logic for shops
     public void DamageIncrease(int amount)
     {
         damage += amount;
+    }
+
+    //public void InfiniteAmmoPerk()
+    //{
+    //    MaxAmmo = int.MaxValue;
+    //}
+
+    public void AmmoIncrease(int amount)
+    {
+        CurrentAmmo += amount;
+        AmmoUI.instance.UpdateAmmo(CurrentAmmo, MaxAmmo);
     }
 }

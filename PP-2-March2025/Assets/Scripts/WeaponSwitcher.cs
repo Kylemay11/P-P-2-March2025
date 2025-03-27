@@ -16,6 +16,7 @@ public class WeaponSwitcher : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchWeapon(0);
         if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchWeapon(1);
         if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchWeapon(2);
+        if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchWeapon(3);
 
         if (!gameManager.instance.isPaused && Input.GetButton("Fire1"))
         {
