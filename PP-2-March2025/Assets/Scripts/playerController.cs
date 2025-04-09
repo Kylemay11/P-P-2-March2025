@@ -551,25 +551,25 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     // replace the weapon the player has with their purchased weapon
     public void ReplaceWeapon(weaponStats newWeapon)
     {
-            
-        //dont need index just change the weapon pos and destroy previous
-        wepList[wepListPos] = newWeapon;
+        wepList.Remove(wepList[wepListPos]);
+        wepList.Add(newWeapon);
         changeWeapon();
-    //audio
-
-    IEnumerator playSteps()
-    {
-        isplayingSteps = true;
-        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
-
-        if (!canSprint)
-            yield return new WaitForSeconds(0.05f);
-        else
-            yield return new WaitForSeconds(0.03f);
-
-        isplayingSteps = false;
+        
     }
+    //audio
+        IEnumerator playSteps()
+        {
+            isplayingSteps = true;
+            aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
 
-    // make the weapon change the weapon postion of the current weapon user has equipped
+            if (!canSprint)
+                yield return new WaitForSeconds(0.05f);
+            else
+                yield return new WaitForSeconds(0.03f);
+
+            isplayingSteps = false;
+        }
+
+        // make the weapon change the weapon postion of the current weapon user has equipped
 
 }

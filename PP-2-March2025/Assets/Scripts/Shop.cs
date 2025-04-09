@@ -28,15 +28,7 @@ public class Shop : MonoBehaviour
     [Range(1, 100)][SerializeField] int Largehealthpack;
 
 
-    [System.Serializable]
-    public class ShopWeapon
-    {
-        public weaponStats stats;
-        public GameObject weaponPrefab;
-        public int price;
-    }
-
-    [SerializeField] private List<ShopWeapon> availableWeapons = new List<ShopWeapon>();
+    [SerializeField] List<weaponStats> availableWeapons = new List<weaponStats>();
     [SerializeField] private int weaponReplaceIndex = 0;
 
     // Vending Machine
