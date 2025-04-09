@@ -1,7 +1,152 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\MALICIOUS\\source\\repos\\MARCH_UNITY_PROJECT\\P-P-2-March2025\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\ZombieSpawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\ZombieSpawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\zombieBile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\zombieBile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\WeaponSwitcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\WeaponSwitcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\weaponStats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\weaponStats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\WeaponNotificationUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\WeaponNotificationUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\WeaponIdleSway.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\WeaponIdleSway.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\Temp-WalkerZombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\Temp-WalkerZombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\Shop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\Shop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\SeriallizeFieldAttribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\SeriallizeFieldAttribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\RoomSpawnerManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\RoomSpawnerManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\RocketRotator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\RocketRotator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\raycastWeapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\raycastWeapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\playerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\playerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\pickup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\pickup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\perkShop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\perkShop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\OpenShop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\OpenShop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\OpenPerkShop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\OpenPerkShop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\IZombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\IZombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\IPickupable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\IPickupable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\Inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\Inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\IDamage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\IDamage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\gameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\gameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\enemySpitter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\enemySpitter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\enemyAI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\enemyAI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\DummyZombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\DummyZombie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\doorInteract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\doorInteract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\DestructableEnvo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\DestructableEnvo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\DamagePopup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\DamagePopup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\Damage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\Damage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\CurrencyUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\CurrencyUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\CurrencySystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\CurrencySystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\cameraComtroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\cameraComtroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\buttonFunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\buttonFunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\BossAI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\BossAI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\BarricadeDoor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\BarricadeDoor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\AmmoUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PP-2-March2025\\Assets\\Scripts\\AmmoUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +154,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -24,8 +173,472 @@
               "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ZombieSpawner.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\ZombieSpawner.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\ZombieSpawner.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\ZombieSpawner.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\ZombieSpawner.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:46:12.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "zombieBile.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\zombieBile.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\zombieBile.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\zombieBile.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\zombieBile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:46:11.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WeaponSwitcher.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\WeaponSwitcher.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\WeaponSwitcher.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\WeaponSwitcher.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\WeaponSwitcher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:46:08.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "weaponStats.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\weaponStats.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\weaponStats.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\weaponStats.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\weaponStats.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:46:07.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "WeaponNotificationUI.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\WeaponNotificationUI.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\WeaponNotificationUI.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\WeaponNotificationUI.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\WeaponNotificationUI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:46:06.425Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WeaponIdleSway.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\WeaponIdleSway.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\WeaponIdleSway.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\WeaponIdleSway.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\WeaponIdleSway.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:46:05.424Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Temp-WalkerZombie.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\Temp-WalkerZombie.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\Temp-WalkerZombie.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\Temp-WalkerZombie.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\Temp-WalkerZombie.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:46:04.234Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Shop.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\Shop.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\Shop.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\Shop.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\Shop.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:46:02.318Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SeriallizeFieldAttribute.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\SeriallizeFieldAttribute.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\SeriallizeFieldAttribute.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\SeriallizeFieldAttribute.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\SeriallizeFieldAttribute.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:46:01.448Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RoomSpawnerManager.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\RoomSpawnerManager.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\RoomSpawnerManager.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\RoomSpawnerManager.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\RoomSpawnerManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:46:00.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RocketRotator.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\RocketRotator.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\RocketRotator.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\RocketRotator.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\RocketRotator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:59.074Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "raycastWeapon.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\raycastWeapon.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\raycastWeapon.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\raycastWeapon.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\raycastWeapon.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:57.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "playerController.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\playerController.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\playerController.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\playerController.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\playerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:56.455Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "pickup.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\pickup.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\pickup.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\pickup.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\pickup.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:55.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "perkShop.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\perkShop.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\perkShop.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\perkShop.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\perkShop.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:52.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "OpenShop.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\OpenShop.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\OpenShop.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\OpenShop.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\OpenShop.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:51.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "OpenPerkShop.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\OpenPerkShop.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\OpenPerkShop.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\OpenPerkShop.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\OpenPerkShop.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:50.367Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "IZombie.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\IZombie.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\IZombie.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\IZombie.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\IZombie.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:49.054Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "IPickupable.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\IPickupable.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\IPickupable.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\IPickupable.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\IPickupable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:47.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Inventory.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\Inventory.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\Inventory.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\Inventory.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\Inventory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:46.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "IDamage.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\IDamage.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\IDamage.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\IDamage.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\IDamage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:45.997Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "gameManager.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\gameManager.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\gameManager.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\gameManager.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\gameManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:44.119Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "enemySpitter.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\enemySpitter.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\enemySpitter.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\enemySpitter.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\enemySpitter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:42.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "enemyAI.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\enemyAI.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\enemyAI.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\enemyAI.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\enemyAI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:41.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "DummyZombie.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\DummyZombie.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\DummyZombie.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\DummyZombie.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\DummyZombie.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:39.524Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "doorInteract.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\doorInteract.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\doorInteract.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\doorInteract.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\doorInteract.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:35.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "DestructableEnvo.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\DestructableEnvo.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\DestructableEnvo.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\DestructableEnvo.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\DestructableEnvo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:34.483Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "DamagePopup.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\DamagePopup.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\DamagePopup.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\DamagePopup.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\DamagePopup.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:33.301Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Damage.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\Damage.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\Damage.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\Damage.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\Damage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:30.867Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "CurrencyUI.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\CurrencyUI.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\CurrencyUI.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\CurrencyUI.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\CurrencyUI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:29.533Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "CurrencySystem.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\CurrencySystem.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\CurrencySystem.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\CurrencySystem.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\CurrencySystem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:28.209Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "cameraComtroller.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\cameraComtroller.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\cameraComtroller.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\cameraComtroller.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\cameraComtroller.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:27.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "buttonFunctions.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\buttonFunctions.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\buttonFunctions.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\buttonFunctions.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\buttonFunctions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:25.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "BossAI.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\BossAI.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\BossAI.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\BossAI.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\BossAI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:19.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "BarricadeDoor.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\BarricadeDoor.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\BarricadeDoor.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\BarricadeDoor.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\BarricadeDoor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:17.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "AmmoUI.cs",
+              "DocumentMoniker": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\AmmoUI.cs",
+              "RelativeDocumentMoniker": "PP-2-March2025\\Assets\\Scripts\\AmmoUI.cs",
+              "ToolTip": "C:\\Users\\jakec\\source\\repos\\P-P-2-March2025\\PP-2-March2025\\Assets\\Scripts\\AmmoUI.cs",
+              "RelativeToolTip": "PP-2-March2025\\Assets\\Scripts\\AmmoUI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T13:45:11.721Z",
+              "EditorCaption": ""
             }
           ]
         },
@@ -40,10 +653,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }

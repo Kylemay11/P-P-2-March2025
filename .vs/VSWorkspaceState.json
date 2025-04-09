@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\PP-2-March2025",
+    "\\PP-2-March2025\\Assets",
+    "\\PP-2-March2025\\Assets\\Scripts"
   ],
+  "SelectedNode": "\\PP-2-March2025\\Assets\\Scripts\\ZombieSpawner.cs",
   "PreviewInSolutionExplorer": false
 }
