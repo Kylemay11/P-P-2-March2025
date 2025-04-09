@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Weapon - AK
   m_EditorClassIdentifier: 
   model: {fileID: 1487774384131766, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
-  wepDamage: 7
+  wepDamage: 20
   wepDist: 200
   wepRate: 0.2
-  ammoCur: 25
+  ammoCur: 30
   ammoMax: 30
+  totalAmmo: 100
   reloadTime: 1.4
   hitEffect: {fileID: 19800002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}
   wepSound: []

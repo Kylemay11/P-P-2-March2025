@@ -23,13 +23,20 @@ public class Shop : MonoBehaviour
 
     [Header("Amounts")]
     [Range(1, 100)][SerializeField] int AmmoAmount;
+    [Range(1, 100)][SerializeField] int Smallhealthpack;
+    [Range(1, 100)][SerializeField] int Healthpack;
+    [Range(1, 100)][SerializeField] int Largehealthpack;
 
-    private int Smallhealthpack;
-    private int Healthpack;
-    private int Largehealthpack;
 
+    [System.Serializable]
+    public class ShopWeapon
+    {
+        public weaponStats stats;
+        public GameObject weaponPrefab;
+        public int price;
+    }
 
-    [SerializeField] private List<weaponStats> availableWeapons = new List<weaponStats>(); // Weapons available in the shop
+    [SerializeField] private List<ShopWeapon> availableWeapons = new List<ShopWeapon>();
     [SerializeField] private int weaponReplaceIndex = 0;
 
     // Vending Machine
@@ -39,7 +46,7 @@ public class Shop : MonoBehaviour
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<playerController>()?.Heal(Smallhealthpack);
-           
+           player.GetComponent<playerController>()?.updatePlayerUI();
         }
     }
     public void makehpPurchase()
@@ -48,6 +55,7 @@ public class Shop : MonoBehaviour
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<playerController>()?.Heal(Healthpack);
+            player.GetComponent<playerController>()?.updatePlayerUI();
         }
     }
     public void makelhpPurchase()
@@ -56,6 +64,7 @@ public class Shop : MonoBehaviour
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<playerController>()?.Heal(Largehealthpack);
+            player.GetComponent<playerController>()?.updatePlayerUI();
         }
     }
 
@@ -65,6 +74,7 @@ public void makeAmmoPurchase()
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<raycastWeapon>()?.AmmoIncrease(AmmoAmount);
+            
         }
     }
 
@@ -80,6 +90,7 @@ public void makeAmmoPurchase()
         }
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<playerController>()?.ReplaceWeapon(availableWeapons[weaponIndex]);
+
     }
 
     // purchase the weapons from their corrsponding postion in the list

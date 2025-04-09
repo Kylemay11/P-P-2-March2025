@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections;
 using NUnit.Framework.Interfaces;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 public enum PlayerState
 {
@@ -63,12 +64,23 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [Header("Weapon Settings")]
     [SerializeField] List<weaponStats> wepList = new List<weaponStats>();
     [SerializeField] GameObject wepModel;
+    [SerializeField] private LayerMask hitMask;
     [SerializeField] private int wepDamage;
     [SerializeField] private int wepDist;
     [SerializeField] private float wepRate;
     [SerializeField] private float reloadTime;
-    [SerializeField] private GameObject muzzleFlash;
+    [SerializeField] private GameObject mFlashPos;
     [SerializeField] private Coroutine reloadTest;
+    [SerializeField] private ParticleSystem mFlash;
+
+    [Header("--- Audio ---")]
+    [SerializeField] AudioClip[] audSteps;
+    [Range(0, 1)][SerializeField] float audStepsVol;
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audJump;
+    [Range(0, 1)][SerializeField] float audJumpVol;
+    [SerializeField] AudioClip[] audHurt;
+    [Range(0, 1)][SerializeField] float audHurtVol;
 
     private Vector3 moveDir;
     private Vector3 velocity;
@@ -80,7 +92,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     private float staminaRegenTimer;
     private bool staminaFullyDrained;
     private bool canSprint;
-   [SerializeField] private bool isGrounded;
+    [SerializeField] private bool isGrounded;
+    bool isplayingSteps;
 
     void Start()
     {
@@ -336,7 +349,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     public void updatePlayerUI()
     {
-      gameManager.instance.playerHPBar.fillAmount = (float)currentHP / maxHP;
+        gameManager.instance.playerHPBar.fillAmount = (float)currentHP / maxHP;
     }
 
     public void Heal(int amount)
@@ -352,9 +365,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         // implement interaction with shop logic
 
         wepList.Add(wep);
-        wepListPos = wepList.Count -1;
-        changeWeapon();        
-        
+        wepListPos = wepList.Count - 1;
+        changeWeapon();
+
 
     }
 
@@ -397,10 +410,10 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     void changeWeapon()
     {
-        if(isReloading) // true
+        if (isReloading) // true
         {
             //StopCoroutine(Reload());
-            
+
             isReloading = false;
         }
         wepDamage = wepList[wepListPos].wepDamage;
@@ -428,6 +441,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     {
         if (Input.GetButtonDown("Reload")) // add Timer for reload animation
         {
+
             reloadTest = StartCoroutine(Reload());
         }
     }
@@ -436,7 +450,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     {
         attackTimer = 0;
 
-        if (muzzleFlash != null)
+        if (mFlashPos != null)
         {
             StartCoroutine(FlashMuzzle());
         }
@@ -448,7 +462,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         Debug.DrawRay(ray.origin, ray.direction * wepDist, Color.red, 1.5f);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, wepDist))
+        if (Physics.Raycast(ray, out RaycastHit hit, wepDist, hitMask))
         {
             Debug.Log("Hit: " + hit.collider.name);
             Instantiate(wepList[wepListPos].hitEffect, hit.point, Quaternion.identity);
@@ -467,9 +481,18 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     private IEnumerator FlashMuzzle()
     {
-        muzzleFlash.SetActive(true);
-        yield return new WaitForSeconds(0.05f);
-        muzzleFlash.SetActive(false);
+        ParticleSystem psMFlash = Instantiate(mFlash, mFlashPos.transform.position, Quaternion.identity);
+
+        psMFlash.transform.SetParent(mFlashPos.transform); // keeps particles inplace while moving
+
+        if (mFlash != null)
+            psMFlash.Play();
+
+        yield return new WaitForSeconds(0.12f);
+
+        if (mFlash != null)
+            psMFlash.Stop();
+
     }
 
     private IEnumerator Reload()
@@ -500,7 +523,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
             }
             timer += Time.deltaTime;
-            yield return null; 
+            yield return null;
         }
         // current wep
         if (isReloading == true)
@@ -532,6 +555,19 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         //dont need index just change the weapon pos and destroy previous
         wepList[wepListPos] = newWeapon;
         changeWeapon();
+    //audio
+
+    IEnumerator playSteps()
+    {
+        isplayingSteps = true;
+        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+
+        if (!canSprint)
+            yield return new WaitForSeconds(0.05f);
+        else
+            yield return new WaitForSeconds(0.03f);
+
+        isplayingSteps = false;
     }
 
     // make the weapon change the weapon postion of the current weapon user has equipped

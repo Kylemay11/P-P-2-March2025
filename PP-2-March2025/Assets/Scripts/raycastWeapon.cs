@@ -20,6 +20,7 @@ public class raycastWeapon : MonoBehaviour
     private bool isReloading = false;
     private float nextShootTime;
 
+    private int reloadStartWeaponIndex;
     void Start()
     {
         CurrentAmmo = MaxAmmo;
@@ -100,7 +101,9 @@ public class raycastWeapon : MonoBehaviour
         float timer = 0f;
         while (timer < reloadTime)
         {
+
             timer += Time.deltaTime;
+            
             yield return null;
         }
 
@@ -120,10 +123,6 @@ public class raycastWeapon : MonoBehaviour
 
 
     // logic for shops
-    public void DamageIncrease(int amount)
-    {
-        damage += amount;
-    }
 
     public void InfiniteAmmoPerk()
     {

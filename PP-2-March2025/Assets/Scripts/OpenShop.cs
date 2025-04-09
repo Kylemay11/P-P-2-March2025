@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class OpenShop : MonoBehaviour
 {
+    public static OpenShop instance;
     private GameObject shop;
-    private bool isActive = false;
+    public bool isActive = false;
     public bool isPlayerNear = false;
 
     void Start()
@@ -39,9 +40,14 @@ public class OpenShop : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerNear = false;
+
+            // Only lock cursor and hide shop if shop is NOT open
+            if (!isActive)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void ToggleShop()

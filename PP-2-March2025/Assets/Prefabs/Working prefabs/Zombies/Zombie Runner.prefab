@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 331015650416077157}
-  moneyOnDeath: 5
+  moneyOnDeath: 10
   type: 1
   sphereCollider: {fileID: 0}
   zombieRenderer: {fileID: 798725619143263562}
@@ -349,11 +349,11 @@ MonoBehaviour:
   runMultiplyer: 5
   baseHealth: 20
   baseSpeed: 10
-  baseDamage: 5
+  baseDamage: 10
   barrierDoor: {fileID: 0}
-  attackRate: 0.88
-  sightRange: 4.1
-  attackRange: 2.4
+  attackRate: 1
+  sightRange: 10
+  attackRange: 6
 --- !u!95 &3030307321845125742
 Animator:
   serializedVersion: 7
@@ -388,11 +388,11 @@ NavMeshAgent:
   m_Radius: 0.5
   m_Speed: 10
   m_Acceleration: 8
-  avoidancePriority: 50
+  avoidancePriority: 75
   m_AngularSpeed: 120
-  m_StoppingDistance: 3
+  m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
+  m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
