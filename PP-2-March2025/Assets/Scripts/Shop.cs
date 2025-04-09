@@ -74,14 +74,12 @@ public void makeAmmoPurchase()
 
     public void PurchaseWeapon(int weaponIndex)
     {
-        if (weaponIndex < 0 || weaponIndex >= availableWeapons.Count)
+        if (weaponIndex < 0 || weaponIndex > availableWeapons.Count)
         {
             return;
         }
-
-        weaponStats newWeapon = availableWeapons[weaponIndex];
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.GetComponent<playerController>()?.ReplaceWeapon(newWeapon, weaponReplaceIndex);
+        player.GetComponent<playerController>()?.ReplaceWeapon(availableWeapons[weaponIndex]);
     }
 
     // purchase the weapons from their corrsponding postion in the list
