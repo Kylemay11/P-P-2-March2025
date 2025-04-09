@@ -199,6 +199,13 @@ public class gameManager : MonoBehaviour
         menuActive = menuLose;
     }
 
+    public void YouWin()
+    {
+        PauseGame();
+        menuWin.SetActive(true);
+        menuActive = menuWin;
+    }
+
     private int GetTotalZombiesAlive()
     {
         int total = 0;
