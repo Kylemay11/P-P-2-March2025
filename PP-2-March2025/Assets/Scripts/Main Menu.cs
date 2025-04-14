@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
 
     public void playGame()
     {
-        SceneManager.LoadScene("Kyle's_Scene");
+        SceneManager.LoadScene("Level_1");
     }
 
     public void gameQuit()
