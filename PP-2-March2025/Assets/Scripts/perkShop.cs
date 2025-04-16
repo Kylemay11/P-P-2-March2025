@@ -11,6 +11,7 @@ public class perkShop : MonoBehaviour
     [Range(1, 500)][SerializeField] public int HitDamagePrice;
     [Range(1, 500)][SerializeField] public int IAmmoPrice;
     [Range(1, 500)][SerializeField] public int RandPerkPrice;
+    [Range(1, 100)][SerializeField] public int bonusStaminaPrice;
     [Range(1, 500)][SerializeField] public int Smallhealthpack;
     [Range(1, 500)][SerializeField] public int Healthpack;
 
@@ -18,6 +19,7 @@ public class perkShop : MonoBehaviour
     [Range(50, 1000)][SerializeField] public int bonusHP;
     [Range(1, 50)][SerializeField] float bonusSpeed;
     [Range(1, 100)][SerializeField] public int bonusDamage;
+    [Range(1, 100)][SerializeField] public int bonusStamina;
     [Range(1, 100)][SerializeField] public int smallhealthpackPrice;
     [Range(1, 100)][SerializeField] public int healthpackPrice;
 
@@ -29,11 +31,20 @@ public class perkShop : MonoBehaviour
         if (CurrencySystem.instance.SpendMoney(HitDamagePrice))
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<weaponStats>()?.DamageIncrease(bonusDamage);
+            player.GetComponent<playerController>()?.DamageIncrease(bonusDamage);
             Debug.Log("You have increased damage");
         }
     }
 
+    public void makeIncresStaminaPurchase()
+    {
+        if (CurrencySystem.instance.SpendMoney(bonusStaminaPrice))
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<playerController>()?.StaminaIncrease(bonusStamina);
+            Debug.Log("You have increased stamina");
+        }
+    }
     public void makeIncresSpeedPurchase()
     {
         if (CurrencySystem.instance.SpendMoney(SpeedPrice))
@@ -41,7 +52,6 @@ public class perkShop : MonoBehaviour
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<playerController>()?.SpeedIncrease(bonusSpeed);
             Debug.Log("You have increased speed");
-
         }
     }
 
@@ -88,7 +98,7 @@ public class perkShop : MonoBehaviour
     public void IncresDamagePerk()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.GetComponent<weaponStats>()?.DamageIncrease(bonusDamage);
+        player.GetComponent<playerController>()?.DamageIncrease(bonusDamage);
     }
     public void IncresSpeedPerk()
     {
@@ -100,7 +110,11 @@ public class perkShop : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<playerController>()?.BonusHealth(bonusHP);
     }
-
+    public void BonusStaminaPerk()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<playerController>()?.StaminaIncrease(bonusStamina);
+    }
 
     public void randomPerk()
     {
@@ -124,6 +138,10 @@ public class perkShop : MonoBehaviour
                 //case 3:
                 // makeInfiniteAmmoPurchase();
                 // break;
+                case 3:
+                    BonusStaminaPerk();
+                    Debug.Log("You have increased stamina");
+                    break;
                 default:
                     Debug.LogError("Invalid perk selection.");
                     break;

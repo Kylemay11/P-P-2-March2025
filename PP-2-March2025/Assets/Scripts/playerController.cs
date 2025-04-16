@@ -542,6 +542,10 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     {
         walkSpeed += amount;
     }
+    public void StaminaIncrease(float amount)
+    {
+        maxStamina += amount;
+    }
 
     public void BonusHealth(int amount)
     {
@@ -556,8 +560,12 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         changeWeapon();
         
     }
+    public void DamageIncrease(int amount)
+    {
+        wepDamage += amount;
+    }
     //audio
-        IEnumerator playSteps()
+    IEnumerator playSteps()
         {
             isplayingSteps = true;
             aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
