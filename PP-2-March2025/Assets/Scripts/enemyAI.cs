@@ -256,7 +256,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     {
         this.barrierDoor = door;
     }
-    // Kyle added for barricadeDoor
+    //Kyle added for barricadeDoor
     public void SetTargetState(ZombieTargetState newState)
     {
         if (hasEnteredRoom && newState == ZombieTargetState.AttackingDoor)
