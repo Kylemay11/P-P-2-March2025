@@ -3668,10 +3668,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -17798,15 +17798,9 @@ MonoBehaviour:
   Healthpack: 1
   Largehealthpack: 1
   availableWeapons:
-  - stats: {fileID: 11400000, guid: db92f0ee81b9fa74db3ff84e7bae73a2, type: 2}
-    weaponPrefab: {fileID: 0}
-    price: 0
-  - stats: {fileID: 11400000, guid: 097874adcb2f0a544805a97756bd796a, type: 2}
-    weaponPrefab: {fileID: 0}
-    price: 0
-  - stats: {fileID: 11400000, guid: 4af03f8c8c01fb248b2809972d734a64, type: 2}
-    weaponPrefab: {fileID: 0}
-    price: 0
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   weaponReplaceIndex: 0
 --- !u!1 &8695483624730863766
 GameObject:
