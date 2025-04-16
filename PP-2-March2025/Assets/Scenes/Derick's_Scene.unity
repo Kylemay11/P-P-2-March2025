@@ -298,7 +298,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6558778521231021088, guid: 746e5a29996ea7447b8372503489108b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329234757651610058, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: makeIncresDamagePurchase
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188851899329818548, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: Healthpack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188851899329818548, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: bonusStamina
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188851899329818548, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: Smallhealthpack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188851899329818548, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: healthpackPrice
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188851899329818548, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: bonusStaminaPrice
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188851899329818548, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: smallhealthpackPrice
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9210063131211368368, guid: 746e5a29996ea7447b8372503489108b, type: 3}
       propertyPath: m_LocalPosition.x

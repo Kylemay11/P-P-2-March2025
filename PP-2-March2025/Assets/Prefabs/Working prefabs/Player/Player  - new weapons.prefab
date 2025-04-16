@@ -278,6 +278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5164201416157022338}
   - component: {fileID: 945166895936516314}
+  - component: {fileID: 5639920395836675616}
   - component: {fileID: 2420466666525081930}
   - component: {fileID: 2727642905191196999}
   - component: {fileID: 8697134708101572028}
@@ -299,7 +300,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 17.68, y: 1, z: 31.73}
-  m_LocalScale: {x: 1, y: 1.2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8775653527545109088}
@@ -333,7 +334,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  currentMoney: 100
+  currentMoney: 200
+--- !u!114 &5639920395836675616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9222826323181665447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31cc8aef2744c2c4e9be27ae8b8db9ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 8775653527545109088}
+  characterController: {fileID: 0}
+  walkBobSpeed: 16
+  walkBobAmount: 0.05
+  runBobSpeed: 18
+  runBobAmount: 0.1
+  transitionSpeed: 10
+  horizontalBobFactor: 0.3
 --- !u!114 &2420466666525081930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,37 +373,44 @@ MonoBehaviour:
     m_Bits: 8200
   speedMeter: {fileID: 0}
   playerCamera: {fileID: 8775653527545109088}
-  maxHP: 200
+  maxHP: 100
   currentHP: 0
   walkSpeed: 8
-  sprintMultiplier: 2
-  maxStamina: 10
-  currentStamina: 10
-  staminaDrainRate: 0
-  staminaRegainRate: 2
-  staminaRegainDelay: 1.5
-  slideStaminaDrainMultiplier: 1.5
-  slideDuration: 1
-  slideSpeedBoost: 2
+  sprintMultiplier: 1.5
+  maxStamina: 15
+  currentStamina: 0
+  staminaDrainRate: 2
+  staminaRegainRate: 1
+  staminaRegainDelay: 1.2
+  slideStaminaDrainMultiplier: 1.2
+  slideDuration: 0.7
+  slideSpeedBoost: 1.2
   jumpForce: 8
   gravity: 25
   maxJumps: 3
   crouchSpeed: 4
-  crouchColliderSize: {x: 0, y: 1, z: 0}
+  crouchColliderSize: {x: 0, y: 0.5, z: 0}
   normalColliderSize: {x: 0, y: 2, z: 0}
-  crouchCameraHeight: 0.5
-  normalCameraHeight: 1
+  crouchCameraHeight: 1
+  normalCameraHeight: 1.8
   wepList: []
   wepModel: {fileID: 6548054474478578598}
   hitMask:
     serializedVersion: 2
-    m_Bits: 24567
+    m_Bits: 24575
   wepDamage: 0
-  wepDist: 0
+  wepDist: 1500
   wepRate: 0
   reloadTime: 0
   mFlashPos: {fileID: 3055572700376633791}
   mFlash: {fileID: 6943685617558384535, guid: 44ec949d6d1686d478b43d3208a7c197, type: 3}
+  audSteps: []
+  audStepsVol: 0
+  aud: {fileID: 0}
+  audJump: []
+  audJumpVol: 0
+  audHurt: []
+  audHurtVol: 0
   isGrounded: 0
 --- !u!23 &2727642905191196999
 MeshRenderer:
