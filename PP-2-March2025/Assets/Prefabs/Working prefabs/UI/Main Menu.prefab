@@ -1659,6 +1659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   credReel: {fileID: 0}
+  lvlSelect: {fileID: 0}
 --- !u!1 &5777039426553255340
 GameObject:
   m_ObjectHideFlags: 0
@@ -2512,7 +2513,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1787582988406116297}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: playGame
+        m_MethodName: openLevelSelector
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
