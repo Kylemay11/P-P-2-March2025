@@ -6,6 +6,8 @@ public class MainMenu : MonoBehaviour
     private bool isActive = false;
     public GameObject credReel;
 
+    public GameObject lvlSelect;
+
     void Start()
     {
 
@@ -15,11 +17,18 @@ public class MainMenu : MonoBehaviour
             credReel.SetActive(false);
         }
 
+        lvlSelect = GameObject.Find("Level Selector");
+        if (lvlSelect != null)
+        {
+            lvlSelect.SetActive(false);
+        }
+
     }
 
-    public void playGame()
+    public void playGame(int lvlID)
     {
-        SceneManager.LoadScene("Level_1");
+        string levelname = "Level_" + lvlID;
+        SceneManager.LoadScene(levelname);
     }
 
     public void gameQuit()
@@ -32,6 +41,7 @@ public class MainMenu : MonoBehaviour
     }
     public void creditsReel()
     {
+
         isActive = !isActive;
         if (credReel != null)
             credReel.SetActive(isActive);
@@ -41,7 +51,11 @@ public class MainMenu : MonoBehaviour
     {
 
     }
-
-
+    public void openLevelSelector()
+    {
+        isActive = !isActive;
+        if (lvlSelect != null)
+            lvlSelect.SetActive(isActive);
+    }
 
 }
