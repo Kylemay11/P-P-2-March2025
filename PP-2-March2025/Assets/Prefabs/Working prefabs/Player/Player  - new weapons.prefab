@@ -384,7 +384,7 @@ MonoBehaviour:
   staminaRegainDelay: 1.2
   slideStaminaDrainMultiplier: 1.2
   slideDuration: 0.7
-  slideSpeedBoost: 1.2
+  slideSpeedBoost: 2
   jumpForce: 8
   gravity: 25
   maxJumps: 3
