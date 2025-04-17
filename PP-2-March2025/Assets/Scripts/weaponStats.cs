@@ -9,8 +9,8 @@ public class weaponStats : ScriptableObject
     [Range(5, 1000)] public int wepDist;
     [Range(0.1f, 2)] public float wepRate;
     public int ammoCur;
-    [Range(1, 100)] public int ammoMax;
-    [Range(100, 300)] public int totalAmmo;
+    [Range(1, 500)] public int ammoMax;
+    [Range(10, 5000)] public int totalAmmo;
     [Range(0.1f, 5)] public float reloadTime;
 
     public ParticleSystem hitEffect;
