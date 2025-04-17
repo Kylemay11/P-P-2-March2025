@@ -559,7 +559,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     {
         wepList.Remove(wepList[wepListPos]);
         wepList.Add(newWeapon);
-        changeWeapon();        
+        changeWeapon();
     }
     public void DamageIncrease(int amount)
     {
