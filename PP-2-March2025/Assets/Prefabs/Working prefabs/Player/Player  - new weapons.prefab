@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 5164201416157022338}
   - component: {fileID: 945166895936516314}
   - component: {fileID: 5639920395836675616}
+  - component: {fileID: 8069841962224479237}
   - component: {fileID: 2420466666525081930}
   - component: {fileID: 2727642905191196999}
   - component: {fileID: 8697134708101572028}
@@ -355,6 +356,25 @@ MonoBehaviour:
   runBobAmount: 0.1
   transitionSpeed: 10
   horizontalBobFactor: 0.3
+--- !u!114 &8069841962224479237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9222826323181665447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5d045e78b87d047959fcd4ac7edcc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 3630866813292727255}
+  weapon: {fileID: 6207992813286999810}
+  adsKey: 324
+  adsFOV: 30
+  normalFOV: 60
+  adsPosition: {x: 0, y: -0.021, z: 0.411}
+  transitionSpeed: 8
 --- !u!114 &2420466666525081930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,7 +404,7 @@ MonoBehaviour:
   staminaRegainDelay: 1.2
   slideStaminaDrainMultiplier: 1.2
   slideDuration: 0.7
-  slideSpeedBoost: 1.2
+  slideSpeedBoost: 2
   jumpForce: 8
   gravity: 25
   maxJumps: 3

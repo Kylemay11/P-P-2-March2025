@@ -5,7 +5,7 @@ public class MainMenu : MonoBehaviour
 {
     private bool isActive = false;
     public GameObject credReel;
-
+    public GameObject settingsUI;
     public GameObject lvlSelect;
 
     void Start()
@@ -21,6 +21,12 @@ public class MainMenu : MonoBehaviour
         if (lvlSelect != null)
         {
             lvlSelect.SetActive(false);
+        }
+
+        settingsUI = GameObject.Find("Setting");
+        if (settingsUI != null)
+        {
+            settingsUI.SetActive(false);
         }
 
     }
@@ -41,7 +47,6 @@ public class MainMenu : MonoBehaviour
     }
     public void creditsReel()
     {
-
         isActive = !isActive;
         if (credReel != null)
             credReel.SetActive(isActive);
@@ -49,7 +54,9 @@ public class MainMenu : MonoBehaviour
 
     public void openSettings()
     {
-
+        isActive = !isActive;
+        if (settingsUI != null)
+            settingsUI.SetActive(isActive);
     }
     public void openLevelSelector()
     {

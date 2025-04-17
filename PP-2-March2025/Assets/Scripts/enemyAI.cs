@@ -278,6 +278,14 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         }
     }
 
+    //private bool isbarrierDoor()
+    //{
+    //    if (!barrierDoor) // null
+    //        return true;
+    //    if (barrierDoor)
+    //        return false;
+    //}
+
     private void HandleTargeting()
     {
         if (currentTargetState == ZombieTargetState.AttackingDoor)

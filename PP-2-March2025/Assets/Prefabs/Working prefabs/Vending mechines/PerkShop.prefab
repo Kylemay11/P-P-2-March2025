@@ -2621,9 +2621,15 @@ MonoBehaviour:
   HitDamagePrice: 20
   IAmmoPrice: 10
   RandPerkPrice: 5
+  bonusStaminaPrice: 1
+  Smallhealthpack: 1
+  Healthpack: 1
   bonusHP: 50
   bonusSpeed: 8
   bonusDamage: 6
+  bonusStamina: 5
+  smallhealthpackPrice: 1
+  healthpackPrice: 1
 --- !u!1 &1897684605960526135
 GameObject:
   m_ObjectHideFlags: 0
@@ -6556,10 +6562,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
