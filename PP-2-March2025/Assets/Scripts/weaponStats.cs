@@ -17,5 +17,25 @@ public class weaponStats : ScriptableObject
     public AudioClip[] wepSound;
     [Range(0, 1)] public float wepVolume;
 
-    
+
+    public void Reload()
+    {
+        int ammoNeeded = ammoMax - ammoCur;
+        // checks reserve to see if you can fully reload
+        int ammoToAdd = Mathf.Min(ammoNeeded, totalAmmo);
+
+        ammoCur += ammoToAdd;
+        totalAmmo -= ammoToAdd;
+    }
+
+    public bool CanFire()
+    {
+        return ammoCur > 0;
+    }    
+
+    public int CountAllAmmo()
+    {
+        return ammoCur + totalAmmo;
+    }
+
 }
