@@ -448,6 +448,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     private void Shoot()
     {
+        if (!wepList[wepListPos].CanFire()) // isempty
+            { return; } // click sound
+
         attackTimer = 0;
 
         if (mFlashPos != null)
@@ -528,7 +531,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         // current wep
         if (isReloading == true)
         {
-            wepList[wepListPos].ammoCur = wepList[wepListPos].ammoMax;
+            wepList[wepListPos].Reload();
 
             AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
         }
@@ -557,8 +560,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     {
         wepList.Remove(wepList[wepListPos]);
         wepList.Add(newWeapon);
-        changeWeapon();
-        
+        changeWeapon();        
     }
     public void DamageIncrease(int amount)
     {
