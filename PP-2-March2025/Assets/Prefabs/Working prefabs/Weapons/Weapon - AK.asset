@@ -16,8 +16,8 @@ MonoBehaviour:
   wepDamage: 20
   wepDist: 200
   wepRate: 0.2
-  ammoCur: 28
-  ammoMax: 30
+  ammoCur: 0
+  magCapacity: 30
   totalAmmo: 360
   reloadTime: 1.4
   hitEffect: {fileID: 19800002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}

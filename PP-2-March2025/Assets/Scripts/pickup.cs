@@ -8,7 +8,7 @@ public class pickup : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        wep.ammoCur = wep.ammoMax;
+        wep.ammoCur = wep.magCapacity;
     }
 
     private void OnTriggerEnter(Collider other)
