@@ -427,7 +427,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         if (wepList[wepListPos] != null)
         {
-            AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+            UpdateAmmoUI();
             AmmoUI.instance?.Show(true);
             gameManager.instance.weaponNotification?.ShowWeaponName(wepList[wepListPos].name);
         }
@@ -460,7 +460,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         wepList[wepListPos].ammoCur--;
         //attackTimer = Time.deltaTime + wepRate;
-        AmmoUI.instance.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+        UpdateAmmoUI();
 
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         Debug.DrawRay(ray.origin, ray.direction * wepDist, Color.red, 1.5f);
@@ -508,7 +508,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         if (wepList[wepListPos].ammoCur > 1)
         {
             wepList[wepListPos].ammoCur = 1; // 1 in chamber
-            AmmoUI.instance.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+            UpdateAmmoUI();
         }
         Debug.Log("Reloading...");
 
@@ -532,8 +532,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         if (isReloading == true)
         {
             wepList[wepListPos].Reload();
-
-            AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+            UpdateAmmoUI();
         }
         else
             isReloading = false;
@@ -580,6 +579,10 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             isplayingSteps = false;
         }
 
-        // make the weapon change the weapon postion of the current weapon user has equipped
+    public void UpdateAmmoUI()
+    {
+        AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].totalAmmo);
+    }
+    // make the weapon change the weapon postion of the current weapon user has equipped
 
 }

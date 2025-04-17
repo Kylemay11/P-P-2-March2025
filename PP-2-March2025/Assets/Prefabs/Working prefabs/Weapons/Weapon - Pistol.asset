@@ -16,7 +16,7 @@ MonoBehaviour:
   wepDamage: 15
   wepDist: 100
   wepRate: 0.26
-  ammoCur: 8
+  ammoCur: 9
   ammoMax: 9
   totalAmmo: 100
   reloadTime: 1.1
