@@ -23,7 +23,7 @@ public class MainMenu : MonoBehaviour
             lvlSelect.SetActive(false);
         }
 
-        settingsUI = GameObject.Find("Settings");
+        settingsUI = GameObject.Find("Setting");
         if (settingsUI != null)
         {
             settingsUI.SetActive(false);
@@ -47,7 +47,6 @@ public class MainMenu : MonoBehaviour
     }
     public void creditsReel()
     {
-
         isActive = !isActive;
         if (credReel != null)
             credReel.SetActive(isActive);
