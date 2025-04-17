@@ -9,7 +9,7 @@ public class pickup : MonoBehaviour
     void Awake()
     {
         wep.ammoCur = wep.magCapacity;
-        wep.totalAmmo = wep.initialReserveAmmo;
+        wep.curReserve = wep.initialReserveAmmo;
     }
 
     private void OnTriggerEnter(Collider other)

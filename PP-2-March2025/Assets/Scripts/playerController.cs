@@ -581,7 +581,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     public void UpdateAmmoUI()
     {
-        AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].totalAmmo);
+        AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].curReserve);
     }
     // make the weapon change the weapon postion of the current weapon user has equipped
 
