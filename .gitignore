@@ -435,3 +435,4 @@ crashlytics-build.properties
 
 
 !Assets/Prefabs/Player.prefab.meta
+/.vs/slnx.sqlite
