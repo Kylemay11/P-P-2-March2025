@@ -124,7 +124,7 @@ public class gameManager : MonoBehaviour
         {
             room.EndRoomWave();
         }
-
+        CleanupStragglers(1f);
         UpdateAliveCounterUI();
         StartCoroutine(WaitBeforeCleanupUI());
     }
@@ -208,6 +208,39 @@ public class gameManager : MonoBehaviour
         menuWin.SetActive(true);
         menuActive = menuWin;
     }
+    public void CleanupStragglers(float radius)
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) return;
+
+        Vector3 center = player.transform.position;
+        Collider[] hits = Physics.OverlapSphere(center, radius);
+
+        enemyAI[] allZombies = GameObject.FindObjectsByType<enemyAI>(FindObjectsSortMode.None);
+
+        foreach (enemyAI zombie in allZombies)
+        {
+            bool inCleanupRadius = false;
+
+            foreach (Collider hit in hits)
+            {
+                if (hit.gameObject == zombie.gameObject)
+                {
+                    inCleanupRadius = true;
+                    break;
+                }
+            }
+
+            if (!inCleanupRadius)
+            {
+                Debug.Log($"[Cleanup] Destroying zombie out of range: {zombie.name}");
+
+                zombie.OnZombieDeath?.Invoke();
+
+                Destroy(zombie.gameObject);
+            }
+        }
+    }
 
     private int GetTotalZombiesAlive()
     {
@@ -228,6 +261,7 @@ public class gameManager : MonoBehaviour
 
     private void UpdateAliveCounterUI()
     {
+        int count = GetTotalZombiesAlive();
         UpdateWaveInfoText($"Wave {currentWave} | Cleanup Phase | Alive: {GetTotalZombiesAlive()}");
     }
 

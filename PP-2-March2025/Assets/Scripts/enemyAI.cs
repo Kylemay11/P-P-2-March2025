@@ -7,7 +7,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class enemyAI : MonoBehaviour, IDamage, IZombie
 {
-    public event System.Action OnZombieDeath;
+    public System.Action OnZombieDeath;
+    public ZombieSpawner originSpawner;
     //Kyle added for barricade
     public enum ZombieTargetState { AttackingDoor, AttackingPlayer };
 
@@ -256,7 +257,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     {
         this.barrierDoor = door;
     }
-    // Kyle added for barricadeDoor
+    //Kyle added for barricadeDoor
     public void SetTargetState(ZombieTargetState newState)
     {
         if (hasEnteredRoom && newState == ZombieTargetState.AttackingDoor)

@@ -6,9 +6,10 @@ public class pickup : MonoBehaviour
     //[SerializeField] HealthPickups hpPack;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        wep.ammoCur = wep.ammoMax;
+        wep.ammoCur = wep.magCapacity;
+        wep.curReserve = wep.initialReserveAmmo;
     }
 
     private void OnTriggerEnter(Collider other)
