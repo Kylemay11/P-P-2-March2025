@@ -107,6 +107,7 @@ public class ZombieSpawner : MonoBehaviour
         {
             enemy.barrierDoor = spawnPoint.GetComponentInChildren<BarricadeDoor>();
             enemy.OnZombieDeath += HandleZombieDeath;
+            enemy.originSpawner = this;
             deathHooked = true;
         }
 
