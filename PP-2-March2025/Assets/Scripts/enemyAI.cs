@@ -65,7 +65,9 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         originalColor = zombieRenderer.material.color;
         agent.speed = enemySpeed;
         //Kyle added Helps the zombies avoid eachother whn they spawn
-        agent.avoidancePriority = Random.Range(60, 70);
+        agent.avoidancePriority = Random.Range(10, 65);
+        float radiusVaule = Random.Range(0.5f, 0.8f);
+        agent.radius = Mathf.Round(radiusVaule * 10) * 0.1f;
 
         if (type == enemyType.spitter)
             agent.stoppingDistance = attackRange;
