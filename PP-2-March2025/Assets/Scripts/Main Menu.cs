@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+
+    public static MainMenu instance;
     private bool isActive = false;
     public GameObject credReel;
     public GameObject settingsUI;
