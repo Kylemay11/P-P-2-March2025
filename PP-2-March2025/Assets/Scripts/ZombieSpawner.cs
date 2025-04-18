@@ -17,6 +17,7 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] private float spawnCooldown;
     [SerializeField] public bool isSpawnerActiveInternal;
     [SerializeField] public BarricadeDoor barricadeDoor;
+    private bool playerInZone = true;
 
 
     public int currentZombiesAlive;
@@ -74,7 +75,11 @@ public class ZombieSpawner : MonoBehaviour
     {
         while (canSpawn && currentZombiesAlive < maxZombies)
         {
-            SpawnZombie();
+            if (gameManager.instance.waveActive && playerInZone)
+            {
+                SpawnZombie();
+            }
+
             yield return new WaitForSeconds(spawnRate);
         }
     }
@@ -125,7 +130,7 @@ public class ZombieSpawner : MonoBehaviour
 
     public void SpawnOverTime()
     {
-        if (!canSpawn) return;
+        if (!canSpawn || !playerInZone || !gameManager.instance.waveActive) return;
 
         if (spawnCooldown <= 0f)
         {
@@ -186,6 +191,20 @@ public class ZombieSpawner : MonoBehaviour
 
         Debug.Log($"[Spawner] {gameObject.name} settings applied for {difficulty}: Rate={spawnRate}, Max={maxZombies}, Cooldown={spawnCooldown}");
     }
+    public void SetPlayerInZone(bool value)
+    {
+        playerInZone = value;
+
+        if (!playerInZone)
+        {
+            StopSpawning();
+        }
+        else if (isSpawnerActiveInternal)
+        {
+            StartSpawning();
+        }
+    }
+
 
     private void OnDrawGizmos() // for changing the color in the scene veiw only
     {
