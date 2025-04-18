@@ -47,22 +47,28 @@ public class MainMenu : MonoBehaviour
     }
     public void creditsReel()
     {
-        isActive = !isActive;
-        if (credReel != null)
-            credReel.SetActive(isActive);
+        gameManager.instance.menuCredits.SetActive(true);
     }
-
+    public void closecreditsReel()
+    {
+        gameManager.instance.menuCredits.SetActive(false);
+    }
     public void openSettings()
     {
-        isActive = !isActive;
-        if (settingsUI != null)
-            settingsUI.SetActive(isActive);
+        gameManager.instance.menusettings.SetActive(true);
+    }
+    public void closeSettings()
+    {
+        gameManager.instance.menusettings.SetActive(false);
     }
     public void openLevelSelector()
     {
-        isActive = !isActive;
-        if (lvlSelect != null)
-            lvlSelect.SetActive(isActive);
+        gameManager.instance.menuLvlSelect.SetActive(true);
+    }
+
+    public void closeLevelSelector()
+    {
+        gameManager.instance.menuLvlSelect.SetActive(false);
     }
 
 }

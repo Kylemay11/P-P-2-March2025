@@ -4890,6 +4890,10 @@ PrefabInstance:
       propertyPath: menuPerkShop
       value: 
       objectReference: {fileID: 1471130720}
+    - target: {fileID: 2204140521013544714, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3395526379521227085, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: m_Name
       value: UI
