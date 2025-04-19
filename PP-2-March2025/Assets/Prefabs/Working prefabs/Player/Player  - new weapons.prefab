@@ -458,7 +458,6 @@ GameObject:
   - component: {fileID: 2420466666525081930}
   - component: {fileID: 2727642905191196999}
   - component: {fileID: 8697134708101572028}
-  - component: {fileID: 1215653888450670853}
   - component: {fileID: 3655673177614136100}
   m_Layer: 3
   m_Name: Player  - new weapons
@@ -678,14 +677,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &1215653888450670853
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9222826323181665447}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!136 &3655673177614136100
 CapsuleCollider:
   m_ObjectHideFlags: 0

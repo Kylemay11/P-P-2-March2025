@@ -5,7 +5,6 @@ public class MainMenu : MonoBehaviour
 {
 
     public static MainMenu instance;
-    private bool isActive = false;
     public GameObject credReel;
     public GameObject settingsUI;
     public GameObject lvlSelect;
@@ -37,6 +36,7 @@ public class MainMenu : MonoBehaviour
     {
         string levelname = "Level_" + lvlID;
         SceneManager.LoadScene(levelname);
+        DontDestroyOnLoad(Settings.instance.FpsText);
     }
 
     public void gameQuit()

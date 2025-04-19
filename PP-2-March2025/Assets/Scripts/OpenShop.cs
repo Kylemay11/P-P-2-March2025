@@ -5,7 +5,6 @@ public class OpenShop : MonoBehaviour
 {
     public static OpenShop instance;
     private GameObject shop;
-    public bool isActive = false;
     public bool isPlayerNear = false;
 
     void Start()
@@ -31,8 +30,6 @@ public class OpenShop : MonoBehaviour
         {
             isPlayerNear = true;
         }
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
     }
 
     void OnTriggerExit(Collider other)
@@ -40,20 +37,23 @@ public class OpenShop : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerNear = false;
-
-            // Only lock cursor and hide shop if shop is NOT open
-            if (!isActive)
-            {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
+            UnToggleShop();
         }
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void ToggleShop()
+    public void ToggleShop()
     {
-        isActive = !isActive;
-        if (shop != null)
-            shop.SetActive(isActive);
+        gameManager.instance.menuShop.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        //gameManager.instance.PauseGame();
+    }
+
+    public void UnToggleShop()
+    {
+        gameManager.instance.menuShop.SetActive(false);
+        //gameManager.instance.ResumeGame();
     }
 }
