@@ -17,12 +17,15 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-    [SerializeField] GameObject menuShop;
-    [SerializeField] GameObject menuMain;
-    [SerializeField] GameObject menuCredits;
-    [SerializeField] GameObject menuLvlSelect;
+    
+    [SerializeField] public GameObject menuMain;
+    [SerializeField] public GameObject menuLvlSelect;
+    [SerializeField] public GameObject menuCredits;
+    [SerializeField] public GameObject menufpsDisplay;
+    [SerializeField] public GameObject menusettings;
+    [SerializeField] public GameObject menuShop;
+    [SerializeField] public GameObject menuPerkShop;
 
-    [SerializeField] GameObject menuPerkShop;
     private GameObject menuActive;
 
     [Header("Wave Settings")]

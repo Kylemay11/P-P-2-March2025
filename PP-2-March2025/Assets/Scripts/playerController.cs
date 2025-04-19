@@ -539,7 +539,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     }
 
 
-    // logic for shops
+    // logic for shops AND items
     public void SpeedIncrease(float amount)
     {
         walkSpeed += amount;
@@ -547,11 +547,29 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     public void StaminaIncrease(float amount)
     {
         maxStamina += amount;
+        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
     }
 
     public void BonusHealth(int amount)
     {
         maxHP += amount;
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP); 
+        updatePlayerUI();
+    }
+
+    public void IncreaseWeaponDamage(int amount)
+    {
+        wepDamage += amount;
+    }
+
+    public void IncreaseWeaponFireRate(float amount)
+    {
+        wepRate += amount;
+    }
+
+    public void IncreaseWeaponFireDistance(int amount)
+    {
+        wepDist += amount;
     }
 
     // replace the weapon the player has with their purchased weapon
