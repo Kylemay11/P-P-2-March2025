@@ -547,13 +547,11 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     public void StaminaIncrease(float amount)
     {
         maxStamina += amount;
-        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
     }
 
     public void BonusHealth(int amount)
     {
         maxHP += amount;
-        currentHP = Mathf.Clamp(currentHP, 0, instance.maxHP); 
         updatePlayerUI();
     }
 
