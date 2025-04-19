@@ -14,7 +14,7 @@ public class waveCompleteItems : MonoBehaviour
     [Range(1, 100)][SerializeField] public int bonusDamage;
     [Range(1, 100)][SerializeField] public int bonusStamina;
     [Range(50, 1000)][SerializeField] public int bonusWepDist;
-    [Range(1, 50)][SerializeField] public int bonusWepRate;
+    [Range(1, 50)][SerializeField] public float bonusWepRate;
     [Range(1, 100)][SerializeField] public int bonusMeleeDamage;
     [Range(1, 100)][SerializeField] public int bonusMeleeRate;
     [Range(1, 100)][SerializeField] public int bonusMeleeDist;
@@ -93,7 +93,7 @@ public class waveCompleteItems : MonoBehaviour
         HideAllPanels();
         gameManager.instance.ResumeGame();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.GetComponent<playerController>()?.IncreaseWeaponFireRate(bonusWepDist);
+        player.GetComponent<playerController>()?.IncreaseWeaponFireRate(bonusWepRate);
         Debug.Log("You have increased Gun Shot Rate of Fire");
 
     }
@@ -103,7 +103,7 @@ public class waveCompleteItems : MonoBehaviour
         HideAllPanels();
         gameManager.instance.ResumeGame();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.GetComponent<playerController>()?.IncreaseWeaponFireDistance(bonusWepRate);
+        player.GetComponent<playerController>()?.IncreaseWeaponFireDistance(bonusWepDist);
         Debug.Log("You have increased Gun Shot Distance");
 
     }
