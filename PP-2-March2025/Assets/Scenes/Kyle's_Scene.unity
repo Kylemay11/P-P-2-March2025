@@ -6054,6 +6054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977ee288f9ad8d64985c6a517cea01f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originSpawner: {fileID: 0}
   agent: {fileID: 349817021}
   moneyOnDeath: 10
   type: 3
@@ -11771,63 +11772,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693167310}
   m_Mesh: {fileID: -2850070710597841813, guid: d54eacd32d8400b48aa6d2edbb4d1f53, type: 3}
---- !u!1001 &696210548
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2946184423565002613, guid: 3e06dbad061db2e428451e794c10e612, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 28.881422
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946184423565002613, guid: 3e06dbad061db2e428451e794c10e612, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.00000333786
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946184423565002613, guid: 3e06dbad061db2e428451e794c10e612, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 11.384908
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946184423565002613, guid: 3e06dbad061db2e428451e794c10e612, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946184423565002613, guid: 3e06dbad061db2e428451e794c10e612, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946184423565002613, guid: 3e06dbad061db2e428451e794c10e612, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946184423565002613, guid: 3e06dbad061db2e428451e794c10e612, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946184423565002613, guid: 3e06dbad061db2e428451e794c10e612, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946184423565002613, guid: 3e06dbad061db2e428451e794c10e612, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2946184423565002613, guid: 3e06dbad061db2e428451e794c10e612, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8335654848989899338, guid: 3e06dbad061db2e428451e794c10e612, type: 3}
-      propertyPath: m_Name
-      value: WeaponShop
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3e06dbad061db2e428451e794c10e612, type: 3}
 --- !u!1 &700656282
 GameObject:
   m_ObjectHideFlags: 0
@@ -17590,6 +17534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977ee288f9ad8d64985c6a517cea01f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originSpawner: {fileID: 0}
   agent: {fileID: 932443903}
   moneyOnDeath: 5
   type: 0
@@ -22722,6 +22667,10 @@ PrefabInstance:
     - target: {fileID: 7329234757651610058, guid: 746e5a29996ea7447b8372503489108b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: makehpPurchase
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068593359655489251, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8486864540869971675, guid: 746e5a29996ea7447b8372503489108b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -32365,7 +32314,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.33333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 4032fc7d2b598e34b8bd83e6a150d96f, type: 2}
   m_BuildHeightMesh: 0
@@ -35949,6 +35898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977ee288f9ad8d64985c6a517cea01f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originSpawner: {fileID: 0}
   agent: {fileID: 2096985554}
   moneyOnDeath: 5
   type: 1
@@ -44475,6 +44425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977ee288f9ad8d64985c6a517cea01f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originSpawner: {fileID: 0}
   agent: {fileID: 5672767626503700535}
   moneyOnDeath: 10
   type: 3
@@ -46165,6 +46116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977ee288f9ad8d64985c6a517cea01f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originSpawner: {fileID: 0}
   agent: {fileID: 8555745697789497372}
   moneyOnDeath: 10
   type: 3
@@ -49725,6 +49677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977ee288f9ad8d64985c6a517cea01f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originSpawner: {fileID: 0}
   agent: {fileID: 7247445615566166509}
   moneyOnDeath: 10
   type: 3
@@ -51855,6 +51808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977ee288f9ad8d64985c6a517cea01f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originSpawner: {fileID: 0}
   agent: {fileID: 268038597761622997}
   moneyOnDeath: 5
   type: 0
@@ -56972,6 +56926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977ee288f9ad8d64985c6a517cea01f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originSpawner: {fileID: 0}
   agent: {fileID: 6544907788983996744}
   moneyOnDeath: 5
   type: 1
@@ -58643,6 +58598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977ee288f9ad8d64985c6a517cea01f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originSpawner: {fileID: 0}
   agent: {fileID: 7120625924299751779}
   moneyOnDeath: 5
   type: 1
@@ -60700,6 +60656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977ee288f9ad8d64985c6a517cea01f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originSpawner: {fileID: 0}
   agent: {fileID: 2996550533662292495}
   moneyOnDeath: 5
   type: 0
@@ -62350,6 +62307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977ee288f9ad8d64985c6a517cea01f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originSpawner: {fileID: 0}
   agent: {fileID: 8140695647566842002}
   moneyOnDeath: 5
   type: 1
@@ -63378,6 +63336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977ee288f9ad8d64985c6a517cea01f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originSpawner: {fileID: 0}
   agent: {fileID: 4304850630933738494}
   moneyOnDeath: 5
   type: 0
@@ -64891,6 +64850,5 @@ SceneRoots:
   - {fileID: 1597874278}
   - {fileID: 1245801026}
   - {fileID: 804554903}
-  - {fileID: 696210548}
   - {fileID: 717078014}
   - {fileID: 327852758095807883}
