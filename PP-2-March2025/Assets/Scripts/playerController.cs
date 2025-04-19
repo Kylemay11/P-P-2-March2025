@@ -552,6 +552,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     public void BonusHealth(int amount)
     {
         maxHP += amount;
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP); 
         updatePlayerUI();
     }
 
