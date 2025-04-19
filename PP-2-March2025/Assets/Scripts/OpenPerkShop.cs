@@ -4,7 +4,6 @@ using UnityEngine;
 public class OpenPerkShop : MonoBehaviour
 {
     private GameObject Perkshop;
-    private bool isActive = false;
     public bool isPlayerNear = false;
 
     void Start()
@@ -30,8 +29,6 @@ public class OpenPerkShop : MonoBehaviour
         {
             isPlayerNear = true;
         }
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
     }
 
     void OnTriggerExit(Collider other)
@@ -45,17 +42,17 @@ public class OpenPerkShop : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void TogglePerkShop()
+    public void TogglePerkShop()
     {
-        isActive = !isActive;
-        if (Perkshop != null)
-            Perkshop.SetActive(isActive);
+        gameManager.instance.menuPerkShop.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        //gameManager.instance.PauseGame();
     }
 
-    void untogglePerkShop()
+    public void untogglePerkShop()
     {
-        
-        if (Perkshop != null)
-            Perkshop.SetActive(false);
+        gameManager.instance.menuPerkShop.SetActive(false);
+       // gameManager.instance.ResumeGame();
     }
 }

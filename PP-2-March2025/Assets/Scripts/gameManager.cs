@@ -23,9 +23,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] public GameObject menuCredits;
     [SerializeField] public GameObject menufpsDisplay;
     [SerializeField] public GameObject menusettings;
-
-    [SerializeField] GameObject menuShop;
-    [SerializeField] GameObject menuPerkShop;
+    [SerializeField] public GameObject menuShop;
+    [SerializeField] public GameObject menuPerkShop;
 
     private GameObject menuActive;
 

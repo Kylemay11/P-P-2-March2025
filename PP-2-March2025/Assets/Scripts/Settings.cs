@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 
 public class Settings : MonoBehaviour
 {
+    public static Settings instance;
     //audio
     public AudioMixer audiomix;
 
@@ -92,6 +93,10 @@ public class Settings : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        DontDestroyOnLoad(FpsText);
+    }
     public void setAudio(float vol)
     {
         audiomix.SetFloat("volume", vol);
