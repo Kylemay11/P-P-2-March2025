@@ -296,9 +296,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: PerkShop
       objectReference: {fileID: 0}
+    - target: {fileID: 8068593359655489251, guid: 746e5a29996ea7447b8372503489108b, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9210063131211368368, guid: 746e5a29996ea7447b8372503489108b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.5
+      value: -12.25
       objectReference: {fileID: 0}
     - target: {fileID: 9210063131211368368, guid: 746e5a29996ea7447b8372503489108b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -806,6 +810,10 @@ PrefabInstance:
     - target: {fileID: 979481866653657942, guid: dd25f74475846884cb1d106c5f6bc151, type: 3}
       propertyPath: m_Name
       value: Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 979481866653657942, guid: dd25f74475846884cb1d106c5f6bc151, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1004997120637965309, guid: dd25f74475846884cb1d106c5f6bc151, type: 3}
       propertyPath: m_Mesh
@@ -1735,6 +1743,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 242084084}
+    - target: {fileID: 7975429077451257253, guid: dd25f74475846884cb1d106c5f6bc151, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7982334249699843609, guid: dd25f74475846884cb1d106c5f6bc151, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -4893,6 +4905,22 @@ PrefabInstance:
     - target: {fileID: 3395526379521227085, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648706471026680483, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648706471026680483, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: m_MaxValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648706471026680483, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: m_MinValue
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648706471026680483, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4709613827609420196, guid: 0cf3fe6b86b02f04ebaafefd4ee71deb, type: 3}
       propertyPath: m_Pivot.x
@@ -17914,7 +17942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6652039767962063356, guid: 2befb812743b2b2478adf2c0f37a332d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.25
+      value: -12.25
       objectReference: {fileID: 0}
     - target: {fileID: 6652039767962063356, guid: 2befb812743b2b2478adf2c0f37a332d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17971,7 +17999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7175675749248047370, guid: 6fa1c06b975d9964490424c77af9ab78, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.25
+      value: -12.25
       objectReference: {fileID: 0}
     - target: {fileID: 7175675749248047370, guid: 6fa1c06b975d9964490424c77af9ab78, type: 3}
       propertyPath: m_LocalPosition.y
