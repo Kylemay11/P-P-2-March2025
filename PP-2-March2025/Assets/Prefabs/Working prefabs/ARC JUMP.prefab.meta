@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:PP-2-March2025/Assets/Prefabs/Working prefabs/ARC JUMP.prefab.meta
-guid: 84b306d75b7ffb04eac829f3b88b5b11
+<<<<<<<< HEAD:PP-2-March2025/Assets/Prefabs/Working prefabs/UI/UI mainmenu.prefab.meta
+guid: dfbe9b0f7c783b34298eb37367bc19f2
 ========
-guid: 7509283efbb3eaf4299021a822b0b807
->>>>>>>> 3426d30 (Made the popup that gives items every set interval and made adjustments to the shops and adding code to player controller for items and perks):PP-2-March2025/Assets/Prefabs/Working prefabs/UI/UI mainmenu.prefab.meta
+guid: 84b306d75b7ffb04eac829f3b88b5b11
+>>>>>>>> john_branch:PP-2-March2025/Assets/Prefabs/Working prefabs/ARC JUMP.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
