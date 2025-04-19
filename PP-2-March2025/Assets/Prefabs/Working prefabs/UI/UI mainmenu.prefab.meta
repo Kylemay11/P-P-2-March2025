@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:PP-2-March2025/Assets/Prefabs/Working prefabs/UI/UI mainmenu.prefab.meta
 guid: 7509283efbb3eaf4299021a822b0b807
+========
+guid: 84b306d75b7ffb04eac829f3b88b5b11
+>>>>>>>> john_branch:PP-2-March2025/Assets/Prefabs/Working prefabs/ARC JUMP.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
