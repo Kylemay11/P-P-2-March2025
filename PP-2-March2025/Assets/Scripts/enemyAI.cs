@@ -10,7 +10,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     public System.Action OnZombieDeath;
     public ZombieSpawner originSpawner;
     //Kyle added for barricade
-    public enum ZombieTargetState { AttackingDoor, AttackingPlayer, AttackingTerminal };
+    public enum ZombieTargetState { AttackingDoor, AttackingPlayer };
 
     enum enemyType { walker, runner, spitter, tank };
     // [SerializeField] Renderer model;
@@ -115,19 +115,6 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     private void enemyAttack()
     {
         attackTimer = 0;
-
-        // 1. Attack terminal if charging (PRIORITY if door is destroyed or not assigned)
-        if (RepairConsole.mainTerminalRef != null && RepairConsole.mainTerminalRef.doorCharging)
-        {
-            float distToTerminal = Vector3.Distance(transform.position, RepairConsole.mainTerminalRef.transform.position);
-            if (distToTerminal <= attackRange)
-            {
-                RepairConsole.mainTerminalRef.ApplyTerminalDamage(enemyDamage);
-                Debug.Log($"[Zombie Attack] {gameObject.name} damaged terminal for {enemyDamage}!");
-                return;
-            }
-        }
-
         // 2. Attack barricade door (if still exists)
         if (barrierDoor != null && barrierDoor.CurrentState != BarricadeDoor.DoorState.Destroyed)
         {
@@ -165,16 +152,6 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         }
     }
 
-    public void SetTargetToTerminal(Transform terminalTransform)
-    {
-        currentTargetState = ZombieTargetState.AttackingPlayer; // fallback
-        if (RepairConsole.mainTerminalRef != null && RepairConsole.mainTerminalRef.doorCharging)
-        {
-            agent.SetDestination(RepairConsole.mainTerminalRef.transform.position);
-            agent.isStopped = false;
-            currentTargetState = ZombieTargetState.AttackingTerminal;
-        }
-    }
 
     private float CalculateLaunchAngle(float initialVel, float x, float y, float gravity)
     {

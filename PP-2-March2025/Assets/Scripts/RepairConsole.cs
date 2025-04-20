@@ -88,6 +88,7 @@ public class RepairConsole : MonoBehaviour
             if (doorChargeProgress >= doorChargeTime)
             {
                 doorCharging = false;
+                gameManager.instance.objectiveMode = false;
                 mainTerminalScreen.material.color = Color.green;
                 Debug.Log("Door fully charged! You win / open door.");
 
@@ -100,6 +101,7 @@ public class RepairConsole : MonoBehaviour
 
         if (playerInRange && Input.GetKey(KeyCode.E))
         {
+            gameManager.instance.objectiveMode = true;
             currentProgress += Time.deltaTime;
         }
         else
@@ -174,12 +176,6 @@ public class RepairConsole : MonoBehaviour
                 doorChargeProgress = 0f;
                 if (doorChargeBar != null)
                     doorChargeBar.gameObject.SetActive(true);
-
-                enemyAI[] allZombies = FindObjectsOfType<enemyAI>();
-                foreach (enemyAI zombie in allZombies)
-                {
-                    zombie.SetTargetToTerminal(transform);
-                }
             }
         }
         else
