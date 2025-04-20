@@ -50,6 +50,21 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     [Range(0.5f, 5)][SerializeField] float attackRate;
     [Range(1, 30)][SerializeField] float sightRange, attackRange;
 
+    [Header("--- Audio ---")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audSteps;
+    [Range(0, 1)][SerializeField] float audStepsVol;
+    [SerializeField] AudioClip[] audAttack;
+    [Range(0, 1)][SerializeField] float audAttackVol; 
+    [SerializeField] AudioClip[] audHurt;
+    [Range(0, 1)][SerializeField] float audHurtVol;
+    [SerializeField] AudioClip[] audDeath;
+    [Range(0, 1)][SerializeField] float audDeathVol;
+
+
+
+
+
     float attackTimer;
     Vector3 playerDir;
     bool playerInSightRange, playerInAttackRange;
@@ -98,6 +113,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     public void takeDamage(int amount)
     {
         HP -= amount;
+        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
         //Kyle added
         animator.SetTrigger("TakeDamage");
         StartCoroutine(DamageAnimationCooldown());
@@ -106,6 +122,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         {
             CurrencySystem.instance.AddMoney(moneyOnDeath);
             OnZombieDeath?.Invoke();
+            aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);
             if (barrierDoor != null)
                 barrierDoor.RemoveAttacker(this);
             Destroy(gameObject);
@@ -115,6 +132,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     private void enemyAttack()
     {
         attackTimer = 0;
+        aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
 
         if (barrierDoor != null && barrierDoor.CurrentState != BarricadeDoor.DoorState.Destroyed)
         {
@@ -303,6 +321,8 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
 
     private void HandleMovement()
     {
+        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+
         switch (currentTargetState)
         {
             case ZombieTargetState.AttackingDoor:
