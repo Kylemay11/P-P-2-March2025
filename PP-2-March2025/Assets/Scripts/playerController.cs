@@ -539,7 +539,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         psMFlash.transform.SetParent(mFlashPos.transform); // keeps particles inplace while moving
 
-        //if (mFlash != null) { 
+        //if (mFlash != null)
+        //{
         //    psMFlash.Play();
         //    aud.PlayOneShot(audGunShot[Random.Range(0, audGunShot.Length)], audGunShotVol);
         //}
