@@ -12,15 +12,28 @@ public class RepairConsole : MonoBehaviour
     private bool isRepaired = false;
     private bool playerInRange;
 
+    [Header("Final Phase")]
+    public Image doorChargeBar;
+    public float doorChargeTime;
+    private float doorChargeProgress = 0f;
+    public bool doorCharging = false;
+
+    [Header("Terminal Type")]
+    public bool isMainTerminal = false;
+    public static int totalRepaired = 0;
+    public static int totalRequired = 3;
+    public static RepairConsole mainTerminalRef;
+
     [Header("Main terminal")]
     public List<PuzzleColor> currentPattern = new List<PuzzleColor>();
     public int patternLength = 5;
 
     [Header("Main Terminal Visuals")]
     public Renderer mainTerminalScreen;
-    public float flashDuration = 0.5f;
-    public float betweenFlashDelay = 0.3f;
-    public float pauseBeforeInput = 1f;
+    public float flashDuration;
+    public float betweenFlashDelay;
+    public float pauseBeforeInput;
+    public float loopDelay;
 
     private bool isFlashing = false;
 
@@ -42,6 +55,9 @@ public class RepairConsole : MonoBehaviour
     public Color flashColor = Color.red;
     public Color repairedColor = Color.green;
 
+    [Header("Final Step")]
+    public GameObject finalDoor;
+
     private Coroutine flashRoutine;
     private List<PuzzleColor> playerInput = new List<PuzzleColor>();
     private int inputIndex = 0;
@@ -49,11 +65,38 @@ public class RepairConsole : MonoBehaviour
     void Start()
     {
         currentProgress = 0f;
+        if (doorChargeBar != null)
+            doorChargeBar.fillAmount = 0f;
+
+        if (mainTerminalScreen != null)
+            mainTerminalScreen.material.color = Color.black;
+
+        if (isMainTerminal)
+        {
+            mainTerminalRef = this;
+        }
     }
 
     void Update()
     {
-        if (isRepaired) return;
+        if (doorCharging)
+        {
+            doorChargeProgress += Time.deltaTime;
+            if (doorChargeBar != null)
+                doorChargeBar.fillAmount = doorChargeProgress / doorChargeTime;
+
+            if (doorChargeProgress >= doorChargeTime)
+            {
+                doorCharging = false;
+                mainTerminalScreen.material.color = Color.green;
+                Debug.Log("Door fully charged! You win / open door.");
+
+                if (finalDoor != null)
+                    Destroy(finalDoor); // play animation later
+            }
+        }
+
+        if (isRepaired || isMainTerminal) return;
 
         if (playerInRange && Input.GetKey(KeyCode.E))
         {
@@ -69,7 +112,7 @@ public class RepairConsole : MonoBehaviour
         if (repairBar != null)
             repairBar.fillAmount = currentProgress / repairTime;
 
-        if (currentProgress == repairTime)
+        if (currentProgress >= repairTime)
         {
             CompleteRepair();
         }
@@ -77,8 +120,10 @@ public class RepairConsole : MonoBehaviour
 
     private void CompleteRepair()
     {
+        if (isRepaired) return;
         isRepaired = true;
-        Debug.Log($"{gameObject.name} repaired!");
+        totalRepaired++;
+        Debug.Log($"{gameObject.name} repaired! Total repaired: {totalRepaired}");
 
         if (repairBar != null)
             repairBar.color = repairedColor;
@@ -91,17 +136,31 @@ public class RepairConsole : MonoBehaviour
 
         if (screenRenderer != null)
             screenRenderer.material.color = repairedColor;
+
         if (RepairCanvas != null)
             RepairCanvas.SetActive(false);
 
-        GenerateNewPattern();
-        StartCoroutine(PlayPatternSequence());
-
+        if (totalRepaired >= totalRequired && mainTerminalRef != null && !mainTerminalRef.isFlashing)
+        {
+            mainTerminalRef.TriggerMainTerminal();
+        }
     }
+
+    public void TriggerMainTerminal()
+    {
+        if (isMainTerminal && !isFlashing)
+        {
+            isRepaired = true;
+            GenerateNewPattern();
+            StartCoroutine(PlayPatternSequence());
+        }
+    }
+
 
     public void SubmitColor(PuzzleColor inputColor)
     {
         if (isFlashing || !isRepaired || inputIndex >= currentPattern.Count) return;
+
 
         Debug.Log($"Player pressed: {inputColor}");
 
@@ -111,21 +170,37 @@ public class RepairConsole : MonoBehaviour
             if (inputIndex >= currentPattern.Count)
             {
                 Debug.Log("Pattern matched successfully!");
-                // Add your puzzle completion logic here
+                doorCharging = true;
+                doorChargeProgress = 0f;
+                if (doorChargeBar != null)
+                    doorChargeBar.gameObject.SetActive(true);
+
+                enemyAI[] allZombies = FindObjectsOfType<enemyAI>();
+                foreach (enemyAI zombie in allZombies)
+                {
+                    zombie.SetTargetToTerminal(transform);
+                }
             }
         }
         else
         {
-            Debug.Log("Incorrect input! Resetting...");
+            Debug.Log("Incorrect input! Resetting pattern.");
             GenerateNewPattern();
             inputIndex = 0;
             StartCoroutine(PlayPatternSequence());
         }
     }
-
     private void GenerateNewPattern()
     {
+        inputIndex = 0;
         currentPattern.Clear();
+
+        if (patternLength <= 0)
+        {
+            Debug.LogWarning("Pattern length is 0 or less.");
+            return;
+        }
+
         for (int i = 0; i < patternLength; i++)
         {
             PuzzleColor randomColor = (PuzzleColor)Random.Range(0, System.Enum.GetValues(typeof(PuzzleColor)).Length);
@@ -134,6 +209,20 @@ public class RepairConsole : MonoBehaviour
 
         Debug.Log("Generated Pattern: " + string.Join(", ", currentPattern));
     }
+
+    public void ApplyTerminalDamage(float damageAmount)
+    {
+        if (!doorCharging) return;
+
+        doorChargeProgress -= damageAmount;
+        doorChargeProgress = Mathf.Clamp(doorChargeProgress, 0f, doorChargeTime);
+
+        if (doorChargeBar != null)
+            doorChargeBar.fillAmount = doorChargeProgress / doorChargeTime;
+
+        Debug.Log($"[Terminal] Damaged by zombie. Progress: {doorChargeProgress}/{doorChargeTime}");
+    }
+
     private IEnumerator PlayPatternSequence()
     {
         isFlashing = true;

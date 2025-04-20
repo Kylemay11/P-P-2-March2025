@@ -110,6 +110,12 @@ public class ZombieSpawner : MonoBehaviour
             enemy.originSpawner = this;
             deathHooked = true;
         }
+        if (RepairConsole.mainTerminalRef != null && RepairConsole.mainTerminalRef.doorCharging)
+        {
+            enemy.SetTargetState(enemyAI.ZombieTargetState.AttackingPlayer); // this ensures no door confusion
+            enemy.GoToTerminal(RepairConsole.mainTerminalRef.transform.position);
+            Debug.Log($"[Zombie Target] {zombie.name} set to attack main terminal.");
+        }
 
         //BossAI boss = zombie.GetComponent<BossAI>();
         //if (boss != null)

@@ -10,7 +10,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     public System.Action OnZombieDeath;
     public ZombieSpawner originSpawner;
     //Kyle added for barricade
-    public enum ZombieTargetState { AttackingDoor, AttackingPlayer };
+    public enum ZombieTargetState { AttackingDoor, AttackingPlayer, AttackingTerminal };
 
     enum enemyType { walker, runner, spitter, tank };
     // [SerializeField] Renderer model;
@@ -116,6 +116,19 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     {
         attackTimer = 0;
 
+        // 1. Attack terminal if charging (PRIORITY if door is destroyed or not assigned)
+        if (RepairConsole.mainTerminalRef != null && RepairConsole.mainTerminalRef.doorCharging)
+        {
+            float distToTerminal = Vector3.Distance(transform.position, RepairConsole.mainTerminalRef.transform.position);
+            if (distToTerminal <= attackRange)
+            {
+                RepairConsole.mainTerminalRef.ApplyTerminalDamage(enemyDamage);
+                Debug.Log($"[Zombie Attack] {gameObject.name} damaged terminal for {enemyDamage}!");
+                return;
+            }
+        }
+
+        // 2. Attack barricade door (if still exists)
         if (barrierDoor != null && barrierDoor.CurrentState != BarricadeDoor.DoorState.Destroyed)
         {
             if (selectedAttackPoint == null)
@@ -133,12 +146,13 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
             }
             else
             {
-                // Haven't reached the attack point yet, just keep moving
                 agent.SetDestination(selectedAttackPoint.position);
             }
 
             return;
         }
+
+        // 3. Attack player
         float distanceToPlayer = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
         if (distanceToPlayer <= attackRange)
         {
@@ -148,19 +162,17 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
             {
                 player.takeDamage((int)enemyDamage);
             }
+        }
+    }
 
-            // do animation for melee attack
-
-            //if(type == enemyType.spitter)
-            //{
-            //    // temp variable
-            //    GameObject projectile = Instantiate(zombieBile, attackPOS.position, transform.rotation);
-            //}//if(type == enemyType.spitter)
-            //{
-            //    // temp variable
-            //    GameObject projectile = Instantiate(zombieBile, attackPOS.position, transform.rotation);
-            //}
-
+    public void SetTargetToTerminal(Transform terminalTransform)
+    {
+        currentTargetState = ZombieTargetState.AttackingPlayer; // fallback
+        if (RepairConsole.mainTerminalRef != null && RepairConsole.mainTerminalRef.doorCharging)
+        {
+            agent.SetDestination(RepairConsole.mainTerminalRef.transform.position);
+            agent.isStopped = false;
+            currentTargetState = ZombieTargetState.AttackingTerminal;
         }
     }
 
@@ -258,6 +270,11 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     public void SetBarricadeDoor(BarricadeDoor door)
     {
         this.barrierDoor = door;
+    }
+    public void GoToTerminal(Vector3 targetPosition)
+    {
+        if (agent != null && agent.isActiveAndEnabled)
+            agent.SetDestination(targetPosition);
     }
     //Kyle added for barricadeDoor
     public void SetTargetState(ZombieTargetState newState)
