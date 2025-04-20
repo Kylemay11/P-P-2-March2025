@@ -120,6 +120,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         StartCoroutine(FlashRed());
         if (HP <= 0)
         {
+            gameManager.instance.playerScript.zombiesKilled++;
             CurrencySystem.instance.AddMoney(moneyOnDeath);
             OnZombieDeath?.Invoke();
             aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);
@@ -133,7 +134,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     {
         attackTimer = 0;
         aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
-
+        // 2. Attack barricade door (if still exists)
         if (barrierDoor != null && barrierDoor.CurrentState != BarricadeDoor.DoorState.Destroyed)
         {
             if (selectedAttackPoint == null)
@@ -151,12 +152,13 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
             }
             else
             {
-                // Haven't reached the attack point yet, just keep moving
                 agent.SetDestination(selectedAttackPoint.position);
             }
 
             return;
         }
+
+        // 3. Attack player
         float distanceToPlayer = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
         if (distanceToPlayer <= attackRange)
         {
@@ -166,21 +168,9 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
             {
                 player.takeDamage((int)enemyDamage);
             }
-
-            // do animation for melee attack
-
-            //if(type == enemyType.spitter)
-            //{
-            //    // temp variable
-            //    GameObject projectile = Instantiate(zombieBile, attackPOS.position, transform.rotation);
-            //}//if(type == enemyType.spitter)
-            //{
-            //    // temp variable
-            //    GameObject projectile = Instantiate(zombieBile, attackPOS.position, transform.rotation);
-            //}
-
         }
     }
+
 
     private float CalculateLaunchAngle(float initialVel, float x, float y, float gravity)
     {
@@ -276,6 +266,11 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     public void SetBarricadeDoor(BarricadeDoor door)
     {
         this.barrierDoor = door;
+    }
+    public void GoToTerminal(Vector3 targetPosition)
+    {
+        if (agent != null && agent.isActiveAndEnabled)
+            agent.SetDestination(targetPosition);
     }
     //Kyle added for barricadeDoor
     public void SetTargetState(ZombieTargetState newState)

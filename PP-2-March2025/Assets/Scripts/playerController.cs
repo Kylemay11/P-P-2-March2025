@@ -98,7 +98,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
 
 
-
+    public int zombiesKilled = 0;
 
     private Vector3 moveDir;
     private Vector3 velocity;
@@ -183,7 +183,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     IEnumerator playStep()
     {
             isplayingSteps = true;
-            aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+          //  aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
             if (!isSprinting)
             {
                 yield return new WaitForSeconds(0.5f);
@@ -259,7 +259,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         currentSpeed = walkSpeed * sprintMultiplier * slideSpeedBoost;
         controller.height = crouchColliderSize.y;
         controller.center = new Vector3(0, crouchColliderSize.y / 2f, 0);
-        aud.PlayOneShot(audSlide[Random.Range(0, audSlide.Length)], audSlideVol);
+      //  aud.PlayOneShot(audSlide[Random.Range(0, audSlide.Length)], audSlideVol);
         UpdateCameraHeight(crouchCameraHeight);
         StartCoroutine(SlideTimer());
     }
@@ -299,7 +299,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             isGrounded = false;
             velocity.y = jumpForce;
             jumpCount++;
-            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)],audJumpVol);
+           // aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)],audJumpVol);
         }
     }
 
@@ -316,7 +316,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
                 canSprint = false;
                 currentState = PlayerState.Walking;
                 currentSpeed = walkSpeed;
-                aud.PlayOneShot(audStaminaOut[Random.Range(0, audStaminaOut.Length)], audStaminaOutVol);
+              //  aud.PlayOneShot(audStaminaOut[Random.Range(0, audStaminaOut.Length)], audStaminaOutVol);
 
             }
             staminaRegenTimer = 0f;
@@ -461,7 +461,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
             isReloading = false;
         }
-        aud.PlayOneShot(audChangeGun[Random.Range(0, audChangeGun.Length)], audChangeGunVol);
+      //  aud.PlayOneShot(audChangeGun[Random.Range(0, audChangeGun.Length)], audChangeGunVol);
 
         wepDamage = wepList[wepListPos].wepDamage;
         wepDist = wepList[wepListPos].wepDist;
@@ -495,12 +495,12 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     private void Shoot()
     {
-        if (!wepList[wepListPos].CanFire()) // isempty
-        {
-            aud.PlayOneShot(audEmptyGun[Random.Range(0, audEmptyGun.Length)], audEmptyGunVol);
+        //if (!wepList[wepListPos].CanFire()) // isempty
+        //{
+        //    aud.PlayOneShot(audEmptyGun[Random.Range(0, audEmptyGun.Length)], audEmptyGunVol);
 
-            return; 
-        } // click sound
+        //    return; 
+        //} // click sound
 
         attackTimer = 0;
 
@@ -539,10 +539,10 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         psMFlash.transform.SetParent(mFlashPos.transform); // keeps particles inplace while moving
 
-        if (mFlash != null) { 
-            psMFlash.Play();
-            aud.PlayOneShot(audGunShot[Random.Range(0, audGunShot.Length)], audGunShotVol);
-        }
+        //if (mFlash != null) { 
+        //    psMFlash.Play();
+        //    aud.PlayOneShot(audGunShot[Random.Range(0, audGunShot.Length)], audGunShotVol);
+        //}
         yield return new WaitForSeconds(0.12f);
 
         if (mFlash != null)
@@ -556,7 +556,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         int currentWepIndex = wepListPos;
 
         isReloading = true;
-        aud.PlayOneShot(audReload[Random.Range(0, audReload.Length)], audReloadVol);
+       aud.PlayOneShot(audReload[Random.Range(0, audReload.Length)], audReloadVol);
 
         if (wepList[wepListPos].ammoCur > 1)
         {

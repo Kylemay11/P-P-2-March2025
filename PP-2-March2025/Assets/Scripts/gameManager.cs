@@ -51,6 +51,7 @@ public class gameManager : MonoBehaviour
     public TMP_Text startPromptText;
 
     public bool isPaused = false;
+    public bool objectiveMode = false;
 
     private int goalCount = 0;
 
@@ -96,7 +97,9 @@ public class gameManager : MonoBehaviour
     {
         if (waveActive)
         {
-            waveTimer -= Time.deltaTime;
+            if (!objectiveMode)
+                waveTimer -= Time.deltaTime;
+
             UpdateWaveInfoText($"Wave {currentWave} | Time: {Mathf.CeilToInt(waveTimer)}s");
 
             if (waveTimer <= 0)
@@ -112,6 +115,10 @@ public class gameManager : MonoBehaviour
 
         if (waitingToStartWave && Input.GetKeyDown(KeyCode.F))
         {
+            if (objectiveMode)
+            {
+                return;
+            }
             StartWave();
         }
     }
@@ -127,7 +134,7 @@ public class gameManager : MonoBehaviour
         {
             room.EndRoomWave();
         }
-        CleanupStragglers(1f);
+        CleanupStragglers(25f);
         UpdateAliveCounterUI();
         StartCoroutine(WaitBeforeCleanupUI());
     }
@@ -210,6 +217,16 @@ public class gameManager : MonoBehaviour
         PauseGame();
         menuWin.SetActive(true);
         menuActive = menuWin;
+
+        WinStatsUI statsUI = menuWin.GetComponent<WinStatsUI>();
+        if (statsUI != null)
+        {
+            statsUI.ShowStats(
+                zombiesKilled: playerScript.zombiesKilled,
+                moneyEarned: CurrencySystem.instance.TotalMoney,
+                wavesCleared: currentWave
+            );
+        }
     }
     public void CleanupStragglers(float radius)
     {
