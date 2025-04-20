@@ -120,6 +120,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         StartCoroutine(FlashRed());
         if (HP <= 0)
         {
+            gameManager.instance.playerScript.zombiesKilled++;
             CurrencySystem.instance.AddMoney(moneyOnDeath);
             OnZombieDeath?.Invoke();
             aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);

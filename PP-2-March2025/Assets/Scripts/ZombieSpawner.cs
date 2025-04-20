@@ -176,21 +176,21 @@ public class ZombieSpawner : MonoBehaviour
         {
             case SpawnerDifficulty.Easy:
                 spawnRate = 5f;
-                maxZombies = 3;
+                maxZombies = 1;
                 spawnCooldown = 2f;
                 SpawnerdiffColor = Color.green;
                 break;
 
             case SpawnerDifficulty.Medium:
                 spawnRate = 3f;
-                maxZombies = 5;
+                maxZombies = 2;
                 spawnCooldown = 1.5f;
                 SpawnerdiffColor = Color.yellow;
                 break;
 
             case SpawnerDifficulty.Hard:
                 spawnRate = 1.5f;
-                maxZombies = 7;
+                maxZombies = 3;
                 spawnCooldown = 1f;
                 SpawnerdiffColor = Color.red;
                 break;

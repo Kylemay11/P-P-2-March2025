@@ -99,7 +99,7 @@ public class RepairConsole : MonoBehaviour
 
         if (isRepaired || isMainTerminal) return;
 
-        if (playerInRange && Input.GetKey(KeyCode.E))
+        if (playerInRange && Input.GetKey(KeyCode.E) && gameManager.instance.waveActive)
         {
             gameManager.instance.objectiveMode = true;
             currentProgress += Time.deltaTime;
@@ -274,6 +274,8 @@ public class RepairConsole : MonoBehaviour
     {
         if (other.CompareTag("Player"))
             playerInRange = true;
+        if (RepairCanvas != null)
+            RepairCanvas.gameObject.SetActive(true);
 
         if (!isRepaired && flashRoutine == null)
             flashRoutine = StartCoroutine(FlashScreen());
@@ -281,6 +283,8 @@ public class RepairConsole : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (RepairCanvas != null)
+            RepairCanvas.gameObject.SetActive(false);
         if (other.CompareTag("Player"))
             playerInRange = false;
     }

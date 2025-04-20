@@ -22,6 +22,8 @@ public class FinalRoomTrigger : MonoBehaviour
     {
         Time.timeScale = 1f;
         gameManager.instance.YouWin(); // Or load another scene
+        if (exitPromptUI != null)
+            exitPromptUI.SetActive(false);
     }
 
     public void OnKeepFighting()
