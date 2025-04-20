@@ -22,15 +22,14 @@ public class TrapInteract : MonoBehaviour
 
     void Start()
     {
-        trapDamage = GetComponentInChildren<TrapDamage>();
+        // Initialize all local components
+        trapDamage = GetComponentInChildren<TrapDamage>(true);
         audioSource = GetComponent<AudioSource>();
 
-        SetTrapState(false);
-        if (interactionUI) interactionUI.SetActive(false);
-
-        // Safety check
-        if (costText == null && interactionUI != null)
-            costText = interactionUI.GetComponentInChildren<TextMeshProUGUI>();
+        // Explicitly reset state
+        if (inactiveVisual) inactiveVisual.SetActive(true);
+        if (activeVisual) activeVisual.SetActive(false);
+        trapDamage.SetActive(false);
     }
 
     void Update()

@@ -6,6 +6,7 @@ public class TrapDamage : MonoBehaviour
     [Header("Damage Settings")]
     [Range(0, 5000)] [SerializeField] private int damageAmount;
     [Range(0, 10)] [SerializeField] private float damageInterval;
+    [SerializeField] private Collider damageCollider;
     [SerializeField] private LayerMask targetLayers;
 
     [Header("Effects")]
@@ -15,10 +16,18 @@ public class TrapDamage : MonoBehaviour
     private bool isDamaging;
     private AudioSource audioSource;
 
-    private void Start()
+    void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        enabled = false;
+        damageCollider.enabled = false; // Initialize state
+    }
+
+    public void SetActive(bool active)
+    {
+        enabled = active;
+        damageCollider.enabled = active; // Use explicit reference
+        if (hitEffect != null)
+            hitEffect.gameObject.SetActive(active);
     }
 
     private void OnTriggerStay(Collider other)
@@ -64,11 +73,5 @@ public class TrapDamage : MonoBehaviour
 
         if (hitSound != null && audioSource != null)
             audioSource.PlayOneShot(hitSound);
-    }
-
-    public void SetActive(bool active)
-    {
-        enabled = active;
-        GetComponent<Collider>().enabled = active;
     }
 }
