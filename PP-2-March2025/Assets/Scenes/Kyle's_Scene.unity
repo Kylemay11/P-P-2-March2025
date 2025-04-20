@@ -6071,6 +6071,15 @@ MonoBehaviour:
   attackRate: 2.16
   sightRange: 2.7
   attackRange: 4.8
+  aud: {fileID: 0}
+  audSteps: []
+  audStepsVol: 0
+  audAttack: []
+  audAttackVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audDeath: []
+  audDeathVol: 0
 --- !u!1 &362554643
 GameObject:
   m_ObjectHideFlags: 0
@@ -17551,6 +17560,15 @@ MonoBehaviour:
   attackRate: 2
   sightRange: 30
   attackRange: 3
+  aud: {fileID: 0}
+  audSteps: []
+  audStepsVol: 0
+  audAttack: []
+  audAttackVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audDeath: []
+  audDeathVol: 0
 --- !u!1 &932931011
 GameObject:
   m_ObjectHideFlags: 0
@@ -30750,6 +30768,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5639920395836675616, guid: 017032997bba995459247e4b709654c4, type: 3}
+      propertyPath: walkBobSpeed
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 9222826323181665447, guid: 017032997bba995459247e4b709654c4, type: 3}
       propertyPath: m_Name
       value: Player  - new weapons
@@ -35915,6 +35937,15 @@ MonoBehaviour:
   attackRate: 0.88
   sightRange: 4.1
   attackRange: 2.4
+  aud: {fileID: 0}
+  audSteps: []
+  audStepsVol: 0
+  audAttack: []
+  audAttackVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audDeath: []
+  audDeathVol: 0
 --- !u!1 &2106665724
 GameObject:
   m_ObjectHideFlags: 0
@@ -44450,6 +44481,15 @@ MonoBehaviour:
   attackRate: 2.16
   sightRange: 2.7
   attackRange: 4.8
+  aud: {fileID: 0}
+  audSteps: []
+  audStepsVol: 0
+  audAttack: []
+  audAttackVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audDeath: []
+  audDeathVol: 0
 --- !u!33 &2307121833789184744
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -46141,6 +46181,15 @@ MonoBehaviour:
   attackRate: 2.16
   sightRange: 2.7
   attackRange: 4.8
+  aud: {fileID: 0}
+  audSteps: []
+  audStepsVol: 0
+  audAttack: []
+  audAttackVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audDeath: []
+  audDeathVol: 0
 --- !u!4 &2884916385393554031
 Transform:
   m_ObjectHideFlags: 0
@@ -49702,6 +49751,15 @@ MonoBehaviour:
   attackRate: 2.16
   sightRange: 2.7
   attackRange: 4.8
+  aud: {fileID: 0}
+  audSteps: []
+  audStepsVol: 0
+  audAttack: []
+  audAttackVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audDeath: []
+  audDeathVol: 0
 --- !u!224 &3890467431767588684
 RectTransform:
   m_ObjectHideFlags: 0
@@ -51833,6 +51891,15 @@ MonoBehaviour:
   attackRate: 2
   sightRange: 30
   attackRange: 3
+  aud: {fileID: 0}
+  audSteps: []
+  audStepsVol: 0
+  audAttack: []
+  audAttackVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audDeath: []
+  audDeathVol: 0
 --- !u!4 &4670244557633541752
 Transform:
   m_ObjectHideFlags: 0
@@ -56951,6 +57018,15 @@ MonoBehaviour:
   attackRate: 0.88
   sightRange: 4.1
   attackRange: 2.4
+  aud: {fileID: 0}
+  audSteps: []
+  audStepsVol: 0
+  audAttack: []
+  audAttackVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audDeath: []
+  audDeathVol: 0
 --- !u!4 &6444997182889241462
 Transform:
   m_ObjectHideFlags: 0
@@ -58623,6 +58699,15 @@ MonoBehaviour:
   attackRate: 0.88
   sightRange: 4.1
   attackRange: 2.4
+  aud: {fileID: 0}
+  audSteps: []
+  audStepsVol: 0
+  audAttack: []
+  audAttackVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audDeath: []
+  audDeathVol: 0
 --- !u!1 &7015281512087687745
 GameObject:
   m_ObjectHideFlags: 0
@@ -60681,6 +60766,15 @@ MonoBehaviour:
   attackRate: 2
   sightRange: 30
   attackRange: 3
+  aud: {fileID: 0}
+  audSteps: []
+  audStepsVol: 0
+  audAttack: []
+  audAttackVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audDeath: []
+  audDeathVol: 0
 --- !u!1 &7687746517624484213
 GameObject:
   m_ObjectHideFlags: 0
@@ -62332,6 +62426,15 @@ MonoBehaviour:
   attackRate: 0.88
   sightRange: 4.1
   attackRange: 2.4
+  aud: {fileID: 0}
+  audSteps: []
+  audStepsVol: 0
+  audAttack: []
+  audAttackVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audDeath: []
+  audDeathVol: 0
 --- !u!4 &8297091558815261091
 Transform:
   m_ObjectHideFlags: 0
@@ -63361,6 +63464,15 @@ MonoBehaviour:
   attackRate: 2
   sightRange: 30
   attackRange: 3
+  aud: {fileID: 0}
+  audSteps: []
+  audStepsVol: 0
+  audAttack: []
+  audAttackVol: 0
+  audHurt: []
+  audHurtVol: 0
+  audDeath: []
+  audDeathVol: 0
 --- !u!23 &8734386300315626861
 MeshRenderer:
   m_ObjectHideFlags: 0
