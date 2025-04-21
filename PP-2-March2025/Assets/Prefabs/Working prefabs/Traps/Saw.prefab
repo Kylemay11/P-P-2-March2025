@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 476b4494e3f362e45ba10d25dd2fec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activationCost: 0
+  activationCost: 50
   inactiveVisual: {fileID: 42570026896428317}
   activeVisual: {fileID: 4931646533274742197}
   activeDuration: 10
