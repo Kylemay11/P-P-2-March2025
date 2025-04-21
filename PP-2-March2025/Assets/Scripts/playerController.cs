@@ -618,7 +618,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     public void IncreaseWeaponFireRate(float amount)
     {
-        wepRate += amount;
+        wepRate -= amount;
     }
 
     public void IncreaseWeaponFireDistance(int amount)
