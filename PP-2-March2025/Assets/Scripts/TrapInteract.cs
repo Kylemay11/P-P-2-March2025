@@ -6,8 +6,8 @@ public class TrapInteract : MonoBehaviour
 {
     [Header("Trap Settings")]
     [SerializeField] private int activationCost;
-    [SerializeField] private GameObject inactiveVisual;
-    [SerializeField] private GameObject activeVisual;
+    [SerializeField] private GameObject inactiveVisual;  
+    [SerializeField] private GameObject activeVisual; 
     [Range(1, 20)] [SerializeField] private float activeDuration;
 
     [Header("UI")]
@@ -36,7 +36,7 @@ public class TrapInteract : MonoBehaviour
     {
         if (!isPlayerNear || isActive) return;
 
-        if (Input.GetButtonDown("Interact") && !gameManager.instance.waveActive)
+        if (Input.GetButtonDown("Interact"))
             TryActivate();
     }
 

@@ -11,14 +11,11 @@ public class TrapDamage : MonoBehaviour
 
     [Header("Effects")]
     [SerializeField] private ParticleSystem hitEffect;
-    [SerializeField] private AudioClip hitSound;
 
     private bool isDamaging;
-    private AudioSource audioSource;
-
+ 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         damageCollider.enabled = false; // Initialize state
     }
 
@@ -52,7 +49,7 @@ public class TrapDamage : MonoBehaviour
 
         isDamaging = true;
         target.takeDamage(damageAmount);
-        PlayHitEffects();
+        
         yield return new WaitForSeconds(damageInterval);
         isDamaging = false;
     }
@@ -62,16 +59,6 @@ public class TrapDamage : MonoBehaviour
         if (target != null)
         {
             target.takeDamage(damageAmount);
-            PlayHitEffects();
         }
-    }
-
-    private void PlayHitEffects()
-    {
-        if (hitEffect != null)
-            hitEffect.Play();
-
-        if (hitSound != null && audioSource != null)
-            audioSource.PlayOneShot(hitSound);
     }
 }

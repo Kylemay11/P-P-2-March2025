@@ -380,7 +380,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         currentHP -= amount;
         updatePlayerUI();
         StartCoroutine(DamageFlash());
-        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+        //aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
         if (currentHP <= 0)
             gameManager.instance.YouLose();
     }
@@ -557,7 +557,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         int currentWepIndex = wepListPos;
 
         isReloading = true;
-       aud.PlayOneShot(audReload[Random.Range(0, audReload.Length)], audReloadVol);
+       //aud.PlayOneShot(audReload[Random.Range(0, audReload.Length)], audReloadVol);
 
         if (wepList[wepListPos].ammoCur > 1)
         {
