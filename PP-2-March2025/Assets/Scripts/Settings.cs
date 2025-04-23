@@ -108,7 +108,7 @@ public class Settings : MonoBehaviour
 
         if (Screen.width != resolution.width || Screen.height != resolution.height)
         {
-            Screen.SetResolution(resolution.width, resolution.height, FullScreenMode.FullScreenWindow);
+            Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         }
     }
 

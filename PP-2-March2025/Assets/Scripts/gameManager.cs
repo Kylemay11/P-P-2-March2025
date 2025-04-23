@@ -189,6 +189,7 @@ public class gameManager : MonoBehaviour
         if (menuActive != null)
         {
             menuActive.SetActive(false);
+            menusettings.SetActive(false);
             menuActive = null;
         }
         EventSystem.current.SetSelectedGameObject(null);
