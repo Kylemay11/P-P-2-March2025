@@ -5395,7 +5395,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'SHOP
+  m_text: 'WEAPON SHOP
 
     OPEN WITH "E"'
   m_isRightToLeft: 0
@@ -17515,9 +17515,9 @@ MonoBehaviour:
   weapon4Price: 36
   AmmoPrice: 19
   AmmoAmount: 19
-  Smallhealthpack: 0
-  Healthpack: 0
-  Largehealthpack: 0
+  Smallhealthpack: 1
+  Healthpack: 1
+  Largehealthpack: 1
   availableWeapons:
   - {fileID: 11400000, guid: f5a3cd39860eccc4f88dfd04c42a56cc, type: 2}
   - {fileID: 11400000, guid: 097874adcb2f0a544805a97756bd796a, type: 2}
