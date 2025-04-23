@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 3030307321845125742}
   - component: {fileID: 331015650416077157}
   - component: {fileID: 3374482706160596188}
+  - component: {fileID: 3765757003470879902}
   m_Layer: 7
   m_Name: Zombie Runner
   m_TagString: Zombie
@@ -338,6 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977ee288f9ad8d64985c6a517cea01f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originSpawner: {fileID: 0}
   agent: {fileID: 331015650416077157}
   moneyOnDeath: 10
   type: 1
@@ -354,6 +356,21 @@ MonoBehaviour:
   attackRate: 1
   sightRange: 10
   attackRange: 6
+  aud: {fileID: 3765757003470879902}
+  audSteps:
+  - {fileID: 8300000, guid: abb9a6f491c0eed4b93addfc902dad13, type: 3}
+  audStepsVol: 0.2
+  audAttack:
+  - {fileID: 8300000, guid: 0eb29075289ccc64790ff266761bcb8b, type: 3}
+  audAttackVol: 0.5
+  audHurt:
+  - {fileID: 8300000, guid: 3981ab1db25eb5f4cb6a538368395070, type: 3}
+  - {fileID: 8300000, guid: 67353032cfc5b5343b86e2dcc745d487, type: 3}
+  - {fileID: 8300000, guid: e9406330569a1ce48ac3c8cfa98d06a7, type: 3}
+  audHurtVol: 0.5
+  audDeath:
+  - {fileID: 8300000, guid: 777f5ab3c425c184a91ba87fabc8aadb, type: 3}
+  audDeathVol: 0.5
 --- !u!95 &3030307321845125742
 Animator:
   serializedVersion: 7
@@ -418,9 +435,106 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.6
-  m_Height: 2.2
+  m_Height: 1.6911427
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.74557143, z: 0}
+--- !u!82 &3765757003470879902
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331572698522616251}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1759673701576060038
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,6 +978,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6485544964800393739}
   - {fileID: 7640842936770822117}
   - {fileID: 3304668949661380975}
   m_Father: {fileID: 5777838032602885138}
@@ -1282,6 +1397,77 @@ Transform:
   - {fileID: 7603946151195867141}
   m_Father: {fileID: 8202334135115086831}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5370714762442709447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6485544964800393739}
+  - component: {fileID: 1666940754581363914}
+  - component: {fileID: 209075729201034105}
+  m_Layer: 7
+  m_Name: Head
+  m_TagString: Head
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6485544964800393739
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5370714762442709447}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00000063516194, y: -0.00000063516194, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.0022065458, y: 0, z: -0.006246301}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7986363527956319076}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1666940754581363914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5370714762442709447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 084bfae549bbaec4b921a3fa0ca814ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 2760812778507549872}
+  dummy: {fileID: 0}
+  multiplier: 1.5
+--- !u!136 &209075729201034105
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5370714762442709447}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1441113
+  m_Height: 0.3692926
+  m_Direction: 1
+  m_Center: {x: -0.005306244, y: 0.11454885, z: 0}
 --- !u!1 &5471097584967298851
 GameObject:
   m_ObjectHideFlags: 0

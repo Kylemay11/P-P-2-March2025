@@ -28,15 +28,7 @@ public class Shop : MonoBehaviour
     [Range(1, 100)][SerializeField] int Largehealthpack;
 
 
-    [System.Serializable]
-    public class ShopWeapon
-    {
-        public weaponStats stats;
-        public GameObject weaponPrefab;
-        public int price;
-    }
-
-    [SerializeField] private List<ShopWeapon> availableWeapons = new List<ShopWeapon>();
+    [SerializeField] List<weaponStats> availableWeapons = new List<weaponStats>();
     [SerializeField] private int weaponReplaceIndex = 0;
 
     // Vending Machine
@@ -84,18 +76,13 @@ public void makeAmmoPurchase()
 
     public void PurchaseWeapon(int weaponIndex)
     {
-        if (weaponIndex < 0 || weaponIndex >= availableWeapons.Count)
-            return;
-
-        ShopWeapon selected = availableWeapons[weaponIndex];
-
-        if (CurrencySystem.instance.SpendMoney(selected.price))
+        if (weaponIndex < 0 || weaponIndex > availableWeapons.Count)
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-            // Give stats + prefab to player
-            player.GetComponent<playerController>()?.ReplaceWeapon(selected.stats, selected.weaponPrefab, weaponReplaceIndex);
+            return;
         }
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<playerController>()?.ReplaceWeapon(availableWeapons[weaponIndex]);
+
     }
 
     // purchase the weapons from their corrsponding postion in the list

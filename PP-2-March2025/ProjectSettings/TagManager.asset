@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Zombie
+  - FxTemporaire
+  - Head
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Door UI
   - enviroment
   - Glass
-  - 
+  - Weapons
   - 
   - 
   - 

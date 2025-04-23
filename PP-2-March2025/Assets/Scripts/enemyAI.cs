@@ -7,7 +7,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class enemyAI : MonoBehaviour, IDamage, IZombie
 {
-    public event System.Action OnZombieDeath;
+    public System.Action OnZombieDeath;
+    public ZombieSpawner originSpawner;
     //Kyle added for barricade
     public enum ZombieTargetState { AttackingDoor, AttackingPlayer };
 
@@ -49,6 +50,21 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     [Range(0.5f, 5)][SerializeField] float attackRate;
     [Range(1, 30)][SerializeField] float sightRange, attackRange;
 
+    [Header("--- Audio ---")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audSteps;
+    [Range(0, 1)][SerializeField] float audStepsVol;
+    [SerializeField] AudioClip[] audAttack;
+    [Range(0, 1)][SerializeField] float audAttackVol; 
+    [SerializeField] AudioClip[] audHurt;
+    [Range(0, 1)][SerializeField] float audHurtVol;
+    [SerializeField] AudioClip[] audDeath;
+    [Range(0, 1)][SerializeField] float audDeathVol;
+
+
+
+
+
     float attackTimer;
     Vector3 playerDir;
     bool playerInSightRange, playerInAttackRange;
@@ -64,7 +80,9 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         originalColor = zombieRenderer.material.color;
         agent.speed = enemySpeed;
         //Kyle added Helps the zombies avoid eachother whn they spawn
-        agent.avoidancePriority = Random.Range(60, 70);
+        agent.avoidancePriority = Random.Range(10, 65);
+        float radiusVaule = Random.Range(0.5f, 0.8f);
+        agent.radius = Mathf.Round(radiusVaule * 10) * 0.1f;
 
         if (type == enemyType.spitter)
             agent.stoppingDistance = attackRange;
@@ -95,14 +113,17 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     public void takeDamage(int amount)
     {
         HP -= amount;
+        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
         //Kyle added
         animator.SetTrigger("TakeDamage");
         StartCoroutine(DamageAnimationCooldown());
         StartCoroutine(FlashRed());
         if (HP <= 0)
         {
+            gameManager.instance.playerScript.zombiesKilled++;
             CurrencySystem.instance.AddMoney(moneyOnDeath);
             OnZombieDeath?.Invoke();
+            aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);
             if (barrierDoor != null)
                 barrierDoor.RemoveAttacker(this);
             Destroy(gameObject);
@@ -112,7 +133,8 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     private void enemyAttack()
     {
         attackTimer = 0;
-
+        aud.PlayOneShot(audAttack[Random.Range(0, audAttack.Length)], audAttackVol);
+        // 2. Attack barricade door (if still exists)
         if (barrierDoor != null && barrierDoor.CurrentState != BarricadeDoor.DoorState.Destroyed)
         {
             if (selectedAttackPoint == null)
@@ -130,12 +152,13 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
             }
             else
             {
-                // Haven't reached the attack point yet, just keep moving
                 agent.SetDestination(selectedAttackPoint.position);
             }
 
             return;
         }
+
+        // 3. Attack player
         float distanceToPlayer = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
         if (distanceToPlayer <= attackRange)
         {
@@ -145,21 +168,9 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
             {
                 player.takeDamage((int)enemyDamage);
             }
-
-            // do animation for melee attack
-
-            //if(type == enemyType.spitter)
-            //{
-            //    // temp variable
-            //    GameObject projectile = Instantiate(zombieBile, attackPOS.position, transform.rotation);
-            //}//if(type == enemyType.spitter)
-            //{
-            //    // temp variable
-            //    GameObject projectile = Instantiate(zombieBile, attackPOS.position, transform.rotation);
-            //}
-
         }
     }
+
 
     private float CalculateLaunchAngle(float initialVel, float x, float y, float gravity)
     {
@@ -256,7 +267,12 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     {
         this.barrierDoor = door;
     }
-    // Kyle added for barricadeDoor
+    public void GoToTerminal(Vector3 targetPosition)
+    {
+        if (agent != null && agent.isActiveAndEnabled)
+            agent.SetDestination(targetPosition);
+    }
+    //Kyle added for barricadeDoor
     public void SetTargetState(ZombieTargetState newState)
     {
         if (hasEnteredRoom && newState == ZombieTargetState.AttackingDoor)
@@ -278,6 +294,14 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         }
     }
 
+    //private bool isbarrierDoor()
+    //{
+    //    if (!barrierDoor) // null
+    //        return true;
+    //    if (barrierDoor)
+    //        return false;
+    //}
+
     private void HandleTargeting()
     {
         if (currentTargetState == ZombieTargetState.AttackingDoor)
@@ -292,6 +316,8 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
 
     private void HandleMovement()
     {
+        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+
         switch (currentTargetState)
         {
             case ZombieTargetState.AttackingDoor:
