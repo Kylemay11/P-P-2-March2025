@@ -17,9 +17,15 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-    [SerializeField] GameObject menuShop;
+    
+    [SerializeField] public GameObject menuMain;
+    [SerializeField] public GameObject menuLvlSelect;
+    [SerializeField] public GameObject menuCredits;
+    [SerializeField] public GameObject menufpsDisplay;
+    [SerializeField] public GameObject menusettings;
+    [SerializeField] public GameObject menuShop;
+    [SerializeField] public GameObject menuPerkShop;
 
-    [SerializeField] GameObject menuPerkShop;
     private GameObject menuActive;
 
     [Header("Wave Settings")]
@@ -45,6 +51,7 @@ public class gameManager : MonoBehaviour
     public TMP_Text startPromptText;
 
     public bool isPaused = false;
+    public bool objectiveMode = false;
 
     private int goalCount = 0;
 
@@ -90,7 +97,9 @@ public class gameManager : MonoBehaviour
     {
         if (waveActive)
         {
-            waveTimer -= Time.deltaTime;
+            if (!objectiveMode)
+                waveTimer -= Time.deltaTime;
+
             UpdateWaveInfoText($"Wave {currentWave} | Time: {Mathf.CeilToInt(waveTimer)}s");
 
             if (waveTimer <= 0)
@@ -106,6 +115,10 @@ public class gameManager : MonoBehaviour
 
         if (waitingToStartWave && Input.GetKeyDown(KeyCode.F))
         {
+            if (objectiveMode)
+            {
+                return;
+            }
             StartWave();
         }
     }
@@ -121,7 +134,7 @@ public class gameManager : MonoBehaviour
         {
             room.EndRoomWave();
         }
-
+        CleanupStragglers(25f);
         UpdateAliveCounterUI();
         StartCoroutine(WaitBeforeCleanupUI());
     }
@@ -176,6 +189,7 @@ public class gameManager : MonoBehaviour
         if (menuActive != null)
         {
             menuActive.SetActive(false);
+            menusettings.SetActive(false);
             menuActive = null;
         }
         EventSystem.current.SetSelectedGameObject(null);
@@ -199,6 +213,56 @@ public class gameManager : MonoBehaviour
         menuActive = menuLose;
     }
 
+    public void YouWin()
+    {
+        PauseGame();
+        menuWin.SetActive(true);
+        menuActive = menuWin;
+
+        WinStatsUI statsUI = menuWin.GetComponent<WinStatsUI>();
+        if (statsUI != null)
+        {
+            statsUI.ShowStats(
+                zombiesKilled: playerScript.zombiesKilled,
+                moneyEarned: CurrencySystem.instance.TotalMoney,
+                wavesCleared: currentWave
+            );
+        }
+    }
+    public void CleanupStragglers(float radius)
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) return;
+
+        Vector3 center = player.transform.position;
+        Collider[] hits = Physics.OverlapSphere(center, radius);
+
+        enemyAI[] allZombies = GameObject.FindObjectsByType<enemyAI>(FindObjectsSortMode.None);
+
+        foreach (enemyAI zombie in allZombies)
+        {
+            bool inCleanupRadius = false;
+
+            foreach (Collider hit in hits)
+            {
+                if (hit.gameObject == zombie.gameObject)
+                {
+                    inCleanupRadius = true;
+                    break;
+                }
+            }
+
+            if (!inCleanupRadius)
+            {
+                Debug.Log($"[Cleanup] Destroying zombie out of range: {zombie.name}");
+
+                zombie.OnZombieDeath?.Invoke();
+
+                Destroy(zombie.gameObject);
+            }
+        }
+    }
+
     private int GetTotalZombiesAlive()
     {
         int total = 0;
@@ -218,6 +282,7 @@ public class gameManager : MonoBehaviour
 
     private void UpdateAliveCounterUI()
     {
+        int count = GetTotalZombiesAlive();
         UpdateWaveInfoText($"Wave {currentWave} | Cleanup Phase | Alive: {GetTotalZombiesAlive()}");
     }
 

@@ -74,13 +74,31 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [SerializeField] private ParticleSystem mFlash;
 
     [Header("--- Audio ---")]
+    [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audSteps;
     [Range(0, 1)][SerializeField] float audStepsVol;
-    [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audJump;
     [Range(0, 1)][SerializeField] float audJumpVol;
     [SerializeField] AudioClip[] audHurt;
     [Range(0, 1)][SerializeField] float audHurtVol;
+    [SerializeField] AudioClip[] audSlide;
+    [Range(0, 1)][SerializeField] float audSlideVol;
+    [SerializeField] AudioClip[] audStaminaOut;
+    [Range(0, 1)][SerializeField] float audStaminaOutVol;
+    [SerializeField] AudioClip[] audGunShot;
+    [Range(0, 1)][SerializeField] float audGunShotVol;
+    [SerializeField] AudioClip[] audReload;
+    [Range(0, 1)][SerializeField] float audReloadVol;
+    [SerializeField] AudioClip[] audEmptyGun;
+    [Range(0, 1)][SerializeField] float audEmptyGunVol;
+    [SerializeField] AudioClip[] audChangeGun;
+    [Range(0, 1)][SerializeField] float audChangeGunVol;
+
+
+
+
+
+    public int zombiesKilled = 0;
 
     private Vector3 moveDir;
     private Vector3 velocity;
@@ -92,6 +110,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     private float staminaRegenTimer;
     private bool staminaFullyDrained;
     private bool canSprint;
+    private bool isSprinting;
     [SerializeField] private bool isGrounded;
     bool isplayingSteps;
 
@@ -128,6 +147,10 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         if (controller.isGrounded)
         {
+            if (!isplayingSteps && moveDir.magnitude > 0.3f)
+            {
+                StartCoroutine(playStep());
+            }
             isGrounded = true;
             velocity.y = 0;
             jumpCount = 0;
@@ -157,6 +180,21 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         reloadWeapon();
     }
 
+    IEnumerator playStep()
+    {
+            isplayingSteps = true;
+            aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+            if (!isSprinting)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.3f);
+            }
+            isplayingSteps = false;
+    }
+
     private void HandleSprint()
     {
         if (Input.GetButtonDown("Sprint") && isGrounded && canSprint)
@@ -164,11 +202,13 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             staminaRegenTimer = 0f;
             currentState = PlayerState.Sprinting;
             currentSpeed = walkSpeed * sprintMultiplier;
+            isSprinting = true;
         }
         else if (Input.GetButtonUp("Sprint") && currentState == PlayerState.Sprinting)
         {
             currentState = PlayerState.Walking;
             currentSpeed = walkSpeed;
+            isSprinting = false;
         }
     }
 
@@ -219,6 +259,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         currentSpeed = walkSpeed * sprintMultiplier * slideSpeedBoost;
         controller.height = crouchColliderSize.y;
         controller.center = new Vector3(0, crouchColliderSize.y / 2f, 0);
+        aud.PlayOneShot(audSlide[Random.Range(0, audSlide.Length)], audSlideVol);
         UpdateCameraHeight(crouchCameraHeight);
         StartCoroutine(SlideTimer());
     }
@@ -258,6 +299,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             isGrounded = false;
             velocity.y = jumpForce;
             jumpCount++;
+            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)],audJumpVol);
         }
     }
 
@@ -274,6 +316,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
                 canSprint = false;
                 currentState = PlayerState.Walking;
                 currentSpeed = walkSpeed;
+                aud.PlayOneShot(audStaminaOut[Random.Range(0, audStaminaOut.Length)], audStaminaOutVol);
+
             }
             staminaRegenTimer = 0f;
         }
@@ -283,6 +327,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             currentStamina -= staminaDrainRate * slideStaminaDrainMultiplier * Time.deltaTime;
             currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
             staminaRegenTimer = 0f;
+
         }
 
         if (currentState != PlayerState.Sprinting && currentState != PlayerState.Sliding)
@@ -335,7 +380,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         currentHP -= amount;
         updatePlayerUI();
         StartCoroutine(DamageFlash());
-
+        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
         if (currentHP <= 0)
             gameManager.instance.YouLose();
     }
@@ -416,6 +461,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
             isReloading = false;
         }
+        aud.PlayOneShot(audChangeGun[Random.Range(0, audChangeGun.Length)], audChangeGunVol);
+
         wepDamage = wepList[wepListPos].wepDamage;
         wepDist = wepList[wepListPos].wepDist;
         wepRate = wepList[wepListPos].wepRate;
@@ -427,7 +474,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         if (wepList[wepListPos] != null)
         {
-            AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+            UpdateAmmoUI();
             AmmoUI.instance?.Show(true);
             gameManager.instance.weaponNotification?.ShowWeaponName(wepList[wepListPos].name);
         }
@@ -448,16 +495,24 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     private void Shoot()
     {
+        //if (!wepList[wepListPos].CanFire()) // isempty
+        //{
+        //    aud.PlayOneShot(audEmptyGun[Random.Range(0, audEmptyGun.Length)], audEmptyGunVol);
+
+        //    return; 
+        //} // click sound
+
         attackTimer = 0;
 
         if (mFlashPos != null)
         {
             StartCoroutine(FlashMuzzle());
         }
+        aud.PlayOneShot(audGunShot[Random.Range(0, audGunShot.Length)], audGunShotVol);
 
         wepList[wepListPos].ammoCur--;
         //attackTimer = Time.deltaTime + wepRate;
-        AmmoUI.instance.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+        UpdateAmmoUI();
 
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         Debug.DrawRay(ray.origin, ray.direction * wepDist, Color.red, 1.5f);
@@ -486,8 +541,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         psMFlash.transform.SetParent(mFlashPos.transform); // keeps particles inplace while moving
 
         if (mFlash != null)
+        {
             psMFlash.Play();
-
+        }
         yield return new WaitForSeconds(0.12f);
 
         if (mFlash != null)
@@ -501,11 +557,12 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         int currentWepIndex = wepListPos;
 
         isReloading = true;
+        aud.PlayOneShot(audReload[Random.Range(0, audReload.Length)], audReloadVol);
 
         if (wepList[wepListPos].ammoCur > 1)
         {
             wepList[wepListPos].ammoCur = 1; // 1 in chamber
-            AmmoUI.instance.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+            UpdateAmmoUI();
         }
         Debug.Log("Reloading...");
 
@@ -528,47 +585,62 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         // current wep
         if (isReloading == true)
         {
-            wepList[wepListPos].ammoCur = wepList[wepListPos].ammoMax;
-
-            AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].ammoMax);
+            wepList[wepListPos].Reload();
+            UpdateAmmoUI();
         }
         else
             isReloading = false;
     }
 
 
-    // logic for shops
+    // logic for shops AND items
     public void SpeedIncrease(float amount)
     {
         walkSpeed += amount;
+    }
+    public void StaminaIncrease(float amount)
+    {
+        maxStamina += amount;
+        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
     }
 
     public void BonusHealth(int amount)
     {
         maxHP += amount;
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP); 
+        updatePlayerUI();
     }
 
-    // replace the weapon the player has with their purchased weapon????
-    public void ReplaceWeapon(weaponStats stats, GameObject weaponPrefab, int slot)
+    public void IncreaseWeaponDamage(int amount)
     {
-        // Replace logic here, e.g., add stats to list, instantiate weapon model
-        wepList[slot] = stats;
-      //  EquipGunModel(Instantiate(weaponPrefab)); // Mount prefab properly
+        wepDamage += amount;
+    }
+
+    public void IncreaseWeaponFireRate(float amount)
+    {
+        wepRate -= amount;
+    }
+
+    public void IncreaseWeaponFireDistance(int amount)
+    {
+        wepDist += amount;
+    }
+
+    // replace the weapon the player has with their purchased weapon
+    public void ReplaceWeapon(weaponStats newWeapon)
+    {
+        wepList.Remove(wepList[wepListPos]);
+        wepList.Add(newWeapon);
         changeWeapon();
     }
-
-    //audio
-
-    IEnumerator playSteps()
+    public void DamageIncrease(int amount)
     {
-        isplayingSteps = true;
-        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
-
-        if (!canSprint)
-            yield return new WaitForSeconds(0.05f);
-        else
-            yield return new WaitForSeconds(0.03f);
-
-        isplayingSteps = false;
+        wepDamage += amount;
     }
+    public void UpdateAmmoUI()
+    {
+        AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].curReserve);
+    }
+    // make the weapon change the weapon postion of the current weapon user has equipped
+
 }

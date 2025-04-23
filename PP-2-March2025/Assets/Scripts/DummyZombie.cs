@@ -26,5 +26,11 @@ public class DummyZombie : MonoBehaviour, IDamage
         GameObject popup = Instantiate(damagePopupPrefab, damagePopupSpawnPoint.position, Quaternion.identity);
         popup.GetComponent<DamagePopup>().Setup(damage);
     }
+
+    public void HandleHeadshot(int damage)
+    {
+        takeDamage(damage);
+        ShowDamagePopup(damage);
+    }
 }
 

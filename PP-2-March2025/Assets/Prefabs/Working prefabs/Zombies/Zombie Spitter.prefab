@@ -94,6 +94,77 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5222338490372231532}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &458551826456478587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 114861862570424330}
+  - component: {fileID: 747527528867203640}
+  - component: {fileID: 8088337790797567480}
+  m_Layer: 7
+  m_Name: Head
+  m_TagString: Head
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &114861862570424330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458551826456478587}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00000063516194, y: -0.00000063516194, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.034540366, y: -0.008000366, z: 0.0737537}
+  m_LocalScale: {x: 1, y: 1.1999998, z: 1.1999998}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8380800348930399420}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &747527528867203640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458551826456478587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 084bfae549bbaec4b921a3fa0ca814ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 7941981740539849102}
+  dummy: {fileID: 0}
+  multiplier: 1.5
+--- !u!136 &8088337790797567480
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458551826456478587}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1441113
+  m_Height: 0.3692926
+  m_Direction: 1
+  m_Center: {x: -0.005306244, y: 0.11454885, z: 0}
 --- !u!1 &577692209621688315
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2512715781657314897}
+  moneyOnDeath: 0
   type: 2
   sphereCollider: {fileID: 1289240542026452634}
   zombieRenderer: {fileID: 0}
@@ -627,6 +699,7 @@ MonoBehaviour:
   baseHealth: 1
   baseSpeed: 1
   baseDamage: 1
+  barrierDoor: {fileID: 0}
   attackRate: 1.05
   sightRange: 30
   attackRange: 30
@@ -860,6 +933,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 114861862570424330}
   - {fileID: 5879152593437840912}
   - {fileID: 3019959298368389760}
   - {fileID: 7056443337958636971}

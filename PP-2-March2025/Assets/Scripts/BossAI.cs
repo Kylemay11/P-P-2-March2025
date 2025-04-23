@@ -84,20 +84,14 @@ public class BossAI : MonoBehaviour, IDamage, IZombie
     public void takeDamage(int amount)
     {
         HP -= amount;
-        StartCoroutine(flashRed());
 
         agent.SetDestination(gameManager.instance.player.transform.position);
         
         if (HP <= 0)
         {
             Destroy(gameObject);
+            gameManager.instance.YouWin();
         }
-    }
-    IEnumerator flashRed()
-    {
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        model.material.color = Color.white;
     }
 
     Vector3 getDownwardPlayerDir()

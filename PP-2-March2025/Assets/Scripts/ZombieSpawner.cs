@@ -17,6 +17,7 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] private float spawnCooldown;
     [SerializeField] public bool isSpawnerActiveInternal;
     [SerializeField] public BarricadeDoor barricadeDoor;
+    private bool playerInZone = true;
 
 
     public int currentZombiesAlive;
@@ -74,7 +75,11 @@ public class ZombieSpawner : MonoBehaviour
     {
         while (canSpawn && currentZombiesAlive < maxZombies)
         {
-            SpawnZombie();
+            if (gameManager.instance.waveActive && playerInZone)
+            {
+                SpawnZombie();
+            }
+
             yield return new WaitForSeconds(spawnRate);
         }
     }
@@ -102,7 +107,14 @@ public class ZombieSpawner : MonoBehaviour
         {
             enemy.barrierDoor = spawnPoint.GetComponentInChildren<BarricadeDoor>();
             enemy.OnZombieDeath += HandleZombieDeath;
+            enemy.originSpawner = this;
             deathHooked = true;
+        }
+        if (RepairConsole.mainTerminalRef != null && RepairConsole.mainTerminalRef.doorCharging)
+        {
+            enemy.SetTargetState(enemyAI.ZombieTargetState.AttackingPlayer); // this ensures no door confusion
+            enemy.GoToTerminal(RepairConsole.mainTerminalRef.transform.position);
+            Debug.Log($"[Zombie Target] {zombie.name} set to attack main terminal.");
         }
 
         //BossAI boss = zombie.GetComponent<BossAI>();
@@ -125,7 +137,7 @@ public class ZombieSpawner : MonoBehaviour
 
     public void SpawnOverTime()
     {
-        if (!canSpawn) return;
+        if (!canSpawn || !playerInZone || !gameManager.instance.waveActive) return;
 
         if (spawnCooldown <= 0f)
         {
@@ -164,21 +176,21 @@ public class ZombieSpawner : MonoBehaviour
         {
             case SpawnerDifficulty.Easy:
                 spawnRate = 5f;
-                maxZombies = 3;
+                maxZombies = 1;
                 spawnCooldown = 2f;
                 SpawnerdiffColor = Color.green;
                 break;
 
             case SpawnerDifficulty.Medium:
                 spawnRate = 3f;
-                maxZombies = 5;
+                maxZombies = 2;
                 spawnCooldown = 1.5f;
                 SpawnerdiffColor = Color.yellow;
                 break;
 
             case SpawnerDifficulty.Hard:
                 spawnRate = 1.5f;
-                maxZombies = 7;
+                maxZombies = 3;
                 spawnCooldown = 1f;
                 SpawnerdiffColor = Color.red;
                 break;
@@ -186,6 +198,20 @@ public class ZombieSpawner : MonoBehaviour
 
         Debug.Log($"[Spawner] {gameObject.name} settings applied for {difficulty}: Rate={spawnRate}, Max={maxZombies}, Cooldown={spawnCooldown}");
     }
+    public void SetPlayerInZone(bool value)
+    {
+        playerInZone = value;
+
+        if (!playerInZone)
+        {
+            StopSpawning();
+        }
+        else if (isSpawnerActiveInternal)
+        {
+            StartSpawning();
+        }
+    }
+
 
     private void OnDrawGizmos() // for changing the color in the scene veiw only
     {

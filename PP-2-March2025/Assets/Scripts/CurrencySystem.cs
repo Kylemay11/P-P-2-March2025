@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class CurrencySystem : MonoBehaviour
 {
     public static CurrencySystem instance;
+    public int TotalMoney { get; private set; }
 
     public UnityEvent<int> OnMoneyChanged;
     [SerializeField] public int currentMoney;
@@ -21,6 +22,7 @@ public class CurrencySystem : MonoBehaviour
 
     public void AddMoney(int amount)
     {
+        TotalMoney += amount;
         currentMoney += amount;
         OnMoneyChanged?.Invoke(currentMoney);
     }
