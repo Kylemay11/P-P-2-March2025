@@ -7,6 +7,11 @@ public class OpenShop : MonoBehaviour
     private GameObject shop;
     public bool isPlayerNear = false;
 
+    [Header("--- Audio ---")]
+    [SerializeField] private AudioSource aud;
+    [SerializeField] private AudioClip audShopOpen;
+    [Range(0, 1)][SerializeField] private float audShopOpenVol = 1f;
+
     void Start()
     {
         shop = GameObject.Find("ShopUI");
@@ -49,6 +54,11 @@ public class OpenShop : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         //gameManager.instance.PauseGame();
+        if (aud != null && audShopOpen != null)
+        {
+            aud.PlayOneShot(audShopOpen, audShopOpenVol);
+        }
+
     }
 
     public void UnToggleShop()

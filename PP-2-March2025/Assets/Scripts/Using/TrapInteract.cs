@@ -13,13 +13,27 @@ public class TrapInteract : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject interactionUI;
     [SerializeField] private TextMeshProUGUI costText;
-    [SerializeField] private AudioClip activateSound;
 
     private TrapDamage trapDamage;
-    private AudioSource audioSource;
     private bool isActive = false;
     private bool isPlayerNear = false;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip purchaseSound;
+    [Range(0, 1)][SerializeField] private float activateSoundVolume;
+    [SerializeField] private AudioClip sawSound;
+    [SerializeField] private AudioClip spikeSound;
+    [Range(0, 1)][SerializeField] private float trapSoundVolume;
+
+    public enum trapType
+    {
+        Saw,
+        Spikes
+    }
+
+    [Header("Trap Type")]
+    [SerializeField] private trapType trap;
     void Start()
     {
         // Initialize all local components
@@ -50,7 +64,8 @@ public class TrapInteract : MonoBehaviour
     {
         isActive = true;
         SetTrapState(true);
-        PlaySound(activateSound);
+        activateTrapSound();
+        playTrapSound();
         Invoke("DeactivateTrap", activeDuration);
     }
 
@@ -58,8 +73,16 @@ public class TrapInteract : MonoBehaviour
     {
         isActive = false;
         SetTrapState(false);
+        stopTrapSound();
     }
-
+    private void stopTrapSound()
+    {
+        if(audioSource != null)
+        {
+            audioSource.Stop();
+            audioSource.loop = false;
+        }
+    }
     private void SetTrapState(bool active)
     {
         if (inactiveVisual) inactiveVisual.SetActive(!active);
@@ -68,10 +91,35 @@ public class TrapInteract : MonoBehaviour
         if (interactionUI) interactionUI.SetActive(false);
     }
 
-    private void PlaySound(AudioClip clip)
+    private void activateTrapSound()
     {
-        if (audioSource && clip)
-            audioSource.PlayOneShot(clip);
+        if (audioSource != null && purchaseSound != null)
+        {
+            audioSource.PlayOneShot(purchaseSound, activateSoundVolume);
+        }
+        
+    }
+
+    private void playTrapSound()
+    {
+        if(trap == trapType.Saw)
+        {
+            if (audioSource != null && sawSound != null)
+            {
+                audioSource.clip = sawSound;
+                audioSource.loop = true;
+                audioSource.volume = trapSoundVolume;
+                audioSource.Play();
+            }
+            else
+            {
+                audioSource.clip = spikeSound;
+                audioSource.loop = true;
+                audioSource.volume = trapSoundVolume;
+                audioSource.Play();
+            }
+        }
+
     }
 
     void OnTriggerEnter(Collider other)
