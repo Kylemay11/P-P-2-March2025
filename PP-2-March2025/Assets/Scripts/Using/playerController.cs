@@ -93,6 +93,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [Range(0, 1)][SerializeField] float audEmptyGunVol;
     [SerializeField] AudioClip[] audChangeGun;
     [Range(0, 1)][SerializeField] float audChangeGunVol;
+    [SerializeField] AudioClip[] audCrouch;
+    [Range(0, 1)][SerializeField] float audCrouchVol;
 
 
 
@@ -111,6 +113,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     private bool staminaFullyDrained;
     private bool canSprint;
     private bool isSprinting;
+    private bool isSliding;
     [SerializeField] private bool isGrounded;
     bool isplayingSteps;
 
@@ -228,6 +231,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         if (Input.GetButton("Crouch") && currentState != PlayerState.Crouching && currentState != PlayerState.Sliding)
         {
             EnterCrouch();
+
         }
         else if (!Input.GetButton("Crouch") && currentState == PlayerState.Crouching)
         {
@@ -237,6 +241,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     private void EnterCrouch()
     {
+        if (aud != null && audCrouch != null && !isSliding)
+            aud.PlayOneShot(audCrouch[Random.Range(0, audCrouch.Length)], audCrouchVol);
+
         currentState = PlayerState.Crouching;
         currentSpeed = crouchSpeed;
         controller.height = crouchColliderSize.y;
@@ -255,11 +262,15 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     private void EnterSlide()
     {
+        isSliding = true;
         currentState = PlayerState.Sliding;
         currentSpeed = walkSpeed * sprintMultiplier * slideSpeedBoost;
         controller.height = crouchColliderSize.y;
         controller.center = new Vector3(0, crouchColliderSize.y / 2f, 0);
-        aud.PlayOneShot(audSlide[Random.Range(0, audSlide.Length)], audSlideVol);
+
+        if (aud != null && audSlide != null)
+            aud.PlayOneShot(audSlide[Random.Range(0, audSlide.Length)], audSlideVol);
+
         UpdateCameraHeight(crouchCameraHeight);
         StartCoroutine(SlideTimer());
     }
@@ -272,6 +283,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     private void ExitSlide()
     {
+        isSliding = false;
         if (Input.GetButton("Crouch"))
         {
             EnterCrouch();
@@ -299,7 +311,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             isGrounded = false;
             velocity.y = jumpForce;
             jumpCount++;
-            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)],audJumpVol);
+            if (aud != null && audJump != null)
+                aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)],audJumpVol);
         }
     }
 
@@ -316,7 +329,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
                 canSprint = false;
                 currentState = PlayerState.Walking;
                 currentSpeed = walkSpeed;
-                aud.PlayOneShot(audStaminaOut[Random.Range(0, audStaminaOut.Length)], audStaminaOutVol);
+
+                if (aud != null && audStaminaOut != null)
+                    aud.PlayOneShot(audStaminaOut[Random.Range(0, audStaminaOut.Length)], audStaminaOutVol);
 
             }
             staminaRegenTimer = 0f;
@@ -461,7 +476,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
             isReloading = false;
         }
-        aud.PlayOneShot(audChangeGun[Random.Range(0, audChangeGun.Length)], audChangeGunVol);
+
+        if (aud != null && audChangeGun != null)
+            aud.PlayOneShot(audChangeGun[Random.Range(0, audChangeGun.Length)], audChangeGunVol);
 
         wepDamage = wepList[wepListPos].wepDamage;
         wepDist = wepList[wepListPos].wepDist;
@@ -508,7 +525,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         {
             StartCoroutine(FlashMuzzle());
         }
-        aud.PlayOneShot(audGunShot[Random.Range(0, audGunShot.Length)], audGunShotVol);
+
+        if (aud != null && audGunShot != null)
+            aud.PlayOneShot(audGunShot[Random.Range(0, audGunShot.Length)], audGunShotVol);
 
         wepList[wepListPos].ammoCur--;
         //attackTimer = Time.deltaTime + wepRate;
@@ -557,7 +576,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         int currentWepIndex = wepListPos;
 
         isReloading = true;
-        aud.PlayOneShot(audReload[Random.Range(0, audReload.Length)], audReloadVol);
+        if(aud != null && audReload != null)
+            aud.PlayOneShot(audReload[Random.Range(0, audReload.Length)], audReloadVol);
 
         if (wepList[wepListPos].ammoCur > 1)
         {
