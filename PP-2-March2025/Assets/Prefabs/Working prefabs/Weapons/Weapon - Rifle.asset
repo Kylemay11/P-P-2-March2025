@@ -13,14 +13,16 @@ MonoBehaviour:
   m_Name: Weapon - Rifle
   m_EditorClassIdentifier: 
   model: {fileID: 1829597508155286, guid: 7359baf27e84aa44cafac3788c8be0f1, type: 3}
+  weaponName: M107
   wepDamage: 100
   wepDist: 333
   wepRate: 1.8
   ammoCur: 12
+  curReserve: 70
   magCapacity: 12
   initialReserveAmmo: 70
-  totalAmmo: 70
   reloadTime: 2.2
   hitEffect: {fileID: 19800002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}
   wepSound: []
   wepVolume: 0.5
+  isMelee: 0

@@ -13,14 +13,16 @@ MonoBehaviour:
   m_Name: Weapon - Shotgun
   m_EditorClassIdentifier: 
   model: {fileID: 1236257789494122, guid: 8b0b86b42def11849a8eba21f4a6a684, type: 3}
+  weaponName: Benelli
   wepDamage: 50
   wepDist: 30
   wepRate: 0.8
-  ammoCur: 0
+  ammoCur: 6
+  curReserve: 40
   magCapacity: 6
   initialReserveAmmo: 40
-  totalAmmo: 40
   reloadTime: 1.6
   hitEffect: {fileID: 19800002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}
   wepSound: []
   wepVolume: 0.5
+  isMelee: 0

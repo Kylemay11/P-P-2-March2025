@@ -36,6 +36,13 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [SerializeField] public float walkSpeed;
     [SerializeField] private float sprintMultiplier;
 
+    [Header("Melee Settings")]
+    [SerializeField] private weaponStats meleeStats;
+
+    [Header("Weapon Holders")]
+    [SerializeField] GameObject gunHolder; 
+    [SerializeField] GameObject meleeHolder; 
+
     [Header("Stamina Settings")]
     [SerializeField] private float maxStamina;
     [SerializeField] private float currentStamina;
@@ -72,6 +79,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [SerializeField] private GameObject mFlashPos;
     [SerializeField] private Coroutine reloadTest;
     [SerializeField] private ParticleSystem mFlash;
+    [SerializeField] private ParticleSystem currentMuzzleFlash;
 
     [Header("--- Audio ---")]
     [SerializeField] AudioSource aud;
@@ -133,6 +141,10 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         controller.height = normalColliderSize.y;
         controller.center = new Vector3(0, normalColliderSize.y / 16f, 0);
         updatePlayerUI();
+
+        wepList.Add(meleeStats); // Add melee as default weapon
+        wepListPos = 0;
+        changeWeapon();
     }
 
     void Update()
@@ -176,7 +188,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         velocity.y -= gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        if (Input.GetButton("Fire1") && wepList.Count > 0 && wepList[wepListPos].ammoCur > 0 && attackTimer >= wepRate)
+        if (Input.GetButton("Fire1") && wepList.Count > 0 && attackTimer >= wepRate)
             Shoot();
 
         selectWeapon();
@@ -470,35 +482,63 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     void changeWeapon()
     {
-        if (isReloading) // true
+        // Clean up any active muzzle flash
+        if (currentMuzzleFlash != null)
         {
-            //StopCoroutine(Reload());
+            Destroy(currentMuzzleFlash.gameObject);
+            currentMuzzleFlash = null;
+        }
 
+        if (isReloading)
+        {
+            StopCoroutine(reloadTest);
             isReloading = false;
         }
 
-        if (aud != null && audChangeGun != null)
+        // Play weapon switch sound
+        if (aud != null && audChangeGun != null && audChangeGun.Length > 0)
             aud.PlayOneShot(audChangeGun[Random.Range(0, audChangeGun.Length)], audChangeGunVol);
 
+        bool isMelee = wepList[wepListPos].isMelee;
+
+        
+        if (gunHolder != null) gunHolder.SetActive(!isMelee);
+        if (meleeHolder != null) meleeHolder.SetActive(isMelee);
+
+        // Update weapon model
+        if (isMelee)
+        {
+            if (meleeHolder != null && wepList[wepListPos].model != null)
+            {
+                MeshFilter meleeMesh = meleeHolder.GetComponent<MeshFilter>();
+                MeshRenderer meleeRenderer = meleeHolder.GetComponent<MeshRenderer>();
+                if (meleeMesh != null) meleeMesh.sharedMesh = wepList[wepListPos].model.GetComponent<MeshFilter>()?.sharedMesh;
+                if (meleeRenderer != null) meleeRenderer.sharedMaterial = wepList[wepListPos].model.GetComponent<MeshRenderer>()?.sharedMaterial;
+            }
+        }
+        else
+        {
+            if (gunHolder != null && wepList[wepListPos].model != null)
+            {
+                MeshFilter gunMesh = gunHolder.GetComponent<MeshFilter>();
+                MeshRenderer gunRenderer = gunHolder.GetComponent<MeshRenderer>();
+                if (gunMesh != null) gunMesh.sharedMesh = wepList[wepListPos].model.GetComponent<MeshFilter>()?.sharedMesh;
+                if (gunRenderer != null) gunRenderer.sharedMaterial = wepList[wepListPos].model.GetComponent<MeshRenderer>()?.sharedMaterial;
+            }
+        }
+
+        // Update combat stats
         wepDamage = wepList[wepListPos].wepDamage;
         wepDist = wepList[wepListPos].wepDist;
         wepRate = wepList[wepListPos].wepRate;
         reloadTime = wepList[wepListPos].reloadTime;
 
+        // Update UI elements
+        UpdateAmmoUI();
+        AmmoUI.instance?.Show(!isMelee);
 
-        wepModel.GetComponent<MeshFilter>().sharedMesh = wepList[wepListPos].model.GetComponent<MeshFilter>().sharedMesh;
-        wepModel.GetComponent<MeshRenderer>().sharedMaterial = wepList[wepListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
-
-        if (wepList[wepListPos] != null)
-        {
-            UpdateAmmoUI();
-            AmmoUI.instance?.Show(true);
-            gameManager.instance.weaponNotification?.ShowWeaponName(wepList[wepListPos].name);
-        }
-        else
-        {
-            AmmoUI.instance?.Show(false);
-        }
+        if (gameManager.instance != null && gameManager.instance.weaponNotification != null)
+            gameManager.instance.weaponNotification.ShowWeaponName(wepList[wepListPos].weaponName);
     }
 
     void reloadWeapon()
@@ -524,6 +564,12 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         if (mFlashPos != null)
         {
             StartCoroutine(FlashMuzzle());
+        }
+
+        if (wepList[wepListPos].isMelee)
+        {
+            MeleeAttack();
+            return;
         }
 
         if (aud != null && audGunShot != null)
@@ -553,21 +599,50 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         }
     }
 
+    private void MeleeAttack()
+    {
+        attackTimer = 0;
+
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        if (Physics.Raycast(ray, out RaycastHit hit, wepList[wepListPos].wepDist, hitMask))
+        {
+            IDamage target = hit.collider.GetComponentInParent<IDamage>();
+            if (target != null)
+            {
+                target.takeDamage(wepList[wepListPos].wepDamage);
+            }
+            Instantiate(wepList[wepListPos].hitEffect, hit.point, Quaternion.identity);
+        }
+
+        //aud.PlayOneShot(audGunShot[Random.Range(0, audGunShot.Length)], audGunShotVol);
+    }
+
     private IEnumerator FlashMuzzle()
     {
+        // Clean up existing muzzle flash
+        if (currentMuzzleFlash != null)
+        {
+            Destroy(currentMuzzleFlash.gameObject);
+        }
+
+        // Create new flash
         ParticleSystem psMFlash = Instantiate(mFlash, mFlashPos.transform.position, Quaternion.identity);
+        psMFlash.transform.SetParent(mFlashPos.transform);
+        currentMuzzleFlash = psMFlash; // Track the new flash
 
-        psMFlash.transform.SetParent(mFlashPos.transform); // keeps particles inplace while moving
-
-        if (mFlash != null)
+        if (psMFlash != null)
         {
             psMFlash.Play();
         }
+
         yield return new WaitForSeconds(0.12f);
 
-        if (mFlash != null)
+        // Stop and destroy after delay
+        if (psMFlash != null)
+        {
             psMFlash.Stop();
-
+            Destroy(psMFlash.gameObject, 1f); // Adjust time to match particle lifetime
+        }
     }
 
     private IEnumerator Reload()
@@ -659,8 +734,17 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     }
     public void UpdateAmmoUI()
     {
-        AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].curReserve);
+
+        if (wepList[wepListPos].isMelee)
+        {
+            AmmoUI.instance?.UpdateAmmo(0, 0); // Hide ammo for melee
+        }
+        else
+        {
+            AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].curReserve);
+        }
     }
+
     // make the weapon change the weapon postion of the current weapon user has equipped
 
 }

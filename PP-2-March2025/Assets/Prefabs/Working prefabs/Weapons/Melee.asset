@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee16151457e341a459e9ae327b76958e, type: 3}
+  m_Name: Melee
+  m_EditorClassIdentifier: 
+  model: {fileID: 8513828766638014845, guid: 8634aa470bf150d4b9cbedd8b2b7df71, type: 3}
+  weaponName: Knife
+  wepDamage: 15
+  wepDist: 5
+  wepRate: 0.5
+  ammoCur: 1
+  curReserve: 0
+  magCapacity: 1
+  initialReserveAmmo: 0
+  reloadTime: 0.1
+  hitEffect: {fileID: 19800002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}
+  wepSound: []
+  wepVolume: 0
+  isMelee: 1
