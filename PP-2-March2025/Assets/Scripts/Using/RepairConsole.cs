@@ -11,6 +11,7 @@ public class RepairConsole : MonoBehaviour
     private float currentProgress = 0f;
     private bool isRepaired = false;
     private bool playerInRange;
+    [SerializeField] private bool istutorial = false;
 
     [Header("Final Phase")]
     public Image doorChargeBar;
@@ -99,9 +100,13 @@ public class RepairConsole : MonoBehaviour
 
         if (isRepaired || isMainTerminal) return;
 
-        if (playerInRange && Input.GetKey(KeyCode.E) && gameManager.instance.waveActive)
+        if (playerInRange && Input.GetKey(KeyCode.E) && (gameManager.instance.waveActive || istutorial))
         {
-            gameManager.instance.objectiveMode = true;
+            FindObjectOfType<TutorialChecklistUI>().CompleteObjective(3);
+            if (!istutorial)
+            {
+                gameManager.instance.objectiveMode = true;
+            }
             currentProgress += Time.deltaTime;
         }
         else
@@ -124,7 +129,10 @@ public class RepairConsole : MonoBehaviour
     {
         if (isRepaired) return;
         isRepaired = true;
-        totalRepaired++;
+        if (!istutorial)
+        {
+         totalRepaired++;
+        }
         Debug.Log($"{gameObject.name} repaired! Total repaired: {totalRepaired}");
 
         if (repairBar != null)

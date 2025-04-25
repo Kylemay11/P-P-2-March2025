@@ -14,8 +14,10 @@ public class DoorInteract : MonoBehaviour
     [SerializeField] private GameObject interactionUI;
     [SerializeField] private TextMeshProUGUI doorLockedText;
 
+
     private bool isUnlocked = false;
     public bool isPlayerNear = false;
+    private bool hasMarkedChecklist = false;
 
     private RoomSpawnerManager roomSpawnerManager;
 
@@ -127,6 +129,16 @@ public class DoorInteract : MonoBehaviour
             interactionUI.SetActive(false);
 
         Debug.Log($"{gameObject.name} Door Unlocked!");
+
+        if (!hasMarkedChecklist)
+        {
+            if (gameObject.name == "FiringRangeDoor")
+                FindObjectOfType<TutorialChecklistUI>().CompleteObjective(1);
+            else if (gameObject.name == "FinalTutorialDoor")
+                FindObjectOfType<TutorialChecklistUI>().CompleteObjective(4);
+
+            hasMarkedChecklist = true;
+        }
     }
 
     void UpdateUIText()
@@ -137,6 +149,12 @@ public class DoorInteract : MonoBehaviour
             txt.text = $"Press [E] to open (${doorCost})";
         }
     }
+    public bool IsUnlocked()
+    {
+        return isUnlocked;
+    }
+
+
     private IEnumerator ShowDoorLockedMessage()
     {
         doorLockedText.gameObject.SetActive(true);

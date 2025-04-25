@@ -48,9 +48,19 @@ public class BarricadeDoor : MonoBehaviour
 
     private void Update()
     {
+        // Show UI if you're in range, not repairing, and door is damaged
+        if (isPlayerNear && !isRepairing && CurrentState != DoorState.Intact)
+        {
+            if (repairPromptUI != null && !repairPromptUI.activeSelf)
+                repairPromptUI.SetActive(true);
+
+            UpdateRepairCostText();
+        }
+
+        // Begin repairing
         if (isPlayerNear && CurrentState != DoorState.Intact && !isRepairing)
         {
-            if (Input.GetButton("Interact") && !isRepairing && CurrencySystem.instance.SpendMoney(repairCostPerPlank))
+            if (Input.GetButton("Interact") && CurrencySystem.instance.SpendMoney(repairCostPerPlank))
             {
                 StartCoroutine(RepairDoor());
             }
@@ -95,6 +105,7 @@ public class BarricadeDoor : MonoBehaviour
 
         while (heldDeration < repairDuration && Input.GetButton("Interact"))
         {
+            FindObjectOfType<TutorialChecklistUI>().CompleteObjective(0);
             if (planksRemaining == maxPlanks)
                 break;
 

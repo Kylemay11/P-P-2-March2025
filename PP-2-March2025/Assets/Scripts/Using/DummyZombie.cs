@@ -15,6 +15,7 @@ public class DummyZombie : MonoBehaviour, IDamage
 
     public void takeDamage(int damage)
     {
+        FindObjectOfType<TutorialChecklistUI>().CompleteObjective(2);
         currentHealth -= damage;
         ShowDamagePopup(damage);
     }

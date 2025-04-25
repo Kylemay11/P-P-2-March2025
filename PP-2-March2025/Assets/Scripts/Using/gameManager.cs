@@ -33,6 +33,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] private float healthMultiplier;
     [SerializeField] private float damageMultiplier;
     [SerializeField] private float speedMultiplier;
+    [SerializeField] private DoorInteract finalTutorialDoor;
 
     private float waveTimer;
     public bool waveActive = false;
@@ -113,13 +114,25 @@ public class gameManager : MonoBehaviour
             ShowPreWavePrompt();
         }
 
-        if (waitingToStartWave && Input.GetKeyDown(KeyCode.F))
+        if (waitingToStartWave)
         {
-            if (objectiveMode)
+            // Block starting the wave until tutorial door is open
+            if (finalTutorialDoor != null && !finalTutorialDoor.IsUnlocked())
             {
+                startPromptText.text = ""; // Hide the prompt
                 return;
             }
-            StartWave();
+
+            // Show prompt
+            if (!startPromptText.text.Contains("Press F"))
+                startPromptText.text = $"Press F to start Wave {currentWave + 1}";
+
+            // Let player start wave
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (objectiveMode) return;
+                StartWave();
+            }
         }
     }
 
