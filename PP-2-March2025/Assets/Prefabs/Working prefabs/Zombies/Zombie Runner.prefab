@@ -1445,6 +1445,7 @@ MonoBehaviour:
   enemy: {fileID: 2760812778507549872}
   dummy: {fileID: 0}
   multiplier: 1.5
+  headObject: {fileID: 0}
 --- !u!136 &209075729201034105
 CapsuleCollider:
   m_ObjectHideFlags: 0
