@@ -26,6 +26,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     // [SerializeField] Animator anim;
     [Range(0.5f, 50)][SerializeField] float projectileSpeed;
     int HP;
+    public int CurrentHP => HP;
     float enemyDamage;
     float enemySpeed;
     [Range(1, 30)][SerializeField] float faceTargetSpeed;
@@ -116,7 +117,6 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
         //Kyle added
         animator.SetTrigger("TakeDamage");
-        StartCoroutine(DamageAnimationCooldown());
         StartCoroutine(FlashRed());
         if (HP <= 0)
         {
@@ -225,15 +225,6 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     }
 
     //kyle added fopr demo
-    private IEnumerator DamageAnimationCooldown()
-    {
-        agent.isStopped = true; // Stop movement while playing animation
-
-        // Get the length of the animation
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-
-        agent.isStopped = false; // Resume movement
-    }
 
     private IEnumerator FlashRed()
     {

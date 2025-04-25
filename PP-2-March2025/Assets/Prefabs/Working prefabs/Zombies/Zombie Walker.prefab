@@ -565,7 +565,7 @@ MonoBehaviour:
   moneyOnDeath: 5
   type: 0
   sphereCollider: {fileID: 0}
-  zombieRenderer: {fileID: 1325479285899949337}
+  zombieRenderer: {fileID: 0}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   projectileSpeed: 0.5
   faceTargetSpeed: 20
@@ -624,10 +624,10 @@ NavMeshAgent:
   m_GameObject: {fileID: 1580404872814831951}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 8
+  m_Radius: 0.7
+  m_Speed: 6
   m_Acceleration: 10
-  avoidancePriority: 75
+  avoidancePriority: 25
   m_AngularSpeed: 120
   m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
