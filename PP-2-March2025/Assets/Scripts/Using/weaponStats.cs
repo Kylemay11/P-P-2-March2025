@@ -9,14 +9,14 @@ public class weaponStats : ScriptableObject
     [Header("Basic Info")]
     public string weaponName;
 
-    [Range(1, 2000)] public int wepDamage;
-    [Range(5, 1000)] public int wepDist;
+    [Range(5, 2000)] public int wepDamage;
+    [Range(0, 1000)] public int wepDist;
     [Range(0.1f, 2)] public float wepRate;
     public int ammoCur;
     public int curReserve;
-    [Range(1, 500)] public int magCapacity;
+    [Range(0, 500)] public int magCapacity;
     [Range(0, 5000)] public int initialReserveAmmo;
-    [Range(0.1f, 5)] public float reloadTime;
+    [Range(0.0f, 5)] public float reloadTime;
 
     public ParticleSystem hitEffect;
     public AudioClip[] wepSound;

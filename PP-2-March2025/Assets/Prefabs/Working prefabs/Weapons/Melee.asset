@@ -17,11 +17,11 @@ MonoBehaviour:
   wepDamage: 15
   wepDist: 5
   wepRate: 0.5
-  ammoCur: 1
+  ammoCur: 0
   curReserve: 0
-  magCapacity: 1
+  magCapacity: 0
   initialReserveAmmo: 0
-  reloadTime: 0.1
+  reloadTime: 0
   hitEffect: {fileID: 19800002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}
   wepSound: []
   wepVolume: 0

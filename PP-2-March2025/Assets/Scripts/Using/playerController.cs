@@ -558,6 +558,17 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         //    return; 
         //} // click sound
+        if (wepList[wepListPos].isMelee)
+        {
+            MeleeAttack();
+            return;
+        }
+
+        if (wepList[wepListPos].ammoCur <= 0)
+        {
+            //aud.PlayOneShot(audEmptyGun[Random.Range(0, audEmptyGun.Length)], audEmptyGunVol);
+            return;
+        }
 
         attackTimer = 0;
 
@@ -566,12 +577,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             StartCoroutine(FlashMuzzle());
         }
 
-        if (wepList[wepListPos].isMelee)
-        {
-            MeleeAttack();
-            return;
-        }
-
+      
         if (aud != null && audGunShot != null)
             aud.PlayOneShot(audGunShot[Random.Range(0, audGunShot.Length)], audGunShotVol);
 
