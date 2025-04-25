@@ -543,6 +543,10 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     void reloadWeapon()
     {
+
+        if (wepList[wepListPos].isMelee)
+            return;
+
         if (Input.GetButtonDown("Reload")) // add Timer for reload animation
         {
 
@@ -653,6 +657,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     private IEnumerator Reload()
     {
+
         // temp current wep
         int currentWepIndex = wepListPos;
 
