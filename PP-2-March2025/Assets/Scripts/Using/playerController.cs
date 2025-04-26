@@ -126,6 +126,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     private Vector3 velocity;
     private int wepListPos;
     private int itemListPos;
+    private bool isThrowableEquipped;
     private float attackTimer;
     private bool isReloading;
     private int jumpCount;
@@ -206,9 +207,13 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         velocity.y -= gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        if (!gameManager.instance.isPaused && Input.GetButton("Fire1") && wepList.Count > 0 && attackTimer >= wepRate)
-            Shoot();
-
+        if (!gameManager.instance.isPaused && Input.GetButton("Fire1"))
+        {
+            if (isThrowableEquipped)
+                ThrowItem();
+            else if (wepList.Count > 0 && attackTimer >= wepRate)
+                Shoot();
+        }
         selectWeapon();
         reloadWeapon();
     }
@@ -466,9 +471,33 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         itemListPos = itemList.Count - 1;
         changeThrowable();
     }
+    private void ToggleThrowableEquipped()
+    {
+        isThrowableEquipped = !isThrowableEquipped;
+        if (isThrowableEquipped)
+        {
+            // Hide weapon, show throwable
+            if (gunHolder != null) gunHolder.SetActive(false);
+            if (meleeHolder != null) meleeHolder.SetActive(false);
+            if (itemHolder != null) itemHolder.SetActive(true);
+            changeThrowable();
+        }
+        else
+        {
+            // Show weapon, hide throwable
+            if (itemHolder != null) itemHolder.SetActive(false);
+            changeWeapon();
+        }
+    }
 
     void selectWeapon()
     {
+        // Throwable selection
+        if (Input.GetKeyDown(KeyCode.Q) && itemList.Count > 0)
+        {
+            ToggleThrowableEquipped();
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1) && wepList.Count >= 1)
         {
             wepListPos = 0;
@@ -569,8 +598,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     {
         if (itemHolder != null && itemList[itemListPos].model != null)
         {
-            MeshFilter itemMesh = gunHolder.GetComponent<MeshFilter>();
-            MeshRenderer itemRenderer = gunHolder.GetComponent<MeshRenderer>();
+            MeshFilter itemMesh = itemHolder.GetComponent<MeshFilter>();
+            MeshRenderer itemRenderer = itemHolder.GetComponent<MeshRenderer>();
             if (itemMesh != null) itemMesh.sharedMesh = itemList[itemListPos].model.GetComponent<MeshFilter>()?.sharedMesh;
             if (itemRenderer != null) itemRenderer.sharedMaterial = itemList[itemListPos].model.GetComponent<MeshRenderer>()?.sharedMaterial;
         }
@@ -592,10 +621,20 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         if (wepList[wepListPos].isMelee)
             return;
 
-        if (Input.GetButtonDown("Reload")) // add Timer for reload animation
+        if (isThrowableEquipped)
         {
+            if (itemList[itemListPos].CanReload())
+            {
+                StartCoroutine(ReloadThrowable());
+            }
+        }
+        else
+        { 
+            if (Input.GetButtonDown("Reload")) // add Timer for reload animation
+            {
 
-            reloadTest = StartCoroutine(Reload());
+                reloadTest = StartCoroutine(Reload());
+            }
         }
     }
 
@@ -673,6 +712,22 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             aud.PlayOneShot(audMelee[Random.Range(0, audMelee.Length)], audMeleeVol);
     }
 
+    void ThrowItem()
+    {
+        if (itemList.Count == 0 || !itemList[itemListPos].CanThrow()) return;
+
+        // Implement throwable throwing logic here
+        // Use itemDamage, itemDist, itemThrowSpeed, etc.
+
+        itemList[itemListPos].curInventory--;
+        UpdateThrowablesUI();
+
+        // Play sound, instantiate throwable object, etc.
+
+        // Auto reload
+        itemList[itemListPos].Reload();
+    }
+
     private IEnumerator FlashMuzzle()
     {
         // Clean up existing muzzle flash
@@ -744,6 +799,17 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             isReloading = false;
     }
 
+    IEnumerator ReloadThrowable()
+    {
+        isReloading = true;
+        // Play reload animation, sound, etc.
+
+        yield return new WaitForSeconds(itemList[itemListPos].reloadTime);
+
+        itemList[itemListPos].Reload();
+        UpdateThrowablesUI();
+        isReloading = false;
+    }
 
     // logic for shops AND items
     public void SpeedIncrease(float amount)

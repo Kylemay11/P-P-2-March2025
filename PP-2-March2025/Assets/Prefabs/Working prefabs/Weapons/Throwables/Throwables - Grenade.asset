@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8a6a1c28b389fc4395a1558ef14e1ac, type: 3}
+  m_Name: Throwables - Grenade
+  m_EditorClassIdentifier: 
+  model: {fileID: 100004, guid: cecca25c94780ca428d51ab9f5894270, type: 3}
+  itemName: Grenade
+  itemDamage: 50
+  itemDist: 500
+  itemPrimeRate: 1
+  itemDelay: 2
+  itemThrowSpeed: 3
+  itemDamageRadius: 10
+  curInventory: 0
+  curReserve: 0
+  itemCapacity: 1
+  itemMaxCapacity: 4
+  reloadTime: 2
+  hitEffect: {fileID: 19800014, guid: 5332791ebce075d4a9e56f4581e7fb47, type: 3}
+  itemSound:
+  - {fileID: 8300000, guid: 8438065efd2f37645a0ba3e3c758a026, type: 3}
+  itemVolume: 0.5

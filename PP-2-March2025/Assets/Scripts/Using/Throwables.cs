@@ -10,8 +10,8 @@ public class Throwables : ScriptableObject
     [Range(5, 2000)] public int itemDamage;
     [Range(0, 1000)] public int itemDist; // how far you can throw
     [Range(0.1f, 2)] public float itemPrimeRate; // pull pin or light cloth
-    [Range(0.1f, 2)] public float itemDelay; // time before explosion
-    [Range(0.1f, 2)] public float itemThrowSpeed; // velocity of projectile
+    [Range(0.1f, 5)] public float itemDelay; // time before explosion
+    [Range(0.1f, 10)] public float itemThrowSpeed; // velocity of projectile
     [Range(0, 1000)] public int itemDamageRadius; // range of AOE
 
     [Header("UI Info")]
