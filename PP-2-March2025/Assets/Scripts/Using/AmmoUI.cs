@@ -10,6 +10,7 @@ public class AmmoUI : MonoBehaviour
 
     [SerializeField] private TMP_Text ammoText;
     [SerializeField] private TMP_Text throwableText;
+    [SerializeField] private TMP_Text emptyActionText;
     [SerializeField] private Image reloadCircle;
 
     private bool isReloading = false;
@@ -90,20 +91,24 @@ public class AmmoUI : MonoBehaviour
         if (reloadCircle != null)
             reloadCircle.gameObject.SetActive(show);
     }
+    public void UpdateThrowable(int current, int max)
+    {
+        if (throwableText != null)
+            throwableText.text = $"{current} / {max}";
+    }
 
     public void ThrowablesEmpty()
     {
-        if (throwableText) // !null
+        if (emptyActionText) // !null
             StartCoroutine(DisplayEmptyText());
-
     }
 
     private IEnumerator DisplayEmptyText()
     {
-        throwableText.gameObject.SetActive(true);
+        emptyActionText.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1.3f);
 
-        throwableText.gameObject.SetActive(false);
+        emptyActionText.gameObject.SetActive(false);
     }
 }

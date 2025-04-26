@@ -43,11 +43,13 @@ public class Throwables : ScriptableObject
             // always increments of 1
             curInventory += itemCapacity;
             curReserve -= itemCapacity;
+
+            AmmoUI.instance?.UpdateThrowable(curInventory, curReserve);
         }
         else
         {
-
-        }
+          // last throwable sound??  
+        } 
     }
 
 }
