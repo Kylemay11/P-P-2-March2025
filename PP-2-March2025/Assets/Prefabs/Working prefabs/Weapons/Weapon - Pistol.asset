@@ -17,12 +17,13 @@ MonoBehaviour:
   wepDamage: 15
   wepDist: 100
   wepRate: 0.26
-  ammoCur: 4
+  ammoCur: 8
   curReserve: 220
   magCapacity: 9
   initialReserveAmmo: 220
   reloadTime: 1.1
   hitEffect: {fileID: 19800002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}
-  wepSound: []
+  wepSound:
+  - {fileID: 8300000, guid: 6f7db1abb356a4347872b047e093d6ef, type: 3}
   wepVolume: 0.5
   isMelee: 0
