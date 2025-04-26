@@ -41,7 +41,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     [Header("Weapon Holders")]
     [SerializeField] GameObject gunHolder; 
-    [SerializeField] GameObject meleeHolder; 
+    [SerializeField] GameObject meleeHolder;
+    [SerializeField] GameObject itemHolder;
 
     [Header("Stamina Settings")]
     [SerializeField] private float maxStamina;
@@ -81,6 +82,14 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [SerializeField] private ParticleSystem mFlash;
     [SerializeField] private ParticleSystem currentMuzzleFlash;
 
+    [Header("Throwable Settings")]
+    [SerializeField] List<Throwables> itemList = new List<Throwables>();
+    [SerializeField] GameObject itemModel;
+    [SerializeField] private int itemDamage;
+    [SerializeField] private int itemDist;
+    [SerializeField] private float itemPrimeRate;
+    [SerializeField] private float itemThrowSpeed;
+
     [Header("--- Audio ---")]
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audSteps;
@@ -116,6 +125,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     private Vector3 moveDir;
     private Vector3 velocity;
     private int wepListPos;
+    private int itemListPos;
     private float attackTimer;
     private bool isReloading;
     private int jumpCount;
@@ -450,6 +460,12 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
 
     }
+    public void getThrowables(Throwables item)
+    {        
+        itemList.Add(item);
+        itemListPos = itemList.Count - 1;
+        changeThrowable();
+    }
 
     void selectWeapon()
     {
@@ -547,6 +563,27 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         if (gameManager.instance != null && gameManager.instance.weaponNotification != null)
             gameManager.instance.weaponNotification.ShowWeaponName(wepList[wepListPos].weaponName);
+    }
+
+    private void changeThrowable()
+    {
+        if (itemHolder != null && itemList[itemListPos].model != null)
+        {
+            MeshFilter itemMesh = gunHolder.GetComponent<MeshFilter>();
+            MeshRenderer itemRenderer = gunHolder.GetComponent<MeshRenderer>();
+            if (itemMesh != null) itemMesh.sharedMesh = itemList[itemListPos].model.GetComponent<MeshFilter>()?.sharedMesh;
+            if (itemRenderer != null) itemRenderer.sharedMaterial = itemList[itemListPos].model.GetComponent<MeshRenderer>()?.sharedMaterial;
+        }
+
+        itemDamage = itemList[itemListPos].itemDamage; // is necessary ?
+        itemDist = itemList[itemListPos].itemDist;
+        itemPrimeRate = itemList[itemListPos].itemPrimeRate;
+        itemThrowSpeed = itemList[itemListPos].itemThrowSpeed;
+
+        UpdateThrowablesUI();
+
+        if (gameManager.instance != null && gameManager.instance.weaponNotification != null)
+            gameManager.instance.weaponNotification.ShowWeaponName(itemList[itemListPos].itemName);
     }
 
     void reloadWeapon()
@@ -764,6 +801,14 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].curReserve);
         }
     }
+    public void UpdateThrowablesUI()
+    {
+        if (itemList[itemListPos]) // !null
+            AmmoUI.instance?.UpdateThrowable(itemList[itemListPos].curInventory, itemList[itemListPos].curReserve);
+        else
+            AmmoUI.instance?.UpdateThrowable(0, 0); // assume no throwable
+    }
+
 
     // make the weapon change the weapon postion of the current weapon user has equipped
 

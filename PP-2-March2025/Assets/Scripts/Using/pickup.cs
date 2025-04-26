@@ -10,8 +10,10 @@ public class pickup : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        initializeWepStats();
-        initializeThrowables();
+        if(wep)
+            initializeWepStats();
+        if(item)
+            initializeThrowables();
     }
 
     private void OnTriggerEnter(Collider other)

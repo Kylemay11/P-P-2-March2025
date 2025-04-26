@@ -28,6 +28,8 @@ public class Throwables : ScriptableObject
     public AudioClip[] itemSound;
     [Range(0.0f, 1)] public float itemVolume;
 
+    float explosionCountDown; 
+
     public bool CanThrow()
     {
         return curInventory > 0;
