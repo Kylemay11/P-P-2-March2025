@@ -22,7 +22,14 @@ public class pickup : MonoBehaviour
 
         if (pickupable != null)
         {
-            (pickupable is IPickupable ? (Action)(() => pickupable.getWeaponStats(wep)) : () => pickupable.getThrowables(item))();
+            if (wep != null)
+            {
+                pickupable.getWeaponStats(wep);
+            }
+            else if (item != null)
+            {
+                pickupable.getThrowables(item);
+            }
             Destroy(gameObject);
         }
     }
