@@ -5,9 +5,13 @@ using UnityEngine.Rendering.UI;
 public class cameraComtroller : MonoBehaviour
 
 {
+    public static cameraComtroller instance;
+
     [SerializeField] int sens;
     [SerializeField] int lockVertMin, lockVertMax;
     [SerializeField] bool invertY;
+
+    public bool canLook = true;
 
     float rotX;
 
@@ -21,18 +25,22 @@ public class cameraComtroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * sens * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * sens * Time.deltaTime;
+        instance = this;
+        if (canLook)
+        {
+            float mouseX = Input.GetAxis("Mouse X") * sens * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * sens * Time.deltaTime;
 
-        if(invertY)
-         rotX += mouseY;
-        else
-         rotX -= mouseY;
+            if (invertY)
+                rotX += mouseY;
+            else
+                rotX -= mouseY;
 
-        rotX = Mathf.Clamp(rotX, lockVertMin, lockVertMax);
+            rotX = Mathf.Clamp(rotX, lockVertMin, lockVertMax);
 
-        transform.localRotation = Quaternion.Euler(rotX, 0, 0);
+            transform.localRotation = Quaternion.Euler(rotX, 0, 0);
 
-        transform.parent.Rotate(Vector3.up * mouseX);
+            transform.parent.Rotate(Vector3.up * mouseX);
+        }
     }
 }

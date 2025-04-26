@@ -51,8 +51,9 @@ public class OpenPerkShop : MonoBehaviour
         gameManager.instance.menuPerkShop.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        //gameManager.instance.PauseGame();
-        if(aud != null && audShopOpen != null)
+        playerController.instance.canMove = false;
+        cameraComtroller.instance.canLook = false;
+        if (aud != null && audShopOpen != null)
         {
             aud.PlayOneShot(audShopOpen, audShopOpenVol);
         }
@@ -61,6 +62,7 @@ public class OpenPerkShop : MonoBehaviour
     public void untogglePerkShop()
     {
         gameManager.instance.menuPerkShop.SetActive(false);
-       // gameManager.instance.ResumeGame();
+        playerController.instance.canMove = true;
+        cameraComtroller.instance.canLook = true;
     }
 }

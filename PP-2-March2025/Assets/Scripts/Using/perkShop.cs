@@ -51,6 +51,7 @@ public class perkShop : MonoBehaviour
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<playerController>()?.BonusHealth(bonusHP);
+            player.GetComponent<playerController>()?.Heal(bonusHP);
             Debug.Log("You have increased max HP");
             gameManager.instance.UnlockHealthPerk();
         }

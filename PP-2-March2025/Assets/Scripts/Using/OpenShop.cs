@@ -50,10 +50,12 @@ public class OpenShop : MonoBehaviour
 
     public void ToggleShop()
     {
+
         gameManager.instance.menuShop.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        //gameManager.instance.PauseGame();
+        playerController.instance.canMove = false;
+        cameraComtroller.instance.canLook = false;
         if (aud != null && audShopOpen != null)
         {
             aud.PlayOneShot(audShopOpen, audShopOpenVol);
@@ -64,6 +66,7 @@ public class OpenShop : MonoBehaviour
     public void UnToggleShop()
     {
         gameManager.instance.menuShop.SetActive(false);
-        //gameManager.instance.ResumeGame();
+        playerController.instance.canMove = true;
+        cameraComtroller.instance.canLook = true;
     }
 }
