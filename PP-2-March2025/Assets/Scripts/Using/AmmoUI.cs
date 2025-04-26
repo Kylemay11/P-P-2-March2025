@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +9,7 @@ public class AmmoUI : MonoBehaviour
     public static AmmoUI instance;
 
     [SerializeField] private TMP_Text ammoText;
+    [SerializeField] private TMP_Text throwableText;
     [SerializeField] private Image reloadCircle;
 
     private bool isReloading = false;
@@ -86,5 +89,21 @@ public class AmmoUI : MonoBehaviour
     {
         if (reloadCircle != null)
             reloadCircle.gameObject.SetActive(show);
+    }
+
+    public void ThrowablesEmpty()
+    {
+        if (throwableText) // !null
+            StartCoroutine(DisplayEmptyText());
+
+    }
+
+    private IEnumerator DisplayEmptyText()
+    {
+        throwableText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1.3f);
+
+        throwableText.gameObject.SetActive(false);
     }
 }
