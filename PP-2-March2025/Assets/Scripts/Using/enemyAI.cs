@@ -62,7 +62,8 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     [SerializeField] AudioClip[] audDeath;
     [Range(0, 1)][SerializeField] float audDeathVol;
 
-
+    [SerializeField] private float footstepInterval;
+    private bool isPlayingFootsteps;
 
 
 
@@ -307,7 +308,12 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
 
     private void HandleMovement()
     {
-        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+        // aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+
+        if (agent.velocity.magnitude > 0.1f && !isPlayingFootsteps)
+        {
+            StartCoroutine(playFootsteps());
+        }
 
         switch (currentTargetState)
         {
@@ -358,5 +364,16 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
         {
             enemyAttack();
         }
+    }
+
+    private IEnumerator playFootsteps()
+    {
+        isPlayingFootsteps = true;
+        while(agent.velocity.magnitude > 0.1f)
+        {
+            aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+            yield return new WaitForSeconds(footstepInterval);
+        }
+        isPlayingFootsteps = false;
     }
 }

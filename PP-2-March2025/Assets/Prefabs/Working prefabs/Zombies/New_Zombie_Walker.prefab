@@ -3872,7 +3872,7 @@ MonoBehaviour:
   attackRange: 5
   aud: {fileID: 7958182392808885848}
   audSteps:
-  - {fileID: 8300000, guid: abb9a6f491c0eed4b93addfc902dad13, type: 3}
+  - {fileID: 8300000, guid: 3ac8759d051dd2541856ca00496a5a4a, type: 3}
   audStepsVol: 0.5
   audAttack:
   - {fileID: 8300000, guid: 0eb29075289ccc64790ff266761bcb8b, type: 3}
@@ -3886,6 +3886,7 @@ MonoBehaviour:
   audDeath:
   - {fileID: 8300000, guid: e9406330569a1ce48ac3c8cfa98d06a7, type: 3}
   audDeathVol: 0.5
+  footstepInterval: 0.5
 --- !u!95 &1067449647880341955
 Animator:
   serializedVersion: 7
