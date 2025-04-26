@@ -17,7 +17,9 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-    
+    [SerializeField] GameObject menuPerkInventory;
+   
+
     [SerializeField] public GameObject menuMain;
     [SerializeField] public GameObject menuLvlSelect;
     [SerializeField] public GameObject menuCredits;
@@ -51,6 +53,14 @@ public class gameManager : MonoBehaviour
     public GameObject breakPanel;
     public TMP_Text startPromptText;
 
+    [Header("Perk Inventory UI")]
+    public Image BonusHealthIcon;
+    public Image BonusSpeedIcon;
+    public Image BonusStaminaIcon;
+    public Image BonusGunDamageIcon;
+    public Image BonusGunFireRateIcon;
+    public Image BonusGunFireDistIcon;
+
     public bool isPaused = false;
     public bool objectiveMode = false;
 
@@ -74,6 +84,7 @@ public class gameManager : MonoBehaviour
     {
         HandlePauseInput();
         HandleWaveLogic();
+        HandleInventoryInput();
     }
 
     private void HandlePauseInput()
@@ -88,6 +99,23 @@ public class gameManager : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(menuPause.transform.GetChild(0).gameObject);
             }
             else if (menuActive == menuPause)
+            {
+                ResumeGame();
+            }
+        }
+    }
+    private void HandleInventoryInput()
+    {
+        if (Input.GetButtonDown("Inventory"))
+        {
+            if (menuActive == null)
+            {
+                PauseGame();
+                menuPerkInventory.SetActive(true);
+                menuActive = menuPerkInventory;
+                EventSystem.current.SetSelectedGameObject(menuPerkInventory.transform.GetChild(0).gameObject);
+            }
+            else if (menuActive == menuPerkInventory)
             {
                 ResumeGame();
             }
@@ -203,6 +231,7 @@ public class gameManager : MonoBehaviour
         {
             menuActive.SetActive(false);
             menusettings.SetActive(false);
+            menuPerkInventory.SetActive(false);
             menuActive = null;
         }
         EventSystem.current.SetSelectedGameObject(null);
@@ -303,5 +332,38 @@ public class gameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         UpdateAliveCounterUI();
+    }
+
+    // perk status
+    public void UnlockHealthPerk()
+    {
+        if (BonusHealthIcon != null)
+            BonusHealthIcon.gameObject.SetActive(true);
+    }
+    public void UnlockSpeedPerk()
+    {
+        if (BonusSpeedIcon != null)
+            BonusSpeedIcon.gameObject.SetActive(true);
+    }
+    public void UnlockStaminaPerk()
+    {
+        if (BonusStaminaIcon != null)
+            BonusStaminaIcon.gameObject.SetActive(true);
+    }
+    public void UnlockGunDamagePerk()
+    {
+        if (BonusGunDamageIcon != null)
+            BonusGunDamageIcon.gameObject.SetActive(true);
+    }
+    public void UnlockGunFireRatePerk()
+    {
+        if (BonusGunFireRateIcon != null)
+            BonusGunFireRateIcon.gameObject.SetActive(true);
+    }
+
+    public void UnlockGunFireDistPerk()
+    {
+        if (BonusGunFireDistIcon != null)
+            BonusGunFireDistIcon.gameObject.SetActive(true);
     }
 }

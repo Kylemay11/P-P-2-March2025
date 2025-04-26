@@ -18,10 +18,13 @@ public class perkShop : MonoBehaviour
     [Header("Variables")]
     [Range(50, 1000)][SerializeField] public int bonusHP;
     [Range(1, 50)][SerializeField] public float bonusSpeed;
-    [Range(1, 100)][SerializeField] public int bonusDamage;
     [Range(1, 100)][SerializeField] public int bonusStamina;
-    [Range(50, 1000)][SerializeField] public int bonusWepDist;
-    [Range(1, 50)][SerializeField] public int bonusWepRate;
+
+    [Range(1, 100)][SerializeField] public int bonusDamage;
+    [Range(1, 1000)][SerializeField] public int bonusWepDist;
+    [Range(0.1f, 5)][SerializeField] public float bonusWepRate;
+
+    // might not be able to do
     [Range(1, 100)][SerializeField] public int bonusMeleeDamage;
     [Range(1, 100)][SerializeField] public int bonusMeleeRate;
     [Range(1, 100)][SerializeField] public int bonusMeleeDist;
@@ -42,16 +45,16 @@ public class perkShop : MonoBehaviour
     }
 
     //Purchases
-    public void makeIncresDamagePurchase()
+    public void makeBonushealthPurchase()
     {
-        if (CurrencySystem.instance.SpendMoney(HitDamagePrice))
+        if (CurrencySystem.instance.SpendMoney(SpeedPrice))
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<playerController>()?.DamageIncrease(bonusDamage);
-            Debug.Log("You have increased damage");
+            player.GetComponent<playerController>()?.BonusHealth(bonusHP);
+            Debug.Log("You have increased max HP");
+            gameManager.instance.UnlockHealthPerk();
         }
     }
-
     public void makeIncresStaminaPurchase()
     {
         if (CurrencySystem.instance.SpendMoney(bonusStaminaPrice))
@@ -59,6 +62,7 @@ public class perkShop : MonoBehaviour
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<playerController>()?.StaminaIncrease(bonusStamina);
             Debug.Log("You have increased stamina");
+            gameManager.instance.UnlockStaminaPerk();
         }
     }
     public void makeIncresSpeedPurchase()
@@ -68,16 +72,29 @@ public class perkShop : MonoBehaviour
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<playerController>()?.SpeedIncrease(bonusSpeed);
             Debug.Log("You have increased speed");
+            gameManager.instance.UnlockSpeedPerk();
         }
     }
+    public void makeIncresDamagePurchase()
+    {
+        if (CurrencySystem.instance.SpendMoney(HitDamagePrice))
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<playerController>()?.DamageIncrease(bonusDamage);
+            Debug.Log("You have increased damage");
+            gameManager.instance.UnlockGunDamagePerk();
+        }
+    }
+
 
     public void makeIncresWeaponRatePurchase()
     {
         if (CurrencySystem.instance.SpendMoney(SpeedPrice))
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<playerController>()?.SpeedIncrease(bonusSpeed);
+            player.GetComponent<playerController>()?.IncreaseWeaponFireRate(bonusWepRate);
             Debug.Log("You have increased speed");
+            gameManager.instance.UnlockGunDamagePerk();
         }
     }
 
@@ -86,49 +103,44 @@ public class perkShop : MonoBehaviour
         if (CurrencySystem.instance.SpendMoney(SpeedPrice))
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<playerController>()?.SpeedIncrease(bonusSpeed);
+            player.GetComponent<playerController>()?.IncreaseWeaponFireDistance(bonusWepDist);
             Debug.Log("You have increased speed");
+           gameManager.instance.UnlockGunDamagePerk();
         }
     }
 
-    public void makeIncresMeleeDamagePurchase()
-    {
-        if (CurrencySystem.instance.SpendMoney(SpeedPrice))
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<playerController>()?.SpeedIncrease(bonusSpeed);
-            Debug.Log("You have increased speed");
-        }
-    }
+    //public void makeIncresMeleeDamagePurchase()
+    //{
+    //    if (CurrencySystem.instance.SpendMoney(SpeedPrice))
+    //    {
+    //        GameObject player = GameObject.FindGameObjectWithTag("Player");
+    //        player.GetComponent<playerController>()?.SpeedIncrease(bonusSpeed);
+    //        Debug.Log("You have increased speed");
+            
+    //    }
+    //}
 
-    public void makeIncresMeleeRatePurchase()
-    {
-        if (CurrencySystem.instance.SpendMoney(SpeedPrice))
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<playerController>()?.SpeedIncrease(bonusSpeed);
-            Debug.Log("You have increased speed");
-        }
-    }
+    //public void makeIncresMeleeRatePurchase()
+    //{
+    //    if (CurrencySystem.instance.SpendMoney(SpeedPrice))
+    //    {
+    //        GameObject player = GameObject.FindGameObjectWithTag("Player");
+    //        player.GetComponent<playerController>()?.SpeedIncrease(bonusSpeed);
+    //        Debug.Log("You have increased speed");
+            
+    //    }
+    //}
 
-    public void makeIncresMeleeDistPurchase()
-    {
-        if (CurrencySystem.instance.SpendMoney(SpeedPrice))
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<playerController>()?.SpeedIncrease(bonusSpeed);
-            Debug.Log("You have increased speed");
-        }
-    }
-    public void makeBonushealthPurchase()
-    {
-        if (CurrencySystem.instance.SpendMoney(SpeedPrice))
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<playerController>()?.BonusHealth(bonusHP);
-            Debug.Log("You have increased max HP");
-        }
-    }
+    //public void makeIncresMeleeDistPurchase()
+    //{
+    //    if (CurrencySystem.instance.SpendMoney(SpeedPrice))
+    //    {
+    //        GameObject player = GameObject.FindGameObjectWithTag("Player");
+    //        player.GetComponent<playerController>()?.SpeedIncrease(bonusSpeed);
+    //        Debug.Log("You have increased speed");
+           
+    //    }
+    //}
 
     public void makesmallhpPurchase()
     {

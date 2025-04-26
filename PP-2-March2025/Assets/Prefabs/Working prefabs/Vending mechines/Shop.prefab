@@ -4852,6 +4852,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerNear: 0
+  aud: {fileID: 0}
+  audShopOpen: {fileID: 0}
+  audShopOpenVol: 1
 --- !u!65 &1512744958676341652
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16447,7 +16450,7 @@ MeshRenderer:
   - {fileID: 2100000, guid: fb698345bbbc4d74ba2ca7b2bb59eb9d, type: 2}
   - {fileID: 2100000, guid: 31e87d42f3ffa2546b1f527e7a0a4b9d, type: 2}
   - {fileID: 2100000, guid: 31e87d42f3ffa2546b1f527e7a0a4b9d, type: 2}
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31e87d42f3ffa2546b1f527e7a0a4b9d, type: 2}
   - {fileID: 2100000, guid: c0999236ab32ad94fb08c06e6694fa49, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
