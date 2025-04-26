@@ -730,8 +730,8 @@ MonoBehaviour:
   interval: 60
   bonusHP: 50
   bonusSpeed: 1
-  bonusDamage: 1
   bonusStamina: 1
+  bonusDamage: 1
   bonusWepDist: 50
   bonusWepRate: 1
   bonusMeleeDamage: 1

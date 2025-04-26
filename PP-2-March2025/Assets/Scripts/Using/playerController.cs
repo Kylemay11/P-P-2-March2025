@@ -124,9 +124,11 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     private bool isSliding;
     [SerializeField] private bool isGrounded;
     bool isplayingSteps;
+    public bool canMove = true;
 
     void Start()
     {
+        instance = this;
         currentHP = maxHP;
         currentStamina = maxStamina;
         currentSpeed = walkSpeed;
@@ -149,11 +151,14 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     void Update()
     {
-        HandleMovement();
-        HandleSprint();
-        HandleCrouch();
-        HandleStamina();
-        UpdateSpeedUI();
+        if (canMove)
+        {
+            HandleMovement();
+            HandleSprint();
+            HandleCrouch();
+            HandleStamina();
+            UpdateSpeedUI();
+        }
     }
 
     private void HandleMovement()
@@ -556,6 +561,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     private void Shoot()
     {
+        if (!canMove) return;
         //if (!wepList[wepListPos].CanFire()) // isempty
         //{
         //    aud.PlayOneShot(audEmptyGun[Random.Range(0, audEmptyGun.Length)], audEmptyGunVol);
