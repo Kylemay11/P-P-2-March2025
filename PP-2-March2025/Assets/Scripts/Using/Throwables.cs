@@ -14,10 +14,10 @@ public class Throwables : ScriptableObject
     [Range(0, 1000)] public int itemDamageRadius; // range of AOE
 
     [Header("UI Info")]
-    public int ammoCur;
+    public int curInventory;
     public int curReserve;
     [Range(0, 1)] public int itemCapacity; //hold 1 grenade at a time
-    [Range(0, 10)] public int itemMaxCapacity;
+    [Range(0, 9)] public int itemMaxCapacity;
     [Range(0.0f, 5)] public float reloadTime;
 
     [Header("VFX")]
@@ -26,5 +26,28 @@ public class Throwables : ScriptableObject
     [Header("Audio")]
     public AudioClip[] itemSound;
     [Range(0.0f, 1)] public float itemVolume;
+
+    public bool CanThrow()
+    {
+        return curInventory > 0;
+    }
+    public bool CanReload()
+    {
+        return curReserve > 0;
+    }
+
+    public void Reload()
+    {
+        if (CanReload())
+        {
+            // always increments of 1
+            curInventory += itemCapacity;
+            curReserve -= itemCapacity;
+        }
+        else
+        {
+
+        }
+    }
 
 }
