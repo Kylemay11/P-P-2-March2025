@@ -718,7 +718,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         UpdateThrowablesUI();
 
         // Play sound, instantiate throwable object, etc.
-        // autoreload
+        // auto reload
         StartCoroutine(ReloadThrowable());
     }
 
