@@ -21,8 +21,8 @@ MonoBehaviour:
   itemDelay: 2
   itemThrowForce: 120
   itemDamageRadius: 10
-  curInventory: 1
-  curReserve: 4
+  curInventory: 0
+  curReserve: 0
   itemCapacity: 1
   itemMaxCapacity: 4
   reloadTime: 2

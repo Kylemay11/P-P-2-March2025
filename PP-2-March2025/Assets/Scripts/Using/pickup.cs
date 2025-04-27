@@ -12,8 +12,14 @@ public class pickup : MonoBehaviour
     {
         if(wep)
             initializeWepStats();
-        if(item)
+        if(item && !item.isPickedup)
             initializeThrowables();
+    }
+
+    private void OnApplicationQuit()
+    {
+        if(item && item.isPickedup)
+            item.isPickedup = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,5 +54,10 @@ public class pickup : MonoBehaviour
             item.curReserve = item.itemMaxCapacity;
             item.makePickupable();
         }
+        //else
+        //{
+        //    item.isPickedup = false;
+        //    item.makePickupable();
+        //}
     }
 }
