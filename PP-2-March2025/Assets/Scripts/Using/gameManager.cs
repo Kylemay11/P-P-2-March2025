@@ -231,7 +231,7 @@ public class gameManager : MonoBehaviour
         {
             menuActive.SetActive(false);
             menusettings.SetActive(false);
-            menuPerkInventory.SetActive(false);
+            
             menuActive = null;
         }
         EventSystem.current.SetSelectedGameObject(null);

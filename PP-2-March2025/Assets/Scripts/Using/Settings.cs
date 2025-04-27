@@ -27,9 +27,13 @@ public class Settings : MonoBehaviour
     private float time;
     private int frameCount;
 
+    //sens
+    public Slider sensSlider;
+    public TextMeshProUGUI sensValueText;
 
     public void Start()
     {
+        instance = this;
         // resoultuion
         resolutions = Screen.resolutions;
         resolutionList = new List<Resolution>();
@@ -74,6 +78,19 @@ public class Settings : MonoBehaviour
         fullScreenToggle.isOn = Screen.fullScreen;
         fullScreenToggle.onValueChanged.AddListener(setFullscreen);
 
+        //sens
+        if (sensSlider != null && cameraComtroller.instance != null)
+        {
+            sensSlider.minValue = 100f;
+            sensSlider.maxValue = 1000f;
+            sensSlider.value = cameraComtroller.instance.sens;
+            sensSlider.value = cameraComtroller.instance.sens;
+            sensSlider.onValueChanged.AddListener(SetSensitivity);
+        }
+        if (sensValueText != null)
+        {
+            sensValueText.text = Mathf.RoundToInt(sensSlider.value).ToString();
+        }
     }
 
     public void Update()
@@ -95,7 +112,7 @@ public class Settings : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(FpsText);
+        
     }
     public void setAudio(float vol)
     {
@@ -138,4 +155,17 @@ public class Settings : MonoBehaviour
             frameCount = 0;
         }
     }
+
+    public void SetSensitivity(float newSens)
+    {
+        if (cameraComtroller.instance != null)
+        {
+            cameraComtroller.instance.sens = newSens;
+        }
+        if (sensValueText != null)
+        {
+            sensValueText.text = Mathf.RoundToInt(newSens).ToString();
+        }
+    }
+
 }

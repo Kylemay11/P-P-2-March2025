@@ -7,7 +7,7 @@ public class cameraComtroller : MonoBehaviour
 {
     public static cameraComtroller instance;
 
-    [SerializeField] int sens;
+    [SerializeField] public float sens = 200;
     [SerializeField] int lockVertMin, lockVertMax;
     [SerializeField] bool invertY;
 
@@ -18,6 +18,7 @@ public class cameraComtroller : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        instance = this;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -25,7 +26,6 @@ public class cameraComtroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        instance = this;
         if (canLook)
         {
             float mouseX = Input.GetAxis("Mouse X") * sens * Time.deltaTime;
