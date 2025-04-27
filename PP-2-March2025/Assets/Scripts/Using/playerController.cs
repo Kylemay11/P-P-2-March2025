@@ -469,7 +469,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     {        
         itemList.Add(item);
         itemListPos = itemList.Count - 1;
-        changeThrowable();
+        ToggleThrowableEquipped();
     }
     private void ToggleThrowableEquipped()
     {
@@ -482,7 +482,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             if (itemHolder != null) itemHolder.SetActive(true);
             changeThrowable();
         }
-        else
+        else if(!isThrowableEquipped)
         {
             // Show weapon, hide throwable
             if (itemHolder != null) itemHolder.SetActive(false);
@@ -535,6 +535,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     void changeWeapon()
     {
+        if (isThrowableEquipped)
+            return;
         // Clean up any active muzzle flash
         if (currentMuzzleFlash != null)
         {
@@ -621,21 +623,14 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         if (wepList[wepListPos].isMelee)
             return;
 
-        if (isThrowableEquipped)
-        {
-            if (itemList[itemListPos].CanReload())
-            {
-                StartCoroutine(ReloadThrowable());
-            }
-        }
-        else
-        { 
+       if(!isThrowableEquipped)
+       { 
             if (Input.GetButtonDown("Reload")) // add Timer for reload animation
             {
 
                 reloadTest = StartCoroutine(Reload());
             }
-        }
+       }
     }
 
     private void Shoot()
@@ -723,9 +718,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         UpdateThrowablesUI();
 
         // Play sound, instantiate throwable object, etc.
-
-        // Auto reload
-        itemList[itemListPos].Reload();
+        // autoreload
+        StartCoroutine(ReloadThrowable());
     }
 
     private IEnumerator FlashMuzzle()
@@ -804,7 +798,12 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         isReloading = true;
         // Play reload animation, sound, etc.
 
-        yield return new WaitForSeconds(itemList[itemListPos].reloadTime);
+        float timer = 0f;
+        while (timer < itemList[itemListPos].reloadTime)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
 
         itemList[itemListPos].Reload();
         UpdateThrowablesUI();

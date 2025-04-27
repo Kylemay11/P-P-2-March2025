@@ -28,7 +28,8 @@ public class Throwables : ScriptableObject
     public AudioClip[] itemSound;
     [Range(0.0f, 1)] public float itemVolume;
 
-    float explosionCountDown; 
+    float explosionCountDown;
+    public bool IsThrowable;
 
     public bool CanThrow()
     {
@@ -47,7 +48,7 @@ public class Throwables : ScriptableObject
             curInventory += itemCapacity;
             curReserve -= itemCapacity;
 
-            AmmoUI.instance?.UpdateThrowable(curInventory, curReserve);
+            //AmmoUI.instance?.UpdateThrowable(curInventory, curReserve);
         }
         else
         {
