@@ -73,7 +73,7 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
     private ZombieTargetState currentTargetState = ZombieTargetState.AttackingDoor;
 
     Animator animator;
-
+    [SerializeField] private float deathDelay;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -127,8 +127,15 @@ public class enemyAI : MonoBehaviour, IDamage, IZombie
             aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)], audDeathVol);
             if (barrierDoor != null)
                 barrierDoor.RemoveAttacker(this);
-            Destroy(gameObject);
+            animator.SetTrigger("DIE");
+            StartCoroutine(DestroyAfterDelay(deathDelay));
         }
+    }
+
+    private IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
     }
 
     private void enemyAttack()

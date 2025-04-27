@@ -3887,6 +3887,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e9406330569a1ce48ac3c8cfa98d06a7, type: 3}
   audDeathVol: 0.5
   footstepInterval: 0.5
+  deathDelay: 0
 --- !u!95 &1067449647880341955
 Animator:
   serializedVersion: 7
@@ -3897,10 +3898,10 @@ Animator:
   m_GameObject: {fileID: 8331864209554771720}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e88b81dbbde6e97419fd1f6bdc41d4ca, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e56a7384982b59e4893dbf838f3b1c01, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
