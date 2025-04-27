@@ -88,7 +88,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [SerializeField] private int itemDamage;
     [SerializeField] private int itemDist;
     [SerializeField] private float itemPrimeRate;
-    [SerializeField] private float itemThrowSpeed;
+    [SerializeField] private float itemThrowForce;
 
     [Header("--- Audio ---")]
     [SerializeField] AudioSource aud;
@@ -609,7 +609,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         itemDamage = itemList[itemListPos].itemDamage; // is necessary ?
         itemDist = itemList[itemListPos].itemDist;
         itemPrimeRate = itemList[itemListPos].itemPrimeRate;
-        itemThrowSpeed = itemList[itemListPos].itemThrowSpeed;
+        itemThrowForce = itemList[itemListPos].itemThrowForce;
 
         UpdateThrowablesUI();
 
