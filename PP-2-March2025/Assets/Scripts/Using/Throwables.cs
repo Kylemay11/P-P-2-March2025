@@ -30,6 +30,7 @@ public class Throwables : ScriptableObject
     [Range(0.0f, 1)] public float itemVolume;
 
     float explosionCountDown;
+    public bool isPickedup;
     public bool IsThrowable;
 
     public bool CanThrow()
@@ -39,6 +40,18 @@ public class Throwables : ScriptableObject
     public bool CanReload()
     {
         return curReserve > 0;
+    }
+
+    public void pickedup()
+    {
+        if (isPickedup)        
+            itemPrefab.GetComponent<SphereCollider>().enabled = false;  
+    }
+
+    public void makePickupable()
+    {
+        if(!isPickedup)
+            itemPrefab.GetComponent<SphereCollider>().enabled = true;
     }
 
     public void Reload()

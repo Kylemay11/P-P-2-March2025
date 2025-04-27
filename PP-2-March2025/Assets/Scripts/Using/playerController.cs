@@ -469,6 +469,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     {        
         itemList.Add(item);
         itemListPos = itemList.Count - 1;
+        itemList[itemListPos].isPickedup = true;
+        itemList[itemListPos].pickedup();
         ToggleThrowableEquipped();
     }
     private void ToggleThrowableEquipped()

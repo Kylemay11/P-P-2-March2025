@@ -44,5 +44,6 @@ public class pickup : MonoBehaviour
     {
         item.curInventory = item.itemCapacity;
         item.curReserve = item.itemMaxCapacity;
+        item.makePickupable();
     }
 }
