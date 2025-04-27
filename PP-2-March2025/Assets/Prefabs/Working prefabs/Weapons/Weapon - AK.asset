@@ -23,6 +23,7 @@ MonoBehaviour:
   initialReserveAmmo: 360
   reloadTime: 1.4
   hitEffect: {fileID: 19800002, guid: 3b1513bcb86426b4795879be6a128ed7, type: 3}
-  wepSound: []
+  wepSound:
+  - {fileID: 8300000, guid: 0814ffae5ae8e0e4f9610ecab81f07ff, type: 3}
   wepVolume: 0.5
   isMelee: 0

@@ -29,7 +29,7 @@ public class TrapInteract : MonoBehaviour
     public enum trapType
     {
         Saw,
-        Spikes
+        Spike
     }
 
     [Header("Trap Type")]
@@ -111,7 +111,10 @@ public class TrapInteract : MonoBehaviour
                 audioSource.volume = trapSoundVolume;
                 audioSource.Play();
             }
-            else
+        }
+        else if(trap == trapType.Spike)
+        {
+            if (audioSource != null && spikeSound != null)
             {
                 audioSource.clip = spikeSound;
                 audioSource.loop = true;

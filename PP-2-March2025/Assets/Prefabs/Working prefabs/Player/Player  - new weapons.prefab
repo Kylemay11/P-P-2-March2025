@@ -125,6 +125,7 @@ MonoBehaviour:
   lockVertMin: -90
   lockVertMax: 90
   invertY: 0
+  canLook: 1
 --- !u!20 &3630866813292727255
 Camera:
   m_ObjectHideFlags: 0
@@ -772,7 +773,7 @@ MonoBehaviour:
   audStaminaOutVol: 0.5
   audGunShot:
   - {fileID: 8300000, guid: af2a473296303bf45843db041b6a8945, type: 3}
-  audGunShotVol: 0.5
+  audGunShotVol: 0
   audReload:
   - {fileID: 8300000, guid: cce378621ed52814dbe90b8a22f50c1b, type: 3}
   audReloadVol: 0.5
@@ -780,13 +781,22 @@ MonoBehaviour:
   - {fileID: 8300000, guid: af2a473296303bf45843db041b6a8945, type: 3}
   audEmptyGunVol: 0.5
   audChangeGun:
-  - {fileID: 8300000, guid: d5352727c4ee7854a9d4e818a14e54d3, type: 3}
-  audChangeGunVol: 0.5
+  - {fileID: 8300000, guid: d0fa5135d0c1dc845b98f44593ad95fc, type: 3}
+  - {fileID: 8300000, guid: 3d60156cef31bdb459dd928ab61a5622, type: 3}
+  - {fileID: 8300000, guid: 89503cef213fbaa44ab831f910fa2b83, type: 3}
+  audChangeGunVol: 0.4
   audCrouch:
   - {fileID: 8300000, guid: aae7c9d25bfa0fd4ea6cb0d5f79ebed8, type: 3}
   audCrouchVol: 0.2
+  audMelee:
+  - {fileID: 8300000, guid: 30865f7f7d736734994ba52fe1214864, type: 3}
+  - {fileID: 8300000, guid: 7a466c1593c829f4aa88ac514ce02406, type: 3}
+  - {fileID: 8300000, guid: 1aa7a55c71e19f74bbed236fadf9fea7, type: 3}
+  - {fileID: 8300000, guid: c2292e24ba391ac42ab94294634a66c0, type: 3}
+  audMeleeVol: 0.5
   zombiesKilled: 0
   isGrounded: 0
+  canMove: 1
 --- !u!23 &2727642905191196999
 MeshRenderer:
   m_ObjectHideFlags: 0

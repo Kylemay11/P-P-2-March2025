@@ -9,12 +9,15 @@ public class waveCompleteItems : MonoBehaviour
     public GameObject[] panels;
     [SerializeField] public float interval = 60f;
     private float timer;
+    //player
     [Range(50, 1000)][SerializeField] public int bonusHP;
     [Range(1, 50)][SerializeField] public float bonusSpeed;
-    [Range(1, 100)][SerializeField] public int bonusDamage;
     [Range(1, 100)][SerializeField] public int bonusStamina;
+    //gun
+    [Range(1, 100)][SerializeField] public int bonusDamage;
     [Range(50, 1000)][SerializeField] public int bonusWepDist;
     [Range(1, 50)][SerializeField] public float bonusWepRate;
+    //melee may not work
     [Range(1, 100)][SerializeField] public int bonusMeleeDamage;
     [Range(1, 100)][SerializeField] public int bonusMeleeRate;
     [Range(1, 100)][SerializeField] public int bonusMeleeDist;
