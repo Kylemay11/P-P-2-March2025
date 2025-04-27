@@ -544,9 +544,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             currentMuzzleFlash = null;
         }
 
-        if (isReloading)
+        if (isReloading && !isThrowableEquipped)
         {
-            StopCoroutine(reloadTest);
+            //StopCoroutine(reloadTest);
             isReloading = false;
         }
 
@@ -713,6 +713,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         // Implement throwable throwing logic here
         // Use itemDamage, itemDist, itemThrowSpeed, etc.
+        GameObject throwable = Instantiate(itemList[itemListPos].itemPrefab, transform.position, transform.rotation);
+        Rigidbody rb = throwable.GetComponent<Rigidbody>();
+        rb.AddForce(transform.forward*itemThrowForce);
 
         itemList[itemListPos].curInventory--;
         UpdateThrowablesUI();

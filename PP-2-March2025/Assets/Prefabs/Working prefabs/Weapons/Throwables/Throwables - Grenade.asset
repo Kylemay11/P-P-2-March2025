@@ -18,7 +18,7 @@ MonoBehaviour:
   itemDist: 500
   itemPrimeRate: 1
   itemDelay: 2
-  itemThrowSpeed: 3
+  itemThrowForce: 40
   itemDamageRadius: 10
   curInventory: 0
   curReserve: 0
@@ -29,3 +29,4 @@ MonoBehaviour:
   itemSound:
   - {fileID: 8300000, guid: 8438065efd2f37645a0ba3e3c758a026, type: 3}
   itemVolume: 0.5
+  IsThrowable: 0
