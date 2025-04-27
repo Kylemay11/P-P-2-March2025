@@ -196,7 +196,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         velocity.y -= gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        if (Input.GetButton("Fire1") && wepList.Count > 0 && attackTimer >= wepRate)
+        if (!gameManager.instance.isPaused && Input.GetButton("Fire1") && wepList.Count > 0 && attackTimer >= wepRate)
             Shoot();
 
         selectWeapon();

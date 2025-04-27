@@ -349,7 +349,7 @@ MonoBehaviour:
   projectileSpeed: 0.5
   faceTargetSpeed: 15.2
   runMultiplyer: 5
-  baseHealth: 20
+  baseHealth: 10
   baseSpeed: 10
   baseDamage: 10
   barrierDoor: {fileID: 0}
@@ -371,6 +371,7 @@ MonoBehaviour:
   audDeath:
   - {fileID: 8300000, guid: 777f5ab3c425c184a91ba87fabc8aadb, type: 3}
   audDeathVol: 0.5
+  footstepInterval: 0
 --- !u!95 &3030307321845125742
 Animator:
   serializedVersion: 7

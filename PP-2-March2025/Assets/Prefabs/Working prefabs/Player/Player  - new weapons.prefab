@@ -662,7 +662,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  currentMoney: 200
+  currentMoney: 50
 --- !u!114 &5639920395836675616
 MonoBehaviour:
   m_ObjectHideFlags: 0
