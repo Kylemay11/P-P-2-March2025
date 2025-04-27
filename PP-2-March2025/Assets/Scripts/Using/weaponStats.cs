@@ -20,7 +20,7 @@ public class weaponStats : ScriptableObject
 
     public ParticleSystem hitEffect;
     public AudioClip[] wepSound;
-    [Range(0, 1)] public float wepVolume;
+    [Range(0.0f, 1)] public float wepVolume;
 
     public bool isMelee;
 

@@ -41,7 +41,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     [Header("Weapon Holders")]
     [SerializeField] GameObject gunHolder; 
-    [SerializeField] GameObject meleeHolder; 
+    [SerializeField] GameObject meleeHolder;
+    [SerializeField] GameObject itemHolder;
 
     [Header("Stamina Settings")]
     [SerializeField] private float maxStamina;
@@ -81,6 +82,14 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [SerializeField] private ParticleSystem mFlash;
     [SerializeField] private ParticleSystem currentMuzzleFlash;
 
+    [Header("Throwable Settings")]
+    [SerializeField] List<Throwables> itemList = new List<Throwables>();
+    [SerializeField] GameObject itemModel;
+    [SerializeField] private int itemDamage;
+    [SerializeField] private int itemDist;
+    [SerializeField] private float itemPrimeRate;
+    [SerializeField] private float itemThrowForce;
+
     [Header("--- Audio ---")]
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audSteps;
@@ -116,6 +125,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     private Vector3 moveDir;
     private Vector3 velocity;
     private int wepListPos;
+    private int itemListPos;
+    private bool isThrowableEquipped;
     private float attackTimer;
     private bool isReloading;
     private int jumpCount;
@@ -196,9 +207,13 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         velocity.y -= gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        if (!gameManager.instance.isPaused && Input.GetButton("Fire1") && wepList.Count > 0 && attackTimer >= wepRate)
-            Shoot();
-
+        if (!gameManager.instance.isPaused && Input.GetButton("Fire1"))
+        {
+            if (isThrowableEquipped)
+                ThrowItem();
+            else if (wepList.Count > 0 && attackTimer >= wepRate)
+                Shoot();
+        }
         selectWeapon();
         reloadWeapon();
     }
@@ -450,9 +465,41 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
 
     }
+    public void getThrowables(Throwables item)
+    {        
+        itemList.Add(item);
+        itemListPos = itemList.Count - 1;
+        itemList[itemListPos].isPickedup = true;
+        itemList[itemListPos].pickedup();
+        ToggleThrowableEquipped();
+    }
+    private void ToggleThrowableEquipped()
+    {
+        isThrowableEquipped = !isThrowableEquipped;
+        if (isThrowableEquipped)
+        {
+            // Hide weapon, show throwable
+            if (gunHolder != null) gunHolder.SetActive(false);
+            if (meleeHolder != null) meleeHolder.SetActive(false);
+            if (itemHolder != null) itemHolder.SetActive(true);
+            changeThrowable();
+        }
+        else if(!isThrowableEquipped)
+        {
+            // Show weapon, hide throwable
+            if (itemHolder != null) itemHolder.SetActive(false);
+            changeWeapon();
+        }
+    }
 
     void selectWeapon()
     {
+        // Throwable selection
+        if (Input.GetKeyDown(KeyCode.Q) && itemList.Count > 0)
+        {
+            ToggleThrowableEquipped();
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1) && wepList.Count >= 1)
         {
             wepListPos = 0;
@@ -490,6 +537,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     void changeWeapon()
     {
+        if (isThrowableEquipped)
+            return;
         // Clean up any active muzzle flash
         if (currentMuzzleFlash != null)
         {
@@ -497,9 +546,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             currentMuzzleFlash = null;
         }
 
-        if (isReloading)
+        if (isReloading && !isThrowableEquipped)
         {
-            StopCoroutine(reloadTest);
+            //StopCoroutine(reloadTest);
             isReloading = false;
         }
 
@@ -549,17 +598,41 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             gameManager.instance.weaponNotification.ShowWeaponName(wepList[wepListPos].weaponName);
     }
 
+    private void changeThrowable()
+    {
+        if (itemHolder != null && itemList[itemListPos].model != null)
+        {
+            MeshFilter itemMesh = itemHolder.GetComponent<MeshFilter>();
+            MeshRenderer itemRenderer = itemHolder.GetComponent<MeshRenderer>();
+            if (itemMesh != null) itemMesh.sharedMesh = itemList[itemListPos].model.GetComponent<MeshFilter>()?.sharedMesh;
+            if (itemRenderer != null) itemRenderer.sharedMaterial = itemList[itemListPos].model.GetComponent<MeshRenderer>()?.sharedMaterial;
+        }
+
+        itemDamage = itemList[itemListPos].itemDamage; // is necessary ?
+        itemDist = itemList[itemListPos].itemDist;
+        itemPrimeRate = itemList[itemListPos].itemPrimeRate;
+        itemThrowForce = itemList[itemListPos].itemThrowForce;
+
+        UpdateThrowablesUI();
+
+        if (gameManager.instance != null && gameManager.instance.weaponNotification != null)
+            gameManager.instance.weaponNotification.ShowWeaponName(itemList[itemListPos].itemName);
+    }
+
     void reloadWeapon()
     {
 
         if (wepList[wepListPos].isMelee)
             return;
 
-        if (Input.GetButtonDown("Reload")) // add Timer for reload animation
-        {
+       if(!isThrowableEquipped)
+       { 
+            if (Input.GetButtonDown("Reload")) // add Timer for reload animation
+            {
 
-            reloadTest = StartCoroutine(Reload());
-        }
+                reloadTest = StartCoroutine(Reload());
+            }
+       }
     }
 
     private void Shoot()
@@ -636,6 +709,24 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             aud.PlayOneShot(audMelee[Random.Range(0, audMelee.Length)], audMeleeVol);
     }
 
+    void ThrowItem()
+    {
+        if (itemList.Count == 0 || !itemList[itemListPos].CanThrow()) return;
+
+        // Implement throwable throwing logic here
+        // Use itemDamage, itemDist, itemThrowSpeed, etc.
+        GameObject throwable = Instantiate(itemList[itemListPos].itemPrefab, transform.position, transform.rotation);
+        Rigidbody rb = throwable.GetComponent<Rigidbody>();
+        rb.AddForce(transform.forward*itemThrowForce, ForceMode.VelocityChange);
+
+        itemList[itemListPos].curInventory--;
+        UpdateThrowablesUI();
+
+        StartCoroutine(throwableExplode(throwable));
+        // auto reload
+        StartCoroutine(ReloadThrowable());
+    }
+
     private IEnumerator FlashMuzzle()
     {
         // Clean up existing muzzle flash
@@ -707,6 +798,47 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             isReloading = false;
     }
 
+    IEnumerator ReloadThrowable()
+    {
+        isReloading = true;
+        // Play reload animation, sound, etc.
+
+        float timer = 0f;
+        while (timer < itemList[itemListPos].reloadTime)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        itemList[itemListPos].Reload();
+        UpdateThrowablesUI();
+        isReloading = false;
+    }
+
+    IEnumerator throwableExplode(GameObject throwable)
+    {
+        float timer = 0f;
+        while (timer < itemList[itemListPos].itemDelay)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        Instantiate(itemList[itemListPos].hitEffect, throwable.transform.position, throwable.transform.rotation);
+
+        Collider[] nearbyColliders = Physics.OverlapSphere(throwable.transform.position, itemList[itemListPos].itemDamageRadius);
+
+        foreach (Collider nearbyObject in nearbyColliders)
+        {
+            IDamage target = nearbyObject.GetComponentInParent<IDamage>();
+            if (target != null)
+                target.takeDamage((int)itemDamage);
+            
+        }
+
+        Destroy(throwable.gameObject);
+        aud.PlayOneShot(itemList[itemListPos].itemSound[0], itemList[itemListPos].itemVolume);
+    }
 
     // logic for shops AND items
     public void SpeedIncrease(float amount)
@@ -764,6 +896,14 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             AmmoUI.instance?.UpdateAmmo(wepList[wepListPos].ammoCur, wepList[wepListPos].curReserve);
         }
     }
+    public void UpdateThrowablesUI()
+    {
+        if (itemList[itemListPos]) // !null
+            AmmoUI.instance?.UpdateThrowable(itemList[itemListPos].curInventory, itemList[itemListPos].curReserve);
+        else
+            AmmoUI.instance?.UpdateThrowable(0, 0); // assume no throwable
+    }
+
 
     // make the weapon change the weapon postion of the current weapon user has equipped
 
