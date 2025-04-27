@@ -1811,7 +1811,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -152.5, y: -141.25}
+  m_AnchoredPosition: {x: -152.5, y: 44}
   m_SizeDelta: {x: 500, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8105571286998213277
@@ -2770,7 +2770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3666348758242917631
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2788,7 +2788,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -572.25, y: 240.75}
+  m_AnchoredPosition: {x: -572.25, y: -432.75}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7662988944110495216
@@ -3371,7 +3371,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -138, y: -19}
+  m_AnchoredPosition: {x: -138, y: 166.5}
   m_SizeDelta: {x: 500, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5486259932383694183
@@ -4325,6 +4325,7 @@ MonoBehaviour:
   menusettings: {fileID: 4478469740917975644}
   menuShop: {fileID: 0}
   menuPerkShop: {fileID: 0}
+  menuActive: {fileID: 0}
   waveDuration: 30
   healthMultiplier: 1.1
   damageMultiplier: 1.1
@@ -5325,7 +5326,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -173, y: 116.25}
+  m_AnchoredPosition: {x: -173, y: 270.75}
   m_SizeDelta: {x: 500, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2841950757054739546
@@ -5375,14 +5376,14 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6939213822118665641}
         m_TargetAssemblyTypeName: Settings, Assembly-CSharp
         m_MethodName: setAudio
-        m_Mode: 4
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5778,11 +5779,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1434a092c5ab1f4ab93abee95d2ed9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audiomix: {fileID: 24100000, guid: 8f047a2a920d68c4f8ca8b098fec189e, type: 2}
+  Audio: {fileID: 2841950757054739546}
   resolutionDropdown: {fileID: 2702852423249317719}
   fullScreenToggle: {fileID: 587797851260469996}
-  fpsDispalyToggle: {fileID: 136560546711747081}
-  FpsText: {fileID: 399575890516080082}
   sensSlider: {fileID: 8105571286998213277}
   sensValueText: {fileID: 8933345228592203247}
 --- !u!1 &4502928118472559813
@@ -7526,6 +7525,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoText: {fileID: 3638625163871686350}
+  throwableText: {fileID: 0}
+  emptyActionText: {fileID: 0}
   reloadCircle: {fileID: 5223898592943979383}
 --- !u!1 &5724064165750366145
 GameObject:

@@ -9,7 +9,7 @@ public class Settings : MonoBehaviour
 {
     public static Settings instance;
     //audio
-    public AudioMixer audiomix;
+    [SerializeField] Slider Audio;
 
     // resolution & fullscreen
     [SerializeField] public TMP_Dropdown resolutionDropdown;
@@ -21,11 +21,10 @@ public class Settings : MonoBehaviour
     public Toggle fullScreenToggle;
 
     //fps
-    public Toggle fpsDispalyToggle;
-    public TextMeshProUGUI FpsText;
-    private float pollingTime = 1f;
-    private float time;
-    private int frameCount;
+    //public TextMeshProUGUI FpsText;
+    //private float pollingTime = 1f;
+    //private float time;
+    //private int frameCount;
 
     //sens
     public Slider sensSlider;
@@ -78,7 +77,7 @@ public class Settings : MonoBehaviour
         fullScreenToggle.isOn = Screen.fullScreen;
         fullScreenToggle.onValueChanged.AddListener(setFullscreen);
 
-        //sens
+        // sens
         if (sensSlider != null && cameraComtroller.instance != null)
         {
             sensSlider.minValue = 100f;
@@ -91,32 +90,52 @@ public class Settings : MonoBehaviour
         {
             sensValueText.text = Mathf.RoundToInt(sensSlider.value).ToString();
         }
+        // Audio
+        if (!PlayerPrefs.HasKey("Volume"))
+        {
+            PlayerPrefs.SetFloat("Volume", 1);
+            
+        }
+        else
+        {
+           
+        }
     }
 
     public void Update()
     {
-        if (fpsDispalyToggle.isOn)
-        {
-           if (!FpsText.gameObject.activeSelf)
-                FpsText.gameObject.SetActive(true);
-            fpsCounter();
-        }
-        else
-        {
-            if (FpsText.gameObject.activeSelf)
-            {
-                FpsText.gameObject.SetActive(false);
-            }
-        }
+        //if (FPSDisplay.Instance.fpsToggle.isOn)
+        //{
+        //   if (!FpsText.gameObject.activeSelf)
+        //        FpsText.gameObject.SetActive(true);
+        //    fpsCounter();
+        //}
+        //else
+        //{
+        //    if (FpsText.gameObject.activeSelf)
+        //    {
+        //        FpsText.gameObject.SetActive(false);
+        //    }
+        //}
     }
 
     void Awake()
     {
         
     }
-    public void setAudio(float vol)
+    public void setAudio()
     {
-        audiomix.SetFloat("volume", vol);
+        AudioListener.volume = Audio.value;
+        
+    }
+
+    public void saveAudio()
+    {
+        PlayerPrefs.SetFloat("Volume", Audio.value);
+    }
+    public void loadAudio()
+    {
+        Audio.value = PlayerPrefs.GetFloat("Volume");
     }
 
     public void setRes(int resIndex)
@@ -139,22 +158,22 @@ public class Settings : MonoBehaviour
         Screen.fullScreen = isFullscreen;
     }
 
-    public void fpsCounter()
-    {
-        gameManager.instance.menufpsDisplay.SetActive(true);
-        time += Time.deltaTime;
+    //public void fpsCounter()
+    //{
+    //    gameManager.instance.menufpsDisplay.SetActive(true);
+    //    time += Time.deltaTime;
 
-        frameCount++;
+    //    frameCount++;
 
-        if (time >= pollingTime)
-        {
-            int frameRate = Mathf.RoundToInt(frameCount / time);
-            FpsText.text = frameRate.ToString() + " FPS";
+    //    if (time >= pollingTime)
+    //    {
+    //        int frameRate = Mathf.RoundToInt(frameCount / time);
+    //        FpsText.text = frameRate.ToString() + " FPS";
 
-            time -= pollingTime;
-            frameCount = 0;
-        }
-    }
+    //        time -= pollingTime;
+    //        frameCount = 0;
+    //    }
+    //}
 
     public void SetSensitivity(float newSens)
     {
