@@ -103,6 +103,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [Range(0, 1)][SerializeField] float audChangeGunVol;
     [SerializeField] AudioClip[] audCrouch;
     [Range(0, 1)][SerializeField] float audCrouchVol;
+    [SerializeField] AudioClip[] audMelee;
+    [Range(0, 1)][SerializeField] float audMeleeVol;
+
 
 
 
@@ -193,7 +196,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         velocity.y -= gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        if (Input.GetButton("Fire1") && wepList.Count > 0 && attackTimer >= wepRate)
+        if (!gameManager.instance.isPaused && Input.GetButton("Fire1") && wepList.Count > 0 && attackTimer >= wepRate)
             Shoot();
 
         selectWeapon();
@@ -587,9 +590,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             StartCoroutine(FlashMuzzle());
         }
 
-      
-        if (aud != null && audGunShot != null)
-            aud.PlayOneShot(audGunShot[Random.Range(0, audGunShot.Length)], audGunShotVol);
+        
+        aud.PlayOneShot(wepList[wepListPos].wepSound[Random.Range(0, wepList[wepListPos].wepSound.Length)], wepList[wepListPos].wepVolume);
 
         wepList[wepListPos].ammoCur--;
         //attackTimer = Time.deltaTime + wepRate;
@@ -630,7 +632,8 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             Instantiate(wepList[wepListPos].hitEffect, hit.point, Quaternion.identity);
         }
 
-        //aud.PlayOneShot(audGunShot[Random.Range(0, audGunShot.Length)], audGunShotVol);
+        if(aud != null && audMelee != null)
+            aud.PlayOneShot(audMelee[Random.Range(0, audMelee.Length)], audMeleeVol);
     }
 
     private IEnumerator FlashMuzzle()

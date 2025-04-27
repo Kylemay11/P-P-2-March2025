@@ -5,6 +5,11 @@ using System.Collections;
 
 public class DoorInteract : MonoBehaviour
 {
+    [Header("Door Type")]
+    [SerializeField] private DoorType doorType = DoorType.BuyDoor;
+
+    [SerializeField] private bool eventComplete = false;
+
     [Header("Door Setup")]
     [SerializeField] private int doorCost;
     [SerializeField] private GameObject doorVisual; // Optional door model to hide
@@ -20,6 +25,8 @@ public class DoorInteract : MonoBehaviour
     private bool hasMarkedChecklist = false;
 
     private RoomSpawnerManager roomSpawnerManager;
+
+    public enum DoorType { BuyDoor, EventDoor }
 
     void Start()
     {
@@ -42,17 +49,26 @@ public class DoorInteract : MonoBehaviour
 
     void Update()
     {
-        if (!isPlayerNear || isUnlocked) return;
+        if (!isPlayerNear || isUnlocked)
+            return;
 
-        if (!Input.GetButtonDown("Interact")) return;
+        if (!Input.GetButtonDown("Interact"))
+            return;
 
-        if (!gameManager.instance.waveActive)
+        if (doorType == DoorType.BuyDoor)
         {
             TryUnlock();
         }
-        else if (doorLockedText != null)
+        else if (doorType == DoorType.EventDoor)
         {
-            StartCoroutine(ShowDoorLockedMessage());
+            if (eventComplete)
+            {
+                UnlockDoor();
+            }
+            else
+            {
+                Debug.Log("Event door not ready yet!");
+            }
         }
     }
 
@@ -146,8 +162,16 @@ public class DoorInteract : MonoBehaviour
         TextMeshProUGUI txt = interactionUI.GetComponentInChildren<TextMeshProUGUI>();
         if (txt != null)
         {
-            txt.text = $"Press [E] to open (${doorCost})";
+            if (doorType == DoorType.BuyDoor)
+                txt.text = $"Press [E] to open (${doorCost})";
+            else if (doorType == DoorType.EventDoor)
+                txt.text = eventComplete ? "Press [E] to open (Event Complete)" : "Door Locked: Event Incomplete";
         }
+    }
+    public void CompleteEvent()
+    {
+        eventComplete = true;
+        UpdateUIText();
     }
     public bool IsUnlocked()
     {

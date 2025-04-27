@@ -1585,7 +1585,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5923668292331839292}
   - component: {fileID: 7925777069106034168}
-  - component: {fileID: 1119419132927627767}
   - component: {fileID: 2390441831922241606}
   - component: {fileID: 2304450667954013517}
   - component: {fileID: 925260634019068376}
@@ -1637,41 +1636,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!205 &1119419132927627767
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7122590060074394125}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: -0.0011093915, y: 0.90601546, z: 0.022543907}
-  m_Size: 1.9749426
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.25
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2386056743250998907}
-    - renderer: {fileID: 3969339360057288001}
-  - screenRelativeHeight: 0.125
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 0}
-    - renderer: {fileID: 0}
-  - screenRelativeHeight: 0.0625
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 0}
-    - renderer: {fileID: 0}
-  - screenRelativeHeight: 0.01
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 0}
-    - renderer: {fileID: 0}
-  m_Enabled: 1
 --- !u!136 &2390441831922241606
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1717,7 +1681,7 @@ MonoBehaviour:
   projectileSpeed: 0.5
   faceTargetSpeed: 15.2
   runMultiplyer: 5
-  baseHealth: 20
+  baseHealth: 10
   baseSpeed: 10
   baseDamage: 10
   barrierDoor: {fileID: 0}
@@ -1739,6 +1703,7 @@ MonoBehaviour:
   audDeath:
   - {fileID: 8300000, guid: 777f5ab3c425c184a91ba87fabc8aadb, type: 3}
   audDeathVol: 0.5
+  footstepInterval: 0
 --- !u!82 &925260634019068376
 AudioSource:
   m_ObjectHideFlags: 0

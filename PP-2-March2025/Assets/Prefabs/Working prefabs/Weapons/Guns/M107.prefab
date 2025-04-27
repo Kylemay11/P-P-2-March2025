@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2678856886516730619}
   - component: {fileID: 6054756936689651190}
   - component: {fileID: 8099891443590083390}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Bolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 6908751491934106594}
   - component: {fileID: 1705088404854071961}
   - component: {fileID: 1173271917897604319}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: M107
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1304210270530977488}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 20.124092, y: 0.14936778, z: 40.609974}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 8949412655506464671}
   - component: {fileID: 7707442064278120277}
   - component: {fileID: 3022836347837190882}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Magazin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 3910595769083740297}
   - component: {fileID: 8140126417419799723}
   - component: {fileID: 3323424091511772248}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
