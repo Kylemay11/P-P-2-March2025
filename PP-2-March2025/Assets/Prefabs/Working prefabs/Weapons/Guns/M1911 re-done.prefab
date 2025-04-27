@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3877881000293723505}
   - component: {fileID: 3339404517442628774}
   - component: {fileID: 787481941103645550}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 6540343693877787011}
   - component: {fileID: 1593627985407171450}
   - component: {fileID: 8206805000316645622}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: M1911 re-done
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3302871575578980227}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 1667258793196990122}
   - component: {fileID: 5853505714749719299}
   - component: {fileID: 4581917039388001891}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Magazin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 4030978542709473071}
   - component: {fileID: 4417730693234124326}
   - component: {fileID: 8863694424592130390}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 4802368549503720937}
   - component: {fileID: 8381513542971561961}
   - component: {fileID: 7617913843357916812}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
