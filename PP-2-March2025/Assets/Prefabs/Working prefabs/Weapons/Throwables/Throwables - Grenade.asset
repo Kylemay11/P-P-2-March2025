@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Throwables - Grenade
   m_EditorClassIdentifier: 
   model: {fileID: 100004, guid: cecca25c94780ca428d51ab9f5894270, type: 3}
+  itemPrefab: {fileID: 5532422655495405347, guid: 0b5aeba1d1f5cbe4b867391ea0c1b058, type: 3}
   itemName: Grenade
   itemDamage: 50
   itemDist: 500
@@ -21,7 +22,7 @@ MonoBehaviour:
   itemThrowForce: 40
   itemDamageRadius: 10
   curInventory: 0
-  curReserve: 0
+  curReserve: 4
   itemCapacity: 1
   itemMaxCapacity: 4
   reloadTime: 2
