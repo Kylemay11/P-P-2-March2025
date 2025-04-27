@@ -30,7 +30,7 @@ public class Throwables : ScriptableObject
     [Range(0.0f, 1)] public float itemVolume;
 
     float explosionCountDown;
-    public bool isPickedup;
+    public bool isPickedup = false;
     public bool IsThrowable;
 
     public bool CanThrow()
@@ -60,7 +60,7 @@ public class Throwables : ScriptableObject
         {
             // always increments of 1
             curInventory += itemCapacity;
-            curReserve -= itemCapacity;
+            curReserve--;
 
             //AmmoUI.instance?.UpdateThrowable(curInventory, curReserve);
         }

@@ -21,7 +21,7 @@ MonoBehaviour:
   itemDelay: 2
   itemThrowForce: 120
   itemDamageRadius: 10
-  curInventory: 0
+  curInventory: 1
   curReserve: 4
   itemCapacity: 1
   itemMaxCapacity: 4
@@ -30,5 +30,5 @@ MonoBehaviour:
   itemSound:
   - {fileID: 8300000, guid: 8438065efd2f37645a0ba3e3c758a026, type: 3}
   itemVolume: 0.5
-  isPickedup: 1
+  isPickedup: 0
   IsThrowable: 0

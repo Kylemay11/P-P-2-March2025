@@ -42,8 +42,11 @@ public class pickup : MonoBehaviour
 
     private void initializeThrowables()
     {
-        item.curInventory = item.itemCapacity;
-        item.curReserve = item.itemMaxCapacity;
-        item.makePickupable();
+        if (!item.isPickedup)
+        {
+            item.curInventory = item.itemCapacity;
+            item.curReserve = item.itemMaxCapacity;
+            item.makePickupable();
+        }
     }
 }
