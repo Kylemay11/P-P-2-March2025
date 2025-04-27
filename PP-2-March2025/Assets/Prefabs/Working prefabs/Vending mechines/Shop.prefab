@@ -16569,18 +16569,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 093098becefeebd4684e83af99bcb89e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smallhealthpackPrice: 5
-  healthpackPrice: 10
-  largehealthpackPrice: 20
+  smallhealthpackPrice: 10
+  healthpackPrice: 25
+  largehealthpackPrice: 50
   weapon1Price: 10
   weapon2Price: 10
   weapon3Price: 10
   weapon4Price: 10
   AmmoPrice: 19
   AmmoAmount: 19
-  Smallhealthpack: 1
-  Healthpack: 1
-  Largehealthpack: 1
+  Smallhealthpack: 50
+  Healthpack: 100
+  Largehealthpack: 100
   availableWeapons:
   - {fileID: 0}
   - {fileID: 0}

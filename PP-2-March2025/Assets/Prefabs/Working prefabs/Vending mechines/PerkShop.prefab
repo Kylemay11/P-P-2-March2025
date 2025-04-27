@@ -2620,7 +2620,7 @@ MonoBehaviour:
   BonushealthPrice: 20
   HitDamagePrice: 20
   IAmmoPrice: 10
-  RandPerkPrice: 5
+  RandPerkPrice: 10
   bonusStaminaPrice: 1
   Smallhealthpack: 1
   Healthpack: 1

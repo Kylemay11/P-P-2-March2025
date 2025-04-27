@@ -7306,6 +7306,7 @@ MonoBehaviour:
   menusettings: {fileID: 7888377976050006960}
   menuShop: {fileID: 0}
   menuPerkShop: {fileID: 0}
+  menuWeapShop: {fileID: 0}
   menuActive: {fileID: 0}
   waveDuration: 60
   healthMultiplier: 1.1
@@ -15119,7 +15120,7 @@ MonoBehaviour:
   bonusHP: 50
   bonusSpeed: 1
   bonusStamina: 1
-  bonusDamage: 1
+  bonusDamage: 5
   bonusWepDist: 50
   bonusWepRate: 1
   bonusMeleeDamage: 1
