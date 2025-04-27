@@ -3677,9 +3677,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5058409366828219652}
-        m_TargetAssemblyTypeName: OpenShop, Assembly-CSharp
-        m_MethodName: UnToggleShop
+      - m_Target: {fileID: 7115655534716210196}
+        m_TargetAssemblyTypeName: OpenWshop, Assembly-CSharp
+        m_MethodName: UnToggleWShop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10300,9 +10300,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7175675749248047370}
-  - component: {fileID: 5058409366828219652}
   - component: {fileID: 8460856707871821623}
   - component: {fileID: 6799809836208596153}
+  - component: {fileID: 7115655534716210196}
   m_Layer: 0
   m_Name: WeaponShop
   m_TagString: Untagged
@@ -10329,22 +10329,6 @@ Transform:
   - {fileID: 6401884701296882386}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5058409366828219652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5452322987723947953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9115de6c82b3ef349a76dfb8f9582541, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPlayerNear: 0
-  aud: {fileID: 6799809836208596153}
-  audShopOpen: {fileID: 8300000, guid: 90476b4908037444781cafd88bb19f7c, type: 3}
-  audShopOpenVol: 1
 --- !u!65 &8460856707871821623
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10463,6 +10447,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7115655534716210196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5452322987723947953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce5b182154cef449ae33f8fb8c26cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerNear: 0
+  aud: {fileID: 6799809836208596153}
+  audShopOpen: {fileID: 8300000, guid: 90476b4908037444781cafd88bb19f7c, type: 3}
+  audShopOpenVol: 1
 --- !u!1 &5455502280767230480
 GameObject:
   m_ObjectHideFlags: 0
@@ -16990,7 +16990,7 @@ GameObject:
   - component: {fileID: 1251744209918688772}
   - component: {fileID: 5342957469042449055}
   m_Layer: 5
-  m_Name: ShopUI
+  m_Name: WShopUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,6 +5,7 @@ public class OpenShop : MonoBehaviour
 {
     public static OpenShop instance;
     private GameObject shop;
+   
     public bool isPlayerNear = false;
 
     [Header("--- Audio ---")]
@@ -26,6 +27,7 @@ public class OpenShop : MonoBehaviour
         if (isPlayerNear && Input.GetButtonDown("Interact"))
         {
             ToggleShop();
+           
         }
     }
 
@@ -43,6 +45,7 @@ public class OpenShop : MonoBehaviour
         {
             isPlayerNear = false;
             UnToggleShop();
+           
         }
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
