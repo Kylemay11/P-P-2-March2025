@@ -28,7 +28,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] public GameObject menuShop;
     [SerializeField] public GameObject menuPerkShop;
 
-    private GameObject menuActive;
+    public GameObject menuActive;
 
     [Header("Wave Settings")]
     [SerializeField] private float waveDuration;
