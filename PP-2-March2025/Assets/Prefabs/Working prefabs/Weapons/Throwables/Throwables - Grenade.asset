@@ -19,7 +19,7 @@ MonoBehaviour:
   itemDist: 500
   itemPrimeRate: 1
   itemDelay: 2
-  itemThrowForce: 120
+  itemThrowForce: 40
   itemDamageRadius: 10
   curInventory: 0
   curReserve: 0

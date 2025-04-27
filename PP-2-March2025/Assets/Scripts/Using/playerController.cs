@@ -717,12 +717,12 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         // Use itemDamage, itemDist, itemThrowSpeed, etc.
         GameObject throwable = Instantiate(itemList[itemListPos].itemPrefab, transform.position, transform.rotation);
         Rigidbody rb = throwable.GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward*itemThrowForce);
+        rb.AddForce(transform.forward*itemThrowForce, ForceMode.VelocityChange);
 
         itemList[itemListPos].curInventory--;
         UpdateThrowablesUI();
 
-        // Play sound, instantiate throwable object, etc.
+        StartCoroutine(throwableExplode(throwable));
         // auto reload
         StartCoroutine(ReloadThrowable());
     }
@@ -813,6 +813,20 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         itemList[itemListPos].Reload();
         UpdateThrowablesUI();
         isReloading = false;
+    }
+
+    IEnumerator throwableExplode(GameObject throwable)
+    {
+        float timer = 0f;
+        while (timer < itemList[itemListPos].itemDelay)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        Instantiate(itemList[itemListPos].hitEffect, throwable.transform.position, throwable.transform.rotation);
+        Destroy(throwable.gameObject);
+        aud.PlayOneShot(itemList[itemListPos].itemSound[0], itemList[itemListPos].itemVolume);
     }
 
     // logic for shops AND items

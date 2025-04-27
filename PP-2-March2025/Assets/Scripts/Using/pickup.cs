@@ -18,8 +18,11 @@ public class pickup : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        if(item && item.isPickedup)
+        if (item && item.isPickedup)
+        {
             item.isPickedup = false;
+            item.makePickupable();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
