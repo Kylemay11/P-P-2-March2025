@@ -5139,11 +5139,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1434a092c5ab1f4ab93abee95d2ed9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audiomix: {fileID: 24100000, guid: 8f047a2a920d68c4f8ca8b098fec189e, type: 2}
+  Audio: {fileID: 0}
   resolutionDropdown: {fileID: 8577518654719581530}
   fullScreenToggle: {fileID: 2688049006668095124}
-  fpsDispalyToggle: {fileID: 3929001903369905923}
-  FpsText: {fileID: 466645724912100237}
+  sensSlider: {fileID: 0}
+  sensValueText: {fileID: 0}
 --- !u!1 &2777738691230808164
 GameObject:
   m_ObjectHideFlags: 0
@@ -7227,7 +7227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4665560452623148322
 RectTransform:
   m_ObjectHideFlags: 0
