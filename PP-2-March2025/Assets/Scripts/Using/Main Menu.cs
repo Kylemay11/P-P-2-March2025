@@ -36,7 +36,6 @@ public class MainMenu : MonoBehaviour
     {
         string levelname = "Level_" + lvlID;
         SceneManager.LoadScene(levelname);
-        DontDestroyOnLoad(Settings.instance.FpsText);
     }
 
     public void gameQuit()
