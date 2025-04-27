@@ -616,7 +616,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This door has now powe fix it at the fuse box
+  m_text: '"NOTICE"
+
+    ======================
+
+    Door''s dead.
+
+    Fix the fuse
+    when you get a chance."'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -643,8 +650,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
-  m_fontSizeBase: 42
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -950,6 +957,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcfb63e0f629a8c498523174051a1bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noteText: '"NOTICE"
+
+    ======================
+
+    Door''s dead.
+
+    Fix the
+    fuse when you get a chance."'
 --- !u!114 &1507976816748506184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -963,8 +978,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notePanel: {fileID: 23903558587975724}
-  noteText: {fileID: 3921965817484225784}
-  hintText: {fileID: 3921965817484225784}
+  noteTextField: {fileID: 3921965817484225784}
+  bottomHintText: {fileID: 0}
+  interactPrompt: {fileID: 0}
 --- !u!114 &1637361757506085889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1177,7 +1193,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1204
+  m_VersionIndex: 1213
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

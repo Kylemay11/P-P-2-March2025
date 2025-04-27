@@ -70,7 +70,7 @@ public class FuseBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !isRepaired)
+        if (other.CompareTag("Player") && !isRepaired /*&& gameManager.instance.waveActive*/)
         {
             isPlayerNear = true;
             if (repairPromptUI != null)

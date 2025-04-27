@@ -26,7 +26,7 @@ public class DoorInteract : MonoBehaviour
 
     private RoomSpawnerManager roomSpawnerManager;
 
-    public enum DoorType { BuyDoor,EventDoor }
+    public enum DoorType { BuyDoor, EventDoor }
 
     void Start()
     {
@@ -57,14 +57,7 @@ public class DoorInteract : MonoBehaviour
 
         if (doorType == DoorType.BuyDoor)
         {
-            if (!gameManager.instance.waveActive)
-            {
-                TryUnlock();
-            }
-            else if (doorLockedText != null)
-            {
-                StartCoroutine(ShowDoorLockedMessage());
-            }
+            TryUnlock();
         }
         else if (doorType == DoorType.EventDoor)
         {

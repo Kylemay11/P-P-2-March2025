@@ -1,38 +1,34 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class NoteUIManager : MonoBehaviour
 {
     public static NoteUIManager instance;
 
+    [Header("References")]
     public GameObject notePanel;
-    public TextMeshProUGUI noteText;
-    public TextMeshProUGUI hintText;
+    public TMP_Text noteTextField;
+    public TMP_Text bottomHintText;
+    public TMP_Text interactPrompt;
 
-    private void Awake()
+    void Awake()
     {
         instance = this;
         notePanel.SetActive(false);
-        hintText.gameObject.SetActive(false);
     }
 
-    public void OpenNote()
+    public void OpenNote(string text)
     {
+        noteTextField.text = text;
         notePanel.SetActive(true);
-        gameManager.instance.PauseGame();
         gameManager.instance.menuActive = notePanel;
+        gameManager.instance.PauseGame();
     }
 
     public void CloseNote()
     {
         notePanel.SetActive(false);
+        gameManager.instance.menuActive = null;
         gameManager.instance.ResumeGame();
-    }
-
-    public void ShowHint(bool show)
-    {
-        hintText.gameObject.SetActive(show);
     }
 }

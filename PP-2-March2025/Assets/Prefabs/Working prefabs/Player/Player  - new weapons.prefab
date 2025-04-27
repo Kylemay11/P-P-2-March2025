@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 9144324279654239122}
   - component: {fileID: 6211131660807377357}
   - component: {fileID: 2371246046515039715}
-  m_Layer: 6
+  m_Layer: 15
   m_Name: Melee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,7 +662,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  currentMoney: 200
+  currentMoney: 50
 --- !u!114 &5639920395836675616
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,34 +2,33 @@ using UnityEngine;
 
 public class NoteTrigger : MonoBehaviour
 {
-    private bool isPlayerNear = false;
+    [TextArea(3, 10)]
+    public string noteText;
 
-    private void Update()
+    private bool playerInRange = false;
+
+    void Update()
     {
-        if (isPlayerNear && Input.GetButtonDown("Interact"))
+        if (playerInRange && Input.GetButtonDown("Interact"))
         {
-            if (NoteUIManager.instance != null)
-            {
-                NoteUIManager.instance.OpenNote();
-            }
+            OpenNote();
         }
+    }
+
+    void OpenNote()
+    {
+        NoteUIManager.instance.OpenNote(noteText);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
-            isPlayerNear = true;
-            NoteUIManager.instance.ShowHint(true);
-        }
+            playerInRange = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
-            isPlayerNear = false;
-            NoteUIManager.instance.ShowHint(false);
-        }
+            playerInRange = false;
     }
 }
