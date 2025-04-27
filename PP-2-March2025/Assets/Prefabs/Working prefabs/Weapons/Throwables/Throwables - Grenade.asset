@@ -19,14 +19,14 @@ MonoBehaviour:
   itemDist: 500
   itemPrimeRate: 1
   itemDelay: 2
-  itemThrowForce: 40
+  itemThrowForce: 22
   itemDamageRadius: 10
   curInventory: 0
   curReserve: 0
   itemCapacity: 1
   itemMaxCapacity: 4
   reloadTime: 2
-  hitEffect: {fileID: 19800014, guid: 5332791ebce075d4a9e56f4581e7fb47, type: 3}
+  hitEffect: {fileID: 19800004, guid: b46890100828db6429ff69c322b45893, type: 3}
   itemSound:
   - {fileID: 8300000, guid: 8438065efd2f37645a0ba3e3c758a026, type: 3}
   itemVolume: 0.5

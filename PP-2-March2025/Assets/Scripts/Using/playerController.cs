@@ -825,6 +825,17 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         }
 
         Instantiate(itemList[itemListPos].hitEffect, throwable.transform.position, throwable.transform.rotation);
+
+        Collider[] nearbyColliders = Physics.OverlapSphere(throwable.transform.position, itemList[itemListPos].itemDamageRadius);
+
+        foreach (Collider nearbyObject in nearbyColliders)
+        {
+            IDamage target = nearbyObject.GetComponentInParent<IDamage>();
+            if (target != null)
+                target.takeDamage((int)itemDamage);
+            
+        }
+
         Destroy(throwable.gameObject);
         aud.PlayOneShot(itemList[itemListPos].itemSound[0], itemList[itemListPos].itemVolume);
     }
