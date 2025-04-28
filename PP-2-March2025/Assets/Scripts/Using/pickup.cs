@@ -18,7 +18,7 @@ public class pickup : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        if (item && item.isPickedup)
+        if (item)
         {
             item.isPickedup = false;
             item.makePickupable();
