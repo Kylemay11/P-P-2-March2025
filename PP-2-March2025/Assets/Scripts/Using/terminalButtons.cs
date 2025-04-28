@@ -11,6 +11,12 @@ public class PuzzleButton : MonoBehaviour
     public float flashTime;
 
     private bool isAnimating;
+
+    [Header("--- Audio ---")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audButton;
+    [Range(0, 1)][SerializeField] float audButtonVol;
+
     void Start()
     {
         buttonRenderer = GetComponentInChildren<Renderer>();
@@ -54,6 +60,8 @@ public class PuzzleButton : MonoBehaviour
 
         Vector3 originalPos = transform.localPosition;
         Vector3 pressedPos = originalPos + new Vector3(0f, -0.1f, 0f);
+
+        aud.PlayOneShot(audButton[0], audButtonVol);
 
         transform.localPosition = pressedPos;
         yield return new WaitForSeconds(0.3f);
