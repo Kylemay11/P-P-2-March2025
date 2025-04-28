@@ -90,7 +90,7 @@ public class gameManager : MonoBehaviour
 
     private void HandlePauseInput()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             if (menuActive == null)
             {
