@@ -36,10 +36,8 @@ public class Settings : MonoBehaviour
         // resoultuion
         resolutions = Screen.resolutions;
         resolutionList = new List<Resolution>();
-
         resolutionDropdown.ClearOptions();
         currentRefreshRate = (float)Screen.currentResolution.refreshRateRatio.value;
-
         for (int i = 0; i < resolutions.Length; i++)
         {
             if ((float)resolutions[i].refreshRateRatio.value == currentRefreshRate)
@@ -68,11 +66,16 @@ public class Settings : MonoBehaviour
                 currentResolutionIndex = i;
             }
         }
+        if (PlayerPrefs.HasKey("ResolutionIndex"))
+        {
+            currentResolutionIndex = PlayerPrefs.GetInt("ResolutionIndex");
+        }
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+        resolutionDropdown.onValueChanged.RemoveAllListeners();
         resolutionDropdown.onValueChanged.AddListener(setRes);
-
+        setRes(currentResolutionIndex);
         // fullscreen
         fullScreenToggle.isOn = Screen.fullScreen;
         fullScreenToggle.onValueChanged.AddListener(setFullscreen);
@@ -90,6 +93,10 @@ public class Settings : MonoBehaviour
         {
             sensValueText.text = Mathf.RoundToInt(sensSlider.value).ToString();
         }
+        //float savedSensitivity = PlayerPrefs.GetFloat("Sensitivity");
+        //sensSlider.value = savedSensitivity;
+        //sensValueText.text = savedSensitivity.ToString("F2");
+
         // Audio
         if (!PlayerPrefs.HasKey("Volume"))
         {
@@ -142,10 +149,13 @@ public class Settings : MonoBehaviour
     {
         Resolution resolution = resolutionList[resIndex];
 
-        if (Screen.width != resolution.width || Screen.height != resolution.height)
-        {
+        
             Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-        }
+
+        PlayerPrefs.SetInt("ResolutionIndex", resIndex);
+        PlayerPrefs.SetInt("IsFullscreen", fullScreenToggle.isOn ? 1 : 0);
+        PlayerPrefs.Save();
+
     }
 
     public void setQuality(int qual)
@@ -186,5 +196,10 @@ public class Settings : MonoBehaviour
             sensValueText.text = Mathf.RoundToInt(newSens).ToString();
         }
     }
-
+    public void OnSensitivityChanged(float newValue)
+    {
+        sensValueText.text = newValue.ToString("F2");
+        PlayerPrefs.SetFloat("Sensitivity", newValue);
+        PlayerPrefs.Save();
+    }
 }

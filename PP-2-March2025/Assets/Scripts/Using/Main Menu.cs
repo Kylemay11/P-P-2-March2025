@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -36,6 +37,7 @@ public class MainMenu : MonoBehaviour
     {
         string levelname = "Level_" + lvlID;
         SceneManager.LoadScene(levelname);
+        gameManager.instance.ResumeGame();
     }
 
     public void gameQuit()
@@ -71,5 +73,9 @@ public class MainMenu : MonoBehaviour
     {
         gameManager.instance.menuLvlSelect.SetActive(false);
     }
-
+    public void openMainMenu()
+    {
+        string levelname = "Main Menu";
+        SceneManager.LoadScene(levelname);
+    }
 }

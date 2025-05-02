@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
@@ -90,7 +91,27 @@ public class gameManager : MonoBehaviour
 
     private void HandlePauseInput()
     {
-        if (OpenPerkShop.Instance.isInShop == false && OpenWshop.Instance.isInShop == false && OpenShop.instance.isInShop == false)
+        if (SceneManager.GetActiveScene().name == "level_1")
+        {
+            if (OpenPerkShop.Instance.isInShop == false && OpenWshop.Instance.isInShop == false && OpenShop.instance.isInShop == false)
+            {
+                if (Input.GetButtonDown("Cancel"))
+                {
+                    if (menuActive == null)
+                    {
+                        PauseGame();
+                        menuPause.SetActive(true);
+                        menuActive = menuPause;
+                        EventSystem.current.SetSelectedGameObject(menuPause.transform.GetChild(0).gameObject);
+                    }
+                    else if (menuActive == menuPause)
+                    {
+                        ResumeGame();
+                    }
+                }
+            }
+        }
+        else
         {
             if (Input.GetButtonDown("Cancel"))
             {
