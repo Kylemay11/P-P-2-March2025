@@ -25,22 +25,23 @@ public class waveCompleteItems : MonoBehaviour
 
     void Start()
     {
-        timer = interval;
+        instance = this;
+        //timer = interval;
         HideAllPanels();
     }
 
     void Update()
     {
-        timer -= Time.deltaTime;
+        //timer -= Time.deltaTime;
 
-        if (timer <= 0f)
-        {
-            ShowRandomPanel();
-            timer = interval;
-        }
+        //if (timer <= 0f)
+        //{
+        //    ShowRandomPanel();
+        //    timer = interval;
+        //}
     }
 
-    void ShowRandomPanel()
+    public void ShowRandomPanel()
     {
         gameManager.instance.PauseGame();
         HideAllPanels();

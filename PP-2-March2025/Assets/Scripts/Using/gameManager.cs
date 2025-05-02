@@ -179,6 +179,7 @@ public class gameManager : MonoBehaviour
         CleanupStragglers(25f);
         UpdateAliveCounterUI();
         StartCoroutine(WaitBeforeCleanupUI());
+        waveCompleteItems.instance.ShowRandomPanel();
     }
 
     public void StartWave()
