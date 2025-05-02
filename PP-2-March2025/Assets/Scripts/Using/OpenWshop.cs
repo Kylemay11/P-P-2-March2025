@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class OpenWshop : MonoBehaviour
 {
+    public static OpenWshop Instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static OpenShop instance;
     private GameObject shop2;
     public bool isPlayerNear = false;
-
+    public bool isInShop = false;
     [Header("--- Audio ---")]
     [SerializeField] private AudioSource aud;
     [SerializeField] private AudioClip audShopOpen;
@@ -14,6 +15,7 @@ public class OpenWshop : MonoBehaviour
 
     void Start()
     {
+        Instance = this;
         shop2 = GameObject.Find("WShopUI");
         if (shop2 != null)
         {
@@ -50,7 +52,7 @@ public class OpenWshop : MonoBehaviour
 
     public void ToggleWShop()
     {
-
+        isInShop = true;
         gameManager.instance.menuWeapShop.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -65,6 +67,7 @@ public class OpenWshop : MonoBehaviour
 
     public void UnToggleWShop()
     {
+        isInShop = false;
         gameManager.instance.menuWeapShop.SetActive(false);
         playerController.instance.canMove = true;
         cameraComtroller.instance.canLook = true;

@@ -3,15 +3,19 @@ using UnityEngine;
 
 public class OpenPerkShop : MonoBehaviour
 {
+    public static OpenPerkShop Instance;
     private GameObject Perkshop;
     public bool isPlayerNear = false;
-
+    public bool isInShop = false;
     [Header("--- Audio ---")]
     [SerializeField] private AudioSource aud;
     [SerializeField] private AudioClip audShopOpen;
     [Range(0, 1)][SerializeField] private float audShopOpenVol = 1f;
+
+    
     void Start()
     {
+        Instance = this;
         Perkshop = GameObject.Find("PerkShopUI");
         if (Perkshop != null)
         {
@@ -32,6 +36,7 @@ public class OpenPerkShop : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerNear = true;
+            
         }
     }
 
@@ -40,6 +45,7 @@ public class OpenPerkShop : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerNear = false;
+            
             untogglePerkShop();
         }
         Cursor.visible = false;
@@ -48,6 +54,7 @@ public class OpenPerkShop : MonoBehaviour
 
     public void TogglePerkShop()
     {
+        isInShop = true;
         gameManager.instance.menuPerkShop.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -61,6 +68,7 @@ public class OpenPerkShop : MonoBehaviour
 
     public void untogglePerkShop()
     {
+        isInShop = false;
         gameManager.instance.menuPerkShop.SetActive(false);
         playerController.instance.canMove = true;
         cameraComtroller.instance.canLook = true;

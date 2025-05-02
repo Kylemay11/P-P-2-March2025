@@ -90,18 +90,21 @@ public class gameManager : MonoBehaviour
 
     private void HandlePauseInput()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if (OpenPerkShop.Instance.isInShop == false && OpenWshop.Instance.isInShop == false && OpenShop.instance.isInShop == false)
         {
-            if (menuActive == null)
+            if (Input.GetButtonDown("Cancel"))
             {
-                PauseGame();
-                menuPause.SetActive(true);
-                menuActive = menuPause;
-                EventSystem.current.SetSelectedGameObject(menuPause.transform.GetChild(0).gameObject);
-            }
-            else if (menuActive == menuPause)
-            {
-                ResumeGame();
+                if (menuActive == null)
+                {
+                    PauseGame();
+                    menuPause.SetActive(true);
+                    menuActive = menuPause;
+                    EventSystem.current.SetSelectedGameObject(menuPause.transform.GetChild(0).gameObject);
+                }
+                else if (menuActive == menuPause)
+                {
+                    ResumeGame();
+                }
             }
         }
     }
