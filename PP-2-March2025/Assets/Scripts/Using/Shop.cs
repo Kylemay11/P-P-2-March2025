@@ -88,22 +88,34 @@ public void makeAmmoPurchase()
     // purchase the weapons from their corrsponding postion in the list
     public void PurchaseWeapon1()
     {
-        PurchaseWeapon(0);
+        if (CurrencySystem.instance.SpendMoney(weapon1Price))
+        {
+            PurchaseWeapon(0);
+        }
     }
 
     public void PurchaseWeapon2()
     {
-        PurchaseWeapon(1);
+        if (CurrencySystem.instance.SpendMoney(weapon2Price))
+        {
+            PurchaseWeapon(1);
+        }
     }
 
     public void PurchaseWeapon3()
     {
-        PurchaseWeapon(2);
+        if (CurrencySystem.instance.SpendMoney(weapon3Price))
+        {
+            PurchaseWeapon(2);
+        }
     }
 
     public void PurchaseWeapon4()
     {
-        PurchaseWeapon(3);
+        if (CurrencySystem.instance.SpendMoney(weapon4Price))
+        {
+            PurchaseWeapon(3);
+        }
     }
 
 
