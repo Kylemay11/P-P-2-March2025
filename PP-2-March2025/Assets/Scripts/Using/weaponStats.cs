@@ -8,6 +8,7 @@ public class weaponStats : ScriptableObject
 
     [Header("Basic Info")]
     public string weaponName;
+    [SerializeField] public Vector3 wepADSPosition;
 
     [Range(5, 2000)] public int wepDamage;
     [Range(0, 1000)] public int wepDist;

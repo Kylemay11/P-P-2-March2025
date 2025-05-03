@@ -30,6 +30,7 @@ public class ADS : MonoBehaviour
         // Toggle ADS when key is pressed/released
         if (Input.GetKeyDown(adsKey)) isAiming = true;
         if (Input.GetKeyUp(adsKey)) isAiming = false;
+        adsPosition = playerController.instance.pcADSPosition;
 
         // Apply ADS effects
         if (isAiming)

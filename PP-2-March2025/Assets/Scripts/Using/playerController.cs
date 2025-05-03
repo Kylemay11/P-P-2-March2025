@@ -77,6 +77,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     [SerializeField] private int wepDist;
     [SerializeField] private float wepRate;
     [SerializeField] private float reloadTime;
+    [SerializeField] public Vector3 pcADSPosition;
     [SerializeField] private GameObject mFlashPos;
     [SerializeField] private Coroutine reloadTest;
     [SerializeField] private ParticleSystem mFlash;
@@ -589,6 +590,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         wepDist = wepList[wepListPos].wepDist;
         wepRate = wepList[wepListPos].wepRate;
         reloadTime = wepList[wepListPos].reloadTime;
+        pcADSPosition = wepList[wepListPos].wepADSPosition;
 
         // Update UI elements
         UpdateAmmoUI();
