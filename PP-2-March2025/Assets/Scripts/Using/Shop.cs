@@ -81,6 +81,7 @@ public void makeAmmoPurchase()
             return;
         }
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+        availableWeapons[weaponIndex].maxAmmo();
         player.GetComponent<playerController>()?.ReplaceWeapon(availableWeapons[weaponIndex]);
 
     }

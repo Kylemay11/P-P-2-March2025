@@ -39,4 +39,9 @@ public class weaponStats : ScriptableObject
         return ammoCur > 0;
     }    
 
+    public void maxAmmo()
+    {
+        ammoCur = magCapacity;
+        curReserve = initialReserveAmmo;
+    }
 }
