@@ -46,7 +46,7 @@ public class AmmoUI : MonoBehaviour
     public void UpdateAmmo(int current, int max)
     {
         if (ammoText != null)
-            ammoText.text = $"{current} / {max}";
+            ammoText.text = "#" + (playerController.instance.wepListPos+1) + " " + $"{current} / {max}";
     }
 
     public void StartReload(float time)
@@ -94,7 +94,7 @@ public class AmmoUI : MonoBehaviour
     public void UpdateThrowable(int current, int max)
     {
         if (throwableText != null)
-            throwableText.text = $"{current} / {max}";
+            throwableText.text = "Q " + $"{current} / {max}";
     }
 
     public void ThrowablesEmpty()

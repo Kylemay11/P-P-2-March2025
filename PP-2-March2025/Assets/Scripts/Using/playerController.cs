@@ -125,7 +125,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     private Vector3 moveDir;
     private Vector3 velocity;
-    private int wepListPos;
+    public int wepListPos;
     private int itemListPos;
     private bool isThrowableEquipped;
     private float attackTimer;
