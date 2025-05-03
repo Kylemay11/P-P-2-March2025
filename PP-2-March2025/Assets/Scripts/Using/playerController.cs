@@ -717,7 +717,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         // Implement throwable throwing logic here
         // Use itemDamage, itemDist, itemThrowSpeed, etc.
-        GameObject throwable = Instantiate(itemList[itemListPos].itemPrefab, transform.position, transform.rotation);
+        GameObject throwable = Instantiate(itemList[itemListPos].itemPrefab, playerController.instance.itemModel.transform.position, playerController.instance.itemModel.transform.rotation);
         Rigidbody rb = throwable.GetComponent<Rigidbody>();
         rb.AddForce(transform.forward*itemThrowForce, ForceMode.VelocityChange);
 

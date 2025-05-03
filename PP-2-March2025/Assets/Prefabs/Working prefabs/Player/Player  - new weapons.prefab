@@ -98,7 +98,7 @@ Transform:
   m_GameObject: {fileID: 3109926137631413971}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.245, y: -0.157, z: 0.511}
+  m_LocalPosition: {x: 0.252, y: -0.157, z: 0.741}
   m_LocalScale: {x: 1, y: 0.8333333, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -840,11 +840,12 @@ MonoBehaviour:
   wepDist: 1500
   wepRate: 0
   reloadTime: 0
+  pcADSPosition: {x: 0, y: 0, z: 0}
   mFlashPos: {fileID: 3055572700376633791}
   mFlash: {fileID: 6943685617558384535, guid: 44ec949d6d1686d478b43d3208a7c197, type: 3}
   currentMuzzleFlash: {fileID: 0}
   itemList: []
-  itemModel: {fileID: 0}
+  itemModel: {fileID: 3109926137631413971}
   itemDamage: 0
   itemDist: 0
   itemPrimeRate: 0
@@ -889,6 +890,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c2292e24ba391ac42ab94294634a66c0, type: 3}
   audMeleeVol: 0.5
   zombiesKilled: 0
+  wepListPos: 0
   isGrounded: 0
   canMove: 1
 --- !u!23 &2727642905191196999
