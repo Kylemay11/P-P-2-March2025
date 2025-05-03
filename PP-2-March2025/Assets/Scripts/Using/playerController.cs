@@ -627,7 +627,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
        if(!isThrowableEquipped)
        { 
-            if (Input.GetButtonDown("Reload")) // add Timer for reload animation
+            if (Input.GetButtonDown("Reload") && !isReloading) // add Timer for reload animation
             {
 
                 reloadTest = StartCoroutine(Reload());
@@ -793,6 +793,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         {
             wepList[wepListPos].Reload();
             UpdateAmmoUI();
+            isReloading = false;
         }
         else
             isReloading = false;
