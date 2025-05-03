@@ -24,6 +24,15 @@ public class BarricadeDoor : MonoBehaviour
     [SerializeField] private List<Transform> doorAttackPoints;
     [SerializeField] private bool isTrainingDoor = false;
 
+    [Header("--- Audio ---")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audBreak;
+    [Range(0, 1)][SerializeField] float audBreakVol;
+    [SerializeField] AudioClip[] audBuild;
+    [Range(0, 1)][SerializeField] float audBuildVol;
+
+
+
     private float currentHealth;
     private int planksRemaining;
     private bool isPlayerNear;
@@ -121,6 +130,9 @@ public class BarricadeDoor : MonoBehaviour
                 int planksAdded = desiredPlanks - planksRemaining;
                 planksRemaining = desiredPlanks;
 
+                if (aud != null && audBuild != null)
+                    aud.PlayOneShot(audBuild[Random.Range(0, audBuild.Length)], audBuildVol);
+
                 // Sync health with visual planks
                 currentHealth = (planksRemaining / (float)maxPlanks) * totalDoorHealth;
 
@@ -166,6 +178,9 @@ public class BarricadeDoor : MonoBehaviour
         {
             planks[i].SetActive(i < planksRemaining);
         }
+        if (aud != null && audBreak != null)
+            aud.PlayOneShot(audBreak[Random.Range(0, audBreak.Length)], audBreakVol);
+
     }
 
     private void UpdateRepairCostText()

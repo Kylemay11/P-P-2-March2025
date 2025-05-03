@@ -3876,8 +3876,10 @@ MonoBehaviour:
   audStepsVol: 0.5
   audAttack:
   - {fileID: 8300000, guid: 0eb29075289ccc64790ff266761bcb8b, type: 3}
-  - {fileID: 8300000, guid: ebfa682f62db9ac44aaad242bdfaedd4, type: 3}
-  audAttackVol: 0.5
+  - {fileID: 8300000, guid: af632ca67c4eb274b8517fdff10a32ff, type: 3}
+  - {fileID: 8300000, guid: 487902bb0520b424da1c528dab9d4667, type: 3}
+  - {fileID: 8300000, guid: faa2199d9ef6d904ea9c142ea6278dfc, type: 3}
+  audAttackVol: 0.2
   audHurt:
   - {fileID: 8300000, guid: 67353032cfc5b5343b86e2dcc745d487, type: 3}
   - {fileID: 8300000, guid: 3981ab1db25eb5f4cb6a538368395070, type: 3}
