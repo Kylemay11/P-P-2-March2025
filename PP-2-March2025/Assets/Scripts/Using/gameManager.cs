@@ -93,27 +93,18 @@ public class gameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "level_1")
         {
-            if (OpenPerkShop.Instance.isInShop == false && OpenWshop.Instance.isInShop == false && OpenShop.instance.isInShop == false)
+            if (OpenPerkShop.Instance.isInShop == true && OpenWshop.Instance.isInShop == true && OpenShop.instance.isInShop == true)
             {
                 if (Input.GetButtonDown("Cancel"))
                 {
-                    if (menuActive == null)
-                    {
-                        PauseGame();
-                        menuPause.SetActive(true);
-                        menuActive = menuPause;
-                        EventSystem.current.SetSelectedGameObject(menuPause.transform.GetChild(0).gameObject);
-                    }
-                    else if (menuActive == menuPause)
-                    {
-                        ResumeGame();
-                    }
+                    ResumeGame();
                 }
             }
         }
         else
         {
-            if (Input.GetButtonDown("Cancel"))
+            if (OpenPerkShop.Instance.isInShop == false && OpenWshop.Instance.isInShop == false && OpenShop.instance.isInShop == false)
+                if (Input.GetButtonDown("Cancel"))
             {
                 if (menuActive == null)
                 {
