@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 1829597508155286, guid: 7359baf27e84aa44cafac3788c8be0f1, type: 3}
   weaponName: M107
-  wepADSPosition: {x: 0, y: -0.05, z: 0.411}
+  wepADSPosition: {x: 0, y: -0.057, z: 0.411}
   wepDamage: 100
   wepDist: 333
   wepRate: 1.8
-  ammoCur: 12
+  ammoCur: 11
   curReserve: 70
   magCapacity: 12
   initialReserveAmmo: 70
