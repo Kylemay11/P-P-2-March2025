@@ -902,9 +902,19 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
     public void UpdateThrowablesUI()
     {
         if (itemList[itemListPos]) // !null
+        {
             AmmoUI.instance?.UpdateThrowable(itemList[itemListPos].curInventory, itemList[itemListPos].curReserve);
+            itemHolder.SetActive(true);
+        }
         else
+        {
             AmmoUI.instance?.UpdateThrowable(0, 0); // assume no throwable
+            itemHolder.SetActive(false);
+        }
+
+        if(itemList[itemListPos] && itemList[itemListPos].curInventory == 0 && itemList[itemListPos].curReserve == 0)
+            itemHolder.SetActive(false);
+
     }
 
 
