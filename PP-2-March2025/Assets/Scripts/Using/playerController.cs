@@ -680,6 +680,10 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         if (Physics.Raycast(ray, out RaycastHit hit, wepDist, hitMask))
         {
+            // Prevent self-damage
+            if (hit.collider.CompareTag("Player"))
+                return;
+
             Debug.Log("Hit: " + hit.collider.name);
             Instantiate(wepList[wepListPos].hitEffect, hit.point, Quaternion.identity);
 
@@ -702,6 +706,10 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(ray, out RaycastHit hit, wepList[wepListPos].wepDist, hitMask))
         {
+            // Prevent self-damage
+            if (hit.collider.CompareTag("Player"))
+                return;
+
             IDamage target = hit.collider.GetComponentInParent<IDamage>();
             if (target != null)
             {
@@ -709,9 +717,6 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             }
             Instantiate(wepList[wepListPos].hitEffect, hit.point, Quaternion.identity);
         }
-
-        if(aud != null && audMelee != null)
-            PlayAudioSafe(audMelee[Random.Range(0, audMelee.Length)], audMeleeVol);
     }
 
     void ThrowItem()
