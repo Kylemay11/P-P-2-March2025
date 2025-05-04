@@ -17,8 +17,9 @@ public class TrapInteract : MonoBehaviour
     private TrapDamage trapDamage;
     private bool isActive = false;
     private bool isPlayerNear = false;
+    private bool trapSoundWasPlaying = false;
 
-    [Header("Audio")]
+   [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip purchaseSound;
     [Range(0, 1)][SerializeField] private float activateSoundVolume;
@@ -81,6 +82,7 @@ public class TrapInteract : MonoBehaviour
         {
             audioSource.Stop();
             audioSource.loop = false;
+            trapSoundWasPlaying = false;
         }
     }
     private void SetTrapState(bool active)
@@ -109,6 +111,7 @@ public class TrapInteract : MonoBehaviour
                 audioSource.clip = sawSound;
                 audioSource.loop = true;
                 audioSource.volume = trapSoundVolume;
+                trapSoundWasPlaying = true;
                 audioSource.Play();
             }
         }
@@ -119,6 +122,7 @@ public class TrapInteract : MonoBehaviour
                 audioSource.clip = spikeSound;
                 audioSource.loop = true;
                 audioSource.volume = trapSoundVolume;
+                trapSoundWasPlaying = true;
                 audioSource.Play();
             }
         }
@@ -161,5 +165,20 @@ public class TrapInteract : MonoBehaviour
     {
         if (costText != null)
             costText.text = "";
+    }
+    public void PauseTrapSound()
+    {
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Pause();
+        }
+    }
+
+    public void ResumeTrapSound()
+    {
+        if (trapSoundWasPlaying && audioSource != null && !audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
     }
 }

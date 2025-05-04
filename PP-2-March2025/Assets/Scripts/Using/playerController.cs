@@ -305,7 +305,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         controller.center = new Vector3(0, crouchColliderSize.y / 2f, 0);
 
         if (aud != null && audSlide != null)
-            aud.PlayOneShot(audSlide[Random.Range(0, audSlide.Length)], audSlideVol);
+            PlayAudioSafe(audSlide[Random.Range(0, audSlide.Length)], audSlideVol);
 
         UpdateCameraHeight(crouchCameraHeight);
         StartCoroutine(SlideTimer());
@@ -348,7 +348,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             velocity.y = jumpForce;
             jumpCount++;
             if (aud != null && audJump != null)
-                aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)],audJumpVol);
+                PlayAudioSafe(audJump[Random.Range(0, audJump.Length)],audJumpVol);
         }
     }
 
@@ -367,7 +367,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
                 currentSpeed = walkSpeed;
 
                 if (aud != null && audStaminaOut != null)
-                    aud.PlayOneShot(audStaminaOut[Random.Range(0, audStaminaOut.Length)], audStaminaOutVol);
+                    PlayAudioSafe(audStaminaOut[Random.Range(0, audStaminaOut.Length)], audStaminaOutVol);
 
             }
             staminaRegenTimer = 0f;
@@ -431,7 +431,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         currentHP -= amount;
         updatePlayerUI();
         StartCoroutine(DamageFlash());
-        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+
+        if(aud != null && audHurt != null)
+            PlayAudioSafe(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
         if (currentHP <= 0)
             gameManager.instance.YouLose();
     }
@@ -555,7 +557,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         // Play weapon switch sound
         if (aud != null && audChangeGun != null && audChangeGun.Length > 0)
-            aud.PlayOneShot(audChangeGun[Random.Range(0, audChangeGun.Length)], audChangeGunVol);
+            PlayAudioSafe(audChangeGun[Random.Range(0, audChangeGun.Length)], audChangeGunVol);
 
         bool isMelee = wepList[wepListPos].isMelee;
 
@@ -665,8 +667,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
             StartCoroutine(FlashMuzzle());
         }
 
-        
-        aud.PlayOneShot(wepList[wepListPos].wepSound[Random.Range(0, wepList[wepListPos].wepSound.Length)], wepList[wepListPos].wepVolume);
+        if(aud != null && wepList != null)
+            PlayAudioSafe(wepList[wepListPos].wepSound[Random.Range(0, wepList[wepListPos].wepSound.Length)], wepList[wepListPos].wepVolume);
+
 
         wepList[wepListPos].ammoCur--;
         //attackTimer = Time.deltaTime + wepRate;
@@ -708,7 +711,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         }
 
         if(aud != null && audMelee != null)
-            aud.PlayOneShot(audMelee[Random.Range(0, audMelee.Length)], audMeleeVol);
+            PlayAudioSafe(audMelee[Random.Range(0, audMelee.Length)], audMeleeVol);
     }
 
     void ThrowItem()
@@ -765,7 +768,7 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
         isReloading = true;
         if(aud != null && audReload != null)
-            aud.PlayOneShot(audReload[Random.Range(0, audReload.Length)], audReloadVol);
+            PlayAudioSafe(audReload[Random.Range(0, audReload.Length)], audReloadVol);
 
         if (wepList[wepListPos].ammoCur > 1)
         {
@@ -840,7 +843,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
         }
 
         Destroy(throwable.gameObject);
-        aud.PlayOneShot(itemList[itemListPos].itemSound[0], itemList[itemListPos].itemVolume);
+
+        if(aud != null && itemList != null)
+            PlayAudioSafe(itemList[itemListPos].itemSound[0], itemList[itemListPos].itemVolume);
     }
 
     // logic for shops AND items
@@ -917,7 +922,34 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     }
 
+    private void PlayAudioSafe(AudioClip clip, float volume)
+    {
+        if (!IsGamePaused() && aud != null && clip != null)
+        {
+            aud.PlayOneShot(clip, volume);
+        }
+    }
 
+    private bool IsGamePaused()
+    {
+        return Time.timeScale == 0 || (gameManager.instance != null && gameManager.instance.isPaused);
+    }
+
+    public void PauseAudio()
+    {
+        if (aud != null)
+        {
+            aud.Pause();
+        }
+    }
+
+    public void ResumeAudio()
+    {
+        if (aud != null && !IsGamePaused())
+        {
+            aud.UnPause();
+        }
+    }
     // make the weapon change the weapon postion of the current weapon user has equipped
 
 }

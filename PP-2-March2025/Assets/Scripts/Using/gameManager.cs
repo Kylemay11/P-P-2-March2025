@@ -82,6 +82,7 @@ public class gameManager : MonoBehaviour
         ShowPreWavePrompt();
     }
 
+  
     private void Update()
     {
         HandlePauseInput();
@@ -234,6 +235,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        playerController.instance.PauseAudio();
     }
 
     public void ResumeGame()
@@ -242,7 +244,8 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
+        playerController.instance.ResumeAudio();
+        
         if (menuActive != null)
         {
             menuActive.SetActive(false);
@@ -252,6 +255,8 @@ public class gameManager : MonoBehaviour
         }
         EventSystem.current.SetSelectedGameObject(null);
     }
+
+  
 
     public void UpdateGameGoal(int amount)
     {
