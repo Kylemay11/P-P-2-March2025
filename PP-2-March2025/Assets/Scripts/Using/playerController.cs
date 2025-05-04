@@ -143,6 +143,9 @@ public class playerController : MonoBehaviour, IDamage, IPickupable
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         instance = this;
         currentHP = maxHP;
         currentStamina = maxStamina;
