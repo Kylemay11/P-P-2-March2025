@@ -231,6 +231,7 @@ public class gameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        playerController.instance.canMove = false;
         isPaused = true;
         Time.timeScale = 0;
         Cursor.visible = true;
@@ -240,6 +241,7 @@ public class gameManager : MonoBehaviour
 
     public void ResumeGame()
     {
+        playerController.instance.canMove = true;
         isPaused = false;
         Time.timeScale = 1;
         Cursor.visible = false;
