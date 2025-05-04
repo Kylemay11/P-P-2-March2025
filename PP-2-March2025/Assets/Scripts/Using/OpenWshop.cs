@@ -71,5 +71,7 @@ public class OpenWshop : MonoBehaviour
         gameManager.instance.menuWeapShop.SetActive(false);
         playerController.instance.canMove = true;
         cameraComtroller.instance.canLook = true;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

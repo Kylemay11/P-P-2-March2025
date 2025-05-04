@@ -72,5 +72,7 @@ public class OpenPerkShop : MonoBehaviour
         gameManager.instance.menuPerkShop.SetActive(false);
         playerController.instance.canMove = true;
         cameraComtroller.instance.canLook = true;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
