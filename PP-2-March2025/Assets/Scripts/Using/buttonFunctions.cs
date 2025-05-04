@@ -19,6 +19,8 @@ public class buttonFunctions : MonoBehaviour
 
     public void quit()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

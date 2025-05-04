@@ -91,7 +91,7 @@ public class Settings : MonoBehaviour
         fullScreenToggle.onValueChanged.AddListener(setFullscreen);
 
         // sens
-        float savedSensitivity = PlayerPrefs.GetFloat("Sensitivity");
+        float savedSensitivity = PlayerPrefs.GetFloat("Sensitivity", 200f);
         if (sensSlider != null && cameraComtroller.instance != null)
         {
             sensSlider.minValue = 100f;
