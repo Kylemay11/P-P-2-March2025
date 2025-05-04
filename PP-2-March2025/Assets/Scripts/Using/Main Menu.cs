@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-
+  
         credReel = GameObject.Find("Reel");
         if (credReel != null)
         {
@@ -32,12 +32,19 @@ public class MainMenu : MonoBehaviour
         }
 
     }
+    public void Update()
+    {
+       
+    }
 
     public void playGame(int lvlID)
     {
         string levelname = "Level_" + lvlID;
         SceneManager.LoadScene(levelname);
         gameManager.instance.ResumeGame();
+        OpenPerkShop.Instance.isInShop = false;
+        OpenWshop.Instance.isInShop = false;
+        OpenShop.instance.isInShop = false;
     }
 
     public void gameQuit()

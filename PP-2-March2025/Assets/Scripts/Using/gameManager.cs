@@ -102,9 +102,9 @@ public class gameManager : MonoBehaviour
             }
         }
         else
-        {
-            if (OpenPerkShop.Instance.isInShop == false && OpenWshop.Instance.isInShop == false && OpenShop.instance.isInShop == false)
-                if (Input.GetButtonDown("Cancel"))
+
+                if (OpenPerkShop.Instance.isInShop == false && OpenWshop.Instance.isInShop == false && OpenShop.instance.isInShop == false)
+            if (Input.GetButtonDown("Cancel"))
             {
                 if (menuActive == null)
                 {
@@ -119,7 +119,6 @@ public class gameManager : MonoBehaviour
                 }
             }
         }
-    }
     private void HandleInventoryInput()
     {
         if (Input.GetButtonDown("Inventory"))

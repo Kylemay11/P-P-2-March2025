@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.Rendering.UI;
+using UnityEngine.SceneManagement;
 
 public class cameraComtroller : MonoBehaviour
 
@@ -19,8 +20,11 @@ public class cameraComtroller : MonoBehaviour
     void Start()
     {
         instance = this;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        if (SceneManager.GetActiveScene().name == "level_1")
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     // Update is called once per frame
