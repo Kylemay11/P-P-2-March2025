@@ -33,6 +33,15 @@ public class Settings : MonoBehaviour
     public void Start()
     {
         instance = this;
+
+        // Audio
+        if (!PlayerPrefs.HasKey("Volume"))
+            PlayerPrefs.SetFloat("Volume", 1f);
+
+        loadAudio(); // Load and apply volume
+        Audio.value = PlayerPrefs.GetFloat("Volume");
+        Audio.onValueChanged.AddListener(delegate { setAudio(); saveAudio(); });
+
         // resoultuion
         resolutions = Screen.resolutions;
         resolutionList = new List<Resolution>();
@@ -76,37 +85,26 @@ public class Settings : MonoBehaviour
         resolutionDropdown.onValueChanged.RemoveAllListeners();
         resolutionDropdown.onValueChanged.AddListener(setRes);
         setRes(currentResolutionIndex);
+
         // fullscreen
         fullScreenToggle.isOn = Screen.fullScreen;
         fullScreenToggle.onValueChanged.AddListener(setFullscreen);
 
         // sens
+        float savedSensitivity = PlayerPrefs.GetFloat("Sensitivity");
         if (sensSlider != null && cameraComtroller.instance != null)
         {
             sensSlider.minValue = 100f;
             sensSlider.maxValue = 1000f;
-            sensSlider.value = cameraComtroller.instance.sens;
-            sensSlider.value = cameraComtroller.instance.sens;
-            sensSlider.onValueChanged.AddListener(SetSensitivity);
+            sensSlider.value = savedSensitivity;
+            cameraComtroller.instance.sens = savedSensitivity;
+            sensSlider.onValueChanged.AddListener(OnSensitivityChanged);
         }
         if (sensValueText != null)
         {
             sensValueText.text = Mathf.RoundToInt(sensSlider.value).ToString();
         }
-        //float savedSensitivity = PlayerPrefs.GetFloat("Sensitivity");
-        //sensSlider.value = savedSensitivity;
-        //sensValueText.text = savedSensitivity.ToString("F2");
-
-        // Audio
-        if (!PlayerPrefs.HasKey("Volume"))
-        {
-            PlayerPrefs.SetFloat("Volume", 1);
-            
-        }
-        else
-        {
-           
-        }
+        
     }
 
     public void Update()
@@ -139,10 +137,13 @@ public class Settings : MonoBehaviour
     public void saveAudio()
     {
         PlayerPrefs.SetFloat("Volume", Audio.value);
+        PlayerPrefs.Save();
     }
     public void loadAudio()
     {
-        Audio.value = PlayerPrefs.GetFloat("Volume");
+        float volume = PlayerPrefs.GetFloat("Volume", 1f);
+        Audio.value = volume;
+        AudioListener.volume = volume;
     }
 
     public void setRes(int resIndex)
@@ -198,7 +199,10 @@ public class Settings : MonoBehaviour
     }
     public void OnSensitivityChanged(float newValue)
     {
-        sensValueText.text = newValue.ToString("F2");
+        if (cameraComtroller.instance != null)
+            cameraComtroller.instance.sens = newValue;
+
+        sensValueText.text = Mathf.RoundToInt(newValue).ToString();
         PlayerPrefs.SetFloat("Sensitivity", newValue);
         PlayerPrefs.Save();
     }
